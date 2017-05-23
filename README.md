@@ -25,3 +25,7 @@ int main(int argc, const char** argv){
 ## Dependencies ##
 ----------------
 The *hpmcpp* library only depends on the *hpm* library.
+
+## License ##
+-----
+This project is licensed under the GPL+3 License - see the [LICENSE](LICENSE) file for details
