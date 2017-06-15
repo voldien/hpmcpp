@@ -32,11 +32,17 @@ public:
 	HCQuaternion(float w, float x, float y, float z);
 	HCQuaternion(float pitch, float yaw, float roll);
 
+	/**
+	 *	Get individual component.
+	 */
 	float x(void)const;
 	float y(void)const;
 	float z(void)const;
 	float w(void)const;
 
+	/**
+	 *	Set individual component.
+	 */
 	void setW(float w);
 	void setX(float x);
 	void setY(float y);
@@ -48,6 +54,8 @@ public:
 	void set(float w, float x, float y, float z);
 
 	/**
+	 *	Get up and forward vector
+	 *	of quaternion.
 	 *	@Return
 	 */
 	HCVector3 up(void) const;
@@ -66,12 +74,14 @@ public:
 	HCVector3 getVector(const HCVector3& vector) const;
 
 	/**
+	 *	Compute the magnitude.
 	 *	@Return
 	 */
 	float magnitude(void) const;
 	float magnitudeSquared(void);
 
 	/**
+	 *	Compute dot product from two quaternion.
 	 *	@Return
 	 */
 	friend float dot(const HCQuaternion& lh, const HCQuaternion& rh);
@@ -82,6 +92,7 @@ public:
 	void makeUnitQuaternion(void);
 
 	/**
+	 *	Compute normalized quaternion.
 	 *	@Return
 	 */
 	HCQuaternion normalize(void) const;

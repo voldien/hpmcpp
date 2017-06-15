@@ -53,6 +53,7 @@ public:
 	HCVector4 operator-(void) const;
 
 	/**
+	 *	Compute length of vector.
 	 *	@Return
 	 */
 	float length(void) const;
