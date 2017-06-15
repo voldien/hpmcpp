@@ -21,7 +21,7 @@
 #include "HCTypes.h"
 
 /**
- *	Matrix 4x4.
+ *	Right handed 4x4 Matrix.
  */
 class HCDECLSPEC HCMatrix4x4{
 public:
@@ -101,36 +101,49 @@ public:	/*	*/
 public:	/*	Static methods.	*/
 
 	/**
-	 *	@Return
+	 *	Create translation matrix.
+	 *
+	 *	@Return translated matrix
 	 */
 	static HCMatrix4x4 translate(float x, float y, float z);
 
 	/**
-	 *	@Return
+	 *	Create translation matrix.
+	 *
+	 *	@Return translated matrix
 	 */
 	static HCMatrix4x4 translate(const HCVector3& translation);
 
 	/**
+	 *	Create rotation matrix from angle around the axis.
+	 *
 	 *	@Return
 	 */
 	static HCMatrix4x4 rotate(float angle, const HCVector3& axis);
 
 	/**
+	 *	Create rotation matrix from quaternion.
+	 *
 	 *	@Return
 	 */
 	static HCMatrix4x4 rotate(const HCQuaternion& quat);
 
 	/**
+	 *	Create scale matrix.
+	 *
 	 *	@Return
 	 */
 	static HCMatrix4x4 scale(float x, float y, float z);
 
 	/**
+	 *	Create scale matrix.
+	 *
 	 *	@Return
 	 */
 	static HCMatrix4x4 scale(const HCVector3& scale);
 
 	/**
+	 *	Create perspectice matrix.
 	 *
 	 *	@Return
 	 */
@@ -139,12 +152,14 @@ public:	/*	Static methods.	*/
 
 	/**
 	 *
+	 *
 	 *	@Return
 	 */
 	static HCMatrix4x4 lookAt(const HCVector3& lookPosition,
 			const HCVector3& position, const HCVector3& forward);
 
 	/**
+	 *	Create orthographic perspectice.
 	 *
 	 *	@Return
 	 */
@@ -152,12 +167,12 @@ public:	/*	Static methods.	*/
 			float near, float far);
 
 	/**
-	 *	Get bias matrix.
+	 *	Create bias matrix.
 	 */
 	static HCMatrix4x4 biasMatrix(void);
 
 	/**
-	 *
+	 *	Create identity matrix.
 	 */
 	static HCMatrix4x4 identity(void);
 };

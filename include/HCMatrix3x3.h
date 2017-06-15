@@ -21,7 +21,7 @@
 #include "HCTypes.h"
 
 /**
- *
+ *	Matrix3x3.
  */
 class HCDECLSPEC HCMatrix3x3{
 public:
