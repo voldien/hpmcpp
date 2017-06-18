@@ -88,7 +88,7 @@
 
 
 /*
- *	alignment
+ *	Alignment.
  */
 #ifndef HC_ALIGN
         #if defined(HC_MSVC)
@@ -134,8 +134,6 @@
 	#define HCAPISTDENTRY  __stdcall
 	#define HCAPIFASTENTRY __fastcall
 #endif
-
-
 
 /**
  *	library declaration.

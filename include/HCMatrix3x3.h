@@ -34,13 +34,14 @@ public:
 
 private:	/*	Attributes.	*/
 	union{
+/*		hpmvec3x3f_t	*/
 		float mat[3][3];
 	};
 
-public:
+public:	/*	Public methods.	*/
 
 	/**
-	 *
+	 *	@Return
 	 */
 	float determinant(void)const;
 	void inverse(void);
@@ -60,7 +61,7 @@ public:
 	HCMatrix3x3 operator/(const HCMatrix3x3& rh)const;
 
 	/**
-	 *
+	 *	@Return
 	 */
 	HCMatrix3x3& operator=(const HCMatrix3x3& rh);
 	HCMatrix3x3& operator=(const HCMatrix4x4& rh);
@@ -74,10 +75,6 @@ public:
 	 */
 	friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
 	friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
-
-protected:
-
-
 };
 
 #endif

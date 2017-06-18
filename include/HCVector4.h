@@ -124,7 +124,7 @@ public:
 	friend HCVector4 reflection(const HCVector4& vector, const HCVector4& normal);
 	friend float dot(const HCVector4& v1, const HCVector4& v2);
 
-//protected:	/*	Attributes.	*/
+protected:	/*	Attributes.	*/
 
 		hpmvec4f e;
 

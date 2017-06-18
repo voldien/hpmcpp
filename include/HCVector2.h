@@ -71,6 +71,9 @@ public:
 		return m[1];
 	}
 
+	/**
+	 *	@Return
+	 */
 	float minComponent(void) const;
 	float maxComponent(void) const;
 	float maxAbsComponent(void) const;
@@ -83,19 +86,19 @@ public:
 	HCVector2 normalize(void) const;
 
 	/**
-	 *
+	 *	@Return
 	 */
 	friend bool operator==(const HCVector2& v1, const HCVector2& v2);
 	friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
 
 	/**
-	 *
+	 *	@Return
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector2& t);
 	friend std::ostream &operator<<(std::ostream &os, const HCVector2& t);
 
 	/**
-	 *
+	 *	@Return
 	 */
 	friend HCVector2 operator+(const HCVector2& v1, const HCVector2& v2);
 	friend HCVector2 operator-(const HCVector2& v1, const HCVector2& v2);

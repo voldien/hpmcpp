@@ -49,10 +49,9 @@ HCMatrix4x4 HCMatrix4x4::operator-(const HCMatrix4x4& rh) const {
 	return mat;
 }
 
-
 HCVector4 HCMatrix4x4::operator*(const HCVector4& rh) const {
 	HCVector4 vm;
-	hpm_mat4x4_multiply_mat1x4fv(this->e, &rh.e, &vm.e);
+	hpm_mat4x4_multiply_mat1x4fv(this->e, (const hpmvec4f*)&rh, (hpmvec4f*)&vm);
 	return vm;
 }
 
@@ -107,13 +106,13 @@ HCMatrix4x4 HCMatrix4x4::translate(float x, float y, float z) {
 
 HCMatrix4x4 HCMatrix4x4::translate(const HCVector3& translation) {
 	HCMatrix4x4 mat;
-	hpm_mat4x4_translationfv(mat.e, &translation.e);
+	hpm_mat4x4_translationfv(mat.e, (hpmvec3f*)&translation);
 	return mat;
 }
 
 HCMatrix4x4 HCMatrix4x4::rotate(float angle, const HCVector3& axis) {
 	HCMatrix4x4 mat;
-	hpm_mat4x4_rotationfv(mat.e, angle, &axis.e);
+	hpm_mat4x4_rotationfv(mat.e, angle, (hpmvec3f*)&axis);
 	return mat;
 }
 
@@ -131,7 +130,7 @@ HCMatrix4x4 HCMatrix4x4::scale(float x, float y, float z) {
 
 HCMatrix4x4 HCMatrix4x4::scale(const HCVector3& scale) {
 	HCMatrix4x4 mat;
-	hpm_mat4x4_scalefv(mat.e, &scale.e);
+	hpm_mat4x4_scalefv(mat.e, (const hpmvec3f*)&scale);
 	return mat;
 }
 
@@ -161,4 +160,3 @@ HCMatrix4x4 HCMatrix4x4::identity(void){
 	hpm_mat4x4_identityfv(mat.e);
 	return mat;
 }
-

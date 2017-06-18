@@ -62,13 +62,13 @@ HCVector3 HCQuaternion::forward(void) const {
 
 HCVector3 HCQuaternion::getVector(void) const {
 	HCVector3 dir;
-	hpm_quat_directionfv(&this->e, &dir.e);
+	hpm_quat_directionfv(&this->e, (hpmvec3f*)&dir);
 	return dir;
 }
 
 HCVector3 HCQuaternion::getVector(const HCVector3& vector) const {
 	HCVector3 vec;
-	hpm_quat_get_vectorfv(&this->e, &vector.e, &vec.e);
+	hpm_quat_get_vectorfv(&this->e, (const hpmvec3f*)&vector, (hpmvec3f*)&vec);
 	return vec;
 }
 
@@ -107,7 +107,7 @@ HCQuaternion operator*(const HCQuaternion& lh, const HCQuaternion& rh) {
 }
 HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh) {
 	HCQuaternion quat = lh;
-	hpm_quat_multi_vec3fv(&lh.e, &rh.e, &quat.e);
+	hpm_quat_multi_vec3fv(&lh.e, (const hpmvec3f*)&rh, (hpmvec3f*)&quat.e);
 	return quat;
 }
 HCQuaternion operator*(const HCQuaternion& lh, float rh) {
@@ -193,7 +193,7 @@ HCQuaternion HCQuaternion::createQuaternionOfAxis(float pitch, float yaw,
 
 HCQuaternion HCQuaternion::createFromAxisAngle(const HCVector3& axis, float angle) {
 	HCQuaternion quat;
-	hpm_quat_axis_anglefv(&quat.e, &axis.e, angle);
+	hpm_quat_axis_anglefv(&quat.e, (hpmvec3f*)&axis, angle);
 	return quat;
 }
 

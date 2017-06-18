@@ -56,6 +56,7 @@ public:
 	/**
 	 *	Get up and forward vector
 	 *	of quaternion.
+	 *
 	 *	@Return
 	 */
 	HCVector3 up(void) const;
@@ -75,6 +76,7 @@ public:
 
 	/**
 	 *	Compute the magnitude.
+	 *
 	 *	@Return
 	 */
 	float magnitude(void) const;
@@ -82,6 +84,7 @@ public:
 
 	/**
 	 *	Compute dot product from two quaternion.
+	 *
 	 *	@Return
 	 */
 	friend float dot(const HCQuaternion& lh, const HCQuaternion& rh);
@@ -93,6 +96,7 @@ public:
 
 	/**
 	 *	Compute normalized quaternion.
+	 *
 	 *	@Return
 	 */
 	HCQuaternion normalize(void) const;

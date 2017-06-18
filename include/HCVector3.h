@@ -56,10 +56,6 @@ public:
      */
     inline float operator[](int i)const {return e[i];}
     inline float& operator[](int i){return e[i];}
-
-    /**
-     *	@Return
-     */
     inline operator float*(void){return (float*)this;}
 
     /**
@@ -141,12 +137,13 @@ public:
     friend HCVector3 biTangent(const HCVector3& normal,const HCVector3& tangent);
     friend HCVector3 biNormal(const HCVector3& normal,const HCVector3& tangent);
 
+private:	/*	Private method.	*/
+
 	hpmvec3f e;
 
 public:	/*	Static methods.	*/
 
     /**
-     *
      *	@Return
      */
     inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}

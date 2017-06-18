@@ -1,7 +1,6 @@
 #include <HCVector2.h>
 
-HCVector2::HCVector2(void) {
-}
+HCVector2::HCVector2(void) {}
 HCVector2::HCVector2(float val) {
 	this->setX(val);
 	this->setY(val);

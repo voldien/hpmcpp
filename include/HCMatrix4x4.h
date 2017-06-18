@@ -32,7 +32,7 @@ private:	/*	Attributes.	*/
 
 	hpmvec4x4f_t e;
 
-public:	/*	*/
+public:		/*	*/
 
 	/**
 	 *	@Return

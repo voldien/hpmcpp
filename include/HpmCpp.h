@@ -21,10 +21,23 @@
 #include <HCTypes.h>
 
 /**
- *
+ *	hpmcpp initilization class.
+ *	See more description of the simd enumerator.
+ *	see hpm.h
  */
 class HpmCpp{
 public:
+
+	/**
+	 *
+	 */
+	enum SIMD{
+		eNone,		/**/
+	};
+
+	/**
+	 *
+	 */
 	static void init(void);
 };
 

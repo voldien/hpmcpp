@@ -95,7 +95,7 @@ HCVector3 operator+(const HCVector3& v1, const HCVector3& v2) {
 }
 
 HCVector3 operator-(float v1, const HCVector3& v2) {
-	return HCVector3(v1 - v2.e[0], v1 - v2.e[1], v1 - v2.e[2]);
+	return HCVector3(v1 - v2.x(), v1 - v2.y(), v1 - v2.z());
 }
 HCVector3 operator-(const HCVector3& v1, const HCVector3& v2) {
 	return HCVector3(v1.e[0] - v2.e[0], v1.e[1] - v2.e[1], v1.e[2] - v2.e[2]);

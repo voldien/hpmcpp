@@ -69,8 +69,12 @@ HCVector4 HCVector4::normalize(void) const {
 	return vec;
 }
 
+float HCVector4::minComponent(void) const{
+	return hpm_vec4_min_compfv(&this->e);
+}
+
 float HCVector4::maxComponent(void) const {
-	return 0;
+	return hpm_vec4_max_compfv(&this->e);
 }
 
 float HCVector4::maxAbsComponent(void) const {
@@ -111,7 +115,7 @@ HCVector4 operator+(const HCVector4& v1, const HCVector4& v2) {
 
 HCVector4 operator-(float v1, const HCVector4& v2) {
 	HCVector4 copy = HCVector4(v1);
-	hpm_vec4_subtractionfv(&copy.e, &v2.e);
+	hpm_vec4_subtractionfv((hpmvec4f*)&copy, (const hpmvec4f*)&v2);
 	return copy;
 }
 HCVector4 operator-(const HCVector4& v1, const HCVector4& v2) {
@@ -126,7 +130,7 @@ float dot(const HCVector4& v1, const HCVector4& v2) {
 
 HCVector4 unitVector(const HCVector4& v) {
 	HCVector4 vec = v;
-	hpm_vec4_normalizefv(&vec.e);
+	hpm_vec4_normalizefv((hpmvec4f*)&vec);
 	return vec;
 }
 
@@ -138,7 +142,6 @@ HCVector4 minVec(const HCVector4& v1, const HCVector4& v2) {
 HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2) {
 	HCVector4 vec;
 	hpm_vec4_maxfv(&v1.e, &v2.e, &vec.e);
-//	hpm_vec4_copyfv(&vec.e, &hpm_vec4_maxfv(&v1.e, &v2.e));
 	return vec;
 }
 
@@ -179,7 +182,6 @@ std::ostream & operator<<(std::ostream& os, const HCVector4& t) {
 			<< ')';
 	return os;
 }
-
 
 HCVector4 HCVector4::lerp(const HCVector4& vec1, const HCVector4& vec2, float speed){
 	HCVector4 vec;
