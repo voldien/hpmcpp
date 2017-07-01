@@ -112,8 +112,9 @@ HCVector3 cross(const HCVector3& v1, const HCVector3& v2) {
 }
 
 HCVector3 unitVector(const HCVector3& v) {
-	float length = v.length();
-	return v / length;
+	HCVector3 vec = v;
+	hpm_vec3_normalizefv((hpmvec3f*)&vec);
+	return vec;
 }
 
 HCVector3 minVec(const HCVector3& v1, const HCVector3& v2) {

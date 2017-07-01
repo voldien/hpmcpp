@@ -144,7 +144,7 @@ private:	/*	Private method.	*/
 public:	/*	Static methods.	*/
 
     /**
-     *	@Return
+     *	Create predefined vector3.
      */
     inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}
     inline static HCVector3 back(void){return HCVector3(0.0f, 0.0f, -1.0f);}
@@ -155,11 +155,13 @@ public:	/*	Static methods.	*/
     inline static HCVector3 zero(void){return HCVector3(0.0f, 0.0, 0.0f);}
 
     /**
+     *	Linear interpolation between v1 and v2 based on t.
      *	@Return
      */
     static HCVector3 lerp(const HCVector3& vec1, const HCVector3& vec2, float t);
 
     /**
+     *	Spherical interpolation.
      *	@Return
      */
     static HCVector3 slerp(const HCVector3& vec1, const HCVector3& vec2, float t);
