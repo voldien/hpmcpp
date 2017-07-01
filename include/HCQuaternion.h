@@ -35,18 +35,18 @@ public:
 	/**
 	 *	Get individual component.
 	 */
-	float x(void)const;
-	float y(void)const;
-	float z(void)const;
-	float w(void)const;
+	float HCAPIFASTENTRY x(void)const;
+	float HCAPIFASTENTRY y(void)const;
+	float HCAPIFASTENTRY z(void)const;
+	float HCAPIFASTENTRY w(void)const;
 
 	/**
 	 *	Set individual component.
 	 */
-	void setW(float w);
-	void setX(float x);
-	void setY(float y);
-	void setZ(float z);
+	void HCAPIFASTENTRY setW(float w);
+	void HCAPIFASTENTRY setX(float x);
+	void HCAPIFASTENTRY setY(float y);
+	void HCAPIFASTENTRY setZ(float z);
 
 	/**
 	 *	Set
@@ -102,8 +102,10 @@ public:
 	HCQuaternion normalize(void) const;
 
 	/**
+	 *	Create conjugate quaternion from
+	 *	this quaternion.
 	 *
-	 *	@Return
+	 *	@Return conjugated quaternion.
 	 */
 	HCQuaternion conjugate(void) const;
 
