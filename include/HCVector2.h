@@ -57,19 +57,17 @@ public:
 
 	void makeUnitVector(void);
 
-	inline void setX(float _x) {
-		m[0] = _x;
-	}
-	inline void setY(float _y) {
-		m[1] = _y;
-	}
+	/**
+	 *
+	 */
+	void HCAPIFASTENTRY setX(float _x);
+	void HCAPIFASTENTRY setY(float _y);
 
-	inline float x(void) const {
-		return m[0];
-	}
-	inline float y(void) const {
-		return m[1];
-	}
+	/**
+	 *
+	 */
+	float HCAPIFASTENTRY x(void) const;
+	float HCAPIFASTENTRY y(void) const;
 
 	/**
 	 *	@Return
@@ -83,15 +81,21 @@ public:
 	int indexOfMinAbsComponent(void) const;
 	int indexOfMaxAbsComponent(void) const;
 
+	/**
+	 *	@Return
+	 */
 	HCVector2 normalize(void) const;
 
 	/**
+	 *	Compare vector equalities
+	 *	.
 	 *	@Return
 	 */
 	friend bool operator==(const HCVector2& v1, const HCVector2& v2);
 	friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
 
 	/**
+	 *
 	 *	@Return
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector2& t);
@@ -130,7 +134,7 @@ private:	/*	Attributes.	*/
 
 	hpmvec2f m;
 
-public:
+public:	/*	Static methods.	*/
 
 	/**
 	 *	@Return

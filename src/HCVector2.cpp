@@ -27,6 +27,20 @@ void HCVector2::makeUnitVector(void) {
 	//*this /= this->length();
 }
 
+void HCVector2::setX(float _x) {
+	hpm_vec4_setxf(this->m, _x);
+}
+void HCVector2::setY(float _y) {
+	hpm_vec4_setyf(this->m, _y);
+}
+
+float HCVector2::x(void) const {
+	return hpm_vec4_getxf(this->m);
+}
+float HCVector2::y(void) const{
+	return hpm_vec4_getyf(this->m);
+}
+
 HCVector2 HCVector2::normalize(void) const {
 	//return HCVector2(m[0], m[1]) / this->length();
 	return HCVector2();
@@ -109,11 +123,13 @@ HCVector2& HCVector2::operator*=(const HCVector2& vec2) {
 }
 
 std::istream& operator>>(std::istream &is, HCVector2& t) {
-	float temp;
-	is >> temp;
-	t.setX( temp );
-	is >> temp;
-	t.setY(temp);
+	float tmp;
+
+	is >> tmp;
+	t.setX(tmp);
+	is >> tmp;
+	t.setY(tmp);
+
 	return is;
 }
 
