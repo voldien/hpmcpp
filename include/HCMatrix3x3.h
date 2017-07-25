@@ -1,5 +1,5 @@
 /**
-	C++ Wrapper for the hpm library.
+    C++ Wrapper for the hpm library.
     Copyright (C) 2017  Valdemar Lindberg
 
     This program is free software: you can redistribute it and/or modify
