@@ -39,7 +39,7 @@ HCMatrix4x4 HCMatrix4x4::operator*(float rh) const{
 
 HCMatrix4x4 HCMatrix4x4::operator*(const HCMatrix4x4& rh) const {
 	HCMatrix4x4 mat;
-	hpm_mat4x4_multiply_mat4x4fv(this->e, rh.e,mat.e);
+	hpm_mat4x4_multiply_mat4x4fv(this->e, rh.e, mat.e);
 	return mat;
 }
 
