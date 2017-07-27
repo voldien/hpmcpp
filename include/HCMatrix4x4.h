@@ -68,6 +68,7 @@ public:		/*	*/
 	/**
 	 *	@Return
 	 */
+    HCMatrix4x4 operator*(float rh) const;
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
 	HCVector4 operator*(const HCVector4& rh) const;
 	HCMatrix4x4 operator+(const HCMatrix4x4& rh) const;
