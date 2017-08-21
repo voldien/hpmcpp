@@ -41,13 +41,31 @@ private:	/*	Attributes.	*/
 public:	/*	Public methods.	*/
 
 	/**
+	 *	Compute determinant.
 	 *	@Return
 	 */
-	float determinant(void)const;
-	void inverse(void);
-	unsigned char IsIdentity(void)const;
-	void identity(void);
-	HCMatrix3x3 transpose(void)const;
+	float HCAPIENTRY determinant(void) const;
+
+	/**
+	 *	@Return
+	 */
+	HCMatrix3x3 HCAPIENTRY inverse(void);
+
+	/**
+	 *	@Return
+	 */
+	bool HCAPIENTRY isIdentity(void) const;
+
+	/**
+	 *	@Return
+	 */
+	HCMatrix4x4 HCAPIENTRY identity(void);
+
+	/**
+	 *	Create transpose matrix.
+	 *	@Return
+	 */
+	HCMatrix3x3 HCAPIENTRY transpose(void) const;
 
 	/**
 	 *	@Return
@@ -71,10 +89,17 @@ public:	/*	Public methods.	*/
 	HCMatrix3x3& operator/=(const HCMatrix3x3& rh);
 
 	/**
-	 *	@Return
+	 *	Create input stream for creating vector
+	 *	from input stream.
+	 *	@Return stream reference.
 	 */
-	friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
-	friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
+	friend std::istream &operator>>(std::istream &is, HCMatrix3x3& t);
+
+	/**
+	 *	Create output stream of vector value.
+	 *	@Return stream reference.
+	 */
+	friend std::ostream &operator<<(std::ostream &os, const HCMatrix3x3& t);
 };
 
 #endif
