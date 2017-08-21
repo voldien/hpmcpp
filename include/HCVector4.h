@@ -21,7 +21,9 @@
 #include "HCTypes.h"
 
 /**
- *	Vector4
+ *	Vector4 class. Contains
+ *	x, y, z, w component. Where the
+ *	size of the object is 128 bit.
  */
 class HCDECLSPEC HCVector4{
 public:
@@ -31,15 +33,15 @@ public:
 	HCVector4(float m0, float m1, float m2, float m3);
 	HCVector4(const HCVector4& v);
 
-	float x(void) const;
-	float y(void) const;
-	float z(void) const;
-	float w(void) const;
+	float HCAPIFASTENTRY x(void) const;
+	float HCAPIFASTENTRY y(void) const;
+	float HCAPIFASTENTRY z(void) const;
+	float HCAPIFASTENTRY w(void) const;
 
-	void setX(float x);
-	void setY(float y);
-	void setZ(float z);
-	void setW(float w);
+	void HCAPIFASTENTRY setX(float x);
+	void HCAPIFASTENTRY setY(float y);
+	void HCAPIFASTENTRY setZ(float z);
+	void HCAPIFASTENTRY setW(float w);
 
 	/**
 	 *	Get component by index.
@@ -49,37 +51,45 @@ public:
 
 	/**
 	 *	Negate vector.
+	 *	@Return negated vector.
 	 */
 	HCVector4 operator-(void) const;
 
 	/**
 	 *	Compute length of vector.
-	 *	@Return
+	 *	@Return non-negativ number.
 	 */
-	float length(void) const;
-	float squaredLength(void) const;
+	float HCAPIFASTENTRY length(void) const;
+
+	/**
+	 *	Compute length of vector.
+	 *	@Return non-negativ number.
+	 */
+	float HCAPIFASTENTRY squaredLength(void) const;
 
 	/**
 	 *	Normalize current vector.
 	 */
-	void makeUnitVector(void);
+	void HCAPIENTRY makeUnitVector(void);
 
 	/**
 	 *	@Return
 	 */
-	float minComponent(void) const;
-	float maxComponent(void) const;
-	float maxAbsComponent(void) const;
-	float minAbsComponent(void) const;
-	int indexOfMinComponent(void) const;
-	int indexOfMaxComponent(void) const;
-	int indexOfMinAbsComponent(void) const;
-	int indexOfMaxAbsComponent(void) const;
+	float HCAPIFASTENTRY minComponent(void) const;
+	float HCAPIFASTENTRY maxComponent(void) const;
+	float HCAPIFASTENTRY maxAbsComponent(void) const;
+	float HCAPIFASTENTRY minAbsComponent(void) const;
+	int HCAPIFASTENTRY indexOfMinComponent(void) const;
+	int HCAPIFASTENTRY indexOfMaxComponent(void) const;
+	int HCAPIFASTENTRY indexOfMinAbsComponent(void) const;
+	int HCAPIFASTENTRY indexOfMaxAbsComponent(void) const;
 
 	/**
+	 *  Create nomralized copy.
+	 *
 	 *	@Return normalize vector of current vector.
 	 */
-	HCVector4 normalize(void) const;
+	HCVector4 HCAPIENTRY normalize(void) const;
 
 	/**
 	 *
@@ -89,9 +99,16 @@ public:
 	friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
 
 	/**
-	 *	@Return stream.
+	 *	Create input stream for creating vector
+	 *	from input stream.
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector4& t);
+
+	/**
+	 *	Create output stream of vector value.
+	 *	@Return stream reference.
+	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
 
 	/**

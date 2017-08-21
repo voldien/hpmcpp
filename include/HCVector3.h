@@ -21,7 +21,9 @@
 #include "HCTypes.h"
 
 /**
- *
+ *	Vector3 class. Contains
+ *	x, y, z component. Where the
+ *	size of the object is 128 bit.
  */
 class HCDECLSPEC HCVector3{
 public:
@@ -31,18 +33,19 @@ public:
     HCVector3(const HCVector3& v);
 
     /**
+     *	Get indiviual component of vector.
      *	@Return
      */
-    inline float x(void)const{return this->e[0];}
-    inline float y(void)const{return this->e[1];}
-    inline float z(void)const{return this->e[2];}
+    inline float HCAPIFASTENTRY x(void)const{return this->e[0];}
+    inline float HCAPIFASTENTRY y(void)const{return this->e[1];}
+    inline float HCAPIFASTENTRY z(void)const{return this->e[2];}
 
     /**
      *
      */
-    void setX(float _x){e[0] = _x;}
-    void setY(float _y){e[1] = _y;}
-    void setZ(float _z){e[2] = _z;}
+    void HCAPIFASTENTRY setX(float _x){e[0] = _x;}
+    void HCAPIFASTENTRY setY(float _y){e[1] = _y;}
+    void HCAPIFASTENTRY setZ(float _z){e[2] = _z;}
 
 
     /**
@@ -61,33 +64,32 @@ public:
     /**
      *	@Return
      */
-    float length(void)const;
-    float squaredLength(void)const;
+    float HCAPIENTRY length(void)const;
+    float HCAPIENTRY squaredLength(void)const;
 
     /**
      *
      */
-    void makeUnitVector(void);
-
-    /**
-     *
-     *	@Return
-     */
-    float minComponent(void)const;
-    float maxComponent(void)const;
-    float maxAbsComponent(void)const;
-    float minAbsComponent(void)const;
-    int indexOfMinComponent(void)const;
-    int indexOfMaxComponent(void)const;
-    int indexOfMinAbsComponent(void)const;
-    int indexOfMaxAbsComponent(void)const;
+    void HCAPIENTRY makeUnitVector(void);
 
     /**
      *
      *	@Return
      */
-    HCVector3 normalize(void)const;
+    float HCAPIENTRY minComponent(void)const;
+    float HCAPIENTRY maxComponent(void)const;
+    float HCAPIENTRY maxAbsComponent(void)const;
+    float HCAPIENTRY minAbsComponent(void)const;
+    int HCAPIENTRY indexOfMinComponent(void)const;
+    int HCAPIENTRY indexOfMaxComponent(void)const;
+    int HCAPIENTRY indexOfMinAbsComponent(void)const;
+    int HCAPIENTRY indexOfMaxAbsComponent(void)const;
 
+    /**
+     *
+     *	@Return
+     */
+    HCVector3 HCAPIENTRY normalize(void)const;
 
     /**
      *
@@ -158,13 +160,13 @@ public:	/*	Static methods.	*/
      *	Linear interpolation between v1 and v2 based on t.
      *	@Return
      */
-    static HCVector3 lerp(const HCVector3& vec1, const HCVector3& vec2, float t);
+    static HCVector3 HCAPIENTRY lerp(const HCVector3& vec1, const HCVector3& vec2, float t);
 
     /**
      *	Spherical interpolation.
      *	@Return
      */
-    static HCVector3 slerp(const HCVector3& vec1, const HCVector3& vec2, float t);
+    static HCVector3 HCAPIENTRY slerp(const HCVector3& vec1, const HCVector3& vec2, float t);
 };
 
 #endif
