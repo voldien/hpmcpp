@@ -37,10 +37,10 @@ public:
 	/**
 	 *	Get individual component.
 	 */
-	float HCAPIFASTENTRY x(void)const;
-	float HCAPIFASTENTRY y(void)const;
-	float HCAPIFASTENTRY z(void)const;
-	float HCAPIFASTENTRY w(void)const;
+	float HCAPIFASTENTRY x(void) const;
+	float HCAPIFASTENTRY y(void) const;
+	float HCAPIFASTENTRY z(void) const;
+	float HCAPIFASTENTRY w(void) const;
 
 	/**
 	 *	Set individual component.
@@ -159,14 +159,17 @@ public:
 	/**
 	 *	@Return
 	 */
-	friend HCQuaternion operator+(const HCQuaternion& lh, const HCQuaternion& rh);
-	friend HCQuaternion operator-(const HCQuaternion& lh, const HCQuaternion& rh);
+	friend HCQuaternion operator+(const HCQuaternion& lh,
+	        const HCQuaternion& rh);
+	friend HCQuaternion operator-(const HCQuaternion& lh,
+	        const HCQuaternion& rh);
 
 	/**
 	 *
 	 *	@Return
 	 */
-	friend HCQuaternion operator*(const HCQuaternion& lh, const HCQuaternion& rh);
+	friend HCQuaternion operator*(const HCQuaternion& lh,
+	        const HCQuaternion& rh);
 	friend HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh);
 	friend HCQuaternion operator*(const HCQuaternion& lh, float rh);
 
@@ -207,59 +210,65 @@ public:	/*	Static utility methods.	*/
 	 *
 	 *	@Return
 	 */
-	static HCQuaternion HCAPIENTRY lookRotation(const HCVector3& target, const HCVector3& up);
+	static HCQuaternion HCAPIENTRY lookRotation(const HCVector3& target,
+	        const HCVector3& up);
 
 	/**
 	 *	Create look at vector.
 	 *	@Return
 	 */
-	static HCQuaternion HCAPIENTRY lookAt(const HCVector3& target, const HCVector3& up);
+	static HCQuaternion HCAPIENTRY lookAt(const HCVector3& target,
+	        const HCVector3& up);
 
 	/**
 	 *  Create quaternion from eular rotation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY createQuaternionOfAxis(float pitch, float yaw,
-			float roll);
+	static HCQuaternion HCAPIENTRY createQuaternionOfAxis(float pitch,
+	        float yaw, float roll);
 
 	/**
+	 *	Create quaternion from eular rotation.
 	 *
-	 *	@Return
+	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY createQuaternionOfAxis(const HCVector3& axis);
+	static HCQuaternion HCAPIENTRY createQuaternionOfAxis(
+	        const HCVector3& axis);
 
 	/**
 	 *
 	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY createFromAxisAngle(const HCVector3& axis, float angle);
+	static HCQuaternion HCAPIENTRY createFromAxisAngle(const HCVector3& axis,
+	        float angle);
 
 	/**
 	 *  Convert direction to quaternion.
 	 *
 	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY createQuaternionOfDirection(HCVector3& direction);
+	static HCQuaternion HCAPIENTRY createQuaternionOfDirection(
+	        HCVector3& direction);
 
 	/**
 	 *
-	 *	@Return
+	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY lerp(const HCQuaternion& from, const HCQuaternion& to,
-			float speed);
+	static HCQuaternion HCAPIENTRY lerp(const HCQuaternion& from,
+	        const HCQuaternion& to, float speed);
 
 	/**
 	 *  Spherical interpolation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
-	static HCQuaternion HCAPIENTRY slerp(const HCQuaternion& from, const HCQuaternion& to,
-			float speed);
+	static HCQuaternion HCAPIENTRY slerp(const HCQuaternion& from,
+	        const HCQuaternion& to, float speed);
 
 	/**
-	 *
-	 *	@Return
+	 *	Create quaternion identity.
+	 *	@Return identitiy.
 	 */
 	static HCQuaternion HCAPIENTRY identity(void);
 

@@ -52,10 +52,6 @@ public:
 		return this->m[i];
 	}
 
-	float* operator*(void) {
-		return (float*) this;
-	}
-
 	/**
 	 *	Compute length.
 	 *	@Return length in decimal.
@@ -176,7 +172,8 @@ public:
 	/**
 	 *	@Return
 	 */
-	friend HCVector2 reflection(const HCVector2& vector, const HCVector2& normal);
+	friend HCVector2 reflection(const HCVector2& vector,
+	        const HCVector2& normal);
 	/**
 	 *	Compute dot product.
 	 *	@Return

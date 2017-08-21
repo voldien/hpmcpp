@@ -21,7 +21,7 @@
 #include "HCTypes.h"
 
 /**
- *	Matrix3x3.
+ *	Right handed Matrix3x3.
  */
 class HCDECLSPEC HCMatrix3x3{
 public:
@@ -33,10 +33,8 @@ public:
 	explicit HCMatrix3x3(float identity);
 
 private:	/*	Attributes.	*/
-	union{
-/*		hpmvec3x3f_t	*/
-		float mat[3][3];
-	};
+
+	hpmvec4x4f_t e;
 
 public:	/*	Public methods.	*/
 
@@ -71,12 +69,16 @@ public:	/*	Public methods.	*/
 	 *	@Return
 	 */
 	HCVector3& operator[](const unsigned int index);
-    inline float* operator[](int index)const{return (float*)&this->mat[index][0];}
-	HCMatrix3x3 operator*(const HCMatrix3x3& rh)const;
-	HCMatrix4x4 operator*(const HCMatrix4x4& rh)const;
-	HCMatrix3x3 operator+(const HCMatrix3x3& rh)const;
-	HCMatrix3x3 operator-(const HCMatrix3x3& rh)const;
-	HCMatrix3x3 operator/(const HCMatrix3x3& rh)const;
+	inline float* operator[](int index)const{return (float*)&this->e[index][0];}
+
+	/**
+	 *	@Return
+	 */
+	HCMatrix3x3 operator*(const HCMatrix3x3& rh) const;
+	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
+	HCMatrix3x3 operator+(const HCMatrix3x3& rh) const;
+	HCMatrix3x3 operator-(const HCMatrix3x3& rh) const;
+	HCMatrix3x3 operator/(const HCMatrix3x3& rh) const;
 
 	/**
 	 *	@Return

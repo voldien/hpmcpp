@@ -47,97 +47,157 @@ public:
     void HCAPIFASTENTRY setY(float _y){e[1] = _y;}
     void HCAPIFASTENTRY setZ(float _z){e[2] = _z;}
 
+	/**
+	 *	@Return
+	 */
+	const HCVector3& operator+(void) const;
+	HCVector3 operator-(void) const;
 
-    /**
-     *	@Return
-     */
-    const HCVector3& operator+(void)const;
-    HCVector3 operator-(void)const;
+	/**
+	 *	@Return
+	 */
+	inline float operator[](int i) const {
+		return e[i];
+	}
+	inline float& operator[](int i) {
+		return e[i];
+	}
+	inline operator float*(void) {
+		return (float*) this;
+	}
 
-    /**
-     *	@Return
-     */
-    inline float operator[](int i)const {return e[i];}
-    inline float& operator[](int i){return e[i];}
-    inline operator float*(void){return (float*)this;}
+	/**
+	 *	Compute length.
+	 *	@Return non-negative number.
+	 */
+	float HCAPIENTRY length(void) const;
+	float HCAPIENTRY squaredLength(void) const;
 
-    /**
-     *	@Return
-     */
-    float HCAPIENTRY length(void)const;
-    float HCAPIENTRY squaredLength(void)const;
+	/**
+	 *
+	 */
+	void HCAPIENTRY makeUnitVector(void);
 
-    /**
-     *
-     */
-    void HCAPIENTRY makeUnitVector(void);
+	/**
+	 *
+	 *	@Return
+	 */
+	float HCAPIENTRY minComponent(void) const;
+	float HCAPIENTRY maxComponent(void) const;
+	float HCAPIENTRY maxAbsComponent(void) const;
+	float HCAPIENTRY minAbsComponent(void) const;
+	int HCAPIENTRY indexOfMinComponent(void) const;
+	int HCAPIENTRY indexOfMaxComponent(void) const;
+	int HCAPIENTRY indexOfMinAbsComponent(void) const;
+	int HCAPIENTRY indexOfMaxAbsComponent(void) const;
 
-    /**
-     *
-     *	@Return
-     */
-    float HCAPIENTRY minComponent(void)const;
-    float HCAPIENTRY maxComponent(void)const;
-    float HCAPIENTRY maxAbsComponent(void)const;
-    float HCAPIENTRY minAbsComponent(void)const;
-    int HCAPIENTRY indexOfMinComponent(void)const;
-    int HCAPIENTRY indexOfMaxComponent(void)const;
-    int HCAPIENTRY indexOfMinAbsComponent(void)const;
-    int HCAPIENTRY indexOfMaxAbsComponent(void)const;
+	/**
+	 *	Normalize vector.
+	 *	@Return normalized vector.
+	 */
+	HCVector3 HCAPIENTRY normalize(void) const;
 
-    /**
-     *
-     *	@Return
-     */
-    HCVector3 HCAPIENTRY normalize(void)const;
+	/**
+	 *	Check equality.
+	 *	@Return
+	 */
+	friend bool operator==(const HCVector3& v1, const HCVector3& v2);
+	friend bool operator!=(const HCVector3& v1, const HCVector3& v2);
 
-    /**
-     *
-     *	@Return
-     */
-    friend bool operator==(const HCVector3& v1, const HCVector3& v2);
-    friend bool operator!= (const HCVector3& v1, const HCVector3& v2);
+	/**
+	 *	Create input stream for creating vector
+	 *	from input stream.
+	 *	@Return stream reference.
+	 */
+	friend std::istream &operator>>(std::istream &is, HCVector3& t);
 
-    /**
-     *
-     *	@Return
-     */
-    friend std::istream &operator>>(std::istream &is, HCVector3& t);
-    friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
+	/**
+	 *	Create output stream of vector value.
+	 *	@Return stream reference.
+	 */
+	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
-    /**
-     *	@Return
-     */
-    friend HCVector3 operator+(const HCVector3& v1, const HCVector3& v2);
-    friend HCVector3 operator-(const HCVector3& v1, const HCVector3& v2);
-    friend HCVector3 operator/(const HCVector3& vec, float scalar);
-    friend HCVector3 operator*(const HCVector3& vec, float scalar);
-    friend HCVector3 operator*(float scalar,const HCVector3& vec);
-    friend HCVector3 operator*(const HCVector3& vec1,const HCVector3& vec2);
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 operator+(const HCVector3& v1, const HCVector3& v2);
+	friend HCVector3 operator-(const HCVector3& v1, const HCVector3& v2);
+	friend HCVector3 operator/(const HCVector3& vec, float scalar);
+	friend HCVector3 operator*(const HCVector3& vec, float scalar);
+	friend HCVector3 operator*(float scalar, const HCVector3& vec);
+	friend HCVector3 operator*(const HCVector3& vec1, const HCVector3& vec2);
 
-    /**
-     *	@Return
-     */
-    HCVector3& operator=(const HCVector3& v2);
-    HCVector3& operator+=(const HCVector3& v2);
-    HCVector3& operator-=(const HCVector3& v2);
-    HCVector3& operator/=(float scalar);
-    HCVector3& operator*=(float scalar);
+	/**
+	 *	@Return
+	 */
+	HCVector3& operator=(const HCVector3& v2);
+	HCVector3& operator+=(const HCVector3& v2);
+	HCVector3& operator-=(const HCVector3& v2);
+	HCVector3& operator/=(float scalar);
+	HCVector3& operator*=(float scalar);
 
-    /**
-     *	@Return
-     */
-    friend HCVector3 unitVector3(const HCVector3& v);
-    friend HCVector3 minVec(const HCVector3& v1, const HCVector3& v2);
-    friend HCVector3 maxVec(const HCVector3& v1, const HCVector3& v2);
-    friend HCVector3 cross(const HCVector3& v1, const HCVector3& v2);
-    friend HCVector3 reflection(const HCVector3& v1,const HCVector3& normal);
-    friend HCVector3 refraction(const HCVector3& v1, const HCVector3& normal, float refraction);
-    friend float dot(const HCVector3& v1, const HCVector3& v2);
-    friend float tripleProduct(const HCVector3& v1, const HCVector3& v2, const HCVector3& v3);
-    friend HCVector3 tangent(const HCVector3& normal);
-    friend HCVector3 biTangent(const HCVector3& normal,const HCVector3& tangent);
-    friend HCVector3 biNormal(const HCVector3& normal,const HCVector3& tangent);
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY unitVector3(const HCVector3& v);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY minVec(const HCVector3& v1,
+	        const HCVector3& v2);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY maxVec(const HCVector3& v1,
+	        const HCVector3& v2);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY cross(const HCVector3& v1, const HCVector3& v2);
+
+	/**
+	 *	Create reflection vector.
+	 *	@Return reflected vector with same magnitude.
+	 */
+	friend HCVector3 HCAPIENTRY reflection(const HCVector3& vector,
+	        const HCVector3& normal);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY refraction(const HCVector3& v1,
+	        const HCVector3& normal, float refraction);
+
+	/**
+	 *	@Return
+	 */
+	friend float HCAPIENTRY dot(const HCVector3& v1, const HCVector3& v2);
+
+	/**
+	 *	@Return
+	 */
+	friend float HCAPIENTRY tripleProduct(const HCVector3& v1,
+	        const HCVector3& v2, const HCVector3& v3);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector3 HCAPIENTRY tangent(const HCVector3& normal);
+
+	/**
+	 *  @Return
+	 */
+	friend HCVector3 HCAPIENTRY biTangent(const HCVector3& normal,
+	        const HCVector3& tangent);
+
+	/**
+	 *  @Return
+	 */
+	friend HCVector3 HCAPIENTRY biNormal(const HCVector3& normal,
+	        const HCVector3& tangent);
 
 private:	/*	Private method.	*/
 
@@ -145,28 +205,30 @@ private:	/*	Private method.	*/
 
 public:	/*	Static methods.	*/
 
-    /**
-     *	Create predefined vector3.
-     */
-    inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}
-    inline static HCVector3 back(void){return HCVector3(0.0f, 0.0f, -1.0f);}
-    inline static HCVector3 right(void){return HCVector3(1.0f, 0.0f, 0.0f);}
-    inline static HCVector3 left(void){return HCVector3(-1.0f, 0.0f, 0.0f);}
-    inline static HCVector3 up(void){return HCVector3(0.0f, 1.0f, 0.0f);}
-    inline static HCVector3 down(void){return HCVector3(0.0f, -1.0f, 0.0f);}
-    inline static HCVector3 zero(void){return HCVector3(0.0f, 0.0, 0.0f);}
+	/**
+	 *	Create predefined vector3.
+	 */
+	inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}
+	inline static HCVector3 back(void){return HCVector3(0.0f, 0.0f, -1.0f);}
+	inline static HCVector3 right(void){return HCVector3(1.0f, 0.0f, 0.0f);}
+	inline static HCVector3 left(void){return HCVector3(-1.0f, 0.0f, 0.0f);}
+	inline static HCVector3 up(void){return HCVector3(0.0f, 1.0f, 0.0f);}
+	inline static HCVector3 down(void){return HCVector3(0.0f, -1.0f, 0.0f);}
+	inline static HCVector3 zero(void){return HCVector3(0.0f, 0.0, 0.0f);}
 
-    /**
-     *	Linear interpolation between v1 and v2 based on t.
-     *	@Return
-     */
-    static HCVector3 HCAPIENTRY lerp(const HCVector3& vec1, const HCVector3& vec2, float t);
+	/**
+	 *	Linear interpolation between v1 and v2 based on t.
+	 *	@Return
+	 */
+	static HCVector3 HCAPIENTRY lerp(const HCVector3& vec1,
+	        const HCVector3& vec2, float t);
 
-    /**
-     *	Spherical interpolation.
-     *	@Return
-     */
-    static HCVector3 HCAPIENTRY slerp(const HCVector3& vec1, const HCVector3& vec2, float t);
+	/**
+	 *	Spherical interpolation.
+	 *	@Return
+	 */
+	static HCVector3 HCAPIENTRY slerp(const HCVector3& vec1,
+	        const HCVector3& vec2, float t);
 };
 
 #endif

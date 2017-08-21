@@ -21,7 +21,8 @@
 #include "HCTypes.h"
 
 /**
- *	Right handed 4x4 Matrix.
+ *	Right handed 4x4 Matrix
+ *	with single precision.
  */
 class HCDECLSPEC HCMatrix4x4{
 public:
