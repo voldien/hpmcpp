@@ -106,6 +106,23 @@ HCVector4 operator*(float scaler, const HCVector4& vec) {
 	hpm_vec4_multi_scalef(&copy.e, scaler);
 	return copy;
 }
+HCVector4 operator*(const HCVector4&vec, float scalar) {
+    HCVector4 copy = vec;
+    hpm_vec4_multi_scalef(&copy.e, scalar);
+    return copy;
+}
+HCVector4 operator/(const HCVector4&vec, float scalar) {
+    HCVector4 copy = vec;
+    hpm_vec4_multi_scalef(&copy.e, 1.0f / scalar);
+    return copy;
+}
+
+HCVector4 operator/(const HCVector4& v1, const HCVector4& v2){
+    HCVector4 copy = v1;
+    HCVector4 c3 = 1.0f / v2;
+    hpm_vec4_multifv(&copy.e, &c3.e);
+    return copy;
+}
 
 HCVector4 operator+(const HCVector4& v1, const HCVector4& v2) {
 	HCVector4 copy = v1;
@@ -149,15 +166,7 @@ HCVector4 reflection(const HCVector4& vector, const HCVector4& normal) {
 	return 2.0f * dot(vector, normal) * normal - vector;
 }
 
-HCVector4 operator*(const HCVector4&vec, float scalar) {
 
-	return HCVector4(vec.x() * scalar, vec.y() * scalar, vec.z() * scalar,
-			vec.w() / scalar);
-}
-HCVector4 operator/(const HCVector4&vec, float scalar) {
-	return HCVector4(vec.x() / scalar, vec.y() / scalar, vec.z() / scalar,
-			vec.w() / scalar);
-}
 
 HCVector4& HCVector4::operator=(const HCVector4& v2) {
 	hpm_vec4_copyfv(&this->e, &v2.e);
