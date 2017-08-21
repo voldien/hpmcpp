@@ -139,8 +139,10 @@ HCVector3 maxVec(const HCVector3& v1, const HCVector3& v2) {
 	return vec;
 }
 
-HCVector3 reflection(const HCVector3& v1, const HCVector3& normal) {
-	return 2.0f * dot(v1, normal) * normal - v1;
+HCVector3 reflection(const HCVector3& vector, const HCVector3& normal) {
+	HCVector3 vec;
+	hpm_vec3_reflectfv(&vector.e, &normal.e, &vec.e);
+	return vec;
 }
 
 HCVector3 refraction(const HCVector3& v1, const HCVector3& normal, float refraction) {
