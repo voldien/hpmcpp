@@ -41,22 +41,28 @@ public:		/*	*/
 
 	/**
 	 *	Compute determinant of the matrix.
+	 *
+	 *	@Return
 	 */
 	float determinant(void) const;
 
 	/**
 	 *	Compute the inverse vector
 	 *	if possible.
+	 *
+	 *	@Return inversed matrix if successful.
 	 */
 	HCMatrix4x4 inverse(void) const;
 
 	/**
 	 *	Transpose the matrix.
+	 *
+	 *	@Return transposed matrix.
 	 */
 	HCMatrix4x4 transpose(void) const;
 
 	/**
-	 *
+	 *  Get element by index.
 	 */
 	inline float* operator[](int index) const {
 		return (float*) &this->e[index][0];
@@ -66,12 +72,27 @@ public:		/*	*/
 	}
 
 	/**
+	 *	Multiply matrix by scale factor.
+	 *
 	 *	@Return
 	 */
     HCMatrix4x4 operator*(float rh) const;
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
+
+	/**
+	 *
+	 *	@Return
+	 */
 	HCVector4 operator*(const HCVector4& rh) const;
+
+	/**
+	 *	@Return
+	 */
 	HCMatrix4x4 operator+(const HCMatrix4x4& rh) const;
+
+	/**
+	 *	@Return
+	 */
 	HCMatrix4x4 operator-(const HCMatrix4x4& rh) const;
 
 	/**
@@ -79,8 +100,20 @@ public:		/*	*/
 	 *	@Return
 	 */
 	HCMatrix4x4& operator=(const HCMatrix4x4& rh);
+
+	/**
+	 *	@Return
+	 */
 	HCMatrix4x4& operator+=(const HCMatrix4x4& rh);
+
+	/**
+	 *	@Return
+	 */
 	HCMatrix4x4& operator-=(const HCMatrix4x4& rh);
+
+	/**
+	 *	@Return
+	 */
 	HCMatrix4x4& operator*=(const HCMatrix4x4& rh);
 
 	/**
@@ -174,6 +207,8 @@ public:	/*	Static methods.	*/
 
 	/**
 	 *	Create identity matrix.
+	 *
+	 *	@Return
 	 */
 	static HCMatrix4x4 identity(void);
 };
