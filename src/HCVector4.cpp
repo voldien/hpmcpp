@@ -162,10 +162,6 @@ HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2) {
 	return vec;
 }
 
-HCVector4 reflection(const HCVector4& vector, const HCVector4& normal) {
-	return 2.0f * dot(vector, normal) * normal - vector;
-}
-
 
 
 HCVector4& HCVector4::operator=(const HCVector4& v2) {
