@@ -1,5 +1,5 @@
 #include"HpmCpp.h"
 
-int HpmCpp::init(HPMSIMD hpmSIMD){
+int Hpm::init(HPMSIMD hpmSIMD){
 	return hpm_init((unsigned int)hpmSIMD);
 }

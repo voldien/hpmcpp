@@ -25,7 +25,7 @@
  *	See more description of the SIMD enumerator.
  *	see hpm.h
  */
-class HPMDECLSPEC HpmCpp{
+class HPMDECLSPEC Hpm{
 public:
 
 	/**
