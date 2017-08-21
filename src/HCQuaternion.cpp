@@ -156,10 +156,10 @@ std::ostream &operator<<(std::ostream &os, const HCQuaternion& t){
 }
 
 bool operator==(const HCQuaternion& v1, const HCQuaternion& v2){
-	hpm_vec4_eqfv(&v1.e, &v2.e);
+	return hpm_vec4_eqfv(&v1.e, &v2.e);
 }
 bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2){
-	hpm_vec4_neqfv(&v1.e, &v2.e);
+	return hpm_vec4_neqfv(&v1.e, &v2.e);
 }
 
 float HCQuaternion::getPitch(void) const {
