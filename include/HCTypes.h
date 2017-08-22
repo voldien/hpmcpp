@@ -160,6 +160,7 @@
 /**
  *	Class forwarding.
  */
+class HpmCpp;
 class HCQuaternion;
 class HCMatrix4x4;
 class HCMatrix3x3;

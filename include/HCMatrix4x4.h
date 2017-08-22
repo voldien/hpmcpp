@@ -21,7 +21,8 @@
 #include "HCTypes.h"
 
 /**
- *	Right handed 4x4 Matrix.
+ *	Right handed 4x4 Matrix
+ *	with single precision.
  */
 class HCDECLSPEC HCMatrix4x4{
 public:
@@ -32,19 +33,22 @@ private:	/*	Attributes.	*/
 
 	hpmvec4x4f_t e;
 
-public:		/*	*/
+public:	/*	Public methods. */
 
 	/**
-	 *	@Return
+	 *	Check if matrix is an
+	 *	identity matrix.
+	 *
+	 *	@Return true if identity.
 	 */
-	bool isIdentity(void);
+	bool HCAPIENTRY isIdentity(void);
 
 	/**
 	 *	Compute determinant of the matrix.
 	 *
 	 *	@Return
 	 */
-	float determinant(void) const;
+	float HCAPIENTRY determinant(void) const;
 
 	/**
 	 *	Compute the inverse vector
@@ -52,14 +56,14 @@ public:		/*	*/
 	 *
 	 *	@Return inversed matrix if successful.
 	 */
-	HCMatrix4x4 inverse(void) const;
+	HCMatrix4x4 HCAPIENTRY inverse(void) const;
 
 	/**
 	 *	Transpose the matrix.
 	 *
 	 *	@Return transposed matrix.
 	 */
-	HCMatrix4x4 transpose(void) const;
+	HCMatrix4x4 HCAPIENTRY transpose(void) const;
 
 	/**
 	 *  Get element by index.
@@ -76,7 +80,12 @@ public:		/*	*/
 	 *
 	 *	@Return
 	 */
-    HCMatrix4x4 operator*(float rh) const;
+	HCMatrix4x4 operator*(float rh) const;
+
+	/**
+	 *
+	 *	@Return
+	 */
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
 
 	/**
@@ -96,7 +105,7 @@ public:		/*	*/
 	HCMatrix4x4 operator-(const HCMatrix4x4& rh) const;
 
 	/**
-	 *
+	 *	Assign matrix.
 	 *	@Return
 	 */
 	HCMatrix4x4& operator=(const HCMatrix4x4& rh);
@@ -117,18 +126,23 @@ public:		/*	*/
 	HCMatrix4x4& operator*=(const HCMatrix4x4& rh);
 
 	/**
-	 *
+	 *	Equalitiy
 	 *	@Return
 	 */
 	bool operator==(const HCMatrix4x4& rh);
 	bool operator!=(const HCMatrix4x4& rh);
 
-
 	/**
-	 *
-	 *	@Return
+	 *	Create input stream for creating matrix
+	 *	from input stream.
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
+
+	/**
+	 *	Create output stream of matrix value.
+	 *	@Return stream reference.
+	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
 
 
@@ -137,80 +151,99 @@ public:	/*	Static methods.	*/
 	/**
 	 *	Create translation matrix.
 	 *
-	 *	@Return translated matrix
+	 *	@Return translated matrix.
 	 */
-	static HCMatrix4x4 translate(float x, float y, float z);
+	static HCMatrix4x4 HCAPIENTRY translate(float x, float y, float z);
 
 	/**
 	 *	Create translation matrix.
 	 *
-	 *	@Return translated matrix
+	 *	@Return translated matrix.
 	 */
-	static HCMatrix4x4 translate(const HCVector3& translation);
+	static HCMatrix4x4 HCAPIENTRY translate(const HCVector3& translation);
 
 	/**
 	 *	Create rotation matrix from angle around the axis.
 	 *
-	 *	@Return
+	 *	@Return rotation matrix.
 	 */
-	static HCMatrix4x4 rotate(float angle, const HCVector3& axis);
+	static HCMatrix4x4 HCAPIENTRY rotate(float angle, const HCVector3& axis);
 
 	/**
 	 *	Create rotation matrix from quaternion.
 	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 rotate(const HCQuaternion& quat);
+	static HCMatrix4x4 HCAPIENTRY rotate(const HCQuaternion& quat);
 
 	/**
 	 *	Create scale matrix.
 	 *
-	 *	@Return
+	 *	@Return scale matrix.
 	 */
-	static HCMatrix4x4 scale(float x, float y, float z);
+	static HCMatrix4x4 HCAPIENTRY scale(float x, float y, float z);
 
 	/**
 	 *	Create scale matrix.
 	 *
-	 *	@Return
+	 *	@Return scale matrix.
 	 */
-	static HCMatrix4x4 scale(const HCVector3& scale);
+	static HCMatrix4x4 HCAPIENTRY scale(const HCVector3& scale);
 
 	/**
 	 *	Create perspectice matrix.
 	 *
+	 *	\fov field of view in radius.
+	 *
+	 *	\aspect view ratio.
+	 *
+	 *	\near near plane.
+	 *
+	 *	\far far plane.
+	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 perspective(float fov, float aspect, float near,
-			float far);
+	static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect,
+	        float near, float far);
 
 	/**
-	 *
-	 *
+	 *	Create look at matrix.
 	 *	@Return
 	 */
-	static HCMatrix4x4 lookAt(const HCVector3& lookPosition,
-			const HCVector3& position, const HCVector3& forward);
+	static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
+	        const HCVector3& position, const HCVector3& forward);
 
 	/**
 	 *	Create orthographic perspectice.
 	 *
+	 *	\left
+	 *
+	 *	\right
+	 *
+	 *	\bottom
+	 *
+	 *	\top
+	 *
+	 *	\near
+	 *
+	 *	\far
+	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 orth(float left, float right, float bottom, float top,
-			float near, float far);
+	static HCMatrix4x4 HCAPIENTRY orth(float left, float right, float bottom,
+	        float top, float near, float far);
 
 	/**
 	 *	Create bias matrix.
 	 */
-	static HCMatrix4x4 biasMatrix(void);
+	static HCMatrix4x4 HCAPIENTRY biasMatrix(void);
 
 	/**
 	 *	Create identity matrix.
 	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 identity(void);
+	static HCMatrix4x4 HCAPIENTRY identity(void);
 };
 
 #endif

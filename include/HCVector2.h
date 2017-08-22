@@ -31,42 +31,64 @@ public:
 	HCVector2(const HCVector2& v);
 
 	/**
-	 *
+	 *	Negate vector.
+	 *	@Return
 	 */
 	HCVector2 operator-(void) const;
 
 	/**
-	 *
+	 *	Get vector component by index.
+	 *	@Return component value.
 	 */
 	inline float operator[](int i) const {
 		return this->m[i];
 	}
+	/**
+	 *	Get vector component reference
+	 *	by index.
+	 *	@Return reference to component.
+	 */
 	inline float& operator[](int i) {
 		return this->m[i];
 	}
 
-	float* operator*(void) {
-		return (float*) this;
-	}
-
 	/**
 	 *	Compute length.
+	 *	@Return length in decimal.
 	 */
 	float length(void) const;
+
+	/**
+	 *	Compute square length.
+	 *	@Return length in decimal.
+	 */
 	float squaredLength(void) const;
 
+	/**
+	 *	Make vector to unit length.
+	 */
 	void makeUnitVector(void);
 
 	/**
-	 *
+	 *	Set vector X component value.
 	 */
-	void HCAPIFASTENTRY setX(float _x);
-	void HCAPIFASTENTRY setY(float _y);
+	void HCAPIFASTENTRY setX(float x);
 
 	/**
-	 *
+	 *	Set vector Y component value.
+	 */
+	void HCAPIFASTENTRY setY(float y);
+
+	/**
+	 *	Get vector X component value.
+	 *	@Return value of component.
 	 */
 	float HCAPIFASTENTRY x(void) const;
+
+	/**
+	 *	Get vector Y component value.
+	 *	@Return value of component.
+	 */
 	float HCAPIFASTENTRY y(void) const;
 
 	/**
@@ -82,26 +104,37 @@ public:
 	int indexOfMaxAbsComponent(void) const;
 
 	/**
+	 *	Create normalize copy
 	 *	@Return
 	 */
 	HCVector2 normalize(void) const;
 
 	/**
-	 *	Compare vector equalities
-	 *	.
-	 *	@Return
+	 *	Compare vector equalities.
+	 *	@Return true if vector equal for each component.
 	 */
 	friend bool operator==(const HCVector2& v1, const HCVector2& v2);
+	/**
+	 *	Compare vector inequality.
+	 *	@Return true if at least single component is not equal.
+	 */
 	friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
 
 	/**
-	 *
-	 *	@Return
+	 *	Create input stream for creating vector
+	 *	from input stream.
+	 *	@Return stream reference.
 	 */
-	friend std::istream &operator>>(std::istream &is, HCVector2& t);
-	friend std::ostream &operator<<(std::ostream &os, const HCVector2& t);
+	friend std::istream& operator>>(std::istream &is, HCVector2& t);
 
 	/**
+	 *	Create output stream of vector value.
+	 *	@Return stream reference.
+	 */
+	friend std::ostream& operator<<(std::ostream &os, const HCVector2& t);
+
+	/**
+	 *
 	 *	@Return
 	 */
 	friend HCVector2 operator+(const HCVector2& v1, const HCVector2& v2);
@@ -112,6 +145,7 @@ public:
 	friend HCVector2 operator*(const HCVector2& vec1, const HCVector2& vec2);
 
 	/**
+	 *
 	 *	@Return
 	 */
 	HCVector2& operator=(const HCVector2& v2);
@@ -122,12 +156,28 @@ public:
 	HCVector2& operator*=(const HCVector2& vec2);
 
 	/**
+	 *
 	 *	@Return
 	 */
 	friend HCVector2 unitVector3(const HCVector2& v);
+
+	/**
+	 *	@Return
+	 */
 	friend HCVector2 minVec(const HCVector2& v1, const HCVector2& v2);
+	/**
+	 *	@Return
+	 */
 	friend HCVector2 maxVec(const HCVector2& v1, const HCVector2& v2);
-	friend HCVector2 reflection(const HCVector2& vector, const HCVector2& normal);
+	/**
+	 *	@Return
+	 */
+	friend HCVector2 reflection(const HCVector2& vector,
+	        const HCVector2& normal);
+	/**
+	 *	Compute dot product.
+	 *	@Return
+	 */
 	friend float dot(const HCVector2& v1, const HCVector2& v2);
 
 private:	/*	Attributes.	*/
@@ -137,7 +187,8 @@ private:	/*	Attributes.	*/
 public:	/*	Static methods.	*/
 
 	/**
-	 *	@Return
+	 *	Create zero vector.
+	 *	@Return HCVector2 object.
 	 */
 	static HCVector2 zero(void) {
 		return HCVector2(0.0f);
