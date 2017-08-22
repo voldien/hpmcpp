@@ -16,6 +16,28 @@ HCVector3::HCVector3(const HCVector3& v){
 	*this = v;
 }
 
+
+float HCVector3::x(void) const {
+	return this->e[0];
+}
+float HCVector3::y(void) const {
+	return this->e[1];
+}
+float HCVector3::z(void) const {
+	return this->e[2];
+}
+
+void HCVector3::setX(float _x) {
+	e[0] = _x;
+}
+void HCVector3::setY(float _y) {
+	e[1] = _y;
+}
+void HCVector3::setZ(float _z) {
+	e[2] = _z;
+}
+
+
 HCVector3 HCVector3::operator-(void) const {
 	HCVector3 copy = *this;
 	hpm_vec4_negatefv(&copy.e);
