@@ -112,34 +112,79 @@ public:
 	friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
 
 	/**
-	 *
 	 *	@Return
 	 */
 	friend HCVector4 operator+(const HCVector4& v1, const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	friend HCVector4 operator-(const HCVector4& v1, const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	friend HCVector4 operator/(const HCVector4& vec, float scalar);
+
+	/**
+	 *	@Return
+	 */
+    friend HCVector4 operator/(const HCVector4& v1, const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	friend HCVector4 operator*(const HCVector4& vec, float scalar);
+
+	/**
+	 *	@Return
+	 */
 	friend HCVector4 operator*(float scalar, const HCVector4& vec);
 
 	/**
-	 *
 	 *	@Return
 	 */
 	HCVector4& operator=(const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	HCVector4& operator+=(const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	HCVector4& operator-=(const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
 	HCVector4& operator/=(float scalar);
+
+	/**
+	 *	@Return
+	 */
 	HCVector4& operator*=(float scalar);
 
 	/**
-	 *
 	 *	@Return
 	 */
-	friend HCVector4 unitVector3(const HCVector4& v);
-	friend HCVector4 minVec(const HCVector4& v1, const HCVector4& v2);
-	friend HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2);
-	friend HCVector4 reflection(const HCVector4& vector, const HCVector4& normal);
-	friend float dot(const HCVector4& v1, const HCVector4& v2);
+	friend HCVector4 HCAPIENTRY unitVector3(const HCVector4& v);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
+	friend HCVector4 HCAPIENTRY maxVec(const HCVector4& v1, const HCVector4& v2);
+
+	/**
+	 *	@Return
+	 */
+	friend float HCAPIENTRY dot(const HCVector4& v1, const HCVector4& v2);
 
 protected:	/*	Attributes.	*/
 
@@ -148,14 +193,16 @@ protected:	/*	Attributes.	*/
 public:	/*	Static methods.	*/
 
 	/**
+	 *	Linear interpolation.
 	 *	@Return
 	 */
-	static HCVector4 lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+	static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 
 	/**
+	 *	Spherical interpolation.
 	 *	@Return
 	 */
-	static HCVector4 slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+	static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 };
 
 #endif
