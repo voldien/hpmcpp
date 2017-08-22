@@ -91,14 +91,14 @@ public:	/*	Public methods.	*/
 	HCMatrix3x3& operator/=(const HCMatrix3x3& rh);
 
 	/**
-	 *	Create input stream for creating vector
+	 *	Create input stream for creating matrix
 	 *	from input stream.
 	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCMatrix3x3& t);
 
 	/**
-	 *	Create output stream of vector value.
+	 *	Create output stream of matrix value.
 	 *	@Return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCMatrix3x3& t);

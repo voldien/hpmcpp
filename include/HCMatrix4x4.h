@@ -33,10 +33,13 @@ private:	/*	Attributes.	*/
 
 	hpmvec4x4f_t e;
 
-public:		/*	*/
+public:	/*	Public methods. */
 
 	/**
-	 *	@Return
+	 *	Check if matrix is an
+	 *	identity matrix.
+	 *
+	 *	@Return true if identity.
 	 */
 	bool HCAPIENTRY isIdentity(void);
 
@@ -77,7 +80,12 @@ public:		/*	*/
 	 *
 	 *	@Return
 	 */
-    HCMatrix4x4 operator*(float rh) const;
+	HCMatrix4x4 operator*(float rh) const;
+
+	/**
+	 *
+	 *	@Return
+	 */
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
 
 	/**
@@ -97,7 +105,7 @@ public:		/*	*/
 	HCMatrix4x4 operator-(const HCMatrix4x4& rh) const;
 
 	/**
-	 *
+	 *	Assign matrix.
 	 *	@Return
 	 */
 	HCMatrix4x4& operator=(const HCMatrix4x4& rh);
@@ -118,18 +126,23 @@ public:		/*	*/
 	HCMatrix4x4& operator*=(const HCMatrix4x4& rh);
 
 	/**
-	 *
+	 *	Equalitiy
 	 *	@Return
 	 */
 	bool operator==(const HCMatrix4x4& rh);
 	bool operator!=(const HCMatrix4x4& rh);
 
-
 	/**
-	 *
-	 *	@Return stream reference object.
+	 *	Create input stream for creating matrix
+	 *	from input stream.
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
+
+	/**
+	 *	Create output stream of matrix value.
+	 *	@Return stream reference.
+	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
 
 
@@ -180,25 +193,45 @@ public:	/*	Static methods.	*/
 	/**
 	 *	Create perspectice matrix.
 	 *
+	 *	\fov field of view in radius.
+	 *
+	 *	\aspect view ratio.
+	 *
+	 *	\near near plane.
+	 *
+	 *	\far far plane.
+	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect, float near,
-			float far);
+	static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect,
+	        float near, float far);
 
 	/**
 	 *	Create look at matrix.
 	 *	@Return
 	 */
 	static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
-			const HCVector3& position, const HCVector3& forward);
+	        const HCVector3& position, const HCVector3& forward);
 
 	/**
 	 *	Create orthographic perspectice.
 	 *
+	 *	\left
+	 *
+	 *	\right
+	 *
+	 *	\bottom
+	 *
+	 *	\top
+	 *
+	 *	\near
+	 *
+	 *	\far
+	 *
 	 *	@Return
 	 */
-	static HCMatrix4x4 HCAPIENTRY orth(float left, float right, float bottom, float top,
-	        float near, float far);
+	static HCMatrix4x4 HCAPIENTRY orth(float left, float right, float bottom,
+	        float top, float near, float far);
 
 	/**
 	 *	Create bias matrix.
