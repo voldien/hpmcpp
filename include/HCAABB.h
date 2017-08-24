@@ -33,10 +33,15 @@ public:
 		*this = bounds;
 	}
 
-	/**/
+	/**
+	 *	@Return
+	 */
 	inline HCVector3 operator[](int i) const {
 		return ((HCVector3*) this)[i];
 	}
+	/**
+	 *	@Return
+	 */
 	inline HCVector3& operator[](int i) {
 		return ((HCVector3*) this)[i];
 	}
@@ -49,7 +54,7 @@ public:
 				|| this->mhalfsize.z() != 0.0f);
 	}
 
-	/*
+	/**
 	 *
 	 */
 	inline float maxX(void) const {
@@ -75,7 +80,7 @@ public:
 	 *	@Return
 	 */
 	inline HCVector3 min(void) const {
-		return this->getCenter() - getSize();
+		return this->getCenter() - this->getSize();
 	}
 
 	/**
@@ -83,17 +88,27 @@ public:
 	 *	@Return
 	 */
 	inline HCVector3 max(void) const {
-		return this->getCenter() + getSize();
+		return this->getCenter() + this->getSize();
 	}
 
-	inline HCVector3 getSize(void) const {
+	/**
+	 *	@Return
+	 */
+	inline const HCVector3& getSize(void) const {
 		return this->mhalfsize;
 	}
+
+	/**
+	 *
+	 */
 	void setSize(const HCVector3& size) {
 		this->mhalfsize = size;
 	}
 
-	inline HCVector3 getCenter(void) const {
+	/**
+	 *
+	 */
+	inline const HCVector3& getCenter(void) const {
 		return this->mcenter;
 	}
 	inline void setCenter(const HCVector3& center) {
