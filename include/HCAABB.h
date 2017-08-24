@@ -22,7 +22,8 @@
 #include"HCVector3.h"
 
 /**
- *
+ *	Axis aligned bounding
+ *	box.
  */
 class HCDECLSPEC HCAABB {
 
@@ -121,12 +122,13 @@ public:
 	}
 
 	/**
-	 *	@Return
+	 *	Check if object intersect.
+	 *	@Return true if object intersects.
 	 */
 	bool intersect(const HCAABB& bounds);
 
 	/**
-	 *	@Return
+	 *	@Return true if object contains.
 	 */
 	bool HCAPIENTRY contains(const HCVector3& point, const HCVector3 worldPosition =
 			HCVector3());
