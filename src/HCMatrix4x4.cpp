@@ -12,7 +12,8 @@ HCMatrix4x4::HCMatrix4x4(const HCMatrix4x4& other) {
 }
 
 bool HCMatrix4x4::isIdentity(void){
-	return *this == HCMatrix4x4::identity();
+	static const HCMatrix4x4 identity = HCMatrix4x4::identity();
+	return *this == identity;
 }
 
 float HCMatrix4x4::determinant(void) const {
