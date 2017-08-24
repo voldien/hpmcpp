@@ -66,11 +66,12 @@ public:
 
 	/**
 	 *
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream& is, HCONB& t);
 
 	/**
-	 *
+	 *	@Return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream& is, const HCONB& t);
 
@@ -91,20 +92,31 @@ public:
 	 */
 	HCONB& operator=(const HCONB& onb);
 
-	inline HCVector3 u(void) const {
+	/**
+	 *	@Return
+	 */
+	inline const HCVector3& u(void) const {
 		return this->m[0];
 	}
-	inline HCVector3 v(void) const {
+
+	/**
+	 *	@Return
+	 */
+	inline const HCVector3& v(void) const {
 		return this->m[1];
 	}
-	inline HCVector3 w(void) const {
+
+	/**
+	 *	@Return
+	 */
+	inline const HCVector3& w(void) const {
 		return this->m[2];
 	}
 
 private:	/*	Attributes.	*/
 
+	HCVector3 m[3];		/*	*/
 
-	HCVector3 m[3];
 };
 
 #endif

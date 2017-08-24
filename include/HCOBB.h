@@ -37,19 +37,19 @@ public:
 	 *	Get U axis.
 	 *	@Return normailized axis.
 	 */
-	HCVector3 getU(void)const;
+	const HCVector3& HCAPIENTRY getU(void)const;
 
 	/**
 	 *	Get V axis.
 	 *	@Return normailized axis.
 	 */
-	HCVector3 getV(void)const;
+	const HCVector3& HCAPIENTRY getV(void)const;
 
 	/**
 	 *	Get W axis.
 	 *	@Return normailized axis.
 	 */
-	HCVector3 getW(void)const;
+	const HCVector3& HCAPIENTRY getW(void)const;
 
 	/**
 	 *	Set size of box.
@@ -75,7 +75,7 @@ public:
 	/**
 	 *	@Return
 	 */
-	void setCenter(const HCVector3& size);
+	void HCAPIENTRY setCenter(const HCVector3& size);
 
 	/**
 	 *	@Return
@@ -86,18 +86,28 @@ public:
 
 	/**
 	 *	
-	 *	@Return
+	 *	@Return reference.
 	 */
 	HCOBB& operator=(const HCOBB& obb);
 
+	/**
+	 *
+	 *	@Return stream reference.
+	 */
+	friend std::istream &operator>>(std::istream& is, HCOBB& t);
+
+	/**
+	 *	@Return stream reference.
+	 */
+	friend std::ostream &operator<<(std::ostream& is, const HCOBB& t);
 
 private:	/*	Attributes.	*/
 
-	HCONB onb;	/*	*/
-	HCVector3 size;	/*	*/
-	float halfu;	/*	*/
-	float halfv;	/*	*/
-	float halfw;	/*	*/
+	HCONB onb;      /*	*/
+	HCVector3 size; /*	*/
+	float halfu;    /*	*/
+	float halfv;    /*	*/
+	float halfw;    /*	*/
 };
 
 

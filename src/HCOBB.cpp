@@ -20,15 +20,15 @@ HCOBB::HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w,
 	this->halfw = size.z();
 }
 
-HCVector3 HCOBB::getU(void) const {
+const HCVector3& HCOBB::getU(void) const {
 	return onb.u();
 }
 
-HCVector3 HCOBB::getV(void) const {
+const HCVector3& HCOBB::getV(void) const {
 	return onb.v();
 }
 
-HCVector3 HCOBB::getW(void) const {
+const HCVector3& HCOBB::getW(void) const {
 	return onb.w();
 }
 

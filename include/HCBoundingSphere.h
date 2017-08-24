@@ -30,36 +30,55 @@ public:
 	HCBoundingSphere(const HCVector3& center, float radius);
 	HCBoundingSphere(const HCBoundingSphere& boundingSphere);
 
+	/**
+	 *	@Return
+	 */
 	inline float getRadius(void)const{
 		return this->radius;
 	}
+
+	/**
+	 *
+	 */
 	inline void setRadius(float radius){
 		this->radius = radius;
-	}
-
-
-	inline HCVector3 getCenter(void)const{
-		return this->center;
-	}
-	inline void setCenter(const HCVector3& center){
-		this->center = center;
 	}
 
 	/**
 	 *	@Return
 	 */
-	bool intersect(const HCBoundingSphere& sphere)const;
-	bool contains(const HCBoundingSphere& sphere)const;
+	inline const HCVector3& getCenter(void) const {
+		return this->center;
+	}
 
 	/**
-	 *	@Return
+	 *
+	 */
+	inline void setCenter(const HCVector3& center) {
+		this->center = center;
+	}
+
+	/**
+	 *	Check if object intersects with another sphere.
+	 *	@Return true if object interssects, false otherwise.
+	 */
+	bool HCAPIENTRY intersect(const HCBoundingSphere& sphere)const;
+
+	/**
+	 *	@Return true if object contains, false otherwise.
+	 */
+	bool HCAPIENTRY contains(const HCBoundingSphere& sphere)const;
+
+	/**
+	 *	Assign
+	 *	@Return reference.
 	 */
 	HCBoundingSphere& operator=(const HCBoundingSphere& bounds);
 
 private:	/*	Private member attributes.	*/
 
-	float radius;		/**/
-	HCVector3 center;		/**/
+	float radius;           /*	*/
+	HCVector3 center;       /*	*/
 
 };
 

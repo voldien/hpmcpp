@@ -26,28 +26,22 @@
  */
 class HCDECLSPEC HCPlane {
 public:
-	inline HCPlane(void) {
-	}
-	inline HCPlane(const HCVector3& normal) {
-		this->normal = normal;
-		this->d = 0;
-	}
-	HCPlane(const HCVector3& point, const HCVector3& normal) {
-		this->setNormalAndPoint(normal, point);
-	}
-	inline HCPlane(const HCPlane& plane) {
-		*this = plane;
-	}
+	HCPlane(void);
+	HCPlane(const HCVector3& normal);
+	HCPlane(const HCVector3& point, const HCVector3& normal);
+	HCPlane(const HCPlane& plane);
 
 	/**
-	 *	@Return
+	 *	Get normal of plane.
+	 *	@Return normalized normal vector.
 	 */
 	inline HCVector3 getNormal(void){
 		return this->normal;
 	}
 
 	/**
-	 *	@Return
+	 *	Get normal of plane.
+	 *	@Return normalized normal vector.
 	 */
 	inline const HCVector3& getNormal(void) const {
 		return this->normal;
@@ -85,7 +79,8 @@ public:
 	}
 
 	/**
-	 *
+	 *	Set normal and point and
+	 *	compute internal values.
 	 */
 	void setNormalAndPoint(const HCVector3& normal, const HCVector3& point) {
 		this->normal = normal.normalize();
@@ -101,50 +96,42 @@ public:
 	}
 
 	/**
-	 *
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream& is, HCPlane& t);
 
 	/**
-	 *
+	 *	@Return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream& is, const HCPlane& t);
 
 
 	/**
-	 *	Compare 
+	 *	Compare if plane equal each other.
 	 *	@Return true if equal.
 	 */
 	friend bool operator==(const HCPlane& o1, const HCPlane& o2);
 
 	/**
-	 *	Compare 
+	 *	Compare if plane not equal each other.
 	 *	@Return true if equal.
 	 */
 	friend bool operator!=(const HCPlane& o1, const HCPlane& o2);
 
 protected:	/*	Attributes.	*/
 
-	HCVector3 normal;		/*	*/
-	float d;			/*	*/
+	HCVector3 normal;   /*	*/
+	float d;            /*	*/
 
 public:
 	/*	Static methods.	*/
 
 	/**
 	 *	Create plane from points.
-	 *	@Return
+	 *	@Return HCPlane object.
 	 */
-	static HCPlane fromPoints(const HCVector3& v1, const HCVector3& v2,
-			const HCVector3& v3) {
-		HCPlane tmp;
-		HCVector3 e1 = v2 - v1;
-		HCVector3 e2 = v3 - v1;
-
-		tmp.normal = cross(e1, e2).normalize();
-		tmp.d = -dot(tmp.normal, v2);
-		return tmp;
-	}
+	static HCPlane HCAPIENTRY fromPoints(const HCVector3& v1, const HCVector3& v2,
+			const HCVector3& v3);
 
 };
 

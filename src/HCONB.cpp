@@ -37,7 +37,7 @@ void HCONB::initFromU(const HCVector3& u) {
 	HCVector3 n(1.0f, 0.0f, 0.0f);
 	HCVector3 m(0.0f, 1.0f, 0.0f);
 
-	//this->setU(unitVector(u));
+	this->setU(u.normalize());
 	this->setV(cross(this->u(), n));
 	if (this->v().length() < ONB_EPSILON) {
 		this->setV(cross(this->u(), m));
@@ -49,7 +49,7 @@ void HCONB::initFromV(const HCVector3& v) {
 	HCVector3 n(1.0f, 0.0f, 0.0f);
 	HCVector3 m(0.0f, 1.0f, 0.0f);
 
-	//this->setV(unitVector(v));
+	this->setV(v.normalize());
 	this->setU(cross(this->v(), n));
 	if (this->u().length() < ONB_EPSILON) {
 		this->setU(cross(this->v(), m));
@@ -61,7 +61,7 @@ void HCONB::initFromW(const HCVector3& w) {
 	HCVector3 n(1.0f, 0.0f, 0.0f);
 	HCVector3 m(0.0f, 1.0f, 0.0f);
 
-	//this->setW(unitVector(w));
+	this->setW(w.normalize());
 	this->setU(cross(this->w(), n));
 	if (this->u().length() < ONB_EPSILON) {
 		this->setU(cross(this->w(), m));
@@ -69,14 +69,14 @@ void HCONB::initFromW(const HCVector3& w) {
 	this->setW(cross(this->w(), this->v()));
 }
 
-std::istream &operator>>(std::istream& is, HCONB& t) {
+std::istream& operator>>(std::istream& is, HCONB& t) {
 //	is >> t.u();
 //	is >> t.v();
 //	is >> t.w();
 	return is;
 }
 
-std::ostream &operator<<(std::ostream& is, const HCONB& t) {
+std::ostream & operator<<(std::ostream& is, const HCONB& t) {
 	is << t.u() << t.v() << t.w();
 	return is;
 }

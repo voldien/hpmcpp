@@ -39,7 +39,9 @@ public:
 	inline HCVector3 operator[](int i) const {
 		return ((HCVector3*) this)[i];
 	}
+
 	/**
+	 *
 	 *	@Return
 	 */
 	inline HCVector3& operator[](int i) {
@@ -47,7 +49,7 @@ public:
 	}
 
 	/**
-	 *
+	 *	Check if object is valid.
 	 */
 	inline bool isValid(void) const {
 		return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f
@@ -77,6 +79,7 @@ public:
 	}
 
 	/**
+	 *	Compute minimum position.
 	 *	@Return
 	 */
 	inline HCVector3 min(void) const {
@@ -84,7 +87,7 @@ public:
 	}
 
 	/**
-	 *
+	 *	Compute max position.
 	 *	@Return
 	 */
 	inline HCVector3 max(void) const {
@@ -92,21 +95,23 @@ public:
 	}
 
 	/**
-	 *	@Return
+	 *	Get half size.
+	 *	@Return half size vector.
 	 */
 	inline const HCVector3& getSize(void) const {
 		return this->mhalfsize;
 	}
 
 	/**
-	 *
+	 *	Set half size.
 	 */
 	void setSize(const HCVector3& size) {
 		this->mhalfsize = size;
 	}
 
 	/**
-	 *
+	 *	Get center position.
+	 *	@Return
 	 */
 	inline const HCVector3& getCenter(void) const {
 		return this->mcenter;
@@ -119,26 +124,61 @@ public:
 	 *	@Return
 	 */
 	bool intersect(const HCAABB& bounds);
-	//bool intersect(const Ray& ray, RaycastHit& hit)const;
 
 	/**
-	 *
+	 *	@Return
 	 */
-	bool contains(const HCVector3& point, const HCVector3 worldPosition =
+	bool HCAPIENTRY contains(const HCVector3& point, const HCVector3 worldPosition =
 			HCVector3());
-	bool contains(const HCAABB& bounds);
 
-	HCVector3 getVertexN(HCVector3& normal) const;
-	HCVector3 getVertexP(HCVector3& normal) const;
+	/**
+	 *	@Return
+	 */
+	bool HCAPIENTRY contains(const HCAABB& bounds);
 
+	/**
+	 *	@Return
+	 */
+	HCVector3 HCAPIENTRY getVertexN(HCVector3& normal) const;
+
+	/**
+	 *	@Return
+	 */
+	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
+
+	/**
+	 *	@Return
+	 */
 	friend std::istream &operator>>(std::istream &is, HCVector3& t);
+
+	/**
+	 *	@Return
+	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
+	/**
+	 *	@Return
+	 */
 	HCAABB& operator=(const HCAABB& bound);
+
+	/**
+	 *	@Return
+	 */
 	friend HCAABB& operator*=(const HCAABB& bound, float scalar);
+
+	/**
+	 *	@Return
+	 */
 	friend HCAABB& operator/=(const HCAABB& bound, float scalar);
 
+	/**
+	 *	@Return
+	 */
 	bool operator==(const HCAABB& bound);
+
+	/**
+	 *	@Return
+	 */
 	bool operator!=(const HCAABB& bound);
 
 private:	/*	Attributes.	*/
