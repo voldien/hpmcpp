@@ -167,5 +167,11 @@ class HCMatrix3x3;
 class HCVector4;
 class HCVector3;
 class HCVector2;
+class HCRay;
+class HCONB;
+class HCOBB;
+class HCAABB;
+class HCPlane;
+class HCBoundingSphere;
 
 #endif
