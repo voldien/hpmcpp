@@ -106,7 +106,7 @@ public:
 	/**
 	 *	Set half size.
 	 */
-	void setSize(const HCVector3& size) {
+	inline void setSize(const HCVector3& size) {
 		this->mhalfsize = size;
 	}
 
@@ -117,6 +117,10 @@ public:
 	inline const HCVector3& getCenter(void) const {
 		return this->mcenter;
 	}
+
+	/**
+	 *	Set center position.
+	 */
 	inline void setCenter(const HCVector3& center) {
 		this->mcenter = center;
 	}
@@ -149,16 +153,17 @@ public:
 	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
 
 	/**
-	 *	@Return
+	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector3& t);
 
 	/**
-	 *	@Return
+	 *	@Return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
 	/**
+	 *	Assign
 	 *	@Return
 	 */
 	HCAABB& operator=(const HCAABB& bound);
@@ -174,12 +179,14 @@ public:
 	friend HCAABB& operator/=(const HCAABB& bound, float scalar);
 
 	/**
-	 *	@Return
+	 *	Compare if objects are equal.
+	 *	@Return true if object are equal, false otherwise.
 	 */
 	bool operator==(const HCAABB& bound);
 
 	/**
-	 *	@Return
+	 *	Compare if object are not equal.
+	 *	@Return false if object are equal, true otherwise.
 	 */
 	bool operator!=(const HCAABB& bound);
 

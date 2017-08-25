@@ -15,9 +15,7 @@ HCOBB::HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w) {
 HCOBB::HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w,
 		const HCVector3& size) {
 	this->onb.set(u, v, w);
-	this->halfu = size.x();
-	this->halfv = size.y();
-	this->halfw = size.z();
+	this->setSize(size);
 }
 
 const HCVector3& HCOBB::getU(void) const {
@@ -34,8 +32,6 @@ const HCVector3& HCOBB::getW(void) const {
 
 HCOBB& HCOBB::operator=(const HCOBB& obb) {
 	this->onb = obb.onb;
-	this->halfu = obb.halfu;
-	this->halfv = obb.halfv;
-	this->halfw = obb.halfw;
+	this->setSize(obb.getSize());
 	return *this;
 }

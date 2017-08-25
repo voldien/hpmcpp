@@ -35,19 +35,19 @@ public:
 
 	/**
 	 *	Get U axis.
-	 *	@Return normailized axis.
+	 *	@Return normalized axis.
 	 */
 	const HCVector3& HCAPIENTRY getU(void)const;
 
 	/**
 	 *	Get V axis.
-	 *	@Return normailized axis.
+	 *	@Return normalized axis.
 	 */
 	const HCVector3& HCAPIENTRY getV(void)const;
 
 	/**
 	 *	Get W axis.
-	 *	@Return normailized axis.
+	 *	@Return normalized axis.
 	 */
 	const HCVector3& HCAPIENTRY getW(void)const;
 
@@ -59,6 +59,7 @@ public:
 	}
 
 	/**
+	 *	Get size.
 	 *	@Return
 	 */
 	inline HCVector3 getSize(void){

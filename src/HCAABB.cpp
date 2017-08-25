@@ -49,3 +49,14 @@ HCVector3 HCAABB::getVertexN(HCVector3 &normal) const {
 		res[2] += this->mcenter.x();
 	return res;
 }
+
+
+bool HCAABB::operator==(const HCAABB& bound){
+	return (this->getCenter() == bound.getCenter()) && (this->getSize() == bound.getSize());
+}
+
+bool HCAABB::operator!=(const HCAABB& bound){
+	return (this->getCenter() != bound.getCenter()) || (this->getSize() != bound.getSize());
+}
+
+
