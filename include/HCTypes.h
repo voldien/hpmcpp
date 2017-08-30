@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-#ifndef _HC_TYPES_H_
-#define _HC_TYPES_H_ 1
+#ifndef _HPMCPP_TYPES_H_
+#define _HPMCPP_TYPES_H_ 1
 #include<hpm/hpm.h>
 #include<iostream>
 #include<math.h>
@@ -167,5 +167,11 @@ class HCMatrix3x3;
 class HCVector4;
 class HCVector3;
 class HCVector2;
+class HCRay;
+class HCONB;
+class HCOBB;
+class HCAABB;
+class HCPlane;
+class HCBoundingSphere;
 
 #endif

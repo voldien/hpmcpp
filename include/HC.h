@@ -25,6 +25,11 @@
 #include"HCVector4.h"
 #include"HCVector3.h"
 #include"HCVector2.h"
+#include"HCAABB.h"
+#include"HCPlane.h"
+#include"HCOBB.h"
+#include"HCONB.h"
+#include"HCBoundingSphere.h"
 
 
 #endif /* INCLUDE_HC_H_ */

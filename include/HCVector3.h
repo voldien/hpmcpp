@@ -27,25 +27,25 @@
  */
 class HCDECLSPEC HCVector3{
 public:
-    HCVector3(void);
-    HCVector3(float val);
-    HCVector3(float e0, float e1, float e2);
-    HCVector3(const HCVector3& v);
+	HCVector3(void);
+	HCVector3(float val);
+	HCVector3(float e0, float e1, float e2);
+	HCVector3(const HCVector3& v);
 
-    /**
-     *	Get indiviual component of vector.
-     *	@Return
-     */
-    inline float HCAPIFASTENTRY x(void)const{return this->e[0];}
-    inline float HCAPIFASTENTRY y(void)const{return this->e[1];}
-    inline float HCAPIFASTENTRY z(void)const{return this->e[2];}
+	/**
+	 *	Get indiviual component of vector.
+	 *	@Return
+	 */
+	float HCAPIFASTENTRY x(void) const;
+	float HCAPIFASTENTRY y(void) const;
+	float HCAPIFASTENTRY z(void) const;
 
-    /**
-     *
-     */
-    void HCAPIFASTENTRY setX(float _x){e[0] = _x;}
-    void HCAPIFASTENTRY setY(float _y){e[1] = _y;}
-    void HCAPIFASTENTRY setZ(float _z){e[2] = _z;}
+	/**
+	 *
+	 */
+	void HCAPIFASTENTRY setX(float _x);
+	void HCAPIFASTENTRY setY(float _y);
+	void HCAPIFASTENTRY setZ(float _z);
 
 	/**
 	 *	@Return
