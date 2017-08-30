@@ -29,6 +29,25 @@ HCAABB& HCAABB::operator=(const HCAABB& bound) {
 	return *this;
 }
 
+HCAABB operator*(const HCAABB& bound, float scalar){
+	return HCAABB(bound.getCenter(), bound.getSize() / scalar);
+}
+
+HCAABB operator/(const HCAABB& bound, float divisor){
+	return HCAABB(bound.getCenter(), bound.getSize() / divisor);
+}
+
+HCAABB& HCAABB::operator*=(float scalar){
+	this->mhalfsize *= scalar;
+	return *this;
+}
+
+HCAABB& HCAABB::operator/=(float divisor){
+	const float scalar = 1.0f / divisor;
+	this->mhalfsize *= scalar;
+	return *this;
+}
+
 HCVector3 HCAABB::getVertexP(HCVector3 &normal) const {
 	HCVector3 res = this->mhalfsize;
 	if (normal.x() >= 0.0f)
@@ -44,12 +63,11 @@ HCVector3 HCAABB::getVertexN(HCVector3 &normal) const {
 	if (normal.x() < 0.0f)
 		res[0] += this->mcenter.x();
 	if (normal.y() < 0.0f)
-		res[1] += this->mcenter.x();
+		res[1] += this->mcenter.y();
 	if (normal.z() < 0.0f)
-		res[2] += this->mcenter.x();
+		res[2] += this->mcenter.z();
 	return res;
 }
-
 
 bool HCAABB::operator==(const HCAABB& bound){
 	return (this->getCenter() == bound.getCenter()) && (this->getSize() == bound.getSize());

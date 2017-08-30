@@ -26,8 +26,8 @@
  *	box.
  */
 class HCDECLSPEC HCAABB {
-
 public:
+
 	HCAABB(void) {}
 	HCAABB(const HCVector3& size, const HCVector3& center);
 	HCAABB(const HCAABB& bounds) {
@@ -51,6 +51,7 @@ public:
 
 	/**
 	 *	Check if object is valid.
+	 *	@Return true if valid, false otherwise.
 	 */
 	inline bool isValid(void) const {
 		return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f
@@ -81,7 +82,7 @@ public:
 
 	/**
 	 *	Compute minimum position.
-	 *	@Return
+	 *	@Return vector position.
 	 */
 	inline HCVector3 min(void) const {
 		return this->getCenter() - this->getSize();
@@ -89,7 +90,7 @@ public:
 
 	/**
 	 *	Compute max position.
-	 *	@Return
+	 *	@Return vector position.
 	 */
 	inline HCVector3 max(void) const {
 		return this->getCenter() + this->getSize();
@@ -138,7 +139,9 @@ public:
 			HCVector3());
 
 	/**
-	 *	@Return
+	 *	Check if object contains bound
+	 *	object.
+	 *	@Return true if completly contains, false otherwise.
 	 */
 	bool HCAPIENTRY contains(const HCAABB& bounds);
 
@@ -153,30 +156,47 @@ public:
 	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
 
 	/**
+	 *	Create input stream for creating AABB
+	 *	from input stream.
 	 *	@Return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector3& t);
 
 	/**
+	 *	Create output stream of AABB values.
 	 *	@Return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
 	/**
-	 *	Assign
-	 *	@Return
+	 *	Assign bound object.
+	 *	@Return reference of object.
 	 */
 	HCAABB& operator=(const HCAABB& bound);
 
 	/**
-	 *	@Return
+	 *
+	 *	@Return reference of object.
 	 */
-	friend HCAABB& operator*=(const HCAABB& bound, float scalar);
+	friend HCAABB operator*(const HCAABB& bound, float scalar);
 
 	/**
-	 *	@Return
+	 *
+	 *	@Return reference of object.
 	 */
-	friend HCAABB& operator/=(const HCAABB& bound, float scalar);
+	friend HCAABB operator/(const HCAABB& bound, float divisor);
+
+	/**
+	 *	Factor the bound size of the bound.
+	 *	@Return reference of object.
+	 */
+	HCAABB& operator*=(float scalar);
+
+	/**
+	 *
+	 *	@Return reference of object.
+	 */
+	HCAABB& operator/=(float divisor);
 
 	/**
 	 *	Compare if objects are equal.
@@ -192,10 +212,8 @@ public:
 
 private:	/*	Attributes.	*/
 
-	HCVector3 mhalfsize;	/*	half size of the box.	*/
-	HCVector3 mcenter;	/*	center of the box.	*/
-
+	HCVector3 mhalfsize;    /*	half size of the box.	*/
+	HCVector3 mcenter;      /*	center of the box.	*/
 };
-
 
 #endif
