@@ -172,7 +172,7 @@ public:	/*	Static methods.	*/
 	/**
 	 *	Create rotation matrix from quaternion.
 	 *
-	 *	@Return
+	 *	@Return rotation matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY rotate(const HCQuaternion& quat);
 

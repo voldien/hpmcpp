@@ -252,6 +252,7 @@ public:	/*	Static utility methods.	*/
 	        HCVector3& direction);
 
 	/**
+	 *	Linear interpolation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
@@ -259,7 +260,7 @@ public:	/*	Static utility methods.	*/
 	        const HCQuaternion& to, float speed);
 
 	/**
-	 *  Spherical interpolation.
+	 *	Spherical interpolation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
