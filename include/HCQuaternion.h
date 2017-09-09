@@ -94,7 +94,7 @@ public:
 	 *
 	 *	@Return
 	 */
-	friend float dot(const HCQuaternion& lh, const HCQuaternion& rh);
+	friend float HCAPIFASTENTRY dot(const HCQuaternion& lh, const HCQuaternion& rh);
 
 	/**
 	 *	Normalize quaternion.
@@ -186,7 +186,9 @@ public:
 	HCQuaternion& operator=(const HCQuaternion& rh);
 
 	/**
-	 *	@Return
+	 *	Compare quaternion equality by
+	 *	checking component wise.
+	 *	@Return true if equal, false otherwise.
 	 */
 	friend bool operator==(const HCQuaternion& v1, const HCQuaternion& v2);
 	friend bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2);
@@ -196,7 +198,15 @@ public:
 	 *	radius.
 	 */
 	float HCAPIFASTENTRY getPitch(void) const;
+
+	/**
+	 *
+	 */
 	float HCAPIFASTENTRY getYaw(void) const;
+
+	/**
+	 *
+	 */
 	float HCAPIFASTENTRY getRoll(void) const;
 
 private:	/*	Attributes.	*/
@@ -252,6 +262,7 @@ public:	/*	Static utility methods.	*/
 	        HCVector3& direction);
 
 	/**
+	 *	Linear interpolation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
@@ -259,7 +270,7 @@ public:	/*	Static utility methods.	*/
 	        const HCQuaternion& to, float speed);
 
 	/**
-	 *  Spherical interpolation.
+	 *	Spherical interpolation.
 	 *
 	 *	@Return normalized quaternion.
 	 */
