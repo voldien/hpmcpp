@@ -141,6 +141,13 @@ HCMatrix4x4 HCMatrix4x4::scale(const HCVector3& scale) {
 	return mat;
 }
 
+HCMatrix4x4 HCMatrix4x4::lookAt(const HCVector3& lookPosition,
+        const HCVector3& position, const HCVector3& up){
+	HCMatrix4x4 look;
+	hpm_util_lookatfv((hpmvec3f*)&lookPosition, (hpmvec3f*)&position, (hpmvec3f*)&up, look.e);
+	return look;
+}
+
 HCMatrix4x4 HCMatrix4x4::perspective(float fov, float aspect, float near,
 		float far) {
 	HCMatrix4x4 mat;
