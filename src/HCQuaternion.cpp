@@ -177,7 +177,9 @@ float dot(const HCQuaternion& lh, const HCQuaternion& rh) {
 }
 
 HCQuaternion HCQuaternion::lookRotation(const HCVector3& target, const HCVector3& up) {
-	return HCQuaternion();
+	HCQuaternion quat;
+	hpm_quat_lookatfv((const hpmvec3f*)&target, (const hpmvec3f*)&up, &quat.e);
+	return quat;
 }
 
 HCQuaternion HCQuaternion::createQuaternionOfAxis(const HCVector3& axis) {
