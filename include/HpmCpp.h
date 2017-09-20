@@ -19,6 +19,17 @@
 #ifndef _HPMCPP_H_
 #define _HPMCPP_H_ 1
 #include "HCTypes.h"
+#include"HCMatrix4x4.h"
+#include"HCMatrix3x3.h"
+#include"HCQuaternion.h"
+#include"HCVector4.h"
+#include"HCVector3.h"
+#include"HCVector2.h"
+#include"HCAABB.h"
+#include"HCPlane.h"
+#include"HCOBB.h"
+#include"HCONB.h"
+#include"HCBoundingSphere.h"
 
 /**
  *	hpmcpp initialization class.
