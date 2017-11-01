@@ -2,7 +2,7 @@
 #include <HCQuaternion.h>
 #include <HCVector3.h>
 #include <HCVector4.h>
-#include<iostream>
+#include <iostream>
 
 HCMatrix4x4::HCMatrix4x4(void) {
 
