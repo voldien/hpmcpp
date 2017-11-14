@@ -78,19 +78,11 @@ float HCVector4::maxComponent(void) const {
 }
 
 float HCVector4::maxAbsComponent(void) const {
-	return 0;
+	return abs(hpm_vec4_max_compfv(&this->e));
 }
 
 float HCVector4::minAbsComponent(void) const {
-	return 0;
-}
-
-int HCVector4::indexOfMinComponent(void) const {
-	return 0;
-}
-
-int HCVector4::indexOfMinAbsComponent(void) const {
-	return 0;
+	return abs(hpm_vec4_min_compfv(&this->e));
 }
 
 bool operator==(const HCVector4& v1, const HCVector4& v2) {

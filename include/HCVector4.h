@@ -79,10 +79,6 @@ public:
 	float HCAPIFASTENTRY maxComponent(void) const;
 	float HCAPIFASTENTRY maxAbsComponent(void) const;
 	float HCAPIFASTENTRY minAbsComponent(void) const;
-	int HCAPIFASTENTRY indexOfMinComponent(void) const;
-	int HCAPIFASTENTRY indexOfMaxComponent(void) const;
-	int HCAPIFASTENTRY indexOfMinAbsComponent(void) const;
-	int HCAPIFASTENTRY indexOfMaxAbsComponent(void) const;
 
 	/**
 	 *  Create nomralized copy.
