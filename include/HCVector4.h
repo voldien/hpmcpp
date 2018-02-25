@@ -33,11 +33,17 @@ public:
 	HCVector4(float m0, float m1, float m2, float m3);
 	HCVector4(const HCVector4& v);
 
+	/**
+	 *
+	 */
 	float HCAPIFASTENTRY x(void) const;
 	float HCAPIFASTENTRY y(void) const;
 	float HCAPIFASTENTRY z(void) const;
 	float HCAPIFASTENTRY w(void) const;
 
+	/**
+	 *
+	 */
 	void HCAPIFASTENTRY setX(float x);
 	void HCAPIFASTENTRY setY(float y);
 	void HCAPIFASTENTRY setZ(float z);
@@ -88,7 +94,7 @@ public:
 	HCVector4 HCAPIENTRY normalize(void) const;
 
 	/**
-	 *
+	 *  Equality
 	 *	@Return logic
 	 */
 	friend bool operator==(const HCVector4& v1, const HCVector4& v2);

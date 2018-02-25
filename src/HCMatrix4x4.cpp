@@ -125,7 +125,7 @@ HCMatrix4x4 HCMatrix4x4::rotate(float angle, const HCVector3& axis) {
 
 HCMatrix4x4 HCMatrix4x4::rotate(const HCQuaternion& quat) {
 	HCMatrix4x4 mat;
-	hpm_mat4x4_rotationQf(mat.e, &quat.e);
+	hpm_mat4x4_rotationQfv(mat.e, &quat.e);
 	return mat;
 }
 

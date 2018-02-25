@@ -46,7 +46,7 @@ public:	/*	Public methods. */
 	/**
 	 *	Compute determinant of the matrix.
 	 *
-	 *	@Return
+	 *	@Return determine of matrix.
 	 */
 	float HCAPIENTRY determinant(void) const;
 
@@ -83,8 +83,8 @@ public:	/*	Public methods. */
 	HCMatrix4x4 operator*(float rh) const;
 
 	/**
-	 *
-	 *	@Return
+	 *	Multiply matrix with matrix.
+	 *	@Return matrix product.
 	 */
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
 
@@ -191,6 +191,13 @@ public:	/*	Static methods.	*/
 	static HCMatrix4x4 HCAPIENTRY scale(const HCVector3& scale);
 
 	/**
+	 *	Create look at matrix.
+	 *	@Return model matrix.
+	 */
+	static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
+	        const HCVector3& position, const HCVector3& up);
+
+	/**
 	 *	Create perspectice matrix.
 	 *
 	 *	\fov field of view in radius.
@@ -205,13 +212,6 @@ public:	/*	Static methods.	*/
 	 */
 	static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect,
 	        float near, float far);
-
-	/**
-	 *	Create look at matrix.
-	 *	@Return
-	 */
-	static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
-	        const HCVector3& position, const HCVector3& forward);
 
 	/**
 	 *	Create orthographic perspectice.

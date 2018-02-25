@@ -170,7 +170,15 @@ public:
 	 */
 	friend HCQuaternion operator*(const HCQuaternion& lh,
 	        const HCQuaternion& rh);
+
+	/**
+	 *	@Return
+	 */
 	friend HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh);
+
+	/**
+	 *	@Return
+	 */
 	friend HCQuaternion operator*(const HCQuaternion& lh, float rh);
 
 	/**
