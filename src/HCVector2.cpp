@@ -16,34 +16,33 @@ HCVector2::HCVector2(const HCVector2& v) {
 }
 
 float HCVector2::length(void) const {
-	//return sqrtf(m[0] * m[0] + m[1] * m[1]);
-	return 0;
+	return sqrtf(x() * x() + y() * y());
 }
 float HCVector2::squaredLength(void) const {
-	//return (m[0] * m[0] + m[1] * m[1]);
-	return 0;
+	return (x() * x() + y() * y());
 }
 void HCVector2::makeUnitVector(void) {
-	//*this /= this->length();
+	*this /= this->length();
 }
 
 void HCVector2::setX(float _x) {
-	hpm_vec4_setxf(this->m, _x);
+	this->m[0] = _x;
 }
 void HCVector2::setY(float _y) {
-	hpm_vec4_setyf(this->m, _y);
+	this->m[1] = _y;
 }
 
 float HCVector2::x(void) const {
-	return hpm_vec4_getxf(this->m);
+	return this->m[0];
 }
 float HCVector2::y(void) const{
-	return hpm_vec4_getyf(this->m);
+	return this->m[1];
 }
 
 HCVector2 HCVector2::normalize(void) const {
-	//return HCVector2(m[0], m[1]) / this->length();
-	return HCVector2();
+	HCVector2 copy = *this;
+	copy.makeUnitVector();
+	return copy;
 }
 
 float HCVector2::maxComponent(void) const {
@@ -67,62 +66,64 @@ int HCVector2::indexOfMinAbsComponent(void) const {
 }
 
 bool operator==(const HCVector2& v1, const HCVector2& v2) {
-	return false;
+	return !(v1 == v2);
 }
 bool operator!=(const HCVector2& v1, const HCVector2& v2) {
 	return !(v1 == v2);
 }
 
 HCVector2 operator+(const HCVector2& v1, const HCVector2& v2) {
-	return HCVector2();
+	return HCVector2(v1.x() + v2.x(),v1.y() + v2.y());
 }
 
 HCVector2 operator-(const HCVector2& v1, const HCVector2& v2) {
-	return HCVector2();
+	return HCVector2(v1.x() - v2.x(),v1.y() - v2.y());
 }
 
 HCVector2 operator/(const HCVector2& vec, float scalar) {
-	return HCVector2();
+	return HCVector2(vec.x() / scalar,vec.y() / scalar);
 }
 
 HCVector2 operator*(const HCVector2& vec, float scalar) {
-	return HCVector2();
+	return HCVector2(vec.x() * scalar,vec.y() * scalar);
 }
 HCVector2 operator*(float scalar, const HCVector2& vec) {
-	return HCVector2();
+	return HCVector2(vec.x() * scalar,vec.y() * scalar);
 }
 
-HCVector2 operator*(const HCVector2& vec1, const HCVector2& vec2) {
-	return HCVector2();
+HCVector2 operator*(const HCVector2& v1, const HCVector2& v2) {
+	return HCVector2(v1.x() * v2.x(),v1.y() * v2.y());
 }
 
 HCVector2& HCVector2::operator=(const HCVector2& v2) {
-
+	this->setX(v2.x());
+	this->setY(v2.y());
 	return *this;
 }
 HCVector2& HCVector2::operator+=(const HCVector2& v2) {
-	*this += v2;
+	*this = *this + v2;
 	return *this;
 }
 HCVector2& HCVector2::operator-=(const HCVector2& v2) {
-	*this -= v2;
+	*this = *this - v2;
 	return *this;
 }
 HCVector2& HCVector2::operator/=(float scalar) {
-	*this /= scalar;
+	*this = *this / scalar;
 	return *this;
 }
 HCVector2& HCVector2::operator*=(float scalar) {
-	*this *= scalar;
+	*this = *this * scalar;
 	return *this;
 }
 
 HCVector2& HCVector2::operator*=(const HCVector2& vec2) {
-	*this *= vec2;
+	*this = *this * vec2;
 	return *this;
 }
 
 std::istream& operator>>(std::istream &is, HCVector2& t) {
+
 	float tmp;
 
 	is >> tmp;
@@ -132,7 +133,6 @@ std::istream& operator>>(std::istream &is, HCVector2& t) {
 
 	return is;
 }
-
 std::ostream& operator<<(std::ostream& os, const HCVector2& t) {
 	os << '(' << t.x() << " " << t.y() << ')';
 	return os;
