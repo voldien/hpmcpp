@@ -62,23 +62,15 @@ HCVector3 HCVector3::normalize(void) const {
 }
 
 float HCVector3::maxComponent(void) const {
-	return 0;
+	return hpm_vec4_max_compfv(&this->e);
 }
 
 float HCVector3::maxAbsComponent(void) const {
-	return 0;
+	return fabs(hpm_vec4_max_compfv(&this->e));
 }
 
 float HCVector3::minAbsComponent(void) const {
-	return 0;
-}
-
-int HCVector3::indexOfMinComponent(void) const {
-	return 0;
-}
-
-int HCVector3::indexOfMinAbsComponent(void) const {
-	return 0;
+	return fabs(hpm_vec4_min_compfv(&this->e));
 }
 
 bool operator==(const HCVector3& v1, const HCVector3& v2) {
