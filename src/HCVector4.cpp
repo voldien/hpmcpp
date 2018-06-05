@@ -37,7 +37,6 @@ void HCVector4::setW(float w) {
 	hpm_vec4_setwf(this->e, w);
 }
 
-
 float HCVector4::operator[](int i) const {
 	return this->e[i];
 }
@@ -148,13 +147,12 @@ HCVector4 minVec(const HCVector4& v1, const HCVector4& v2) {
 	hpm_vec4_minfv(&v1.e, &v2.e, &vec.e);
 	return vec;
 }
+
 HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2) {
 	HCVector4 vec;
 	hpm_vec4_maxfv(&v1.e, &v2.e, &vec.e);
 	return vec;
 }
-
-
 
 HCVector4& HCVector4::operator=(const HCVector4& v2) {
 	hpm_vec4_copyfv(&this->e, &v2.e);

@@ -165,9 +165,11 @@ bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2){
 float HCQuaternion::getPitch(void) const {
 	return hpm_quat_pitchfv(&this->e);
 }
+
 float HCQuaternion::getYaw(void) const {
 	return hpm_quat_yawfv(&this->e);
 }
+
 float HCQuaternion::getRoll(void) const {
 	return hpm_quat_rollfv(&this->e);
 }

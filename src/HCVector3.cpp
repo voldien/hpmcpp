@@ -18,25 +18,24 @@ HCVector3::HCVector3(const HCVector3& v){
 
 
 float HCVector3::x(void) const {
-	return this->e[0];
+	return hpm_vec4_getxf(this->e);
 }
 float HCVector3::y(void) const {
-	return this->e[1];
+	return hpm_vec4_getyf(this->e);
 }
 float HCVector3::z(void) const {
-	return this->e[2];
+	return hpm_vec4_getzf(this->e);
 }
 
 void HCVector3::setX(float _x) {
-	e[0] = _x;
+	hpm_vec4_setxf(this->e, _x);
 }
 void HCVector3::setY(float _y) {
-	e[1] = _y;
+	hpm_vec4_setyf(this->e, _y);
 }
 void HCVector3::setZ(float _z) {
-	e[2] = _z;
+	hpm_vec4_setzf(this->e, _z);
 }
-
 
 HCVector3 HCVector3::operator-(void) const {
 	HCVector3 copy = *this;
@@ -54,14 +53,7 @@ void HCVector3::makeUnitVector(void) {
 	*this = *this / (*this).length();
 }
 float HCVector3::minComponent(void) const {
-	float temp = e[0];
-	if (e[1] < temp)
-		temp = e[1];
-	if (e[2] < temp)
-		temp = e[2];
-
-	return temp;
-
+	return hpm_vec4_min_compfv(&this->e);
 }
 
 HCVector3 HCVector3::normalize(void) const {

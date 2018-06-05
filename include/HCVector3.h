@@ -86,10 +86,6 @@ public:
 	float HCAPIENTRY maxComponent(void) const;
 	float HCAPIENTRY maxAbsComponent(void) const;
 	float HCAPIENTRY minAbsComponent(void) const;
-	int HCAPIENTRY indexOfMinComponent(void) const;
-	int HCAPIENTRY indexOfMaxComponent(void) const;
-	int HCAPIENTRY indexOfMinAbsComponent(void) const;
-	int HCAPIENTRY indexOfMaxAbsComponent(void) const;
 
 	/**
 	 *	Normalize vector.

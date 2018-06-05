@@ -65,6 +65,7 @@ public:
 	 *	Initialize hpm library.
 	 *	This function has to be
 	 *	called before using the library.
+	 *	@return
 	 */
 	static int HCAPIENTRY init(HPMSIMD hpmSIMD);
 };
