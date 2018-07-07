@@ -63,17 +63,24 @@ public:
 	 */
 	void initFromVW(const HCVector3& v, const HCVector3& w);
 	void initFromWV(const HCVector3& w, const HCVector3& v);
-
 	/**
 	 *
-	 *	@Return stream reference.
+	 * @param is
+	 * @param t
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream& is, HCONB& t);
 
 	/**
 	 *	@Return stream reference.
 	 */
-	friend std::ostream &operator<<(std::ostream& is, const HCONB& t);
+	/**
+	 *
+	 * @param os
+	 * @param t
+	 * @return
+	 */
+	friend std::ostream &operator<<(std::ostream& os, const HCONB& t);
 
 	/**
 	 *	Compare 

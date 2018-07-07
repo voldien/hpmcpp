@@ -38,3 +38,13 @@ HCBoundingSphere& HCBoundingSphere::operator=(const HCBoundingSphere& bounds) {
 	this->setCenter(bounds.getCenter());
 	return *this;
 }
+
+
+bool HCAPIENTRY HCBoundingSphere::intersect(const HCBoundingSphere &sphere) const {
+	return false;
+}
+
+bool HCAPIENTRY HCBoundingSphere::contains(const HCBoundingSphere &sphere) const {
+    return false;
+}
+

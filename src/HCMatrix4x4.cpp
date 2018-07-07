@@ -163,10 +163,16 @@ HCMatrix4x4 HCMatrix4x4::orth(float left, float right, float bottom, float top,
 }
 
 HCMatrix4x4 HCMatrix4x4::biasMatrix(void) {
-	/*
-	return HCMatrix4x4(0.5f, 0.0, 0.0, 0.0, 0.0, 0.5f, 0.0, 0.0, 0.0, 0.0f,
-			0.5f, 0.0, 0.5f, 0.5f, 0.5f, 1.0f);
-	*/
+	const hpmvec4x4f_t bias = {
+		{ 0.5f, 0.0f, 0.0f, 0.0f },
+		{ 0.0f, 0.5f, 0.0f, 0.0f },
+		{ 0.0f, 0.0f, 0.5f, 0.0f },
+		{ 0.5f, 0.5f, 0.5f, 1.0f },
+	};
+
+	HCMatrix4x4 biasMatrix;
+	hpm_mat4x4_copyfv(biasMatrix.e, bias);
+	return biasMatrix;
 }
 
 HCMatrix4x4 HCMatrix4x4::identity(void){

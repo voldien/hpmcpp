@@ -34,7 +34,7 @@ public:
 	 *	Negate vector.
 	 *	@Return
 	 */
-	HCVector2 operator-(void) const;
+	HCVector2& operator-(void) const;
 
 	/**
 	 *	Get vector component by index.
@@ -133,10 +133,6 @@ public:
 	 */
 	friend std::ostream& operator<<(std::ostream &os, const HCVector2& t);
 
-	/**
-	 *
-	 *	@Return
-	 */
 	friend HCVector2 operator+(const HCVector2& v1, const HCVector2& v2);
 	friend HCVector2 operator-(const HCVector2& v1, const HCVector2& v2);
 	friend HCVector2 operator/(const HCVector2& vec, float scalar);
@@ -144,10 +140,6 @@ public:
 	friend HCVector2 operator*(float scalar, const HCVector2& vec);
 	friend HCVector2 operator*(const HCVector2& vec1, const HCVector2& vec2);
 
-	/**
-	 *
-	 *	@Return
-	 */
 	HCVector2& operator=(const HCVector2& v2);
 	HCVector2& operator+=(const HCVector2& v2);
 	HCVector2& operator-=(const HCVector2& v2);

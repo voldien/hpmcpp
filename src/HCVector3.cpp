@@ -37,6 +37,11 @@ void HCVector3::setZ(float _z) {
 	hpm_vec4_setzf(this->e, _z);
 }
 
+
+const HCVector3 &HCVector3::operator+(void) const {
+	return *this;
+}
+
 HCVector3 HCVector3::operator-(void) const {
 	HCVector3 copy = *this;
 	hpm_vec4_negatefv(&copy.e);
@@ -207,6 +212,11 @@ HCVector3& HCVector3::operator-=(const HCVector3& vec2) {
 
 HCVector3& HCVector3::operator*=(float scalar) {
 	*this = *this * scalar;
+	return *this;
+}
+
+HCVector3 &HCVector3::operator/=(float scalar) {
+	*this = *this / scalar;
 	return *this;
 }
 

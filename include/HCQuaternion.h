@@ -123,20 +123,6 @@ public:
 	HCQuaternion HCAPIENTRY inverse(void) const;
 
 	/**
-	 *	Get matrix4x4 representation of quaternion
-	 *	orientation.
-	 *	@Return
-	 */
-	HCMatrix4x4 HCAPIENTRY getMatrix4x4(void) const;
-
-	/**
-	 *	Get matrix3x3 representation of quaternion
-	 *	orientation.
-	 *	@Return
-	 */
-	HCMatrix3x3 HCAPIENTRY getMatrix3x3(void) const;
-
-	/**
 	 *  Get element by index.
 	 *	@Return
 	 */
@@ -157,10 +143,20 @@ public:
 	friend std::ostream &operator<<(std::ostream &os, const HCQuaternion& t);
 
 	/**
-	 *	@Return
+	 *
+	 * @param lh
+	 * @param rh
+	 * @return
 	 */
 	friend HCQuaternion operator+(const HCQuaternion& lh,
 	        const HCQuaternion& rh);
+
+	/**
+	 *
+	 * @param lh
+	 * @param rh
+	 * @return
+	 */
 	friend HCQuaternion operator-(const HCQuaternion& lh,
 	        const HCQuaternion& rh);
 
@@ -229,13 +225,6 @@ public:	/*	Static utility methods.	*/
 	 *	@Return
 	 */
 	static HCQuaternion HCAPIENTRY lookRotation(const HCVector3& target,
-	        const HCVector3& up);
-
-	/**
-	 *	Create look at vector.
-	 *	@Return
-	 */
-	static HCQuaternion HCAPIENTRY lookAt(const HCVector3& target,
 	        const HCVector3& up);
 
 	/**

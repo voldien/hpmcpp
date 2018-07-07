@@ -37,6 +37,12 @@ public:
 	/**
 	 *	@Return
 	 */
+
+	/**
+	 *
+	 * @param i
+	 * @return
+	 */
 	inline HCVector3 operator[](int i) const {
 		return ((HCVector3*) this)[i];
 	}
@@ -127,31 +133,40 @@ public:
 	}
 
 	/**
-	 *	Check if object intersect.
-	 *	@Return true if object intersects.
+	 * Check if object intersect.
+	 * @param bounds intersect this bound.
+	 * @return true if object intersects.
 	 */
 	bool intersect(const HCAABB& bounds);
 
 	/**
-	 *	@Return true if object contains.
+	 *
+	 * @param point
+	 * @param worldPosition
+	 * @return  true if object contains.
 	 */
 	bool HCAPIENTRY contains(const HCVector3& point, const HCVector3 worldPosition =
 			HCVector3());
 
 	/**
-	 *	Check if object contains bound
-	 *	object.
-	 *	@Return true if completly contains, false otherwise.
+	 * Check if object contains bound
+	 * object.
+	 * @param bounds
+	 * @return true if completly contains, false otherwise.
 	 */
 	bool HCAPIENTRY contains(const HCAABB& bounds);
 
 	/**
-	 *	@Return
+	 *
+	 * @param normal
+	 * @return
 	 */
 	HCVector3 HCAPIENTRY getVertexN(HCVector3& normal) const;
 
 	/**
-	 *	@Return
+	 *
+	 * @param normal
+	 * @return
 	 */
 	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
 
@@ -181,32 +196,38 @@ public:
 	friend HCAABB operator*(const HCAABB& bound, float scalar);
 
 	/**
-	 *
-	 *	@Return reference of object.
+	 * Divide the size by scalar.
+	 * @param bound
+	 * @param divisor
+	 * @return reference of object.
 	 */
 	friend HCAABB operator/(const HCAABB& bound, float divisor);
 
 	/**
-	 *	Factor the bound size of the bound.
-	 *	@Return reference of object.
+	 * Factor the bound size of the bound.
+	 * @param scalar real number.
+	 * @return reference of object.
 	 */
 	HCAABB& operator*=(float scalar);
 
 	/**
-	 *
-	 *	@Return reference of object.
+	 * Divide the size by scalar.
+	 * @param divisor non-zero.
+	 * @return reference of object.
 	 */
 	HCAABB& operator/=(float divisor);
 
 	/**
-	 *	Compare if objects are equal.
-	 *	@Return true if object are equal, false otherwise.
+	 * Compare if objects are equal.
+	 * @param bound
+	 * @return true if object are equal, false otherwise.
 	 */
 	bool operator==(const HCAABB& bound);
 
 	/**
-	 *	Compare if object are not equal.
-	 *	@Return false if object are equal, true otherwise.
+	 * Compare if object are not equal.
+	 * @param bound
+	 * @return false if object are equal, true otherwise.
 	 */
 	bool operator!=(const HCAABB& bound);
 

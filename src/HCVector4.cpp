@@ -188,3 +188,23 @@ HCVector4 HCVector4::slerp(const HCVector4& vec1, const HCVector4& vec2, float s
 	hpm_vec4_slerpfv(&vec1.e, &vec2.e, speed, &vec.e);
 	return vec;
 }
+
+HCVector4 &HCVector4::operator+=(const HCVector4 &v2) {
+	*this = *this + v2;
+	return *this;
+}
+
+HCVector4 &HCVector4::operator-=(const HCVector4 &v2) {
+	*this = *this - v2;
+	return *this;
+}
+
+HCVector4 &HCVector4::operator/=(float scalar) {
+	*this = *this / scalar;
+	return *this;
+}
+
+HCVector4 &HCVector4::operator*=(float scalar) {
+	*this = *this * scalar;
+	return *this;
+}

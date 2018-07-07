@@ -18,97 +18,114 @@
 */
 #ifndef _HPMCPP_OBB_H_
 #define _HPMCPP_OBB_H_ 1
+
 #include"HCONB.h"
 #include"HCVector3.h"
 
 /**
  *	Oriented bounding box.
  */
-class HCDECLSPEC HCOBB{
+class HCDECLSPEC HCOBB {
 public:
 
-	HCOBB(void);
-	HCOBB(const HCOBB& obb);
-	HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w);
-	HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w, const HCVector3& size);
-	HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w, const HCVector3& center, const HCVector3& size);
+    HCOBB(void);
 
-	/**
-	 *	Get U axis.
-	 *	@Return normalized axis.
-	 */
-	const HCVector3& HCAPIENTRY getU(void)const;
+    HCOBB(const HCOBB &obb);
 
-	/**
-	 *	Get V axis.
-	 *	@Return normalized axis.
-	 */
-	const HCVector3& HCAPIENTRY getV(void)const;
+    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w);
 
-	/**
-	 *	Get W axis.
-	 *	@Return normalized axis.
-	 */
-	const HCVector3& HCAPIENTRY getW(void)const;
+    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &size);
 
-	/**
-	 *	Set size of box.
-	 */
-	void setSize(const HCVector3& size){
-		this->size = size;
-	}
+    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &center, const HCVector3 &size);
 
-	/**
-	 *	Get size.
-	 *	@Return
-	 */
-	inline HCVector3 getSize(void){
-		return size;
-	}
+    /**
+     * Get U axis.
+     * @return normalized axis.
+     */
+    const HCVector3 &HCAPIENTRY getU(void) const;
 
-	/**
-	 *	@Return
-	 */
-	inline const HCVector3& getSize(void)const{
-		return this->size;
-	}
+    /**
+     *	Get V axis.
+     *	@Return normalized axis.
+     */
 
-	/**
-	 *	@Return
-	 */
-	void HCAPIENTRY setCenter(const HCVector3& size);
+    /**
+     *
+     * @return
+     */
+    const HCVector3 &HCAPIENTRY getV(void) const;
 
-	/**
-	 *	@Return
-	 */
-	inline HCVector3 getCenter(void)const{
-		return HCVector3(halfu, halfv, halfw);
-	}
+    /**
+     * Get W axis.
+     * @return normalized axis.
+     */
+    const HCVector3 &HCAPIENTRY getW(void) const;
 
-	/**
-	 *	
-	 *	@Return reference.
-	 */
-	HCOBB& operator=(const HCOBB& obb);
+    /**
+     * Set size of box.
+     * @param size
+     */
+    void setSize(const HCVector3 &size) {
+        this->size = size;
+    }
 
-	/**
-	 *
-	 *	@Return stream reference.
-	 */
-	friend std::istream &operator>>(std::istream& is, HCOBB& t);
+    /**
+     * Get half size.
+     * @return non-negative vector of the size.
+     */
+    inline HCVector3 getSize(void) {
+        return size;
+    }
 
-	/**
-	 *	@Return stream reference.
-	 */
-	friend std::ostream &operator<<(std::ostream& is, const HCOBB& t);
+    /**
+     *
+     * @return
+     */
+    inline const HCVector3 &getSize(void) const {
+        return this->size;
+    }
 
-private:	/*	Attributes.	*/
+    /**
+     *
+     * @param size
+     */
+    inline void setCenter(const HCVector3 &size) {
 
-	HCONB onb;      /*	*/
-	HCVector3 size; /*	*/
-	float halfu;    /*	*/
-	float halfv;    /*	*/
-	float halfw;    /*	*/
+    }
+
+    /**
+     *
+     * @return
+     */
+    inline HCVector3 getCenter(void) const {
+        return HCVector3(this->halfu, this->halfv, this->halfw);
+    }
+
+    HCOBB &operator=(const HCOBB &obb);
+
+    /**
+     *
+     * @param is
+     * @param t
+     * @return stream reference.
+     */
+    friend std::istream &operator>>(std::istream &is, HCOBB &t);
+
+    /**
+     *
+     * @param is
+     * @param t
+     * @return stream reference.
+     */
+    friend std::ostream &operator<<(std::ostream &os, const HCOBB &t);
+
+private:    /*	Attributes.	*/
+
+    HCONB onb;          /*	*/
+    HCVector3 size;     /*	*/
+    float halfu;        /*	*/
+    float halfv;        /*	*/
+    float halfw;        /*	*/
 };
 
 

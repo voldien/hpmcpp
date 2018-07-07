@@ -23,3 +23,19 @@ HCPlane HCPlane::fromPoints(const HCVector3& v1, const HCVector3& v2,
 	tmp.d = -dot(tmp.normal, v2);
 	return tmp;
 }
+
+std::istream &operator>>(std::istream &is, HCPlane &t) {
+	return is;
+}
+
+std::ostream &operator<<(std::ostream &os, const HCPlane &t) {
+	return os;
+}
+
+bool operator==(const HCPlane &o1, const HCPlane &o2) {
+	return false;
+}
+
+bool operator!=(const HCPlane &o1, const HCPlane &o2) {
+	return false;
+}

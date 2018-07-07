@@ -35,3 +35,12 @@ HCOBB& HCOBB::operator=(const HCOBB& obb) {
 	this->setSize(obb.getSize());
 	return *this;
 }
+
+std::istream &operator>>(std::istream &is, HCOBB &t) {
+    return is;
+}
+
+std::ostream &operator<<(std::ostream &os, const HCOBB &t) {
+	return os;
+}
+

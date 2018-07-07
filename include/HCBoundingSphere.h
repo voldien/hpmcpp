@@ -24,61 +24,64 @@
 /**
  *
  */
-class HCDECLSPEC HCBoundingSphere{
+class HCDECLSPEC HCBoundingSphere {
 public:
 	HCBoundingSphere(void);
 	HCBoundingSphere(const HCVector3& center, float radius);
 	HCBoundingSphere(const HCBoundingSphere& boundingSphere);
 
 	/**
-	 *	@Return
+	 * Get radius size.
+	 * @return non-negative size.
 	 */
 	inline float getRadius(void)const{
 		return this->radius;
 	}
 
 	/**
-	 *
+	 * set radius size of the sphere.
+	 * @param radius non-negative radius size.
 	 */
-	inline void setRadius(float radius){
+	inline void setRadius(float radius) {
 		this->radius = radius;
 	}
 
 	/**
-	 *	@Return
+	 * Get center position.
+	 * @return world position.
 	 */
 	inline const HCVector3& getCenter(void) const {
 		return this->center;
 	}
 
 	/**
-	 *
+	 * Set center position.
+	 * @param center in world position.
 	 */
 	inline void setCenter(const HCVector3& center) {
 		this->center = center;
 	}
 
 	/**
-	 *	Check if object intersects with another sphere.
-	 *	@Return true if object interssects, false otherwise.
+	 * Check if object intersects with another sphere.
+	 * @param sphere
+	 * @return true if object intersects, false otherwise.
 	 */
-	bool HCAPIENTRY intersect(const HCBoundingSphere& sphere)const;
+	bool HCAPIENTRY intersect(const HCBoundingSphere &sphere) const;
 
 	/**
-	 *	@Return true if object contains, false otherwise.
+	 * Check if sphere contains a sphere.
+	 * @param sphere sphere inside this sphere.
+	 * @return true if object contains, false otherwise.
 	 */
-	bool HCAPIENTRY contains(const HCBoundingSphere& sphere)const;
+	bool HCAPIENTRY contains(const HCBoundingSphere &sphere) const;
 
-	/**
-	 *	Assign
-	 *	@Return reference.
-	 */
 	HCBoundingSphere& operator=(const HCBoundingSphere& bounds);
 
 private:	/*	Private member attributes.	*/
 
-	float radius;           /*	*/
-	HCVector3 center;       /*	*/
+	float radius;			/*	Radius size.	*/
+	HCVector3 center;		/*	Center position in world space.*/
 
 };
 

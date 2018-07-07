@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_H_
 #define _HPMCPP_H_ 1
-#include "HCTypes.h"
+#include"HCTypes.h"
 #include"HCMatrix4x4.h"
 #include"HCMatrix3x3.h"
 #include"HCQuaternion.h"
@@ -65,7 +65,7 @@ public:
 	 *	Initialize hpm library.
 	 *	This function has to be
 	 *	called before using the library.
-	 *	@return
+	 *	@return 1 if successfully initialized. 0 if there was a failure.
 	 */
 	static int HCAPIENTRY init(HPMSIMD hpmSIMD);
 };

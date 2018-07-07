@@ -155,11 +155,24 @@ std::ostream &operator<<(std::ostream &os, const HCQuaternion& t){
 	return os;
 }
 
+
+HCQuaternion operator-(const HCQuaternion &lh, const HCQuaternion &rh) {
+	HCQuaternion quat = lh;
+	hpm_vec4_subtractionfv(&quat.e, &rh.e);
+	return quat;
+}
+
+HCQuaternion operator+(const HCQuaternion &lh, const HCQuaternion &rh) {
+	HCQuaternion quat = lh;
+	hpm_vec4_addition_scalefv(&quat.e, &rh.e);
+	return quat;
+}
+
 bool operator==(const HCQuaternion& v1, const HCQuaternion& v2){
-	return hpm_vec4_eqfv(&v1.e, &v2.e);
+	return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);
 }
 bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2){
-	return hpm_vec4_neqfv(&v1.e, &v2.e);
+	return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
 }
 
 float HCQuaternion::getPitch(void) const {
@@ -201,6 +214,12 @@ HCQuaternion HCQuaternion::createFromAxisAngle(const HCVector3& axis, float angl
 	return quat;
 }
 
+
+HCQuaternion HCAPIENTRY HCQuaternion::createQuaternionOfDirection(HCVector3 &direction) {
+	return createQuaternionOfAxis(0, 0, 0);
+}
+
+
 HCQuaternion HCQuaternion::lerp(const HCQuaternion& from, const HCQuaternion& to,
 		float time) {
 	HCQuaternion quat;
@@ -220,3 +239,4 @@ HCQuaternion HCQuaternion::identity(void) {
 	hpm_quat_identityfv(&quat.e);
 	return quat;
 }
+

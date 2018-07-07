@@ -15,6 +15,10 @@ HCVector2::HCVector2(const HCVector2& v) {
 	*this = v;
 }
 
+HCVector2& HCVector2::operator-(void) const {
+	return -*this;
+}
+
 float HCVector2::length(void) const {
 	return sqrtf(x() * x() + y() * y());
 }
@@ -137,4 +141,3 @@ std::ostream& operator<<(std::ostream& os, const HCVector2& t) {
 	os << '(' << t.x() << " " << t.y() << ')';
 	return os;
 }
-

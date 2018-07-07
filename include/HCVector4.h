@@ -113,68 +113,31 @@ public:
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
 
-	/**
-	 *	@Return
-	 */
 	friend HCVector4 operator+(const HCVector4& v1, const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	friend HCVector4 operator-(const HCVector4& v1, const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	friend HCVector4 operator/(const HCVector4& vec, float scalar);
-
-	/**
-	 *	@Return
-	 */
     friend HCVector4 operator/(const HCVector4& v1, const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	friend HCVector4 operator*(const HCVector4& vec, float scalar);
-
-	/**
-	 *	@Return
-	 */
 	friend HCVector4 operator*(float scalar, const HCVector4& vec);
 
-	/**
-	 *	@Return
-	 */
 	HCVector4& operator=(const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	HCVector4& operator+=(const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	HCVector4& operator-=(const HCVector4& v2);
-
-	/**
-	 *	@Return
-	 */
 	HCVector4& operator/=(float scalar);
-
-	/**
-	 *	@Return
-	 */
 	HCVector4& operator*=(float scalar);
 
 	/**
-	 *	@Return
+	 * Compute unit vector.
+	 * @param v
+	 * @return
 	 */
 	friend HCVector4 HCAPIENTRY unitVector3(const HCVector4& v);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
 
@@ -195,14 +158,20 @@ protected:	/*	Attributes.	*/
 public:	/*	Static methods.	*/
 
 	/**
-	 *	Linear interpolation.
-	 *	@Return
+	 * Linear interpolation.
+	 * @param vec1
+	 * @param vec2
+	 * @param speed
+	 * @return
 	 */
 	static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 
 	/**
-	 *	Spherical interpolation.
-	 *	@Return
+	 * Spherical interpolation.
+	 * @param vec1
+	 * @param vec2
+	 * @param speed
+	 * @return
 	 */
 	static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 };

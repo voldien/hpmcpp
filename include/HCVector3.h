@@ -48,19 +48,22 @@ public:
 	void HCAPIFASTENTRY setZ(float _z);
 
 	/**
-	 *	@Return
+	 *
+	 * @return
 	 */
 	const HCVector3& operator+(void) const;
 	HCVector3 operator-(void) const;
 
 	/**
-	 *	@Return
+	 *
+	 * @param i
+	 * @return
 	 */
 	inline float operator[](int i) const {
-		return e[i];
+		return this->e[i];
 	}
 	inline float& operator[](int i) {
-		return e[i];
+		return this->e[i];
 	}
 	inline operator float*(void) {
 		return (float*) this;
