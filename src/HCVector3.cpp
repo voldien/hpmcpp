@@ -249,4 +249,13 @@ std::ostream & operator<<(std::ostream& os, const HCVector3&t) {
 	return os;
 }
 
+HCVector3 HCAPIENTRY unitVector3(const HCVector3 &v) {
+	HCVector3 unit = v;
+	hpm_vec4_setwf(unit.e, 0.0f);
+	hpm_vec4_normalizefv(&unit.e);
+	return unit;
+}
+
+
+
 
