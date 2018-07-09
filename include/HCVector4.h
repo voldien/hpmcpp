@@ -34,7 +34,7 @@ public:
 	HCVector4(const HCVector4& v);
 
 	/**
-	 *
+	 * Get component wise.
 	 */
 	float HCAPIFASTENTRY x(void) const;
 	float HCAPIFASTENTRY y(void) const;
@@ -42,7 +42,7 @@ public:
 	float HCAPIFASTENTRY w(void) const;
 
 	/**
-	 *
+	 * Set component wise.
 	 */
 	void HCAPIFASTENTRY setX(float x);
 	void HCAPIFASTENTRY setY(float y);
@@ -79,7 +79,8 @@ public:
 	void HCAPIENTRY makeUnitVector(void);
 
 	/**
-	 *	@Return
+	 *
+	 * @return
 	 */
 	float HCAPIFASTENTRY minComponent(void) const;
 	float HCAPIFASTENTRY maxComponent(void) const;
@@ -87,15 +88,17 @@ public:
 	float HCAPIFASTENTRY minAbsComponent(void) const;
 
 	/**
-	 *  Create nomralized copy.
+	 *  Create normalized copy.
 	 *
 	 *	@Return normalize vector of current vector.
 	 */
 	HCVector4 HCAPIENTRY normalize(void) const;
 
 	/**
-	 *  Equality
-	 *	@Return logic
+	 * Equality
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend bool operator==(const HCVector4& v1, const HCVector4& v2);
 	friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
@@ -131,7 +134,7 @@ public:
 	 * @param v
 	 * @return
 	 */
-	friend HCVector4 HCAPIENTRY unitVector3(const HCVector4& v);
+	friend HCVector4 HCAPIENTRY unitVector4(const HCVector4& v);
 
 	/**
 	 *
@@ -142,12 +145,18 @@ public:
 	friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector4 HCAPIENTRY maxVec(const HCVector4& v1, const HCVector4& v2);
 
 	/**
-	 *	@Return
+	 * Computer inner dot product.
+	 * @param v1
+	 * @param v2
+	 * @return inner product.
 	 */
 	friend float HCAPIENTRY dot(const HCVector4& v1, const HCVector4& v2);
 
@@ -159,19 +168,19 @@ public:	/*	Static methods.	*/
 
 	/**
 	 * Linear interpolation.
-	 * @param vec1
-	 * @param vec2
-	 * @param speed
-	 * @return
+	 * @param vec1 start position.
+	 * @param vec2 end position.
+	 * @param speed [0, 1]
+	 * @return interpolated position.
 	 */
 	static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 
 	/**
 	 * Spherical interpolation.
-	 * @param vec1
-	 * @param vec2
-	 * @param speed
-	 * @return
+	 * @param vec1 start position.
+	 * @param vec2 end position.
+	 * @param speed [0, 1]
+	 * @return interpolated position.
 	 */
 	static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
 };

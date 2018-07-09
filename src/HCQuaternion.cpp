@@ -155,7 +155,6 @@ std::ostream &operator<<(std::ostream &os, const HCQuaternion& t){
 	return os;
 }
 
-
 HCQuaternion operator-(const HCQuaternion &lh, const HCQuaternion &rh) {
 	HCQuaternion quat = lh;
 	hpm_vec4_subtractionfv(&quat.e, &rh.e);

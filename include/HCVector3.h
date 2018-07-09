@@ -127,7 +127,7 @@ public:
 	friend HCVector3 operator*(const HCVector3& vec1, const HCVector3& vec2);
 
 	/**
-	 *	@Return
+	 *
 	 */
 	HCVector3& operator=(const HCVector3& v2);
 	HCVector3& operator+=(const HCVector3& v2);
@@ -216,15 +216,21 @@ public:	/*	Static methods.	*/
 	inline static HCVector3 zero(void){return HCVector3(0.0f, 0.0, 0.0f);}
 
 	/**
-	 *	Linear interpolation between v1 and v2 based on t.
-	 *	@Return
+	 * Linear interpolation between v1 and v2 based on t.
+	 * @param vec1
+	 * @param vec2
+	 * @param t [0,1]
+	 * @return interpolated position.
 	 */
 	static HCVector3 HCAPIENTRY lerp(const HCVector3& vec1,
 	        const HCVector3& vec2, float t);
 
 	/**
-	 *	Spherical interpolation.
-	 *	@Return
+	 * Spherical interpolation.
+	 * @param vec1 start position.
+	 * @param vec2 end position.
+	 * @param t [0,1]
+	 * @return interpolated position.
 	 */
 	static HCVector3 HCAPIENTRY slerp(const HCVector3& vec1,
 	        const HCVector3& vec2, float t);

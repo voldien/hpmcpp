@@ -208,3 +208,8 @@ HCVector4 &HCVector4::operator*=(float scalar) {
 	*this = *this * scalar;
 	return *this;
 }
+
+HCVector4 unitVector4(const HCVector4 &v) {
+    HCVector4 copy = v;
+    return v.normalize();
+}

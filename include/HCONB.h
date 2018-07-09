@@ -63,6 +63,7 @@ public:
 	 */
 	void initFromVW(const HCVector3& v, const HCVector3& w);
 	void initFromWV(const HCVector3& w, const HCVector3& v);
+
 	/**
 	 *
 	 * @param is
@@ -71,9 +72,6 @@ public:
 	 */
 	friend std::istream &operator>>(std::istream& is, HCONB& t);
 
-	/**
-	 *	@Return stream reference.
-	 */
 	/**
 	 *
 	 * @param os
@@ -94,9 +92,6 @@ public:
 	 */
 	friend bool operator!=(const HCONB& o1, const HCONB& o2);
 
-	/**
-	 *
-	 */
 	HCONB& operator=(const HCONB& onb);
 
 	/**
