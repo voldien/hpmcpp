@@ -167,15 +167,6 @@ HCVector3 tangent(const HCVector3& normal) {
 		tangent = cross(normal, HCVector3::up());
 	}
 	return tangent;
-
-	HCVector3 t1 = cross(normal, HCVector3::forward());
-	HCVector3 t2 = cross(normal, HCVector3::up());
-
-	if (t1.length() > t2.length()) {
-		return t1;
-	} else {
-		return t2;
-	}
 }
 
 
@@ -219,7 +210,6 @@ HCVector3 &HCVector3::operator/=(float scalar) {
 	*this = *this / scalar;
 	return *this;
 }
-
 
 float tripleProduct(const HCVector3& v1, const HCVector3& v2, const HCVector3& v3) {
 	return hpm_vec3_tripleProductfv(&v1.e, &v2.e, &v3.e);
