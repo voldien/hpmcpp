@@ -123,6 +123,13 @@ public:
 	HCQuaternion HCAPIENTRY inverse(void) const;
 
 	/**
+	 *
+	 * @param exponent
+	 * @return
+	 */
+	HCQuaternion HCAPIENTRY exponent(float exponent) const;
+
+	/**
 	 *  Get element by index.
 	 *	@Return
 	 */
@@ -198,20 +205,37 @@ public:
 	friend bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2);
 
 	/**
-	 *	Get rotation of each axis in
-	 *	radius.
+	 * Get rotation of each axis in
+	 * radius.
+	 * @return
 	 */
 	float HCAPIFASTENTRY getPitch(void) const;
 
 	/**
 	 *
+	 * @return
 	 */
 	float HCAPIFASTENTRY getYaw(void) const;
 
 	/**
 	 *
+	 * @return
 	 */
 	float HCAPIFASTENTRY getRoll(void) const;
+
+	/**
+	 *
+	 * @param pitch
+	 * @param yaw
+	 * @param roll
+	 */
+	void HCAPIFASTENTRY getEular(float *pitch, float *yaw, float *roll) const;
+
+	/**
+	 *
+	 * @return
+	 */
+	HCVector3 HCAPIENTRY getEular(void) const;
 
 private:	/*	Attributes.	*/
 

@@ -100,6 +100,12 @@ HCQuaternion HCQuaternion::inverse(void) const {
 	return quat;
 }
 
+HCQuaternion HCQuaternion::exponent(float exponent) const {
+	HCQuaternion quat = *this;
+	hpm_quat_powfv(&quat.e, exponent);
+	return quat;
+}
+
 HCQuaternion operator*(const HCQuaternion& lh, const HCQuaternion& rh) {
 	HCQuaternion quat = lh;
 	hpm_quat_multi_quatfv(&lh.e, &rh.e, &quat.e);
@@ -184,6 +190,17 @@ float HCQuaternion::getYaw(void) const {
 
 float HCQuaternion::getRoll(void) const {
 	return hpm_quat_rollfv(&this->e);
+}
+
+void HCQuaternion::getEular(float *pitch, float *yaw, float *roll) const {
+	hpm_quat_eularfv(&this->e, pitch, yaw, roll);
+}
+
+HCVector3 HCQuaternion::getEular(void) const {
+
+	float pitch, yaw, roll;
+	hpm_quat_eularfv(&this->e, &pitch, &yaw, &roll);
+	return HCVector3(pitch, yaw, roll);
 }
 
 float dot(const HCQuaternion& lh, const HCQuaternion& rh) {
