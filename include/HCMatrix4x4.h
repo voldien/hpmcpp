@@ -227,16 +227,18 @@ public:	/*	Static methods.	*/
 	        float top, float near, float far);
 
 	/**
+	 * Unproject matrix.
 	 *
-	 * @param winx
-	 * @param winy
-	 * @param winz
-	 * @param projection
-	 * @param modelview
-	 * @param viewport
-	 * @param pos
+	 * @param winx x coordinate position.
+	 * @param winy y coordinate position.
+	 * @param winz z coordinate position.
+	 * @param projection project matrix.
+	 * @param modelview model-view matrix.
+	 * @param viewport viewport of the screen (x, y, width, height)
+	 * @param pos position inside the projection space.
+	 * @return non-zero if successfully unproject.
 	 */
-	static void HCAPIENTRY unProject(float winx, float winy, float winz, const HCMatrix4x4 *projection,
+	static int HCAPIENTRY unProject(float winx, float winy, float winz, const HCMatrix4x4 *projection,
 	                                 const HCMatrix4x4 *modelview, const int *HPM_RESTRICT viewport,
 	                                 HCVector3 *HPM_RESTRICT pos);
 
