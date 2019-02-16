@@ -1,9 +1,8 @@
-# hpmcpp #
-------
-The *hpmcpp* is a C++ wrapper library for the [hpm](https://github.com/voldien/hpm) library. This makes the it more friendly to use in an object oriented programming environment.
+# HPMCPP
 
-## Examples ##
------
+The *hpmcpp* is a C++ wrapper library for the [hpm](https://github.com/voldien/hpm) library. This makes it more friendly to use in an object-oriented programming environment.
+
+## Examples
 
 ```c++
 #include<hpmcpp/HC.h>
@@ -22,10 +21,10 @@ int main(int argc, const char** argv){
 }
 ```
 
-## Dependencies ##
-----------------
+## Dependencies
+
 The *hpmcpp* library only depends on the *hpm* library.
 
-## License ##
------
+## License
+
 This project is licensed under the GPL+3 License - see the [LICENSE](LICENSE) file for details
