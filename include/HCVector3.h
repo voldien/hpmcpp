@@ -21,11 +21,13 @@
 #include "HCTypes.h"
 
 /**
- *	Vector3 class. Contains
- *	x, y, z component. Where the
- *	size of the object is 128 bit.
+ * Vector3 class. Contains
+ * x, y, z component. Where the
+ * size of the object is 128 bit.
  */
-class HCDECLSPEC HCVector3{
+class HCDECLSPEC HCVector3 {
+	friend class HCMatrix4x4;
+	friend class HCQuaternion;
 public:
 	HCVector3(void);
 	HCVector3(float val);
@@ -33,15 +35,15 @@ public:
 	HCVector3(const HCVector3& v);
 
 	/**
-	 *	Get indiviual component of vector.
-	 *	@Return
+	 * Get individual component of vector.
+	 * @return
 	 */
 	float HCAPIFASTENTRY x(void) const;
 	float HCAPIFASTENTRY y(void) const;
 	float HCAPIFASTENTRY z(void) const;
 
 	/**
-	 *
+	 * Set individual
 	 */
 	void HCAPIFASTENTRY setX(float _x);
 	void HCAPIFASTENTRY setY(float _y);
@@ -70,54 +72,74 @@ public:
 	}
 
 	/**
-	 *	Compute length.
-	 *	@Return non-negative number.
+	 * Compute length.
+	 * @return non-negative number.
 	 */
 	float HCAPIENTRY length(void) const;
+
+	/**
+	 * Compute square length.
+	 * @return non-negative number.
+	 */
 	float HCAPIENTRY squaredLength(void) const;
 
 	/**
-	 *
+	 * Make vector to a unite vector.
 	 */
 	void HCAPIENTRY makeUnitVector(void);
 
 	/**
-	 *
-	 *	@Return
+	 * Get minimum component.
+	 * @return number.
 	 */
-	float HCAPIENTRY minComponent(void) const;
-	float HCAPIENTRY maxComponent(void) const;
-	float HCAPIENTRY maxAbsComponent(void) const;
-	float HCAPIENTRY minAbsComponent(void) const;
+	float HCAPIFASTENTRY minComponent(void) const;
 
 	/**
-	 *	Normalize vector.
-	 *	@Return normalized vector.
+	 * Get maximum component.
+	 * @return number.
+	 */
+	float HCAPIFASTENTRY maxComponent(void) const;
+
+	/**
+	 * Get absolute maximum component.
+	 * @return non-negative number.
+	 */
+	float HCAPIFASTENTRY maxAbsComponent(void) const;
+
+	/**
+	 * Get absolute minimum component.
+	 * @return non-negative number.
+	 */
+	float HCAPIFASTENTRY minAbsComponent(void) const;
+
+	/**
+	 * Normalize vector.
+	 * @return normalized vector.
 	 */
 	HCVector3 HCAPIENTRY normalize(void) const;
 
 	/**
-	 *	Check equality.
-	 *	@Return
+	 * Check equality.
+	 * @return
 	 */
 	friend bool operator==(const HCVector3& v1, const HCVector3& v2);
 	friend bool operator!=(const HCVector3& v1, const HCVector3& v2);
 
 	/**
-	 *	Create input stream for creating vector
-	 *	from input stream.
-	 *	@Return stream reference.
+	 * Create input stream for creating vector
+	 * from input stream.
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector3& t);
 
 	/**
-	 *	Create output stream of vector value.
-	 *	@Return stream reference.
+	 * Create output stream of vector value.
+	 * @return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	friend HCVector3 operator+(const HCVector3& v1, const HCVector3& v2);
 	friend HCVector3 operator-(const HCVector3& v1, const HCVector3& v2);
@@ -136,64 +158,96 @@ public:
 	HCVector3& operator*=(float scalar);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY unitVector3(const HCVector3& v);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY minVec(const HCVector3& v1,
 	        const HCVector3& v2);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY maxVec(const HCVector3& v1,
 	        const HCVector3& v2);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY cross(const HCVector3& v1, const HCVector3& v2);
 
 	/**
-	 *	Create reflection vector.
-	 *	@Return reflected vector with same magnitude.
+	 *
+	 * @param vector
+	 * @param normal
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY reflection(const HCVector3& vector,
 	        const HCVector3& normal);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param normal
+	 * @param refraction
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY refraction(const HCVector3& v1,
 	        const HCVector3& normal, float refraction);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend float HCAPIENTRY dot(const HCVector3& v1, const HCVector3& v2);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @param v3
+	 * @return
 	 */
 	friend float HCAPIENTRY tripleProduct(const HCVector3& v1,
 	        const HCVector3& v2, const HCVector3& v3);
 
 	/**
-	 *	@Return
+	 *
+	 * @param normal
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY tangent(const HCVector3& normal);
 
 	/**
-	 *  @Return
+	 *
+	 * @param normal
+	 * @param tangent
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY biTangent(const HCVector3& normal,
 	        const HCVector3& tangent);
 
 	/**
-	 *  @Return
+	 *
+	 * @param normal
+	 * @param tangent
+	 * @return
 	 */
 	friend HCVector3 HCAPIENTRY biNormal(const HCVector3& normal,
 	        const HCVector3& tangent);
@@ -205,7 +259,7 @@ private:	/*	Private method.	*/
 public:	/*	Static methods.	*/
 
 	/**
-	 *	Create predefined vector3.
+	 * Create predefined vector3.
 	 */
 	inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}
 	inline static HCVector3 back(void){return HCVector3(0.0f, 0.0f, -1.0f);}

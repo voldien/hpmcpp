@@ -32,55 +32,57 @@ public:
 	HCPlane(const HCPlane& plane);
 
 	/**
-	 *	Get normal of plane.
-	 *	@Return normalized normal vector.
+	 * Get normal of plane.
+	 * @return normalized normal vector.
 	 */
 	inline HCVector3 getNormal(void){
 		return this->normal;
 	}
 
 	/**
-	 *	Get normal of plane.
-	 *	@Return normalized normal vector.
+	 * Get normal of plane.
+	 * @return normalized normal vector.
 	 */
 	inline const HCVector3& getNormal(void) const {
 		return this->normal;
 	}
 
 	/**
-	 *	Set plane normal.
+	 * Set plane normal.
+	 * @param normal
 	 */
 	inline void setNormal(const HCVector3& normal) {
 		this->normal = normal;
 	}
 
 	/**
-	 *	Compute distance.
-	 *	@Return
+	 * Compute distance.
+	 * @param point
+	 * @return
 	 */
 	inline float distance(const HCVector3& point) const {
 		return dot(normal, point) + d;
 	}
 
 	/**
-	 *	Get distance.
-	 *	@Return
+	 * Get distance.
+	 * @return
 	 */
 	inline float distance(void) const {
 		return this->d;
 	}
 
 	/**
-	 *	Get point.
-	 *	@Return
+	 * Get point.
+	 * @return
 	 */
 	inline HCVector3 getPoint(void) const {
 		return d * this->getNormal();
 	}
 
 	/**
-	 *	Set normal and point and
-	 *	compute internal values.
+	 * Set normal and point and
+	 * compute internal values.
 	 */
 	void setNormalAndPoint(const HCVector3& normal, const HCVector3& point) {
 		this->normal = normal.normalize();
@@ -88,7 +90,7 @@ public:
 	}
 
 	/**
-	 *	Construct plane.
+	 * Construct plane.
 	 */
 	void set3DPoints(const HCVector3& v1, const HCVector3& v2, const HCVector3& v3) {
 		this->normal = cross((v1 - v2), (v1 - v3)).normalize();
@@ -96,39 +98,41 @@ public:
 	}
 
 	/**
-	 *	@Return stream reference.
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream& is, HCPlane& t);
 
 	/**
-	 *	@Return stream reference.
+	 * @return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream& is, const HCPlane& t);
 
 
 	/**
-	 *	Compare if plane equal each other.
-	 *	@Return true if equal.
+	 * Compare if plane equal each other.
+	 * @return true if equal.
 	 */
 	friend bool operator==(const HCPlane& o1, const HCPlane& o2);
 
 	/**
-	 *	Compare if plane not equal each other.
-	 *	@Return true if equal.
+	 * Compare if plane not equal each other.
+	 * @return true if equal.
 	 */
 	friend bool operator!=(const HCPlane& o1, const HCPlane& o2);
 
-protected:	/*	Attributes.	*/
+protected:  /*	Attributes.	*/
 
 	HCVector3 normal;   /*	*/
 	float d;            /*	*/
 
-public:
-	/*	Static methods.	*/
+public: /*	Static methods.	*/
 
 	/**
-	 *	Create plane from points.
-	 *	@Return HCPlane object.
+	 * Create plane from points.
+	 * @param v1
+	 * @param v2
+	 * @param v3
+	 * @return
 	 */
 	static HCPlane HCAPIENTRY fromPoints(const HCVector3& v1, const HCVector3& v2,
 			const HCVector3& v3);

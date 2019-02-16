@@ -82,34 +82,34 @@ public:
 
 	/**
 	 *	Compare 
-	 *	@Return true if equal.
+	 * @return true if equal.
 	 */
 	friend bool operator==(const HCONB& o1, const HCONB& o2);
 
 	/**
 	 *	Compare 
-	 *	@Return true if equal.
+	 * @return true if equal.
 	 */
 	friend bool operator!=(const HCONB& o1, const HCONB& o2);
 
 	HCONB& operator=(const HCONB& onb);
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	inline const HCVector3& u(void) const {
 		return this->m[0];
 	}
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	inline const HCVector3& v(void) const {
 		return this->m[1];
 	}
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	inline const HCVector3& w(void) const {
 		return this->m[2];

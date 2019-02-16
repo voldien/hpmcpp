@@ -21,8 +21,8 @@
 #include "HCTypes.h"
 
 /**
- *	Right handed 4x4 Matrix
- *	with single precision.
+ * Right handed 4x4 Matrix
+ * with single precision.
  */
 class HCDECLSPEC HCMatrix4x4{
 public:
@@ -36,37 +36,37 @@ private:	/*	Attributes.	*/
 public:	/*	Public methods. */
 
 	/**
-	 *	Check if matrix is an
-	 *	identity matrix.
+	 * Check if matrix is an
+	 * identity matrix.
 	 *
-	 *	@Return true if identity.
+	 * @return true if identity.
 	 */
 	bool HCAPIENTRY isIdentity(void);
 
 	/**
-	 *	Compute determinant of the matrix.
+	 * Compute determinant of the matrix.
 	 *
-	 *	@Return determine of matrix.
+	 * @return determine of matrix.
 	 */
 	float HCAPIENTRY determinant(void) const;
 
 	/**
-	 *	Compute the inverse vector
-	 *	if possible.
+	 * Compute the inverse vector
+	 * if possible.
 	 *
-	 *	@Return inversed matrix if successful.
+	 * @return inversed matrix if successful.
 	 */
 	HCMatrix4x4 HCAPIENTRY inverse(void) const;
 
 	/**
-	 *	Transpose the matrix.
+	 * Transpose the matrix.
 	 *
-	 *	@Return transposed matrix.
+	 * @return transposed matrix.
 	 */
 	HCMatrix4x4 HCAPIENTRY transpose(void) const;
 
 	/**
-	 *  Get element by index.
+	 * Get element by index.
 	 */
 	inline float* operator[](int index) const {
 		return (float*) &this->e[index][0];
@@ -76,72 +76,71 @@ public:	/*	Public methods. */
 	}
 
 	/**
-	 *	Multiply matrix by scale factor.
-	 *
-	 *	@Return
+	 * Multiply matrix by scale factor.
+	 * @return
 	 */
 	HCMatrix4x4 operator*(float rh) const;
 
 	/**
-	 *	Multiply matrix with matrix.
-	 *	@Return matrix product.
+	 * Multiply matrix with matrix.
+	 * @return matrix product.
 	 */
 	HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
 
 	/**
 	 *
-	 *	@Return
+	 * @return
 	 */
 	HCVector4 operator*(const HCVector4& rh) const;
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	HCMatrix4x4 operator+(const HCMatrix4x4& rh) const;
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	HCMatrix4x4 operator-(const HCMatrix4x4& rh) const;
 
 	/**
-	 *	Assign matrix.
-	 *	@Return
+	 * Assign matrix.
+	 * @return
 	 */
 	HCMatrix4x4& operator=(const HCMatrix4x4& rh);
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	HCMatrix4x4& operator+=(const HCMatrix4x4& rh);
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	HCMatrix4x4& operator-=(const HCMatrix4x4& rh);
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	HCMatrix4x4& operator*=(const HCMatrix4x4& rh);
 
 	/**
-	 *	Equalitiy
-	 *	@Return
+	 * Equalitiy
+	 * @return
 	 */
 	bool operator==(const HCMatrix4x4& rh);
 	bool operator!=(const HCMatrix4x4& rh);
 
 	/**
-	 *	Create input stream for creating matrix
-	 *	from input stream.
-	 *	@Return stream reference.
+	 * Create input stream for creating matrix
+	 * from input stream.
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
 
 	/**
-	 *	Create output stream of matrix value.
-	 *	@Return stream reference.
+	 * Create output stream of matrix value.
+	 * @return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
 
@@ -149,99 +148,107 @@ public:	/*	Public methods. */
 public:	/*	Static methods.	*/
 
 	/**
-	 *	Create translation matrix.
+	 * Create translation matrix.
 	 *
-	 *	@Return translated matrix.
+	 * @return translated matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY translate(float x, float y, float z);
 
 	/**
-	 *	Create translation matrix.
+	 * Create translation matrix.
 	 *
-	 *	@Return translated matrix.
+	 * @return translated matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY translate(const HCVector3& translation);
 
 	/**
-	 *	Create rotation matrix from angle around the axis.
+	 * Create rotation matrix from angle around the axis.
 	 *
-	 *	@Return rotation matrix.
+	 * @return rotation matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY rotate(float angle, const HCVector3& axis);
 
 	/**
-	 *	Create rotation matrix from quaternion.
+	 * Create rotation matrix from quaternion.
 	 *
-	 *	@Return rotation matrix.
+	 * @return rotation matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY rotate(const HCQuaternion& quat);
 
 	/**
-	 *	Create scale matrix.
+	 * Create scale matrix.
 	 *
-	 *	@Return scale matrix.
+	 * @return scale matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY scale(float x, float y, float z);
 
 	/**
-	 *	Create scale matrix.
+	 * Create scale matrix.
 	 *
-	 *	@Return scale matrix.
+	 * @return scale matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY scale(const HCVector3& scale);
 
 	/**
-	 *	Create look at matrix.
-	 *	@Return model matrix.
+	 * Create look at matrix.
+	 * @return model matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
 	        const HCVector3& position, const HCVector3& up);
 
 	/**
-	 *	Create perspectice matrix.
+	 * Create perspectice matrix.
 	 *
-	 *	\fov field of view in radius.
+	 * @fov field of view in radius.
 	 *
-	 *	\aspect view ratio.
+	 * @aspect view ratio.
 	 *
-	 *	\near near plane.
+	 * @near near plane.
 	 *
-	 *	\far far plane.
+	 * @far far plane.
 	 *
-	 *	@Return
+	 * @return
 	 */
 	static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect,
 	        float near, float far);
 
 	/**
-	 *	Create orthographic perspectice.
+	 * Create orthographic perspectice.
 	 *
-	 *	\left
-	 *
-	 *	\right
-	 *
-	 *	\bottom
-	 *
-	 *	\top
-	 *
-	 *	\near
-	 *
-	 *	\far
-	 *
-	 *	@Return
+	 * @left
+	 * @right
+	 * @bottom
+	 * @top
+	 * @near
+	 * @far
+	 * @return
 	 */
 	static HCMatrix4x4 HCAPIENTRY orth(float left, float right, float bottom,
 	        float top, float near, float far);
 
 	/**
-	 *	Create bias matrix.
+	 *
+	 * @param winx
+	 * @param winy
+	 * @param winz
+	 * @param projection
+	 * @param modelview
+	 * @param viewport
+	 * @param pos
+	 */
+	static void HCAPIENTRY unProject(float winx, float winy, float winz, const HCMatrix4x4 *projection,
+	                                 const HCMatrix4x4 *modelview, const int *HPM_RESTRICT viewport,
+	                                 HCVector3 *HPM_RESTRICT pos);
+
+	/**
+	 * Create bias matrix.
+	 * @return bias matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY biasMatrix(void);
 
 	/**
-	 *	Create identity matrix.
-	 *
-	 *	@Return
+	 * Create identity matrix.
+	 * @return identity matrix.
 	 */
 	static HCMatrix4x4 HCAPIENTRY identity(void);
 };

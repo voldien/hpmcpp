@@ -162,6 +162,13 @@ HCMatrix4x4 HCMatrix4x4::orth(float left, float right, float bottom, float top,
 	return mat;
 }
 
+void HCMatrix4x4::unProject(float winx,
+                            float winy, float winz, const HCMatrix4x4 *projection,
+                            const HCMatrix4x4 *modelview, const int *HPM_RESTRICT viewport,
+                            HCVector3 *HPM_RESTRICT pos) {
+	hpm_mat4x4_unprojf(winx, winy, winz, projection->e, modelview->e, viewport, &pos->e);
+}
+
 HCMatrix4x4 HCMatrix4x4::biasMatrix(void) {
 	const hpmvec4x4f_t bias = {
 		{ 0.5f, 0.0f, 0.0f, 0.0f },

@@ -21,11 +21,11 @@
 #include "HCTypes.h"
 
 /**
- *	Vector4 class. Contains
- *	x, y, z, w component. Where the
- *	size of the object is 128 bit.
+ * Vector4 class. Contains
+ * x, y, z, w component. Where the
+ * size of the object is 128 bit.
  */
-class HCDECLSPEC HCVector4{
+class HCDECLSPEC HCVector4 {
 public:
 
 	HCVector4(void);
@@ -50,47 +50,61 @@ public:
 	void HCAPIFASTENTRY setW(float w);
 
 	/**
-	 *	Get component by index.
+	 * Get component by index.
 	 */
 	float operator[](int i) const;
 	float& operator[](int i);
 
 	/**
-	 *	Negate vector.
-	 *	@Return negated vector.
+	 * Negate vector.
+	 * @return negated vector.
 	 */
 	HCVector4 operator-(void) const;
 
 	/**
-	 *	Compute length of vector.
-	 *	@Return non-negativ number.
+	 * Compute length of vector.
+	 * @return non-negativ number.
 	 */
 	float HCAPIFASTENTRY length(void) const;
 
 	/**
-	 *	Compute length of vector.
-	 *	@Return non-negativ number.
+	 * Compute length of vector.
+	 * @return non-negative number.
 	 */
 	float HCAPIFASTENTRY squaredLength(void) const;
 
 	/**
-	 *	Normalize current vector.
+	 * Normalize current vector.
 	 */
 	void HCAPIENTRY makeUnitVector(void);
 
 	/**
-	 *
-	 * @return
+	 * Get minimum component.
+	 * @return number.
 	 */
 	float HCAPIFASTENTRY minComponent(void) const;
+
+	/**
+	 * Get maximum component.
+	 * @return number.
+	 */
 	float HCAPIFASTENTRY maxComponent(void) const;
+
+	/**
+	 * Get absolute maximum component.
+	 * @return non-negative number.
+	 */
 	float HCAPIFASTENTRY maxAbsComponent(void) const;
+
+	/**
+	 * Get absolute minimum component.
+	 * @return non-negative number.
+	 */
 	float HCAPIFASTENTRY minAbsComponent(void) const;
 
 	/**
-	 *  Create normalized copy.
-	 *
-	 *	@Return normalize vector of current vector.
+	 * Create normalized copy.
+	 * @return normalize vector of current vector.
 	 */
 	HCVector4 HCAPIENTRY normalize(void) const;
 
@@ -104,15 +118,15 @@ public:
 	friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
 
 	/**
-	 *	Create input stream for creating vector
-	 *	from input stream.
-	 *	@Return stream reference.
+	 * Create input stream for creating vector
+	 * from input stream.
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector4& t);
 
 	/**
-	 *	Create output stream of vector value.
-	 *	@Return stream reference.
+	 * Create output stream of vector value.
+	 * @return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
 
@@ -131,13 +145,13 @@ public:
 
 	/**
 	 * Compute unit vector.
-	 * @param v
-	 * @return
+	 * @param v vector.
+	 * @return unite vector.
 	 */
 	friend HCVector4 HCAPIENTRY unitVector4(const HCVector4& v);
 
 	/**
-	 *
+	 * Compute min vector component.
 	 * @param v1
 	 * @param v2
 	 * @return
@@ -145,7 +159,7 @@ public:
 	friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
 
 	/**
-	 *
+	 * Compute max vector component.
 	 * @param v1
 	 * @param v2
 	 * @return

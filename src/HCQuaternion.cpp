@@ -94,6 +94,7 @@ HCQuaternion HCQuaternion::conjugate(void) const {
 	hpm_quat_conjugatefv(&quat.e);
 	return quat;
 }
+
 HCQuaternion HCQuaternion::inverse(void) const {
 	HCQuaternion quat = *this;
 	hpm_quat_inversefv(&quat.e);
@@ -207,9 +208,9 @@ float dot(const HCQuaternion& lh, const HCQuaternion& rh) {
 	return hpm_quat_dotfv(&lh.e, &rh.e);
 }
 
-HCQuaternion HCQuaternion::lookRotation(const HCVector3& target, const HCVector3& up) {
+HCQuaternion HCQuaternion::lookRotation(const HCVector3& target,const HCVector3& pos,  const HCVector3& up) {
 	HCQuaternion quat;
-	hpm_quat_lookatfv((const hpmvec3f*)&target, (const hpmvec3f*)&up, &quat.e);
+	hpm_quat_lookatfv((const hpmvec3f*)&target, (const hpmvec3f*)&pos.e, (const hpmvec3f*)&up.e, &quat.e);
 	return quat;
 }
 

@@ -21,8 +21,8 @@
 #include"HCVector3.h"
 
 /**
- *	Ray data type. Contains
- *	a position and a direction.
+ * Ray data type. Contains
+ * a position and a direction.
  */
 class HCDECLSPEC HCRay {
 public:
@@ -31,52 +31,49 @@ public:
 	HCRay(const HCRay& ray);
 
 	/**
-	 *	@Return get origin position.
+	 * @return get origin position.
 	 */
 	inline const HCVector3& getOrigin(void) const {
 		return this->m[0];
 	}
 
 	/**
-	 *	Set origin position.
+	 * Set origin position.
 	 */
 	inline void setOrigin(const HCVector3& origin) {
 		this->m[0] = origin;
 	}
 
 	/**
-	 *	Get direction.
-	 *
-	 *	@Return normalized direction.
+	 * Get direction.
+	 * @return normalized direction.
 	 */
 	inline const HCVector3& getDirection(void) const {
 		return this->m[1];
 	}
 
 	/**
-	 *	Set direction vector.
-	 *
-	 *	\direction has to be a normalized vector.
+	 * Set direction vector.
+	 * @param direction has to be a normalized vector.
 	 */
 	inline void setDirection(const HCVector3& direction) {
 		this->m[1] = direction;
 	}
 
 	/**
-	 *	Get position from distance from point
-	 *	in respect to direction.
-	 *	@Return point on the ray.
+	 * Get position from distance from point
+	 * in respect to direction.
+	 * @return point on the ray.
 	 */
 	inline HCVector3 pointAtParameter(float t) const {
 		return this->getOrigin() + t * this->getDirection();
 	}
 
-private:
-	/*	Attributes.	*/
+private:    /*	Attributes.	*/
 
 	/**
-	 *	#0 origin
-	 *	#1 direction
+	 * #0 origin
+	 * #1 direction
 	 */
 	HCVector3 m[2];
 

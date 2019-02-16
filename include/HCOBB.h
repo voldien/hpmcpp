@@ -46,7 +46,7 @@ public:
 
     /**
      *	Get V axis.
-     *	@Return normalized axis.
+     * @return normalized axis.
      */
 
     /**

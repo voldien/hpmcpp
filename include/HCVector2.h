@@ -21,7 +21,7 @@
 #include "HCTypes.h"
 
 /**
- *	Vector2.
+ * Vector2.
  */
 class HCDECLSPEC HCVector2 {
 public:
@@ -31,68 +31,68 @@ public:
 	HCVector2(const HCVector2& v);
 
 	/**
-	 *	Negate vector.
-	 *	@Return
+	 * Negate vector.
+	 * @return
 	 */
 	HCVector2& operator-(void) const;
 
 	/**
-	 *	Get vector component by index.
-	 *	@Return component value.
+	 * Get vector component by index.
+	 * @return component value.
 	 */
 	inline float operator[](int i) const {
 		return this->m[i];
 	}
 	/**
-	 *	Get vector component reference
-	 *	by index.
-	 *	@Return reference to component.
+	 * Get vector component reference
+	 * by index.
+	 * @return reference to component.
 	 */
 	inline float& operator[](int i) {
 		return this->m[i];
 	}
 
 	/**
-	 *	Compute length.
-	 *	@Return length in decimal.
+	 * Compute length.
+	 * @return length in decimal.
 	 */
 	float length(void) const;
 
 	/**
-	 *	Compute square length.
-	 *	@Return length in decimal.
+	 * Compute square length.
+	 * @return length in decimal.
 	 */
 	float squaredLength(void) const;
 
 	/**
-	 *	Make vector to unit length.
+	 * Make vector to unit length.
 	 */
 	void makeUnitVector(void);
 
 	/**
-	 *	Set vector X component value.
+	 * Set vector X component value.
 	 */
 	void HCAPIFASTENTRY setX(float x);
 
 	/**
-	 *	Set vector Y component value.
+	 * Set vector Y component value.
 	 */
 	void HCAPIFASTENTRY setY(float y);
 
 	/**
-	 *	Get vector X component value.
-	 *	@Return value of component.
+	 * Get vector X component value.
+	 * @return value of component.
 	 */
 	float HCAPIFASTENTRY x(void) const;
 
 	/**
-	 *	Get vector Y component value.
-	 *	@Return value of component.
+	 * Get vector Y component value.
+	 * @return value of component.
 	 */
 	float HCAPIFASTENTRY y(void) const;
 
 	/**
-	 *	@Return
+	 * @return
 	 */
 	float minComponent(void) const;
 	float maxComponent(void) const;
@@ -104,32 +104,32 @@ public:
 	int indexOfMaxAbsComponent(void) const;
 
 	/**
-	 *	Create normalize copy
-	 *	@Return
+	 * Create normalize copy
+	 * @return
 	 */
 	HCVector2 normalize(void) const;
 
 	/**
-	 *	Compare vector equalities.
-	 *	@Return true if vector equal for each component.
+	 * Compare vector equalities.
+	 * @return true if vector equal for each component.
 	 */
 	friend bool operator==(const HCVector2& v1, const HCVector2& v2);
 	/**
-	 *	Compare vector inequality.
-	 *	@Return true if at least single component is not equal.
+	 * Compare vector inequality.
+	 * @return true if at least single component is not equal.
 	 */
 	friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
 
 	/**
-	 *	Create input stream for creating vector
-	 *	from input stream.
-	 *	@Return stream reference.
+	 * Create input stream for creating vector
+	 * from input stream.
+	 * @return stream reference.
 	 */
 	friend std::istream& operator>>(std::istream &is, HCVector2& t);
 
 	/**
-	 *	Create output stream of vector value.
-	 *	@Return stream reference.
+	 * Create output stream of vector value.
+	 * @return stream reference.
 	 */
 	friend std::ostream& operator<<(std::ostream &os, const HCVector2& t);
 
@@ -149,26 +149,41 @@ public:
 
 	/**
 	 *
-	 *	@Return
+	 * @param v
+	 * @return
 	 */
 	friend HCVector2 unitVector3(const HCVector2& v);
 
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector2 minVec(const HCVector2& v1, const HCVector2& v2);
+
 	/**
-	 *	@Return
+	 *
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend HCVector2 maxVec(const HCVector2& v1, const HCVector2& v2);
+
 	/**
-	 *	@Return
+	 *
+	 * @param vector
+	 * @param normal
+	 * @return
 	 */
 	friend HCVector2 reflection(const HCVector2& vector,
 	        const HCVector2& normal);
+
 	/**
-	 *	Compute dot product.
-	 *	@Return
+	 * Compute dot product.
+	 * @param v1
+	 * @param v2
+	 * @return
 	 */
 	friend float dot(const HCVector2& v1, const HCVector2& v2);
 
@@ -179,8 +194,8 @@ private:	/*	Attributes.	*/
 public:	/*	Static methods.	*/
 
 	/**
-	 *	Create zero vector.
-	 *	@Return HCVector2 object.
+	 * Create zero vector.
+	 * @return HCVector2 object.
 	 */
 	static HCVector2 zero(void) {
 		return HCVector2(0.0f);

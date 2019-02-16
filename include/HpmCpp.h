@@ -32,15 +32,15 @@
 #include"HCBoundingSphere.h"
 
 /**
- *	hpmcpp initialization class.
- *	See more description of the SIMD enumerator.
- *	see hpm.h
+ * hpmcpp initialization class.
+ * See more description of the SIMD enumerator.
+ * see hpm.h for more information.
  */
-class HPMDECLSPEC Hpm{
+class HPMDECLSPEC Hpm {
 public:
 
 	/**
-	 *	HPM SIMD enumerator.
+	 * HPM SIMD(Single Instruction Multiple Data) enumerator.
 	 */
 	enum HPMSIMD{
 		eHPM_NONE       =   (0 << 0),   /*	No HPM SIMD exention flag.	*/
@@ -62,10 +62,10 @@ public:
 	};
 
 	/**
-	 *	Initialize hpm library.
-	 *	This function has to be
-	 *	called before using the library.
-	 *	@return 1 if successfully initialized. 0 if there was a failure.
+	 * Initialize hpm library.
+	 * This function has to be
+	 * called before using the library.
+	 * @return 1 if successfully initialized. 0 if there was a failure.
 	 */
 	static int HCAPIENTRY init(HPMSIMD hpmSIMD);
 };

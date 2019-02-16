@@ -22,8 +22,8 @@
 #include"HCVector3.h"
 
 /**
- *	Axis aligned bounding
- *	box.
+ * Axis aligned bounding
+ * box.
  */
 class HCDECLSPEC HCAABB {
 public:
@@ -33,10 +33,6 @@ public:
 	HCAABB(const HCAABB& bounds) {
 		*this = bounds;
 	}
-
-	/**
-	 *	@Return
-	 */
 
 	/**
 	 *
@@ -49,15 +45,15 @@ public:
 
 	/**
 	 *
-	 *	@Return
+	 * @return
 	 */
 	inline HCVector3& operator[](int i) {
 		return ((HCVector3*) this)[i];
 	}
 
 	/**
-	 *	Check if object is valid.
-	 *	@Return true if valid, false otherwise.
+	 * Check if object is valid.
+	 * @return true if valid, false otherwise.
 	 */
 	inline bool isValid(void) const {
 		return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f
@@ -87,46 +83,46 @@ public:
 	}
 
 	/**
-	 *	Compute minimum position.
-	 *	@Return vector position.
+	 * Compute minimum position.
+	 * @return vector position.
 	 */
 	inline HCVector3 min(void) const {
 		return this->getCenter() - this->getSize();
 	}
 
 	/**
-	 *	Compute max position.
-	 *	@Return vector position.
+	 * Compute max position.
+	 * @return vector position.
 	 */
 	inline HCVector3 max(void) const {
 		return this->getCenter() + this->getSize();
 	}
 
 	/**
-	 *	Get half size.
-	 *	@Return half size vector.
+	 * Get half size.
+	 * @return half size vector.
 	 */
 	inline const HCVector3& getSize(void) const {
 		return this->mhalfsize;
 	}
 
 	/**
-	 *	Set half size.
+	 * Set half size.
 	 */
 	inline void setSize(const HCVector3& size) {
 		this->mhalfsize = size;
 	}
 
 	/**
-	 *	Get center position.
-	 *	@Return
+	 * Get center position.
+	 * @return
 	 */
 	inline const HCVector3& getCenter(void) const {
 		return this->mcenter;
 	}
 
 	/**
-	 *	Set center position.
+	 * Set center position.
 	 */
 	inline void setCenter(const HCVector3& center) {
 		this->mcenter = center;
@@ -171,27 +167,27 @@ public:
 	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
 
 	/**
-	 *	Create input stream for creating AABB
-	 *	from input stream.
-	 *	@Return stream reference.
+	 * Create input stream for creating AABB
+	 * from input stream.
+	 * @return stream reference.
 	 */
 	friend std::istream &operator>>(std::istream &is, HCVector3& t);
 
 	/**
-	 *	Create output stream of AABB values.
-	 *	@Return stream reference.
+	 * Create output stream of AABB values.
+	 * @return stream reference.
 	 */
 	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
 
 	/**
-	 *	Assign bound object.
-	 *	@Return reference of object.
+	 * Assign bound object.
+	 * @return reference of object.
 	 */
 	HCAABB& operator=(const HCAABB& bound);
 
 	/**
 	 *
-	 *	@Return reference of object.
+	 * @return reference of object.
 	 */
 	friend HCAABB operator*(const HCAABB& bound, float scalar);
 
