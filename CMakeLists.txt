@@ -75,7 +75,7 @@ ExternalProject_Add(hpm-external
 		BINARY_DIR ${HPM_ROOT}/src/hpm-build
 		INSTALL_DIR ${HPM_ROOT}
 		CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
-		STEP_TARGETS buildmake
+		STEP_TARGETS build
 		COMMENT "Building Hpm."
 		LOG_DOWNLOAD ON)
 # Include tasksch headers.
@@ -94,7 +94,7 @@ FILE (GLOB core ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
 # Main library target for initializing the library.
 ADD_LIBRARY(hpmcpp ${core})
 TARGET_LINK_LIBRARIES(hpmcpp hpm)
-ADD_DEPENDENCIES(hpmcpp hpm-external)
+ADD_DEPENDENCIES(hpmcpp hpm)
 
 # Add the install targets
 INSTALL (TARGETS hpmcpp DESTINATION lib)
