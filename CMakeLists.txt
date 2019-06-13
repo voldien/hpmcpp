@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.7.2)
 PROJECT(hpmcpp)
 
 # Build shared/dynamic library option
@@ -52,13 +52,49 @@ IF( CMAKE_COMPILER_IS_GNUCXX )
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++0x" )
 ENDIF( CMAKE_COMPILER_IS_GNUCXX )
 
+
+FIND_PACKAGE(Git)
+IF(GIT_FOUND)
+	MESSAGE(STATUS "git found: ${GIT_EXECUTABLE} -- ${GIT_VERSION_STRING}")
+ENDIF()
+
+INCLUDE(ExternalProject)
+SET_PROPERTY(DIRECTORY PROPERTY EP_STEP_TARGETS build)
+
+# Download the hpm library.
+SET(HPM_ROOT ${CMAKE_BINARY_DIR}/deps/hpm)
+SET(HPM_LIB_DIR ${HPM_ROOT}/lib)
+SET(HPM_INCLUDE_DIR ${HPM_ROOT}/include)
+ExternalProject_Add(hpm-external
+		PREFIX ${HPM_ROOT}
+		GIT_REPOSITORY "https://github.com/voldien/hpm.git"
+		GIT_TAG "master"
+		UPDATE_COMMAND ""
+		PATCH_COMMAND ""
+		SOURCE_DIR ${HPM_ROOT}/src/hpm
+		BINARY_DIR ${HPM_ROOT}/src/hpm-build
+		INSTALL_DIR ${HPM_ROOT}
+		CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+		STEP_TARGETS buildmake
+		COMMENT "Building Hpm."
+		LOG_DOWNLOAD ON)
+# Include tasksch headers.
+ADD_LIBRARY(hpm SHARED IMPORTED)
+ADD_DEPENDENCIES(hpm hpm-external)
+SET_TARGET_PROPERTIES(hpm PROPERTIES
+		IMPORTED_LOCATION "${HPM_LIB_DIR}/libhpm.so"
+		INTERFACE_INCLUDE_DIRECTORIES "${HPM_INCLUDE_DIR}")
+INCLUDE_DIRECTORIES(${HPM_INCLUDE_DIR})
+
+
 # Source files.
 FILE (GLOB headers ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h )
 FILE (GLOB core ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
 
 # Main library target for initializing the library.
 ADD_LIBRARY(hpmcpp ${core})
-TARGET_LINK_LIBRARIES(hpmcpp -lhpm)
+TARGET_LINK_LIBRARIES(hpmcpp hpm)
+ADD_DEPENDENCIES(hpmcpp hpm-external)
 
 # Add the install targets
 INSTALL (TARGETS hpmcpp DESTINATION lib)
