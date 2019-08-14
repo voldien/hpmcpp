@@ -23,7 +23,7 @@ MESSAGE(STATUS "Version ${HPMCPP_VERSION}")
 IF((CMAKE_COMPILER_IS_GNUCC) AND NOT CMAKE_COMPILER_IS_MINGOW)
 	IF(BUILD_SHARED_LIBS AND CMAKE_SIZEOF_VOID_P EQUAL 8)
 		ADD_DEFINITIONS(-fPIC)
-		SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 	ENDIF()
 
 	# Set compile flags.
@@ -43,8 +43,8 @@ IF((CMAKE_COMPILER_IS_GNUCC) AND NOT CMAKE_COMPILER_IS_MINGOW)
 	ENDIF()
 
 ELSEIF(MSVC)
-		# Enable multi-core complication with MSVC
-		ADD_DEFINITIONS(/MP)
+	# Enable multi-core complication with MSVC
+	ADD_DEFINITIONS(/MP)
 ENDIF()
 
 # Set c++ language version required for the project.
@@ -59,12 +59,13 @@ IF(GIT_FOUND)
 ENDIF()
 
 INCLUDE(ExternalProject)
-SET_PROPERTY(DIRECTORY PROPERTY EP_STEP_TARGETS build)
-
 IF(BUILD_WITH_EXTERNAL_PROJECT)
 	IF(NOT GIT_FOUND)
 		MESSAGE(FATAL_ERROR "Git is required in order to fetch external project hpm")
 	ENDIF()
+
+	SET_PROPERTY(DIRECTORY PROPERTY EP_STEP_TARGETS build)
+
 	# Download the hpm library.
 	SET(HPM_ROOT ${CMAKE_BINARY_DIR}/deps/hpm)
 	SET(HPM_LIB_DIR ${HPM_ROOT}/lib)
@@ -75,20 +76,23 @@ IF(BUILD_WITH_EXTERNAL_PROJECT)
 			GIT_TAG "master"
 			UPDATE_COMMAND ""
 			PATCH_COMMAND ""
+			GIT_PROGRESS True
 			SOURCE_DIR ${HPM_ROOT}/src/hpm
 			BINARY_DIR ${HPM_ROOT}/src/hpm-build
 			INSTALL_DIR ${HPM_ROOT}
-			CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
-			STEP_TARGETS buildmake
+			CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR> -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+			STEP_TARGETS build make
+			BUILD_COMMAND ""
 			COMMENT "Building Hpm."
 			LOG_DOWNLOAD ON)
+	ExternalProject_Get_property(hpm-external SOURCE_DIR)
+	MESSAGE(STATUS "Source dir of hpm-external = ${SOURCE_DIR}")
 	# Include tasksch headers.
 	ADD_LIBRARY(hpm SHARED IMPORTED)
 	ADD_DEPENDENCIES(hpm hpm-external)
 	SET_TARGET_PROPERTIES(hpm PROPERTIES
 			IMPORTED_LOCATION "${HPM_LIB_DIR}/libhpm.so"
 			INTERFACE_INCLUDE_DIRECTORIES "${HPM_INCLUDE_DIR}")
-	INCLUDE_DIRECTORIES(${HPM_INCLUDE_DIR})
 ENDIF()
 
 # Source files.
@@ -100,8 +104,9 @@ ADD_LIBRARY(hpmcpp ${core})
 TARGET_LINK_LIBRARIES(hpmcpp hpm)
 IF(BUILD_WITH_EXTERNAL_PROJECT)
 	ADD_DEPENDENCIES(hpmcpp hpm-external)
+	SET_TARGET_PROPERTIES(hpmcpp PROPERTIES
+			INCLUDE_DIRECTORIES ${HPM_INCLUDE_DIR})
 ENDIF()
-
 
 # Add the install targets
 INSTALL (TARGETS hpmcpp DESTINATION lib)
@@ -111,8 +116,8 @@ INSTALL (FILES ${headers} DESTINATION include/hpmcpp)
 IF( UNIX )
 	SET( TARGETDIR "${PROJECT_NAME}-${VERSION}")
 	ADD_CUSTOM_TARGET(	distribution
-				COMMAND mkdir -p ${TARGETDIR}
-				COMMAND cp -r src include CMakeLists.txt LICENSE ${TARGETDIR}
-				COMMAND tar cf - ${TARGETDIR} | gzip -c > ${TARGETDIR}.tar.gz
-				COMMAND rm -r ${TARGETDIR} )
+			COMMAND mkdir -p ${TARGETDIR}
+			COMMAND cp -r src include CMakeLists.txt LICENSE ${TARGETDIR}
+			COMMAND tar cf - ${TARGETDIR} | gzip -c > ${TARGETDIR}.tar.gz
+			COMMAND rm -r ${TARGETDIR} )
 ENDIF()
