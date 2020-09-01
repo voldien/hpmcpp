@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10.2)
-PROJECT(hpmcpp CXX)
+PROJECT(hpmcpp CXX VERSION 0.3.0)
 
 # Build shared/dynamic library option
 OPTION(BUILD_SHARED_LIBS "Build package with shared libraries." ON)
@@ -62,8 +62,8 @@ IF(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 	# Update submodules as needed
 	OPTION(GIT_SUBMODULE "Check submodules during build" ON)
 	IF(GIT_SUBMODULE)
-		MESSAGE(STATUS "Submodule update --recursive")
-		EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+		MESSAGE(STATUS "Submodule update")
+		EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} submodule update --init
 						WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 						RESULT_VARIABLE GIT_SUBMOD_RESULT)
 		IF(NOT GIT_SUBMOD_RESULT EQUAL "0")
@@ -102,34 +102,6 @@ IF (BUILD_WITH_EXTERNAL_PROJECT)
 			IMPORTED_LOCATION ${HPM_LIB_DIR}/libhpm.so
 			INTERFACE_LINK_LIBRARIES ${HPM_LIB_DIR}/libhpm.so
 				INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/extern/hpm/include)
-
-	# Download the hpm library.
-	# SET(HPM_ROOT ${CMAKE_BINARY_DIR}/deps/hpm)
-	# SET(HPM_LIB_DIR ${HPM_ROOT}/lib)
-	# SET(HPM_INCLUDE_DIR ${HPM_ROOT}/include)
-	# ExternalProject_Add(hpm-external
-	# 		PREFIX ${HPM_ROOT}
-	# 		GIT_REPOSITORY "https://github.com/voldien/hpm.git"
-	# 		GIT_TAG "master"
-	# 		UPDATE_COMMAND ""
-	# 		PATCH_COMMAND ""
-	# 		GIT_PROGRESS True
-	# 		SOURCE_DIR ${HPM_ROOT}/src/hpm
-	# 		BINARY_DIR ${HPM_ROOT}/src/hpm-build
-	# 		INSTALL_DIR ${HPM_ROOT}
-	# 		CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR> -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-	# 		STEP_TARGETS build make
-	# 		BUILD_COMMAND ""
-	# 		COMMENT "Building Hpm."
-	# 		LOG_DOWNLOAD ON)
-	# ExternalProject_Get_property(hpm-external SOURCE_DIR)
-	# MESSAGE(STATUS "Source dir of hpm-external = ${SOURCE_DIR}")
-	# # Include hpm library and its properties.
-	# ADD_LIBRARY(hpm SHARED IMPORTED)
-	# ADD_DEPENDENCIES(hpm hpm-external)
-	# SET_TARGET_PROPERTIES(hpm PROPERTIES
-	# 		IMPORTED_LOCATION "${HPM_LIB_DIR}/libhpm.so"
-	# 		INTERFACE_INCLUDE_DIRECTORIES "${HPM_INCLUDE_DIR}")
 ENDIF ()
 
 # Source files.

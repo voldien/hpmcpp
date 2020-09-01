@@ -1,8 +1,10 @@
 # HPMCPP
+[![Actions Build Status](https://github.com/voldien/hpmcpp/workflows/HpmCpp/badge.svg?branch=master)](https://github.com/voldien/hpmcpp/actions)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 The *hpmcpp* is a C++ wrapper library for the [hpm](https://github.com/voldien/hpm) library. This makes it more friendly to use in an object-oriented programming environment.
 
-## Examples
+## Examples ##
 
 ```c++
 #include<hpmcpp/HC.h>
