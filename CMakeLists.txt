@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10.2)
-PROJECT(hpmcpp CXX VERSION 0.3.0)
+PROJECT(hpmcpp VERSION 0.3.0)
 
 # Build shared/dynamic library option
 OPTION(BUILD_SHARED_LIBS "Build package with shared libraries." ON)
