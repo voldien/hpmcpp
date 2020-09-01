@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_TYPES_H_
 #define _HPMCPP_TYPES_H_ 1
-#include<hpm/hpm.h>
+#include<hpm.h>
 #include<iostream>
 #include<math.h>
 #include<string.h>
