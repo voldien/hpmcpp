@@ -1,0 +1,3 @@
+[submodule "extern/hpm"]
+	path = extern/hpm
+	url = https://github.com/voldien/hpm
