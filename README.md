@@ -5,6 +5,15 @@
 
 The *hpmcpp* is a C++ wrapper library for the [hpm](https://github.com/voldien/hpm) library. This makes it more friendly to use in an object-oriented programming environment.
 
+## Installation
+The software can be easily installed with invoking the following command.
+```bash
+mkdir build && cd build
+cmake ..
+cmake --build .
+make install
+```
+
 ## Examples ##
 
 ```c++
