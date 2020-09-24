@@ -1,8 +1,6 @@
 #include"HCOBB.h"
 
-HCOBB::HCOBB(void) {
-
-}
+using namespace hpmcpp;
 
 HCOBB::HCOBB(const HCOBB& obb) {
 	*this = obb;

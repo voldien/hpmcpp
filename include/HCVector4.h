@@ -19,184 +19,185 @@
 #ifndef _HPMCPP_VECTOR4_H_
 #define _HPMCPP_VECTOR4_H_ 1
 #include "HCTypes.h"
-
-/**
- * Vector4 class. Contains
- * x, y, z, w component. Where the
- * size of the object is 128 bit.
- */
-class HCDECLSPEC HCVector4 {
-public:
-
-	HCVector4(void);
-	HCVector4(float val);
-	HCVector4(float m0, float m1, float m2, float m3);
-	HCVector4(const HCVector4& v);
-
+namespace hpmcpp {
 	/**
-	 * Get component wise.
+	 * Vector4 class. Contains
+	 * x, y, z, w component. Where the
+	 * size of the object is 128 bit.
 	 */
-	float HCAPIFASTENTRY x(void) const;
-	float HCAPIFASTENTRY y(void) const;
-	float HCAPIFASTENTRY z(void) const;
-	float HCAPIFASTENTRY w(void) const;
+	class HCDECLSPEC HCVector4 {
+	public:
 
-	/**
-	 * Set component wise.
-	 */
-	void HCAPIFASTENTRY setX(float x);
-	void HCAPIFASTENTRY setY(float y);
-	void HCAPIFASTENTRY setZ(float z);
-	void HCAPIFASTENTRY setW(float w);
+		HCVector4(void);
+		HCVector4(float val);
+		HCVector4(float m0, float m1, float m2, float m3);
+		HCVector4(const HCVector4& v);
 
-	/**
-	 * Get component by index.
-	 */
-	float operator[](int i) const;
-	float& operator[](int i);
+		/**
+		 * Get component wise.
+		 */
+		float HCAPIFASTENTRY x(void) const;
+		float HCAPIFASTENTRY y(void) const;
+		float HCAPIFASTENTRY z(void) const;
+		float HCAPIFASTENTRY w(void) const;
 
-	/**
-	 * Negate vector.
-	 * @return negated vector.
-	 */
-	HCVector4 operator-(void) const;
+		/**
+		 * Set component wise.
+		 */
+		void HCAPIFASTENTRY setX(float x);
+		void HCAPIFASTENTRY setY(float y);
+		void HCAPIFASTENTRY setZ(float z);
+		void HCAPIFASTENTRY setW(float w);
 
-	/**
-	 * Compute length of vector.
-	 * @return non-negativ number.
-	 */
-	float HCAPIFASTENTRY length(void) const;
+		/**
+		 * Get component by index.
+		 */
+		float operator[](int i) const;
+		float& operator[](int i);
 
-	/**
-	 * Compute length of vector.
-	 * @return non-negative number.
-	 */
-	float HCAPIFASTENTRY squaredLength(void) const;
+		/**
+		 * Negate vector.
+		 * @return negated vector.
+		 */
+		HCVector4 operator-(void) const;
 
-	/**
-	 * Normalize current vector.
-	 */
-	void HCAPIENTRY makeUnitVector(void);
+		/**
+		 * Compute length of vector.
+		 * @return non-negativ number.
+		 */
+		float HCAPIFASTENTRY length(void) const;
 
-	/**
-	 * Get minimum component.
-	 * @return number.
-	 */
-	float HCAPIFASTENTRY minComponent(void) const;
+		/**
+		 * Compute length of vector.
+		 * @return non-negative number.
+		 */
+		float HCAPIFASTENTRY squaredLength(void) const;
 
-	/**
-	 * Get maximum component.
-	 * @return number.
-	 */
-	float HCAPIFASTENTRY maxComponent(void) const;
+		/**
+		 * Normalize current vector.
+		 */
+		void HCAPIENTRY makeUnitVector(void);
 
-	/**
-	 * Get absolute maximum component.
-	 * @return non-negative number.
-	 */
-	float HCAPIFASTENTRY maxAbsComponent(void) const;
+		/**
+		 * Get minimum component.
+		 * @return number.
+		 */
+		float HCAPIFASTENTRY minComponent(void) const;
 
-	/**
-	 * Get absolute minimum component.
-	 * @return non-negative number.
-	 */
-	float HCAPIFASTENTRY minAbsComponent(void) const;
+		/**
+		 * Get maximum component.
+		 * @return number.
+		 */
+		float HCAPIFASTENTRY maxComponent(void) const;
 
-	/**
-	 * Create normalized copy.
-	 * @return normalize vector of current vector.
-	 */
-	HCVector4 HCAPIENTRY normalize(void) const;
+		/**
+		 * Get absolute maximum component.
+		 * @return non-negative number.
+		 */
+		float HCAPIFASTENTRY maxAbsComponent(void) const;
 
-	/**
-	 * Equality
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend bool operator==(const HCVector4& v1, const HCVector4& v2);
-	friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
+		/**
+		 * Get absolute minimum component.
+		 * @return non-negative number.
+		 */
+		float HCAPIFASTENTRY minAbsComponent(void) const;
 
-	/**
-	 * Create input stream for creating vector
-	 * from input stream.
-	 * @return stream reference.
-	 */
-	friend std::istream &operator>>(std::istream &is, HCVector4& t);
+		/**
+		 * Create normalized copy.
+		 * @return normalize vector of current vector.
+		 */
+		HCVector4 HCAPIENTRY normalize(void) const;
 
-	/**
-	 * Create output stream of vector value.
-	 * @return stream reference.
-	 */
-	friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
+		/**
+		 * Equality
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend bool operator==(const HCVector4& v1, const HCVector4& v2);
+		friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
 
-	friend HCVector4 operator+(const HCVector4& v1, const HCVector4& v2);
-	friend HCVector4 operator-(const HCVector4& v1, const HCVector4& v2);
-	friend HCVector4 operator/(const HCVector4& vec, float scalar);
-    friend HCVector4 operator/(const HCVector4& v1, const HCVector4& v2);
-	friend HCVector4 operator*(const HCVector4& vec, float scalar);
-	friend HCVector4 operator*(float scalar, const HCVector4& vec);
+		/**
+		 * Create input stream for creating vector
+		 * from input stream.
+		 * @return stream reference.
+		 */
+		friend std::istream &operator>>(std::istream &is, HCVector4& t);
 
-	HCVector4& operator=(const HCVector4& v2);
-	HCVector4& operator+=(const HCVector4& v2);
-	HCVector4& operator-=(const HCVector4& v2);
-	HCVector4& operator/=(float scalar);
-	HCVector4& operator*=(float scalar);
+		/**
+		 * Create output stream of vector value.
+		 * @return stream reference.
+		 */
+		friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
 
-	/**
-	 * Compute unit vector.
-	 * @param v vector.
-	 * @return unite vector.
-	 */
-	friend HCVector4 HCAPIENTRY unitVector4(const HCVector4& v);
+		friend HCVector4 operator+(const HCVector4& v1, const HCVector4& v2);
+		friend HCVector4 operator-(const HCVector4& v1, const HCVector4& v2);
+		friend HCVector4 operator/(const HCVector4& vec, float scalar);
+		friend HCVector4 operator/(const HCVector4& v1, const HCVector4& v2);
+		friend HCVector4 operator*(const HCVector4& vec, float scalar);
+		friend HCVector4 operator*(float scalar, const HCVector4& vec);
 
-	/**
-	 * Compute min vector component.
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
+		HCVector4& operator=(const HCVector4& v2);
+		HCVector4& operator+=(const HCVector4& v2);
+		HCVector4& operator-=(const HCVector4& v2);
+		HCVector4& operator/=(float scalar);
+		HCVector4& operator*=(float scalar);
 
-	/**
-	 * Compute max vector component.
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend HCVector4 HCAPIENTRY maxVec(const HCVector4& v1, const HCVector4& v2);
+		/**
+		 * Compute unit vector.
+		 * @param v vector.
+		 * @return unite vector.
+		 */
+		friend HCVector4 HCAPIENTRY unitVector4(const HCVector4& v);
 
-	/**
-	 * Computer inner dot product.
-	 * @param v1
-	 * @param v2
-	 * @return inner product.
-	 */
-	friend float HCAPIENTRY dot(const HCVector4& v1, const HCVector4& v2);
+		/**
+		 * Compute min vector component.
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
 
-protected:	/*	Attributes.	*/
+		/**
+		 * Compute max vector component.
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend HCVector4 HCAPIENTRY maxVec(const HCVector4& v1, const HCVector4& v2);
 
-		hpmvec4f e;
+		/**
+		 * Computer inner dot product.
+		 * @param v1
+		 * @param v2
+		 * @return inner product.
+		 */
+		friend float HCAPIENTRY dot(const HCVector4& v1, const HCVector4& v2);
 
-public:	/*	Static methods.	*/
+	protected:	/*	Attributes.	*/
 
-	/**
-	 * Linear interpolation.
-	 * @param vec1 start position.
-	 * @param vec2 end position.
-	 * @param speed [0, 1]
-	 * @return interpolated position.
-	 */
-	static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+			hpmvec4f e;
 
-	/**
-	 * Spherical interpolation.
-	 * @param vec1 start position.
-	 * @param vec2 end position.
-	 * @param speed [0, 1]
-	 * @return interpolated position.
-	 */
-	static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
-};
+	public:	/*	Static methods.	*/
+
+		/**
+		 * Linear interpolation.
+		 * @param vec1 start position.
+		 * @param vec2 end position.
+		 * @param speed [0, 1]
+		 * @return interpolated position.
+		 */
+		static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+
+		/**
+		 * Spherical interpolation.
+		 * @param vec1 start position.
+		 * @param vec2 end position.
+		 * @param speed [0, 1]
+		 * @return interpolated position.
+		 */
+		static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+	};
+}
 
 #endif

@@ -20,76 +20,71 @@
 #define _HPMCPP_RAY_H_ 1
 #include"HCVector3.h"
 
-/**
- * Ray data type. Contains
- * a position and a direction.
- */
-class HCDECLSPEC HCRay {
-public:
-	HCRay(void);
-	HCRay(const HCVector3& origin, const HCVector3& direction);
-	HCRay(const HCRay& ray);
-
+	namespace hpmcpp {
 	/**
-	 * @return get origin position.
+	 * Ray data type. Contains
+	 * a position and a direction.
 	 */
-	inline const HCVector3& getOrigin(void) const {
-		return this->m[0];
-	}
+	class HCDECLSPEC HCRay {
+	public:
+		HCRay(void) = default;
+		HCRay(const HCVector3& origin, const HCVector3& direction) {
+			this->setOrigin(origin);
+			this->setDirection(direction);
+		}
+		HCRay(const HCRay& ray) {
+			this->setOrigin(ray.getOrigin());
+			this->setDirection(ray.getDirection());
+		}
 
-	/**
-	 * Set origin position.
-	 */
-	inline void setOrigin(const HCVector3& origin) {
-		this->m[0] = origin;
-	}
+		/**
+		 * @return get origin position.
+		 */
+		inline const HCVector3& getOrigin(void) const {
+			return this->m[0];
+		}
 
-	/**
-	 * Get direction.
-	 * @return normalized direction.
-	 */
-	inline const HCVector3& getDirection(void) const {
-		return this->m[1];
-	}
+		/**
+		 * Set origin position.
+		 */
+		inline void setOrigin(const HCVector3& origin) {
+			this->m[0] = origin;
+		}
 
-	/**
-	 * Set direction vector.
-	 * @param direction has to be a normalized vector.
-	 */
-	inline void setDirection(const HCVector3& direction) {
-		this->m[1] = direction;
-	}
+		/**
+		 * Get direction.
+		 * @return normalized direction.
+		 */
+		inline const HCVector3& getDirection(void) const {
+			return this->m[1];
+		}
 
-	/**
-	 * Get position from distance from point
-	 * in respect to direction.
-	 * @return point on the ray.
-	 */
-	inline HCVector3 pointAtParameter(float t) const {
-		return this->getOrigin() + t * this->getDirection();
-	}
+		/**
+		 * Set direction vector.
+		 * @param direction has to be a normalized vector.
+		 */
+		inline void setDirection(const HCVector3& direction) {
+			this->m[1] = direction;
+		}
 
-private:    /*	Attributes.	*/
+		/**
+		 * Get position from distance from point
+		 * in respect to direction.
+		 * @return point on the ray.
+		 */
+		inline HCVector3 pointAtParameter(float t) const {
+			return this->getOrigin() + t * this->getDirection();
+		}
 
-	/**
-	 * #0 origin
-	 * #1 direction
-	 */
-	HCVector3 m[2];
+	private:    /*	Attributes.	*/
 
-};
+		/**
+		 * #0 origin
+		 * #1 direction
+		 */
+		HCVector3 m[2];
 
-inline HCRay::HCRay(void) {
-}
-
-inline HCRay::HCRay(const HCVector3& origin, const HCVector3& direction) {
-	this->setOrigin(origin);
-	this->setDirection(direction);
-}
-
-inline HCRay::HCRay(const HCRay& ray) {
-	this->setOrigin(ray.getOrigin());
-	this->setDirection(ray.getDirection());
+	};
 }
 
 #endif

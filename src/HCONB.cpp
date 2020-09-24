@@ -1,8 +1,7 @@
 #include"HCONB.h"
 #include"HCVector3.h"
 
-HCONB::HCONB(void) {
-}
+using namespace hpmcpp;
 
 HCONB::HCONB(const HCONB &other) {
     *this = other;
@@ -98,17 +97,20 @@ void HCONB::initFromWV(const HCVector3 &w, const HCVector3 &v) {
 
 }
 
-std::istream &operator>>(std::istream &is, HCONB &t) {
-    is >> t.m[0];
-    is >> t.m[1];
-    is >> t.m[2];
-    return is;
+namespace hpmcpp {
+    std::istream &operator>>(std::istream &is, HCONB &t) {
+        is >> t.m[0];
+        is >> t.m[1];
+        is >> t.m[2];
+        return is;
+    }
 }
 
 std::ostream &operator<<(std::ostream &os, const HCONB &t) {
     os << t.u() << t.v() << t.w();
     return os;
 }
+
 
 bool operator==(const HCONB &o1, const HCONB &o2) {
     return (o1.u() == o2.u()) && (o1.v() == o2.v()) && (o1.w() == o2.w());

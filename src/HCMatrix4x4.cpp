@@ -1,12 +1,12 @@
-#include <HCMatrix4x4.h>
-#include <HCQuaternion.h>
-#include <HCVector3.h>
-#include <HCVector4.h>
+#include "HCMatrix4x4.h"
 #include <iostream>
+#include "HCQuaternion.h"
+#include "HCVector3.h"
+#include "HCVector4.h"
 
-HCMatrix4x4::HCMatrix4x4(void) {
+using namespace hpmcpp;
 
-}
+
 HCMatrix4x4::HCMatrix4x4(const HCMatrix4x4& other) {
 	*this = other;
 }
@@ -30,6 +30,15 @@ HCMatrix4x4 HCMatrix4x4::transpose(void) const {
 	HCMatrix4x4 mat = *this;
 	hpm_mat4x4_transposefv(mat.e);
 	return mat;
+}
+
+
+float* HCMatrix4x4::operator[](int index) {
+	//return (float*) &this->e[index][0];
+}
+
+float* HCMatrix4x4::operator[](int index)const {
+	//return (float*)&this->e[0][0];
 }
 
 HCMatrix4x4 HCMatrix4x4::operator*(float rh) const{

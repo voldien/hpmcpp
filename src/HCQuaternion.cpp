@@ -1,8 +1,8 @@
-#include <HCQuaternion.h>
-#include <HCVector3.h>
-#include <HCVector4.h>
+#include"HCQuaternion.h"
+#include"HCVector3.h"
+#include"HCVector4.h"
+using namespace hpmcpp;
 
-HCQuaternion::HCQuaternion(void) {}
 HCQuaternion::HCQuaternion(const HCQuaternion& quaternion) {
 	*this = quaternion;
 }
@@ -49,7 +49,7 @@ float HCQuaternion::operator[](int i) const {
 	return this->e[i];
 }
 float& HCQuaternion::operator[](int i) {
-	return this->e[i];
+	//return this->e[i];
 }
 
 HCVector3 HCQuaternion::up(void) const {
@@ -107,21 +107,7 @@ HCQuaternion HCQuaternion::exponent(float exponent) const {
 	return quat;
 }
 
-HCQuaternion operator*(const HCQuaternion& lh, const HCQuaternion& rh) {
-	HCQuaternion quat = lh;
-	hpm_quat_multi_quatfv(&lh.e, &rh.e, &quat.e);
-	return quat;
-}
-HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh) {
-	HCQuaternion quat = lh;
-	hpm_quat_multi_vec3fv(&lh.e, (const hpmvec3f*)&rh, (hpmvec3f*)&quat.e);
-	return quat;
-}
-HCQuaternion operator*(const HCQuaternion& lh, float rh) {
-	HCQuaternion quat = lh;
-	hpm_quat_multi_scalef(&quat.e, rh);
-	return quat;
-}
+
 
 HCQuaternion& HCQuaternion::operator*=(const HCQuaternion& rh) {
 	*this = *this * rh;
@@ -162,23 +148,46 @@ std::ostream &operator<<(std::ostream &os, const HCQuaternion& t){
 	return os;
 }
 
-HCQuaternion operator-(const HCQuaternion &lh, const HCQuaternion &rh) {
-	HCQuaternion quat = lh;
-	hpm_vec4_subtractionfv(&quat.e, &rh.e);
-	return quat;
-}
 
-HCQuaternion operator+(const HCQuaternion &lh, const HCQuaternion &rh) {
-	HCQuaternion quat = lh;
-	hpm_vec4_addition_scalefv(&quat.e, &rh.e);
-	return quat;
-}
+namespace hpmcpp{
 
-bool operator==(const HCQuaternion& v1, const HCQuaternion& v2){
-	return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);
-}
-bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2){
-	return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
+	HCQuaternion operator*(const HCQuaternion& lh, const HCQuaternion& rh) {
+		HCQuaternion quat = lh;
+		hpm_quat_multi_quatfv(&lh.e, &rh.e, &quat.e);
+		return quat;
+	}
+	HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh) {
+		HCQuaternion quat = lh;
+		hpm_quat_multi_vec3fv(&lh.e, (const hpmvec3f*)&rh, (hpmvec3f*)&quat.e);
+		return quat;
+	}
+	HCQuaternion operator*(const HCQuaternion& lh, float rh) {
+		HCQuaternion quat = lh;
+		hpm_quat_multi_scalef(&quat.e, rh);
+		return quat;
+	}
+
+	HCQuaternion operator-(const HCQuaternion& lh, const HCQuaternion& rh) {
+		HCQuaternion quat = lh;
+		hpm_vec4_subtractionfv(&quat.e, &rh.e);
+		return quat;
+	}
+
+	HCQuaternion operator+(const HCQuaternion& lh, const HCQuaternion& rh) {
+		HCQuaternion quat = lh;
+		hpm_vec4_addition_scalefv(&quat.e, &rh.e);
+		return quat;
+	}
+
+	bool operator==(const HCQuaternion& v1, const HCQuaternion& v2){
+		return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);
+	}
+	bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2){
+		return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
+	}
+	float dot(const HCQuaternion& lh, const HCQuaternion& rh) {
+	return hpm_quat_dotfv(&lh.e, &rh.e);
+	}
 }
 
 float HCQuaternion::getPitch(void) const {
@@ -204,9 +213,7 @@ HCVector3 HCQuaternion::getEular(void) const {
 	return HCVector3(pitch, yaw, roll);
 }
 
-float dot(const HCQuaternion& lh, const HCQuaternion& rh) {
-	return hpm_quat_dotfv(&lh.e, &rh.e);
-}
+
 
 HCQuaternion HCQuaternion::lookRotation(const HCVector3& target,const HCVector3& pos,  const HCVector3& up) {
 	HCQuaternion quat;

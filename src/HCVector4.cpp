@@ -1,5 +1,7 @@
 #include <HCVector4.h>
 
+using namespace hpmcpp;
+
 HCVector4::HCVector4(void){}
 HCVector4::HCVector4(float val){
 	hpm_vec4_setsf(&this->e, val);
@@ -41,7 +43,7 @@ float HCVector4::operator[](int i) const {
 	return this->e[i];
 }
 float& HCVector4::operator[](int i) {
-	return this->e[i];
+	//return this->e[i];
 }
 
 HCVector4 HCVector4::operator-(void) const {
@@ -83,99 +85,101 @@ float HCVector4::maxAbsComponent(void) const {
 float HCVector4::minAbsComponent(void) const {
 	return abs(hpm_vec4_min_compfv(&this->e));
 }
+namespace hpmcpp{
 
-bool operator==(const HCVector4& v1, const HCVector4& v2) {
-	return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);
-}
+	bool operator==(const HCVector4& v1, const HCVector4& v2) {
+		return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);
+	}
 
-bool operator!=(const HCVector4& v1, const HCVector4& v2) {
-	return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
-}
+	bool operator!=(const HCVector4& v1, const HCVector4& v2) {
+		return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
+	}
 
-HCVector4 operator*(float scaler, const HCVector4& vec) {
-	HCVector4 copy = vec;
-	hpm_vec4_multi_scalef(&copy.e, scaler);
-	return copy;
-}
-HCVector4 operator*(const HCVector4&vec, float scalar) {
-    HCVector4 copy = vec;
-    hpm_vec4_multi_scalef(&copy.e, scalar);
-    return copy;
-}
-HCVector4 operator/(const HCVector4&vec, float scalar) {
-    HCVector4 copy = vec;
-    hpm_vec4_multi_scalef(&copy.e, 1.0f / scalar);
-    return copy;
-}
+	HCVector4 operator*(float scaler, const HCVector4& vec) {
+		HCVector4 copy = vec;
+		hpm_vec4_multi_scalef(&copy.e, scaler);
+		return copy;
+	}
+	HCVector4 operator*(const HCVector4&vec, float scalar) {
+		HCVector4 copy = vec;
+		hpm_vec4_multi_scalef(&copy.e, scalar);
+		return copy;
+	}
+	HCVector4 operator/(const HCVector4&vec, float scalar) {
+		HCVector4 copy = vec;
+		hpm_vec4_multi_scalef(&copy.e, 1.0f / scalar);
+		return copy;
+	}
 
-HCVector4 operator/(const HCVector4& v1, const HCVector4& v2){
-    HCVector4 copy = v1;
-    HCVector4 c3 = 1.0f / v2;
-    hpm_vec4_multifv(&copy.e, &c3.e);
-    return copy;
-}
+	HCVector4 operator/(const HCVector4& v1, const HCVector4& v2){
+		HCVector4 copy = v1;
+		HCVector4 c3 = 1.0f / v2;
+		hpm_vec4_multifv(&copy.e, &c3.e);
+		return copy;
+	}
 
-HCVector4 operator+(const HCVector4& v1, const HCVector4& v2) {
-	HCVector4 copy = v1;
-	hpm_vec4_addition_scalefv(&copy.e, &v2.e);
-	return copy;
-}
+	HCVector4 operator+(const HCVector4& v1, const HCVector4& v2) {
+		HCVector4 copy = v1;
+		hpm_vec4_addition_scalefv(&copy.e, &v2.e);
+		return copy;
+	}
 
-HCVector4 operator-(float v1, const HCVector4& v2) {
-	HCVector4 copy = HCVector4(v1);
-	hpm_vec4_subtractionfv((hpmvec4f*)&copy, (const hpmvec4f*)&v2);
-	return copy;
-}
-HCVector4 operator-(const HCVector4& v1, const HCVector4& v2) {
-	HCVector4 copy = v1;
-	hpm_vec4_subtractionfv(&copy.e, &v2.e);
-	return copy;
-}
+	HCVector4 operator-(float v1, const HCVector4& v2) {
+		HCVector4 copy = HCVector4(v1);
+		hpm_vec4_subtractionfv((hpmvec4f*)&copy, (const hpmvec4f*)&v2);
+		return copy;
+	}
+	HCVector4 operator-(const HCVector4& v1, const HCVector4& v2) {
+		HCVector4 copy = v1;
+		hpm_vec4_subtractionfv(&copy.e, &v2.e);
+		return copy;
+	}
 
-float dot(const HCVector4& v1, const HCVector4& v2) {
-	return hpm_vec4_dotfv(&v1.e, &v2.e);
-}
+	float dot(const HCVector4& v1, const HCVector4& v2) {
+		return hpm_vec4_dotfv(&v1.e, &v2.e);
+	}
 
-HCVector4 unitVector(const HCVector4& v) {
-	HCVector4 vec = v;
-	hpm_vec4_normalizefv((hpmvec4f*)&vec);
-	return vec;
-}
+	HCVector4 unitVector(const HCVector4& v) {
+		HCVector4 vec = v;
+		hpm_vec4_normalizefv((hpmvec4f*)&vec);
+		return vec;
+	}
 
-HCVector4 minVec(const HCVector4& v1, const HCVector4& v2) {
-	HCVector4 vec;
-	hpm_vec4_minfv(&v1.e, &v2.e, &vec.e);
-	return vec;
-}
+	HCVector4 minVec(const HCVector4& v1, const HCVector4& v2) {
+		HCVector4 vec;
+		hpm_vec4_minfv(&v1.e, &v2.e, &vec.e);
+		return vec;
+	}
 
-HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2) {
-	HCVector4 vec;
-	hpm_vec4_maxfv(&v1.e, &v2.e, &vec.e);
-	return vec;
-}
+	HCVector4 maxVec(const HCVector4& v1, const HCVector4& v2) {
+		HCVector4 vec;
+		hpm_vec4_maxfv(&v1.e, &v2.e, &vec.e);
+		return vec;
+	}
 
-HCVector4& HCVector4::operator=(const HCVector4& v2) {
-	hpm_vec4_copyfv(&this->e, &v2.e);
-	return *this;
-}
+	HCVector4& HCVector4::operator=(const HCVector4& v2) {
+		hpm_vec4_copyfv(&this->e, &v2.e);
+		return *this;
+	}
 
-std::istream & operator>>(std::istream &is, HCVector4& t) {
-	float temp;
-	is >> temp;
-	t.setX(temp);
-	is >> temp;
-	t.setY(temp);
-	is >> temp;
-	t.setZ(temp);
-	is >> temp;
-	t.setW(temp);
-	return is;
-}
+	std::istream & operator>>(std::istream &is, HCVector4& t) {
+		float temp;
+		is >> temp;
+		t.setX(temp);
+		is >> temp;
+		t.setY(temp);
+		is >> temp;
+		t.setZ(temp);
+		is >> temp;
+		t.setW(temp);
+		return is;
+	}
 
-std::ostream & operator<<(std::ostream& os, const HCVector4& t) {
-	os << '(' << t.x() << " " << t.y() << " " << t.z() << " " << t.y()
-			<< ')';
-	return os;
+	std::ostream & operator<<(std::ostream& os, const HCVector4& t) {
+		os << '(' << t.x() << " " << t.y() << " " << t.z() << " " << t.y()
+				<< ')';
+		return os;
+	}
 }
 
 HCVector4 HCVector4::lerp(const HCVector4& vec1, const HCVector4& vec2, float speed){

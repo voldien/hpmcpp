@@ -144,6 +144,13 @@
 	#else
 		#define HCDECLSPEC
 	#endif
+#elif defined(HC_CLANG)
+	#if defined(HC_UNIX)
+		#define HCDECLSPEC	 __attribute__((visibility( default )))
+	#else
+		#define HCDECLSPEC
+	#endif
+
 #elif defined(HC_VC)
 	#if HC_INTERNAL
 		#define HCDECLSPEC __declspec(dllexport)
@@ -157,21 +164,23 @@
 
 #endif
 
-/**
- *	Class forwarding.
- */
-class HpmCpp;
-class HCQuaternion;
-class HCMatrix4x4;
-class HCMatrix3x3;
-class HCVector4;
-class HCVector3;
-class HCVector2;
-class HCRay;
-class HCONB;
-class HCOBB;
-class HCAABB;
-class HCPlane;
-class HCBoundingSphere;
+namespace hpmcpp{
+	/**
+	 *	Class forwarding.
+	*/
+	class HpmCpp;
+	class HCQuaternion;
+	class HCMatrix4x4;
+	class HCMatrix3x3;
+	class HCVector4;
+	class HCVector3;
+	class HCVector2;
+	class HCRay;
+	class HCONB;
+	class HCOBB;
+	class HCAABB;
+	class HCPlane;
+	class HCBoundingSphere;
+}
 
 #endif

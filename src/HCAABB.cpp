@@ -1,5 +1,7 @@
 #include"HCAABB.h"
 
+using namespace hpmcpp;
+
 HCAABB::HCAABB(const HCVector3& size, const HCVector3& center) {
 	setCenter(center);
 	setSize(size);

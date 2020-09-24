@@ -1,17 +1,6 @@
 #include"HCBoundingSphere.h"
 
-HCBoundingSphere::HCBoundingSphere(void) {
-
-}
-
-HCBoundingSphere::HCBoundingSphere(const HCVector3& center, float radius) {
-	this->setCenter(center);
-	this->setRadius(radius);
-}
-
-HCBoundingSphere::HCBoundingSphere(const HCBoundingSphere& boundingSphere) {
-	*this = boundingSphere;
-}
+using namespace hpmcpp;
 
 /*
 bool BoundingSphere::intersect(const Ray& ray) const {
@@ -32,19 +21,4 @@ bool BoundingSphere::intersect(const Ray& ray) const {
 	return false;
 }
 */
-
-HCBoundingSphere& HCBoundingSphere::operator=(const HCBoundingSphere& bounds) {
-	this->setRadius(bounds.getRadius());
-	this->setCenter(bounds.getCenter());
-	return *this;
-}
-
-
-bool HCAPIENTRY HCBoundingSphere::intersect(const HCBoundingSphere &sphere) const {
-	return false;
-}
-
-bool HCAPIENTRY HCBoundingSphere::contains(const HCBoundingSphere &sphere) const {
-    return false;
-}
 
