@@ -27,14 +27,14 @@ namespace hpmcpp {
 	 * w, x, y, z component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC HCQuaternion {
-		friend class HCMatrix4x4;
+	class HCDECLSPEC Quaternion {
+		friend class Matrix4x4;
 	public:
 
-		HCQuaternion(void) = default;
-		HCQuaternion(const HCQuaternion& quaternion);
-		HCQuaternion(float w, float x, float y, float z);
-		HCQuaternion(float pitch, float yaw, float roll);
+		Quaternion(void) = default;
+		Quaternion(const Quaternion& quaternion);
+		Quaternion(float w, float x, float y, float z);
+		Quaternion(float pitch, float yaw, float roll);
 
 		/**
 		 * Get individual component.
@@ -63,21 +63,21 @@ namespace hpmcpp {
 		 *
 		 * @return normalized direction vector.
 		 */
-		HCVector3 HCAPIENTRY up(void) const;
-		HCVector3 HCAPIENTRY forward(void) const;
+		Vector3 HCAPIENTRY up(void) const;
+		Vector3 HCAPIENTRY forward(void) const;
 
 		/**
 		 * Get
 		 * @return
 		 */
-		HCVector3 HCAPIENTRY getVector(void) const;
+		Vector3 HCAPIENTRY getVector(void) const;
 
 		/**
 		 * Get direction vector from direction
 		 * vector.
 		 * @return normalized direction vector.
 		 */
-		HCVector3 HCAPIENTRY getVector(const HCVector3& direction) const;
+		Vector3 HCAPIENTRY getVector(const Vector3& direction) const;
 
 		/**
 		 * Compute the magnitude.
@@ -96,7 +96,7 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		friend float HCAPIFASTENTRY dot(const HCQuaternion& lh, const HCQuaternion& rh);
+		friend float HCAPIFASTENTRY dot(const Quaternion& lh, const Quaternion& rh);
 
 		/**
 		 * Normalize quaternion.
@@ -108,7 +108,7 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		HCQuaternion HCAPIENTRY normalize(void) const;
+		Quaternion HCAPIENTRY normalize(void) const;
 
 		/**
 		 * Create conjugate quaternion from
@@ -116,20 +116,20 @@ namespace hpmcpp {
 		 *
 		 * @return conjugated quaternion.
 		 */
-		HCQuaternion HCAPIENTRY conjugate(void) const;
+		Quaternion HCAPIENTRY conjugate(void) const;
 
 		/**
 		 * Compute quaternion inverse.
 		 * @return
 		 */
-		HCQuaternion HCAPIENTRY inverse(void) const;
+		Quaternion HCAPIENTRY inverse(void) const;
 
 		/**
 		 *
 		 * @param exponent
 		 * @return
 		 */
-		HCQuaternion HCAPIENTRY exponent(float exponent) const;
+		Quaternion HCAPIENTRY exponent(float exponent) const;
 
 		/**
 		 * Get element by index.
@@ -143,13 +143,13 @@ namespace hpmcpp {
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCQuaternion& t);
+		friend std::istream &operator>>(std::istream &is, Quaternion& t);
 
 		/**
 		 * Create output stream of quaternion value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCQuaternion& t);
+		friend std::ostream &operator<<(std::ostream &os, const Quaternion& t);
 
 		/**
 		 *
@@ -157,8 +157,8 @@ namespace hpmcpp {
 		 * @param rh
 		 * @return
 		 */
-		friend HCQuaternion operator+(const HCQuaternion& lh,
-				const HCQuaternion& rh);
+		friend Quaternion operator+(const Quaternion& lh,
+				const Quaternion& rh);
 
 		/**
 		 *
@@ -166,45 +166,45 @@ namespace hpmcpp {
 		 * @param rh
 		 * @return
 		 */
-		friend HCQuaternion operator-(const HCQuaternion& lh,
-				const HCQuaternion& rh);
+		friend Quaternion operator-(const Quaternion& lh,
+				const Quaternion& rh);
 
 		/**
 		 *
 		 * @return
 		 */
-		friend HCQuaternion operator*(const HCQuaternion& lh,
-				const HCQuaternion& rh);
+		friend Quaternion operator*(const Quaternion& lh,
+				const Quaternion& rh);
 
 		/**
 		 * @return
 		 */
-		friend HCQuaternion operator*(const HCQuaternion& lh, const HCVector3& rh);
+		friend Quaternion operator*(const Quaternion& lh, const Vector3& rh);
 
 		/**
 		 * @return
 		 */
-		friend HCQuaternion operator*(const HCQuaternion& lh, float rh);
+		friend Quaternion operator*(const Quaternion& lh, float rh);
 
 		/**
 		 * @return
 		 */
-		HCQuaternion& operator*=(const HCQuaternion& rh);
-		HCQuaternion& operator*=(const HCVector3& rh);
-		HCQuaternion& operator*=(float rh);
+		Quaternion& operator*=(const Quaternion& rh);
+		Quaternion& operator*=(const Vector3& rh);
+		Quaternion& operator*=(float rh);
 
 		/**
 		 * @return
 		 */
-		HCQuaternion& operator=(const HCQuaternion& rh);
+		Quaternion& operator=(const Quaternion& rh);
 
 		/**
 		 * Compare quaternion equality by
 		 * checking component wise.
 		 * @return true if equal, false otherwise.
 		 */
-		friend bool operator==(const HCQuaternion& v1, const HCQuaternion& v2);
-		friend bool operator!=(const HCQuaternion& v1, const HCQuaternion& v2);
+		friend bool operator==(const Quaternion& v1, const Quaternion& v2);
+		friend bool operator!=(const Quaternion& v1, const Quaternion& v2);
 
 		/**
 		 * Get rotation of each axis in
@@ -237,7 +237,7 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		HCVector3 HCAPIENTRY getEular(void) const;
+		Vector3 HCAPIENTRY getEular(void) const;
 
 	private:	/*	Attributes.	*/
 
@@ -250,15 +250,15 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		static HCQuaternion HCAPIENTRY lookRotation(const HCVector3& target,
-				const HCVector3& pos, const HCVector3& up);
+		static Quaternion HCAPIENTRY lookRotation(const Vector3& target,
+				const Vector3& pos, const Vector3& up);
 
 		/**
 		 * Create quaternion from eular rotation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY createQuaternionOfAxis(float pitch,
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(float pitch,
 				float yaw, float roll);
 
 		/**
@@ -266,14 +266,14 @@ namespace hpmcpp {
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY createQuaternionOfAxis(
-				const HCVector3& axis);
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(
+				const Vector3& axis);
 
 		/**
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY createFromAxisAngle(const HCVector3& axis,
+		static Quaternion HCAPIENTRY createFromAxisAngle(const Vector3& axis,
 				float angle);
 
 		/**
@@ -281,30 +281,30 @@ namespace hpmcpp {
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY createQuaternionOfDirection(
-				HCVector3& direction);
+		static Quaternion HCAPIENTRY createQuaternionOfDirection(
+				Vector3& direction);
 
 		/**
 		 * Linear interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY lerp(const HCQuaternion& from,
-				const HCQuaternion& to, float speed);
+		static Quaternion HCAPIENTRY lerp(const Quaternion& from,
+				const Quaternion& to, float speed);
 
 		/**
 		 * Spherical interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static HCQuaternion HCAPIENTRY slerp(const HCQuaternion& from,
-				const HCQuaternion& to, float speed);
+		static Quaternion HCAPIENTRY slerp(const Quaternion& from,
+				const Quaternion& to, float speed);
 
 		/**
 		 * Create quaternion identity.
 		 * @return identitiy.
 		 */
-		static HCQuaternion HCAPIENTRY identity(void);
+		static Quaternion HCAPIENTRY identity(void);
 
 	};
 }

@@ -2,43 +2,43 @@
 
 using namespace hpmcpp;
 
-HCOBB::HCOBB(const HCOBB& obb) {
+OBB::OBB(const OBB& obb) {
 	*this = obb;
 }
 
-HCOBB::HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w) {
+OBB::OBB(const Vector3& u, const Vector3& v, const Vector3& w) {
 	this->onb.set(u, v, w);
 }
 
-HCOBB::HCOBB(const HCVector3& u, const HCVector3& v, const HCVector3& w,
-		const HCVector3& size) {
+OBB::OBB(const Vector3& u, const Vector3& v, const Vector3& w,
+		const Vector3& size) {
 	this->onb.set(u, v, w);
 	this->setSize(size);
 }
 
-const HCVector3& HCOBB::getU(void) const {
+const Vector3& OBB::getU(void) const {
 	return onb.u();
 }
 
-const HCVector3& HCOBB::getV(void) const {
+const Vector3& OBB::getV(void) const {
 	return onb.v();
 }
 
-const HCVector3& HCOBB::getW(void) const {
+const Vector3& OBB::getW(void) const {
 	return onb.w();
 }
 
-HCOBB& HCOBB::operator=(const HCOBB& obb) {
+OBB& OBB::operator=(const OBB& obb) {
 	this->onb = obb.onb;
 	this->setSize(obb.getSize());
 	return *this;
 }
 
-std::istream &operator>>(std::istream &is, HCOBB &t) {
+std::istream &operator>>(std::istream &is, OBB &t) {
     return is;
 }
 
-std::ostream &operator<<(std::ostream &os, const HCOBB &t) {
+std::ostream &operator<<(std::ostream &os, const OBB &t) {
 	return os;
 }
 

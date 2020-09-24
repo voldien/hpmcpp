@@ -2,87 +2,87 @@
 
 using namespace hpmcpp;
 
-HCVector3::HCVector3(float val) {
+Vector3::Vector3(float val) {
 	hpm_vec4_setf(&this->e, val, val, val, val);
 }
-HCVector3::HCVector3(float e0, float e1, float e2) {
+Vector3::Vector3(float e0, float e1, float e2) {
 	hpm_vec4_setf(&this->e, e0, e1, e2, 0);
 }
-HCVector3::HCVector3(const HCVector3& v){
+Vector3::Vector3(const Vector3& v){
 	*this = v;
 }
 
-float HCVector3::x(void) const {
+float Vector3::x(void) const {
 	return hpm_vec4_getxf(this->e);
 }
-float HCVector3::y(void) const {
+float Vector3::y(void) const {
 	return hpm_vec4_getyf(this->e);
 }
-float HCVector3::z(void) const {
+float Vector3::z(void) const {
 	return hpm_vec4_getzf(this->e);
 }
 
-void HCVector3::setX(float _x) {
+void Vector3::setX(float _x) {
 	hpm_vec4_setxf(this->e, _x);
 }
-void HCVector3::setY(float _y) {
+void Vector3::setY(float _y) {
 	hpm_vec4_setyf(this->e, _y);
 }
-void HCVector3::setZ(float _z) {
+void Vector3::setZ(float _z) {
 	hpm_vec4_setzf(this->e, _z);
 }
 
 
-const HCVector3 &HCVector3::operator+(void) const {
+const Vector3 &Vector3::operator+(void) const {
 	return *this;
 }
 
-HCVector3 HCVector3::operator-(void) const {
-	HCVector3 copy = *this;
+Vector3 Vector3::operator-(void) const {
+	Vector3 copy = *this;
 	hpm_vec4_negatefv(&copy.e);
 	return copy;
 }
 
-float HCVector3::operator[](int i) const {
+float Vector3::operator[](int i) const {
 	return this->e[i];
 }
-float& HCVector3::operator[](int i) {
+float& Vector3::operator[](int i) {
 	//return this->e[i];
 }
 
-float HCVector3::length(void) const {
+float Vector3::length(void) const {
 	return hpm_vec3_lengthfv(&this->e);
 }
-float HCVector3::squaredLength(void) const {
+float Vector3::squaredLength(void) const {
 	return hpm_vec3_lengthsquarefv(&this->e);
 }
-void HCVector3::makeUnitVector(void) {
+void Vector3::makeUnitVector(void) {
 	*this = *this / (*this).length();
 }
-float HCVector3::minComponent(void) const {
+float Vector3::minComponent(void) const {
 	return hpm_vec4_min_compfv(&this->e);
 }
 
-HCVector3 HCVector3::normalize(void) const {
+Vector3 Vector3::normalize(void) const {
 	float l = 1.0f / this->length();
 	return (*this * l);
 }
 
-float HCVector3::maxComponent(void) const {
+float Vector3::maxComponent(void) const {
 	return hpm_vec4_max_compfv(&this->e);
 }
 
-float HCVector3::maxAbsComponent(void) const {
+float Vector3::maxAbsComponent(void) const {
 	return fabs(hpm_vec4_max_compfv(&this->e));
 }
 
-float HCVector3::minAbsComponent(void) const {
+float Vector3::minAbsComponent(void) const {
 	return fabs(hpm_vec4_min_compfv(&this->e));
 }
 
 namespace hpmcpp{
 
-	bool operator==(const HCVector3& v1, const HCVector3& v2) {
+	bool operator==(const Vector3& v1, const Vector3& v2) {
 		if (v1.e[0] != v2.e[0])
 			return false;
 		if (v1.e[1] != v2.e[1])
@@ -92,48 +92,48 @@ namespace hpmcpp{
 		return true;
 	}
 
-	bool operator!=(const HCVector3& v1, const HCVector3& v2) {
+	bool operator!=(const Vector3& v1, const Vector3& v2) {
 		return !(v1 == v2);
 	}
 
-	HCVector3 operator*(float scalar, const HCVector3& vec) {
-		return HCVector3(vec.e[0] * scalar, vec.e[1] * scalar, vec.e[2] * scalar);
+	Vector3 operator*(float scalar, const Vector3& vec) {
+		return Vector3(vec.e[0] * scalar, vec.e[1] * scalar, vec.e[2] * scalar);
 	}
 
-	HCVector3 operator*(const HCVector3& vec1, const HCVector3& vec2) {
-		return HCVector3(vec1.e[0] * vec2.e[0], vec1.e[1] * vec2.e[1],
+	Vector3 operator*(const Vector3& vec1, const Vector3& vec2) {
+		return Vector3(vec1.e[0] * vec2.e[0], vec1.e[1] * vec2.e[1],
 				vec1.e[2] * vec2.e[2]);
 	}
 
-	HCVector3 operator+(const HCVector3& v1, const HCVector3& v2) {
-		return HCVector3(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z());
+	Vector3 operator+(const Vector3& v1, const Vector3& v2) {
+		return Vector3(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z());
 	}
 
-	HCVector3 operator-(float v1, const HCVector3& v2) {
-		return HCVector3(v1 - v2.x(), v1 - v2.y(), v1 - v2.z());
+	Vector3 operator-(float v1, const Vector3& v2) {
+		return Vector3(v1 - v2.x(), v1 - v2.y(), v1 - v2.z());
 	}
-	HCVector3 operator-(const HCVector3& v1, const HCVector3& v2) {
-		return HCVector3(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z());
+	Vector3 operator-(const Vector3& v1, const Vector3& v2) {
+		return Vector3(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z());
 	}
 
-	float dot(const HCVector3& v1, const HCVector3& v2) {
+	float dot(const Vector3& v1, const Vector3& v2) {
 		return hpm_vec3_dotfv(&v1.e, &v2.e);
 	}
 
-	HCVector3 cross(const HCVector3& v1, const HCVector3& v2) {
-		HCVector3 cr;
+	Vector3 cross(const Vector3& v1, const Vector3& v2) {
+		Vector3 cr;
 		hpm_vec3_crossproductfv(&v1.e, &v2.e, &cr.e);
 		return cr;
 	}
 
-	HCVector3 unitVector(const HCVector3& v) {
-		HCVector3 vec = v;
+	Vector3 unitVector(const Vector3& v) {
+		Vector3 vec = v;
 		hpm_vec3_normalizefv((hpmvec3f*)&vec);
 		return vec;
 	}
 
-	HCVector3 minVec(const HCVector3& v1, const HCVector3& v2) {
-		HCVector3 vec(v1);
+	Vector3 minVec(const Vector3& v1, const Vector3& v2) {
+		Vector3 vec(v1);
 		if (v2.x() < v1.x())
 			vec.setX(v2.x());
 		if (v2.y() < v1.y())
@@ -143,8 +143,8 @@ namespace hpmcpp{
 		return vec;
 	}
 
-	HCVector3 maxVec(const HCVector3& v1, const HCVector3& v2) {
-		HCVector3 vec(v1);
+	Vector3 maxVec(const Vector3& v1, const Vector3& v2) {
+		Vector3 vec(v1);
 		if (v2.x() > v1.x())
 			vec.setX(v2.x());
 		if (v2.y() > v1.y())
@@ -154,85 +154,85 @@ namespace hpmcpp{
 		return vec;
 	}
 
-	HCVector3 reflection(const HCVector3& vector, const HCVector3& normal) {
-		HCVector3 vec;
+	Vector3 reflection(const Vector3& vector, const Vector3& normal) {
+		Vector3 vec;
 		hpm_vec3_reflectfv(&vector.e, &normal.e, &vec.e);
 		return vec;
 	}
 
-	HCVector3 refraction(const HCVector3& v1, const HCVector3& normal, float refraction) {
-		return HCVector3();
+	Vector3 refraction(const Vector3& v1, const Vector3& normal, float refraction) {
+		return Vector3();
 	}
 
-	HCVector3 tangent(const HCVector3& normal) {
-		HCVector3 tangent = cross(normal, HCVector3::forward());
+	Vector3 tangent(const Vector3& normal) {
+		Vector3 tangent = cross(normal, Vector3::forward());
 
 		if (tangent.length() == 0.0f) {	// if magnitude == is equal to 0
-			tangent = cross(normal, HCVector3::up());
+			tangent = cross(normal, Vector3::up());
 		}
 		return tangent;
 	}
 
 
-	HCVector3 biTangent(const HCVector3& normal, const HCVector3& tangent) {
+	Vector3 biTangent(const Vector3& normal, const Vector3& tangent) {
 		return cross(normal, tangent);
 	}
 
-	HCVector3 biNormal(const HCVector3& normal, const HCVector3& tangent) {
+	Vector3 biNormal(const Vector3& normal, const Vector3& tangent) {
 		return cross(tangent, normal);
 	}
 
-	HCVector3 operator*(const HCVector3&vec, float scalar) {
-		return HCVector3(vec.x() * scalar, vec.y() * scalar, vec.z() * scalar);
+	Vector3 operator*(const Vector3&vec, float scalar) {
+		return Vector3(vec.x() * scalar, vec.y() * scalar, vec.z() * scalar);
 	}
 
-	HCVector3 operator/(const HCVector3&vec, float scalar) {
-		return HCVector3(vec.x() / scalar, vec.y() / scalar, vec.z() / scalar);
+	Vector3 operator/(const Vector3&vec, float scalar) {
+		return Vector3(vec.x() / scalar, vec.y() / scalar, vec.z() / scalar);
 	}
 }
 
-HCVector3& HCVector3::operator=(const HCVector3& v2) {
+Vector3& Vector3::operator=(const Vector3& v2) {
 	hpm_vec4_copyfv(&this->e, &v2.e);
 	return *this;
 }
 
-HCVector3& HCVector3::operator+=(const HCVector3& vec2) {
+Vector3& Vector3::operator+=(const Vector3& vec2) {
 	*this = *this + vec2;
 	return *this;
 }
 
-HCVector3& HCVector3::operator-=(const HCVector3& vec2) {
+Vector3& Vector3::operator-=(const Vector3& vec2) {
 	*this = *this - vec2;
 	return *this;
 }
 
-HCVector3& HCVector3::operator*=(float scalar) {
+Vector3& Vector3::operator*=(float scalar) {
 	*this = *this * scalar;
 	return *this;
 }
 
-HCVector3 &HCVector3::operator/=(float scalar) {
+Vector3 &Vector3::operator/=(float scalar) {
 	*this = *this / scalar;
 	return *this;
 }
 
 namespace hpmcpp {
-	float tripleProduct(const HCVector3& v1, const HCVector3& v2, const HCVector3& v3) {
+	float tripleProduct(const Vector3& v1, const Vector3& v2, const Vector3& v3) {
 		return hpm_vec3_tripleProductfv(&v1.e, &v2.e, &v3.e);
 	}
 }
 
-HCVector3 HCVector3::lerp(const HCVector3& vec1, const HCVector3& vec2, float t) {
+Vector3 Vector3::lerp(const Vector3& vec1, const Vector3& vec2, float t) {
 	return (vec1 + (vec2 - vec1) * t);
 }
 
-HCVector3 HCVector3::slerp(const HCVector3& vec1, const HCVector3& vec2, float t) {
-	return HCVector3();
+Vector3 Vector3::slerp(const Vector3& vec1, const Vector3& vec2, float t) {
+	return Vector3();
 }
 
 namespace hpmcpp {
 
-	std::istream & operator>>(std::istream &is, HCVector3 &t) {
+	std::istream & operator>>(std::istream &is, Vector3 &t) {
 		float temp;
 		is >> temp;
 		t.setX(temp);
@@ -243,14 +243,14 @@ namespace hpmcpp {
 		return is;
 	}
 
-	std::ostream & operator<<(std::ostream& os, const HCVector3&t) {
+	std::ostream & operator<<(std::ostream& os, const Vector3&t) {
 		os << '(' << t.x() << " " << t.y() << " " << t.z() << ')';
 		return os;
 	}
 
 
-	HCVector3 unitVector3(const HCVector3 &v) {
-		HCVector3 unit = v;
+	Vector3 unitVector3(const Vector3 &v) {
+		Vector3 unit = v;
 		hpm_vec4_setwf(unit.e, 0.0f);
 		hpm_vec4_normalizefv(&unit.e);
 		return unit;

@@ -24,11 +24,11 @@ namespace hpmcpp {
 	 * Right handed 4x4 Matrix
 	 * with single precision.
 	 */
-	class HCDECLSPEC HCMatrix4x4{
+	class HCDECLSPEC Matrix4x4{
 	public:
-		HCMatrix4x4(void) = default;
-		HCMatrix4x4(const HCMatrix4x4& other);
-		~HCMatrix4x4(void) = default;
+		Matrix4x4(void) = default;
+		Matrix4x4(const Matrix4x4& other);
+		~Matrix4x4(void) = default;
 
 	private:	/*	Attributes.	*/
 		hpmvec4x4f_t e;
@@ -56,14 +56,14 @@ namespace hpmcpp {
 		 *
 		 * @return inversed matrix if successful.
 		 */
-		HCMatrix4x4 HCAPIENTRY inverse(void) const;
+		Matrix4x4 HCAPIENTRY inverse(void) const;
 
 		/**
 		 * Transpose the matrix.
 		 *
 		 * @return transposed matrix.
 		 */
-		HCMatrix4x4 HCAPIENTRY transpose(void) const;
+		Matrix4x4 HCAPIENTRY transpose(void) const;
 
 		/**
 		 * Get element by index.
@@ -75,70 +75,70 @@ namespace hpmcpp {
 		 * Multiply matrix by scale factor.
 		 * @return
 		 */
-		HCMatrix4x4 operator*(float rh) const;
+		Matrix4x4 operator*(float rh) const;
 
 		/**
 		 * Multiply matrix with matrix.
 		 * @return matrix product.
 		 */
-		HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
+		Matrix4x4 operator*(const Matrix4x4& rh) const;
 
 		/**
 		 *
 		 * @return
 		 */
-		HCVector4 operator*(const HCVector4& rh) const;
+		Vector4 operator*(const Vector4& rh) const;
 
 		/**
 		 * @return
 		 */
-		HCMatrix4x4 operator+(const HCMatrix4x4& rh) const;
+		Matrix4x4 operator+(const Matrix4x4& rh) const;
 
 		/**
 		 * @return
 		 */
-		HCMatrix4x4 operator-(const HCMatrix4x4& rh) const;
+		Matrix4x4 operator-(const Matrix4x4& rh) const;
 
 		/**
 		 * Assign matrix.
 		 * @return
 		 */
-		HCMatrix4x4& operator=(const HCMatrix4x4& rh);
+		Matrix4x4& operator=(const Matrix4x4& rh);
 
 		/**
 		 * @return
 		 */
-		HCMatrix4x4& operator+=(const HCMatrix4x4& rh);
+		Matrix4x4& operator+=(const Matrix4x4& rh);
 
 		/**
 		 * @return
 		 */
-		HCMatrix4x4& operator-=(const HCMatrix4x4& rh);
+		Matrix4x4& operator-=(const Matrix4x4& rh);
 
 		/**
 		 * @return
 		 */
-		HCMatrix4x4& operator*=(const HCMatrix4x4& rh);
+		Matrix4x4& operator*=(const Matrix4x4& rh);
 
 		/**
 		 * Equalitiy
 		 * @return
 		 */
-		bool operator==(const HCMatrix4x4& rh);
-		bool operator!=(const HCMatrix4x4& rh);
+		bool operator==(const Matrix4x4& rh);
+		bool operator!=(const Matrix4x4& rh);
 
 		/**
 		 * Create input stream for creating matrix
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCMatrix4x4& t);
+		friend std::istream &operator>>(std::istream &is, Matrix4x4& t);
 
 		/**
 		 * Create output stream of matrix value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCMatrix4x4& t);
+		friend std::ostream &operator<<(std::ostream &os, const Matrix4x4& t);
 
 
 	public:	/*	Static methods.	*/
@@ -148,49 +148,49 @@ namespace hpmcpp {
 		 *
 		 * @return translated matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY translate(float x, float y, float z);
+		static Matrix4x4 HCAPIENTRY translate(float x, float y, float z);
 
 		/**
 		 * Create translation matrix.
 		 *
 		 * @return translated matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY translate(const HCVector3& translation);
+		static Matrix4x4 HCAPIENTRY translate(const Vector3& translation);
 
 		/**
 		 * Create rotation matrix from angle around the axis.
 		 *
 		 * @return rotation matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY rotate(float angle, const HCVector3& axis);
+		static Matrix4x4 HCAPIENTRY rotate(float angle, const Vector3& axis);
 
 		/**
 		 * Create rotation matrix from quaternion.
 		 *
 		 * @return rotation matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY rotate(const HCQuaternion& quat);
+		static Matrix4x4 HCAPIENTRY rotate(const Quaternion& quat);
 
 		/**
 		 * Create scale matrix.
 		 *
 		 * @return scale matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY scale(float x, float y, float z);
+		static Matrix4x4 HCAPIENTRY scale(float x, float y, float z);
 
 		/**
 		 * Create scale matrix.
 		 *
 		 * @return scale matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY scale(const HCVector3& scale);
+		static Matrix4x4 HCAPIENTRY scale(const Vector3& scale);
 
 		/**
 		 * Create look at matrix.
 		 * @return model matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY lookAt(const HCVector3& lookPosition,
-				const HCVector3& position, const HCVector3& up);
+		static Matrix4x4 HCAPIENTRY lookAt(const Vector3& lookPosition,
+				const Vector3& position, const Vector3& up);
 
 		/**
 		 * Create perspectice matrix.
@@ -205,7 +205,7 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		static HCMatrix4x4 HCAPIENTRY perspective(float fov, float aspect,
+		static Matrix4x4 HCAPIENTRY perspective(float fov, float aspect,
 				float near, float far);
 
 		/**
@@ -219,7 +219,7 @@ namespace hpmcpp {
 		 * @far
 		 * @return
 		 */
-		static HCMatrix4x4 HCAPIENTRY orth(float left, float right, float bottom,
+		static Matrix4x4 HCAPIENTRY orth(float left, float right, float bottom,
 				float top, float near, float far);
 
 		/**
@@ -234,21 +234,21 @@ namespace hpmcpp {
 		 * @param pos position inside the projection space.
 		 * @return non-zero if successfully unproject.
 		 */
-		static int HCAPIENTRY unProject(float winx, float winy, float winz, const HCMatrix4x4 *projection,
-										const HCMatrix4x4 *modelview, const int *HPM_RESTRICT viewport,
+		static int HCAPIENTRY unProject(float winx, float winy, float winz, const Matrix4x4 *projection,
+										const Matrix4x4 *modelview, const int *HPM_RESTRICT viewport,
 										HCVector3 *HPM_RESTRICT pos);
 
 		/**
 		 * Create bias matrix.
 		 * @return bias matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY biasMatrix(void);
+		static Matrix4x4 HCAPIENTRY biasMatrix(void);
 
 		/**
 		 * Create identity matrix.
 		 * @return identity matrix.
 		 */
-		static HCMatrix4x4 HCAPIENTRY identity(void);
+		static Matrix4x4 HCAPIENTRY identity(void);
 	};
 }
 

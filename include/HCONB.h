@@ -26,44 +26,44 @@ namespace hpmcpp {
 	/**
 	 *	ORTHONORMAL BASED AND FRAMES
 	*/
-	class HCDECLSPEC HCONB {
+	class HCDECLSPEC ONB {
 	public:
-		HCONB(void) = default;
-		HCONB(const HCONB& other);
-		HCONB(const HCVector3& a, const HCVector3& b, const HCVector3& c);
+		ONB(void) = default;
+		ONB(const ONB& other);
+		ONB(const Vector3& a, const Vector3& b, const Vector3& c);
 
 		/**
 		 *
 		 */
-		void initFromU(const HCVector3& u);
-		void initFromV(const HCVector3& v);
-		void initFromW(const HCVector3& w);
+		void initFromU(const Vector3& u);
+		void initFromV(const Vector3& v);
+		void initFromW(const Vector3& w);
 
 		/**
 		 *
 		 */
-		void set(const HCVector3& a, const HCVector3& b, const HCVector3& c);
-		void setU(const HCVector3& u);
-		void setV(const HCVector3& v);
-		void setW(const HCVector3& w);
+		void set(const Vector3& a, const Vector3& b, const Vector3& c);
+		void setU(const Vector3& u);
+		void setV(const Vector3& v);
+		void setW(const Vector3& w);
 
 		/**
 		 *
 		 */
-		void initFromUV(const HCVector3& u, const HCVector3& v);
-		void initFromVU(const HCVector3& v, const HCVector3& u);
+		void initFromUV(const Vector3& u, const Vector3& v);
+		void initFromVU(const Vector3& v, const Vector3& u);
 
 		/**
 		 *
 		 */
-		void initFromUW(const HCVector3& u, const HCVector3& w);
-		void initFromWU(const HCVector3& w, const HCVector3& u);
+		void initFromUW(const Vector3& u, const Vector3& w);
+		void initFromWU(const Vector3& w, const Vector3& u);
 
 		/**
 		 *
 		 */
-		void initFromVW(const HCVector3& v, const HCVector3& w);
-		void initFromWV(const HCVector3& w, const HCVector3& v);
+		void initFromVW(const Vector3& v, const Vector3& w);
+		void initFromWV(const Vector3& w, const Vector3& v);
 
 		/**
 		 *
@@ -71,7 +71,7 @@ namespace hpmcpp {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream& is, HCONB& t);
+		friend std::istream &operator>>(std::istream& is, ONB& t);
 
 		/**
 		 *
@@ -79,46 +79,46 @@ namespace hpmcpp {
 		 * @param t
 		 * @return
 		 */
-		friend std::ostream &operator<<(std::ostream& os, const HCONB& t);
+		friend std::ostream &operator<<(std::ostream& os, const ONB& t);
 
 		/**
 		 *	Compare 
 		* @return true if equal.
 		*/
-		friend bool operator==(const HCONB& o1, const HCONB& o2);
+		friend bool operator==(const ONB& o1, const ONB& o2);
 
 		/**
 		 *	Compare 
 		* @return true if equal.
 		*/
-		friend bool operator!=(const HCONB& o1, const HCONB& o2);
+		friend bool operator!=(const ONB& o1, const ONB& o2);
 
-		HCONB& operator=(const HCONB& onb);
+		ONB& operator=(const ONB& onb);
 
 		/**
 		 * @return
 		 */
-		inline const HCVector3& u(void) const {
+		inline const Vector3& u(void) const {
 			return this->m[0];
 		}
 
 		/**
 		 * @return
 		 */
-		inline const HCVector3& v(void) const {
+		inline const Vector3& v(void) const {
 			return this->m[1];
 		}
 
 		/**
 		 * @return
 		 */
-		inline const HCVector3& w(void) const {
+		inline const Vector3& w(void) const {
 			return this->m[2];
 		}
 
 	private:	/*	Attributes.	*/
 
-		HCVector3 m[3];		/*	*/
+		Vector3 m[3];		/*	*/
 
 	};
 }

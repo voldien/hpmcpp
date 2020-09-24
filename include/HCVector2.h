@@ -24,18 +24,18 @@ namespace hpmcpp {
 	/**
 	 * Vector2.
 	 */
-	class HCDECLSPEC HCVector2 {
+	class HCDECLSPEC Vector2 {
 	public:
-		HCVector2(void) = default;
-		HCVector2(float val);
-		HCVector2(float m0, float m1);
-		HCVector2(const HCVector2& v);
+		Vector2(void) = default;
+		Vector2(float val);
+		Vector2(float m0, float m1);
+		Vector2(const Vector2& v);
 
 		/**
 		 * Negate vector.
 		 * @return
 		 */
-		HCVector2& operator-(void) const;
+		Vector2& operator-(void) const;
 
 		/**
 		 * Get vector component by index.
@@ -104,52 +104,52 @@ namespace hpmcpp {
 		 * Create normalize copy
 		 * @return
 		 */
-		HCVector2 normalize(void) const;
+		Vector2 normalize(void) const;
 
 		/**
 		 * Compare vector equalities.
 		 * @return true if vector equal for each component.
 		 */
-		friend bool operator==(const HCVector2& v1, const HCVector2& v2);
+		friend bool operator==(const Vector2& v1, const Vector2& v2);
 		/**
 		 * Compare vector inequality.
 		 * @return true if at least single component is not equal.
 		 */
-		friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
+		friend bool operator!=(const Vector2& v1, const Vector2& v2);
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream& operator>>(std::istream &is, HCVector2& t);
+		friend std::istream& operator>>(std::istream &is, Vector2& t);
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream& operator<<(std::ostream &os, const HCVector2& t);
+		friend std::ostream& operator<<(std::ostream &os, const Vector2& t);
 
-		friend HCVector2 operator+(const HCVector2& v1, const HCVector2& v2);
-		friend HCVector2 operator-(const HCVector2& v1, const HCVector2& v2);
-		friend HCVector2 operator/(const HCVector2& vec, float scalar);
-		friend HCVector2 operator*(const HCVector2& vec, float scalar);
-		friend HCVector2 operator*(float scalar, const HCVector2& vec);
-		friend HCVector2 operator*(const HCVector2& vec1, const HCVector2& vec2);
+		friend Vector2 operator+(const Vector2& v1, const Vector2& v2);
+		friend Vector2 operator-(const Vector2& v1, const Vector2& v2);
+		friend Vector2 operator/(const Vector2& vec, float scalar);
+		friend Vector2 operator*(const Vector2& vec, float scalar);
+		friend Vector2 operator*(float scalar, const Vector2& vec);
+		friend Vector2 operator*(const Vector2& vec1, const Vector2& vec2);
 
-		HCVector2& operator=(const HCVector2& v2);
-		HCVector2& operator+=(const HCVector2& v2);
-		HCVector2& operator-=(const HCVector2& v2);
-		HCVector2& operator/=(float scalar);
-		HCVector2& operator*=(float scalar);
-		HCVector2& operator*=(const HCVector2& vec2);
+		Vector2& operator=(const Vector2& v2);
+		Vector2& operator+=(const Vector2& v2);
+		Vector2& operator-=(const Vector2& v2);
+		Vector2& operator/=(float scalar);
+		Vector2& operator*=(float scalar);
+		Vector2& operator*=(const Vector2& vec2);
 
 		/**
 		 *
 		 * @param v
 		 * @return
 		 */
-		friend HCVector2 unitVector3(const HCVector2& v);
+		friend Vector2 unitVector3(const Vector2& v);
 
 		/**
 		 *
@@ -157,7 +157,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector2 minVec(const HCVector2& v1, const HCVector2& v2);
+		friend Vector2 minVec(const Vector2& v1, const Vector2& v2);
 
 		/**
 		 *
@@ -165,7 +165,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector2 maxVec(const HCVector2& v1, const HCVector2& v2);
+		friend Vector2 maxVec(const Vector2& v1, const Vector2& v2);
 
 		/**
 		 *
@@ -173,8 +173,8 @@ namespace hpmcpp {
 		 * @param normal
 		 * @return
 		 */
-		friend HCVector2 reflection(const HCVector2& vector,
-				const HCVector2& normal);
+		friend Vector2 reflection(const Vector2& vector,
+				const Vector2& normal);
 
 		/**
 		 * Compute dot product.
@@ -182,7 +182,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend float dot(const HCVector2& v1, const HCVector2& v2);
+		friend float dot(const Vector2& v1, const Vector2& v2);
 
 	private:	/*	Attributes.	*/
 
@@ -194,8 +194,8 @@ namespace hpmcpp {
 		 * Create zero vector.
 		 * @return HCVector2 object.
 		 */
-		static HCVector2 zero(void) {
-			return HCVector2(0.0f);
+		static Vector2 zero(void) {
+			return Vector2(0.0f);
 		}
 	};
 }

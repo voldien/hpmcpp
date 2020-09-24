@@ -24,14 +24,14 @@ namespace hpmcpp {
 	/**
 	 *	Right handed Matrix3x3.
 	*/
-	class HCDECLSPEC HCMatrix3x3{
+	class HCDECLSPEC Matrix3x3{
 	public:
-		HCMatrix3x3(void);
-		HCMatrix3x3(const HCMatrix3x3& other);
-		explicit HCMatrix3x3(const HCMatrix4x4& Identity);
-		explicit HCMatrix3x3(float* matrix);
-		explicit HCMatrix3x3(const double* matrix);
-		explicit HCMatrix3x3(float identity);
+		Matrix3x3(void);
+		Matrix3x3(const Matrix3x3& other);
+		explicit Matrix3x3(const Matrix4x4& Identity);
+		explicit Matrix3x3(float* matrix);
+		explicit Matrix3x3(const double* matrix);
+		explicit Matrix3x3(float identity);
 
 	private:	/*	Attributes.	*/
 
@@ -48,7 +48,7 @@ namespace hpmcpp {
 		/**
 		 * @return
 		 */
-		HCMatrix3x3 HCAPIENTRY inverse(void);
+		Matrix3x3 HCAPIENTRY inverse(void);
 
 		/**
 		 * @return
@@ -58,51 +58,51 @@ namespace hpmcpp {
 		/**
 		 * @return
 		 */
-		HCMatrix4x4 HCAPIENTRY identity(void);
+		Matrix4x4 HCAPIENTRY identity(void);
 
 		/**
 		 * Create transpose matrix.
 		 * @return
 		 */
-		HCMatrix3x3 HCAPIENTRY transpose(void) const;
+		Matrix3x3 HCAPIENTRY transpose(void) const;
 
 		/**
 		 * @return
 		 */
-		HCVector3& operator[](const unsigned int index);
+		Vector3& operator[](const unsigned int index);
 		float* operator[](int index)const;
 
 		/**
 		 * @return
 		 */
-		HCMatrix3x3 operator*(const HCMatrix3x3& rh) const;
-		HCMatrix4x4 operator*(const HCMatrix4x4& rh) const;
-		HCMatrix3x3 operator+(const HCMatrix3x3& rh) const;
-		HCMatrix3x3 operator-(const HCMatrix3x3& rh) const;
-		HCMatrix3x3 operator/(const HCMatrix3x3& rh) const;
+		Matrix3x3 operator*(const Matrix3x3& rh) const;
+		Matrix4x4 operator*(const Matrix4x4& rh) const;
+		Matrix3x3 operator+(const Matrix3x3& rh) const;
+		Matrix3x3 operator-(const Matrix3x3& rh) const;
+		Matrix3x3 operator/(const Matrix3x3& rh) const;
 
 		/**
 		 * @return
 		 */
-		HCMatrix3x3& operator=(const HCMatrix3x3& rh);
-		HCMatrix3x3& operator=(const HCMatrix4x4& rh);
-		HCMatrix3x3& operator+=(const HCMatrix3x3& rh);
-		HCMatrix3x3& operator-=(const HCMatrix3x3& rh);
-		HCMatrix3x3& operator*=(const HCMatrix3x3& rh);
-		HCMatrix3x3& operator/=(const HCMatrix3x3& rh);
+		Matrix3x3& operator=(const Matrix3x3& rh);
+		Matrix3x3& operator=(const Matrix4x4& rh);
+		Matrix3x3& operator+=(const Matrix3x3& rh);
+		Matrix3x3& operator-=(const Matrix3x3& rh);
+		Matrix3x3& operator*=(const Matrix3x3& rh);
+		Matrix3x3& operator/=(const Matrix3x3& rh);
 
 		/**
 		 * Create input stream for creating matrix
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCMatrix3x3& t);
+		friend std::istream &operator>>(std::istream &is, Matrix3x3& t);
 
 		/**
 		 * Create output stream of matrix value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCMatrix3x3& t);
+		friend std::ostream &operator<<(std::ostream &os, const Matrix3x3& t);
 	};
 }
 

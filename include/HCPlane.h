@@ -21,21 +21,21 @@
 #include"HCVector3.h"
 #include<iostream>
 
-	namespace hpmcpp {
+namespace hpmcpp {
 	/**
 	 *
 	 */
-	class HCDECLSPEC HCPlane {
+	class HCDECLSPEC Plane {
 	public:
-		HCPlane(void);
-		HCPlane(const HCVector3& normal){
+		Plane(void);
+		Plane(const Vector3& normal){
 			this->normal = normal;
 			this->d = 0;
 		}
-		HCPlane(const HCVector3& point, const HCVector3& normal){
+		Plane(const Vector3& point, const Vector3& normal){
 			this->setNormalAndPoint(normal, point);
 		}
-		HCPlane(const HCPlane& plane){
+		Plane(const Plane& plane){
 			*this = plane;
 		}
 
@@ -43,7 +43,7 @@
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline HCVector3 getNormal(void){
+		inline Vector3 getNormal(void){
 			return this->normal;
 		}
 
@@ -51,7 +51,7 @@
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline const HCVector3& getNormal(void) const {
+		inline const Vector3& getNormal(void) const {
 			return this->normal;
 		}
 
@@ -59,7 +59,7 @@
 		 * Set plane normal.
 		 * @param normal
 		 */
-		inline void setNormal(const HCVector3& normal) {
+		inline void setNormal(const Vector3& normal) {
 			this->normal = normal;
 		}
 
@@ -68,7 +68,7 @@
 		 * @param point
 		 * @return
 		 */
-		inline float distance(const HCVector3& point) const {
+		inline float distance(const Vector3& point) const {
 			return dot(normal, point) + d;
 		}
 
@@ -84,7 +84,7 @@
 		 * Get point.
 		 * @return
 		 */
-		inline HCVector3 getPoint(void) const {
+		inline Vector3 getPoint(void) const {
 			return d * this->getNormal();
 		}
 
@@ -92,7 +92,7 @@
 		 * Set normal and point and
 		 * compute internal values.
 		 */
-		void setNormalAndPoint(const HCVector3& normal, const HCVector3& point) {
+		void setNormalAndPoint(const Vector3& normal, const Vector3& point) {
 			this->normal = normal.normalize();
 			this->d = -dot(this->normal, point);
 		}
@@ -100,7 +100,7 @@
 		/**
 		 * Construct plane.
 		 */
-		void set3DPoints(const HCVector3& v1, const HCVector3& v2, const HCVector3& v3) {
+		void set3DPoints(const Vector3& v1, const Vector3& v2, const Vector3& v3) {
 			this->normal = cross((v1 - v2), (v1 - v3)).normalize();
 			this->d = -dot(this->normal, v2);
 		}
@@ -108,29 +108,29 @@
 		/**
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream& is, HCPlane& t);
+		friend std::istream &operator>>(std::istream& is, Plane& t);
 
 		/**
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream& is, const HCPlane& t);
+		friend std::ostream &operator<<(std::ostream& is, const Plane& t);
 
 
 		/**
 		 * Compare if plane equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator==(const HCPlane& o1, const HCPlane& o2);
+		friend bool operator==(const Plane& o1, const Plane& o2);
 
 		/**
 		 * Compare if plane not equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator!=(const HCPlane& o1, const HCPlane& o2);
+		friend bool operator!=(const Plane& o1, const Plane& o2);
 
 	protected:  /*	Attributes.	*/
 
-		HCVector3 normal;   /*	*/
+		Vector3 normal;   /*	*/
 		float d;            /*	*/
 
 	public: /*	Static methods.	*/
@@ -142,11 +142,11 @@
 		 * @param v3
 		 * @return
 		 */
-		static HCPlane HCAPIENTRY fromPoints(const HCVector3& v1, const HCVector3& v2,
-				const HCVector3& v3){
-			HCPlane tmp;
-			HCVector3 e1 = v2 - v1;
-			HCVector3 e2 = v3 - v1;
+		static Plane HCAPIENTRY fromPoints(const Vector3& v1, const Vector3& v2,
+				const Vector3& v3){
+			Plane tmp;
+			Vector3 e1 = v2 - v1;
+			Vector3 e2 = v3 - v1;
 
 			tmp.normal = cross(e1, e2).normalize();
 			tmp.d = -dot(tmp.normal, v2);

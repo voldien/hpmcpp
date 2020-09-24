@@ -25,24 +25,24 @@ namespace hpmcpp {
 	/**
 	 *	Oriented bounding box.
 	*/
-	class HCDECLSPEC HCOBB {
+	class HCDECLSPEC OBB {
 	public:
 
-		HCOBB(void);
+		OBB(void);
 
-		HCOBB(const HCOBB &obb);
+		OBB(const OBB &obb);
 
-		HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w);
 
-		HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &size);
 
-		HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &center, const HCVector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &center, const Vector3 &size);
 
 		/**
 		 * Get U axis.
 		 * @return normalized axis.
 		 */
-		const HCVector3 &HCAPIENTRY getU(void) const;
+		const Vector3 &HCAPIENTRY getU(void) const;
 
 		/**
 		 *	Get V axis.
@@ -53,19 +53,19 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		const HCVector3 &HCAPIENTRY getV(void) const;
+		const Vector3 &HCAPIENTRY getV(void) const;
 
 		/**
 		 * Get W axis.
 		 * @return normalized axis.
 		 */
-		const HCVector3 &HCAPIENTRY getW(void) const;
+		const Vector3 &HCAPIENTRY getW(void) const;
 
 		/**
 		 * Set size of box.
 		 * @param size
 		 */
-		void setSize(const HCVector3 &size) {
+		void setSize(const Vector3 &size) {
 			this->size = size;
 		}
 
@@ -73,7 +73,7 @@ namespace hpmcpp {
 		 * Get half size.
 		 * @return non-negative vector of the size.
 		 */
-		inline HCVector3 getSize(void) {
+		inline Vector3 getSize(void) {
 			return size;
 		}
 
@@ -81,7 +81,7 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		inline const HCVector3 &getSize(void) const {
+		inline const Vector3 &getSize(void) const {
 			return this->size;
 		}
 
@@ -89,7 +89,7 @@ namespace hpmcpp {
 		 *
 		 * @param size
 		 */
-		inline void setCenter(const HCVector3 &size) {
+		inline void setCenter(const Vector3 &size) {
 
 		}
 
@@ -97,11 +97,11 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		inline HCVector3 getCenter(void) const {
-			return HCVector3(this->halfu, this->halfv, this->halfw);
+		inline Vector3 getCenter(void) const {
+			return Vector3(this->halfu, this->halfv, this->halfw);
 		}
 
-		HCOBB &operator=(const HCOBB &obb);
+		OBB &operator=(const OBB &obb);
 
 		/**
 		 *
@@ -109,7 +109,7 @@ namespace hpmcpp {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCOBB &t);
+		friend std::istream &operator>>(std::istream &is, OBB &t);
 
 		/**
 		 *
@@ -117,12 +117,12 @@ namespace hpmcpp {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCOBB &t);
+		friend std::ostream &operator<<(std::ostream &os, const OBB &t);
 
 	private:    /*	Attributes.	*/
 
-		HCONB onb;          /*	*/
-		HCVector3 size;     /*	*/
+		ONB onb;          /*	*/
+		Vector3 size;     /*	*/
 		float halfu;        /*	*/
 		float halfv;        /*	*/
 		float halfw;        /*	*/

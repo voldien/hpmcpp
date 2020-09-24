@@ -2,142 +2,142 @@
 
 using namespace hpmcpp;
 
-HCVector2::HCVector2(float val) {
+Vector2::Vector2(float val) {
 	this->setX(val);
 	this->setY(val);
 }
 
-HCVector2::HCVector2(float m0, float m1) {
+Vector2::Vector2(float m0, float m1) {
 	this->setX(m0);
 	this->setY(m1);
 }
 
-HCVector2::HCVector2(const HCVector2& v) {
+Vector2::Vector2(const Vector2& v) {
 	*this = v;
 }
 
-HCVector2& HCVector2::operator-(void) const {
+Vector2& Vector2::operator-(void) const {
 	return -*this;
 }
 
 
-float HCVector2::operator[](int i) const {
+float Vector2::operator[](int i) const {
 	return this->m[i];
 }
-float& HCVector2::operator[](int i) {
+float& Vector2::operator[](int i) {
 	//return this->m[i];
 }
 
-float HCVector2::length(void) const {
+float Vector2::length(void) const {
 	return sqrtf(x() * x() + y() * y());
 }
-float HCVector2::squaredLength(void) const {
+float Vector2::squaredLength(void) const {
 	return (x() * x() + y() * y());
 }
-void HCVector2::makeUnitVector(void) {
+void Vector2::makeUnitVector(void) {
 	*this /= this->length();
 }
 
-void HCVector2::setX(float _x) {
+void Vector2::setX(float _x) {
 	this->m[0] = _x;
 }
-void HCVector2::setY(float _y) {
+void Vector2::setY(float _y) {
 	this->m[1] = _y;
 }
 
-float HCVector2::x(void) const {
+float Vector2::x(void) const {
 	return this->m[0];
 }
-float HCVector2::y(void) const{
+float Vector2::y(void) const{
 	return this->m[1];
 }
 
-HCVector2 HCVector2::normalize(void) const {
-	HCVector2 copy = *this;
+Vector2 Vector2::normalize(void) const {
+	Vector2 copy = *this;
 	copy.makeUnitVector();
 	return copy;
 }
 
-float HCVector2::maxComponent(void) const {
+float Vector2::maxComponent(void) const {
 	return 0;
 }
 
-float HCVector2::maxAbsComponent(void) const {
+float Vector2::maxAbsComponent(void) const {
 	return 0;
 }
 
-float HCVector2::minAbsComponent(void) const {
+float Vector2::minAbsComponent(void) const {
 	return 0;
 }
 
-int HCVector2::indexOfMinComponent(void) const {
+int Vector2::indexOfMinComponent(void) const {
 	return 0;
 }
 
-int HCVector2::indexOfMinAbsComponent(void) const {
+int Vector2::indexOfMinAbsComponent(void) const {
 	return 0;
 }
 
 namespace hpmcpp {
-	bool operator==(const HCVector2& v1, const HCVector2& v2) {
+	bool operator==(const Vector2& v1, const Vector2& v2) {
 		return !(v1 == v2);
 	}
-	bool operator!=(const HCVector2& v1, const HCVector2& v2) {
+	bool operator!=(const Vector2& v1, const Vector2& v2) {
 		return !(v1 == v2);
 	}
 
-	HCVector2 operator+(const HCVector2& v1, const HCVector2& v2) {
-		return HCVector2(v1.x() + v2.x(),v1.y() + v2.y());
+	Vector2 operator+(const Vector2& v1, const Vector2& v2) {
+		return Vector2(v1.x() + v2.x(),v1.y() + v2.y());
 	}
 
-	HCVector2 operator-(const HCVector2& v1, const HCVector2& v2) {
-		return HCVector2(v1.x() - v2.x(),v1.y() - v2.y());
+	Vector2 operator-(const Vector2& v1, const Vector2& v2) {
+		return Vector2(v1.x() - v2.x(),v1.y() - v2.y());
 	}
 
-	HCVector2 operator/(const HCVector2& vec, float scalar) {
-		return HCVector2(vec.x() / scalar,vec.y() / scalar);
+	Vector2 operator/(const Vector2& vec, float scalar) {
+		return Vector2(vec.x() / scalar,vec.y() / scalar);
 	}
 
-	HCVector2 operator*(const HCVector2& vec, float scalar) {
-		return HCVector2(vec.x() * scalar,vec.y() * scalar);
+	Vector2 operator*(const Vector2& vec, float scalar) {
+		return Vector2(vec.x() * scalar,vec.y() * scalar);
 	}
-	HCVector2 operator*(float scalar, const HCVector2& vec) {
-		return HCVector2(vec.x() * scalar,vec.y() * scalar);
+	Vector2 operator*(float scalar, const Vector2& vec) {
+		return Vector2(vec.x() * scalar,vec.y() * scalar);
 	}
 
-	HCVector2 operator*(const HCVector2& v1, const HCVector2& v2) {
-		return HCVector2(v1.x() * v2.x(),v1.y() * v2.y());
+	Vector2 operator*(const Vector2& v1, const Vector2& v2) {
+		return Vector2(v1.x() * v2.x(),v1.y() * v2.y());
 	}
 }
 
-HCVector2& HCVector2::operator=(const HCVector2& v2) {
+Vector2& Vector2::operator=(const Vector2& v2) {
 	this->setX(v2.x());
 	this->setY(v2.y());
 	return *this;
 }
-HCVector2& HCVector2::operator+=(const HCVector2& v2) {
+Vector2& Vector2::operator+=(const Vector2& v2) {
 	*this = *this + v2;
 	return *this;
 }
-HCVector2& HCVector2::operator-=(const HCVector2& v2) {
+Vector2& Vector2::operator-=(const Vector2& v2) {
 	*this = *this - v2;
 	return *this;
 }
-HCVector2& HCVector2::operator/=(float scalar) {
+Vector2& Vector2::operator/=(float scalar) {
 	*this = *this / scalar;
 	return *this;
 }
-HCVector2& HCVector2::operator*=(float scalar) {
+Vector2& Vector2::operator*=(float scalar) {
 	*this = *this * scalar;
 	return *this;
 }
 
-HCVector2& HCVector2::operator*=(const HCVector2& vec2) {
+Vector2& Vector2::operator*=(const Vector2& vec2) {
 	*this = *this * vec2;
 	return *this;
 }
 
-std::istream& operator>>(std::istream &is, HCVector2& t) {
+std::istream& operator>>(std::istream &is, Vector2& t) {
 
 	float tmp;
 
@@ -148,7 +148,7 @@ std::istream& operator>>(std::istream &is, HCVector2& t) {
 
 	return is;
 }
-std::ostream& operator<<(std::ostream& os, const HCVector2& t) {
+std::ostream& operator<<(std::ostream& os, const Vector2& t) {
 	os << '(' << t.x() << " " << t.y() << ')';
 	return os;
 }

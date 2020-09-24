@@ -25,13 +25,13 @@ namespace hpmcpp {
 	 * x, y, z, w component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC HCVector4 {
+	class HCDECLSPEC Vector4 {
 	public:
 
-		HCVector4(void);
-		HCVector4(float val);
-		HCVector4(float m0, float m1, float m2, float m3);
-		HCVector4(const HCVector4& v);
+		Vector4(void);
+		Vector4(float val);
+		Vector4(float m0, float m1, float m2, float m3);
+		Vector4(const Vector4& v);
 
 		/**
 		 * Get component wise.
@@ -59,7 +59,7 @@ namespace hpmcpp {
 		 * Negate vector.
 		 * @return negated vector.
 		 */
-		HCVector4 operator-(void) const;
+		Vector4 operator-(void) const;
 
 		/**
 		 * Compute length of vector.
@@ -106,7 +106,7 @@ namespace hpmcpp {
 		 * Create normalized copy.
 		 * @return normalize vector of current vector.
 		 */
-		HCVector4 HCAPIENTRY normalize(void) const;
+		Vector4 HCAPIENTRY normalize(void) const;
 
 		/**
 		 * Equality
@@ -114,41 +114,41 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend bool operator==(const HCVector4& v1, const HCVector4& v2);
-		friend bool operator!=(const HCVector4& v1, const HCVector4& v2);
+		friend bool operator==(const Vector4& v1, const Vector4& v2);
+		friend bool operator!=(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCVector4& t);
+		friend std::istream &operator>>(std::istream &is, Vector4& t);
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCVector4& t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector4& t);
 
-		friend HCVector4 operator+(const HCVector4& v1, const HCVector4& v2);
-		friend HCVector4 operator-(const HCVector4& v1, const HCVector4& v2);
-		friend HCVector4 operator/(const HCVector4& vec, float scalar);
-		friend HCVector4 operator/(const HCVector4& v1, const HCVector4& v2);
-		friend HCVector4 operator*(const HCVector4& vec, float scalar);
-		friend HCVector4 operator*(float scalar, const HCVector4& vec);
+		friend Vector4 operator+(const Vector4& v1, const Vector4& v2);
+		friend Vector4 operator-(const Vector4& v1, const Vector4& v2);
+		friend Vector4 operator/(const Vector4& vec, float scalar);
+		friend Vector4 operator/(const Vector4& v1, const Vector4& v2);
+		friend Vector4 operator*(const Vector4& vec, float scalar);
+		friend Vector4 operator*(float scalar, const Vector4& vec);
 
-		HCVector4& operator=(const HCVector4& v2);
-		HCVector4& operator+=(const HCVector4& v2);
-		HCVector4& operator-=(const HCVector4& v2);
-		HCVector4& operator/=(float scalar);
-		HCVector4& operator*=(float scalar);
+		Vector4& operator=(const Vector4& v2);
+		Vector4& operator+=(const Vector4& v2);
+		Vector4& operator-=(const Vector4& v2);
+		Vector4& operator/=(float scalar);
+		Vector4& operator*=(float scalar);
 
 		/**
 		 * Compute unit vector.
 		 * @param v vector.
 		 * @return unite vector.
 		 */
-		friend HCVector4 HCAPIENTRY unitVector4(const HCVector4& v);
+		friend Vector4 HCAPIENTRY unitVector4(const Vector4& v);
 
 		/**
 		 * Compute min vector component.
@@ -156,7 +156,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector4 HCAPIENTRY minVec(const HCVector4& v1, const HCVector4& v2);
+		friend Vector4 HCAPIENTRY minVec(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Compute max vector component.
@@ -164,7 +164,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector4 HCAPIENTRY maxVec(const HCVector4& v1, const HCVector4& v2);
+		friend Vector4 HCAPIENTRY maxVec(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Computer inner dot product.
@@ -172,7 +172,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return inner product.
 		 */
-		friend float HCAPIENTRY dot(const HCVector4& v1, const HCVector4& v2);
+		friend float HCAPIENTRY dot(const Vector4& v1, const Vector4& v2);
 
 	protected:	/*	Attributes.	*/
 
@@ -187,7 +187,7 @@ namespace hpmcpp {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static HCVector4 HCAPIENTRY lerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+		static Vector4 HCAPIENTRY lerp(const Vector4& vec1, const Vector4& vec2, float speed);
 
 		/**
 		 * Spherical interpolation.
@@ -196,7 +196,7 @@ namespace hpmcpp {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static HCVector4 HCAPIENTRY slerp(const HCVector4& vec1, const HCVector4& vec2, float speed);
+		static Vector4 HCAPIENTRY slerp(const Vector4& vec1, const Vector4& vec2, float speed);
 	};
 }
 

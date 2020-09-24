@@ -26,14 +26,14 @@ namespace hpmcpp {
 	 * x, y, z component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC HCVector3 {
-		friend class HCMatrix4x4;
-		friend class HCQuaternion;
+	class HCDECLSPEC Vector3 {
+		friend class Matrix4x4;
+		friend class Quaternion;
 	public:
-		HCVector3(void) = default;
-		HCVector3(float val);
-		HCVector3(float e0, float e1, float e2);
-		HCVector3(const HCVector3& v);
+		Vector3(void) = default;
+		Vector3(float val);
+		Vector3(float e0, float e1, float e2);
+		Vector3(const Vector3& v);
 
 		/**
 		 * Get individual component of vector.
@@ -54,8 +54,8 @@ namespace hpmcpp {
 		 *
 		 * @return
 		 */
-		const HCVector3& operator+(void) const;
-		HCVector3 operator-(void) const;
+		const Vector3& operator+(void) const;
+		Vector3 operator-(void) const;
 
 		/**
 		 *
@@ -113,53 +113,53 @@ namespace hpmcpp {
 		 * Normalize vector.
 		 * @return normalized vector.
 		 */
-		HCVector3 HCAPIENTRY normalize(void) const;
+		Vector3 HCAPIENTRY normalize(void) const;
 
 		/**
 		 * Check equality.
 		 * @return
 		 */
-		friend bool operator==(const HCVector3& v1, const HCVector3& v2);
-		friend bool operator!=(const HCVector3& v1, const HCVector3& v2);
+		friend bool operator==(const Vector3& v1, const Vector3& v2);
+		friend bool operator!=(const Vector3& v1, const Vector3& v2);
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCVector3& t);
+		friend std::istream &operator>>(std::istream &is, Vector3& t);
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector3& t);
 
 		/**
 		 * @return
 		 */
-		friend HCVector3 operator+(const HCVector3& v1, const HCVector3& v2);
-		friend HCVector3 operator-(const HCVector3& v1, const HCVector3& v2);
-		friend HCVector3 operator/(const HCVector3& vec, float scalar);
-		friend HCVector3 operator*(const HCVector3& vec, float scalar);
-		friend HCVector3 operator*(float scalar, const HCVector3& vec);
-		friend HCVector3 operator*(const HCVector3& vec1, const HCVector3& vec2);
+		friend Vector3 operator+(const Vector3& v1, const Vector3& v2);
+		friend Vector3 operator-(const Vector3& v1, const Vector3& v2);
+		friend Vector3 operator/(const Vector3& vec, float scalar);
+		friend Vector3 operator*(const Vector3& vec, float scalar);
+		friend Vector3 operator*(float scalar, const Vector3& vec);
+		friend Vector3 operator*(const Vector3& vec1, const Vector3& vec2);
 
 		/**
 		 *
 		 */
-		HCVector3& operator=(const HCVector3& v2);
-		HCVector3& operator+=(const HCVector3& v2);
-		HCVector3& operator-=(const HCVector3& v2);
-		HCVector3& operator/=(float scalar);
-		HCVector3& operator*=(float scalar);
+		Vector3& operator=(const Vector3& v2);
+		Vector3& operator+=(const Vector3& v2);
+		Vector3& operator-=(const Vector3& v2);
+		Vector3& operator/=(float scalar);
+		Vector3& operator*=(float scalar);
 
 		/**
 		 *
 		 * @param v
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY unitVector3(const HCVector3& v);
+		friend Vector3 HCAPIENTRY unitVector3(const Vector3& v);
 
 		/**
 		 *
@@ -167,8 +167,8 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY minVec(const HCVector3& v1,
-				const HCVector3& v2);
+		friend Vector3 HCAPIENTRY minVec(const Vector3& v1,
+				const Vector3& v2);
 
 		/**
 		 *
@@ -176,8 +176,8 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY maxVec(const HCVector3& v1,
-				const HCVector3& v2);
+		friend Vector3 HCAPIENTRY maxVec(const Vector3& v1,
+				const Vector3& v2);
 
 		/**
 		 *
@@ -185,7 +185,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY cross(const HCVector3& v1, const HCVector3& v2);
+		friend Vector3 HCAPIENTRY cross(const Vector3& v1, const Vector3& v2);
 
 		/**
 		 *
@@ -193,8 +193,8 @@ namespace hpmcpp {
 		 * @param normal
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY reflection(const HCVector3& vector,
-				const HCVector3& normal);
+		friend Vector3 HCAPIENTRY reflection(const Vector3& vector,
+				const Vector3& normal);
 
 		/**
 		 *
@@ -203,8 +203,8 @@ namespace hpmcpp {
 		 * @param refraction
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY refraction(const HCVector3& v1,
-				const HCVector3& normal, float refraction);
+		friend Vector3 HCAPIENTRY refraction(const Vector3& v1,
+				const Vector3& normal, float refraction);
 
 		/**
 		 *
@@ -212,7 +212,7 @@ namespace hpmcpp {
 		 * @param v2
 		 * @return
 		 */
-		friend float HCAPIENTRY dot(const HCVector3& v1, const HCVector3& v2);
+		friend float HCAPIENTRY dot(const Vector3& v1, const Vector3& v2);
 
 		/**
 		 *
@@ -221,24 +221,15 @@ namespace hpmcpp {
 		 * @param v3
 		 * @return
 		 */
-		friend float HCAPIENTRY tripleProduct(const HCVector3& v1,
-				const HCVector3& v2, const HCVector3& v3);
+		friend float HCAPIENTRY tripleProduct(const Vector3& v1,
+				const Vector3& v2, const Vector3& v3);
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY tangent(const HCVector3& normal);
-
-		/**
-		 *
-		 * @param normal
-		 * @param tangent
-		 * @return
-		 */
-		friend HCVector3 HCAPIENTRY biTangent(const HCVector3& normal,
-				const HCVector3& tangent);
+		friend Vector3 HCAPIENTRY tangent(const Vector3& normal);
 
 		/**
 		 *
@@ -246,8 +237,17 @@ namespace hpmcpp {
 		 * @param tangent
 		 * @return
 		 */
-		friend HCVector3 HCAPIENTRY biNormal(const HCVector3& normal,
-				const HCVector3& tangent);
+		friend Vector3 HCAPIENTRY biTangent(const Vector3& normal,
+				const Vector3& tangent);
+
+		/**
+		 *
+		 * @param normal
+		 * @param tangent
+		 * @return
+		 */
+		friend Vector3 HCAPIENTRY biNormal(const Vector3& normal,
+				const Vector3& tangent);
 
 	private:	/*	Private method.	*/
 
@@ -258,13 +258,13 @@ namespace hpmcpp {
 		/**
 		 * Create predefined vector3.
 		 */
-		inline static HCVector3 forward(void){return HCVector3(0.0f, 0.0f, 1.0f);}
-		inline static HCVector3 back(void){return HCVector3(0.0f, 0.0f, -1.0f);}
-		inline static HCVector3 right(void){return HCVector3(1.0f, 0.0f, 0.0f);}
-		inline static HCVector3 left(void){return HCVector3(-1.0f, 0.0f, 0.0f);}
-		inline static HCVector3 up(void){return HCVector3(0.0f, 1.0f, 0.0f);}
-		inline static HCVector3 down(void){return HCVector3(0.0f, -1.0f, 0.0f);}
-		inline static HCVector3 zero(void){return HCVector3(0.0f, 0.0, 0.0f);}
+		inline static Vector3 forward(void){return Vector3(0.0f, 0.0f, 1.0f);}
+		inline static Vector3 back(void){return Vector3(0.0f, 0.0f, -1.0f);}
+		inline static Vector3 right(void){return Vector3(1.0f, 0.0f, 0.0f);}
+		inline static Vector3 left(void){return Vector3(-1.0f, 0.0f, 0.0f);}
+		inline static Vector3 up(void){return Vector3(0.0f, 1.0f, 0.0f);}
+		inline static Vector3 down(void){return Vector3(0.0f, -1.0f, 0.0f);}
+		inline static Vector3 zero(void){return Vector3(0.0f, 0.0, 0.0f);}
 
 		/**
 		 * Linear interpolation between v1 and v2 based on t.
@@ -273,8 +273,8 @@ namespace hpmcpp {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static HCVector3 HCAPIENTRY lerp(const HCVector3& vec1,
-				const HCVector3& vec2, float t);
+		static Vector3 HCAPIENTRY lerp(const Vector3& vec1,
+				const Vector3& vec2, float t);
 
 		/**
 		 * Spherical interpolation.
@@ -283,8 +283,8 @@ namespace hpmcpp {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static HCVector3 HCAPIENTRY slerp(const HCVector3& vec1,
-				const HCVector3& vec2, float t);
+		static Vector3 HCAPIENTRY slerp(const Vector3& vec1,
+				const Vector3& vec2, float t);
 	};
 }
 

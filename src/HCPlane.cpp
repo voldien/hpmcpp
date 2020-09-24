@@ -24,18 +24,18 @@ using namespace hpmcpp;
 // 	return tmp;
 // }
 
-std::istream &operator>>(std::istream &is, HCPlane &t) {
+std::istream &operator>>(std::istream &is, Plane &t) {
 	return is;
 }
 
-std::ostream &operator<<(std::ostream &os, const HCPlane &t) {
+std::ostream &operator<<(std::ostream &os, const Plane &t) {
 	return os;
 }
 
-bool operator==(const HCPlane &o1, const HCPlane &o2) {
+bool operator==(const Plane &o1, const Plane &o2) {
 	return false;
 }
 
-bool operator!=(const HCPlane &o1, const HCPlane &o2) {
+bool operator!=(const Plane &o1, const Plane &o2) {
 	return false;
 }

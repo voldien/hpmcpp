@@ -20,19 +20,19 @@
 #define _HPMCPP_RAY_H_ 1
 #include"HCVector3.h"
 
-	namespace hpmcpp {
+namespace hpmcpp {
 	/**
 	 * Ray data type. Contains
 	 * a position and a direction.
 	 */
-	class HCDECLSPEC HCRay {
+	class HCDECLSPEC Ray {
 	public:
-		HCRay(void) = default;
-		HCRay(const HCVector3& origin, const HCVector3& direction) {
+		Ray(void) = default;
+		Ray(const Vector3& origin, const Vector3& direction) {
 			this->setOrigin(origin);
 			this->setDirection(direction);
 		}
-		HCRay(const HCRay& ray) {
+		Ray(const Ray& ray) {
 			this->setOrigin(ray.getOrigin());
 			this->setDirection(ray.getDirection());
 		}
@@ -40,14 +40,14 @@
 		/**
 		 * @return get origin position.
 		 */
-		inline const HCVector3& getOrigin(void) const {
+		inline const Vector3& getOrigin(void) const {
 			return this->m[0];
 		}
 
 		/**
 		 * Set origin position.
 		 */
-		inline void setOrigin(const HCVector3& origin) {
+		inline void setOrigin(const Vector3& origin) {
 			this->m[0] = origin;
 		}
 
@@ -55,7 +55,7 @@
 		 * Get direction.
 		 * @return normalized direction.
 		 */
-		inline const HCVector3& getDirection(void) const {
+		inline const Vector3& getDirection(void) const {
 			return this->m[1];
 		}
 
@@ -63,7 +63,7 @@
 		 * Set direction vector.
 		 * @param direction has to be a normalized vector.
 		 */
-		inline void setDirection(const HCVector3& direction) {
+		inline void setDirection(const Vector3& direction) {
 			this->m[1] = direction;
 		}
 
@@ -72,7 +72,7 @@
 		 * in respect to direction.
 		 * @return point on the ray.
 		 */
-		inline HCVector3 pointAtParameter(float t) const {
+		inline Vector3 pointAtParameter(float t) const {
 			return this->getOrigin() + t * this->getDirection();
 		}
 
@@ -82,7 +82,7 @@
 		 * #0 origin
 		 * #1 direction
 		 */
-		HCVector3 m[2];
+		Vector3 m[2];
 
 	};
 }

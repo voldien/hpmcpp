@@ -25,14 +25,14 @@ namespace hpmcpp {
 	/**
 	 *
 	 */
-	class HCDECLSPEC HCBoundingSphere {
+	class HCDECLSPEC BoundingSphere {
 	public:
-		HCBoundingSphere(void) = default;
-		HCBoundingSphere(const HCVector3& center, float radius){
+		BoundingSphere(void) = default;
+		BoundingSphere(const Vector3& center, float radius){
 			this->setCenter(center);
 			this->setRadius(radius);
 		}
-		HCBoundingSphere(const HCBoundingSphere& boundingSphere){
+		BoundingSphere(const BoundingSphere& boundingSphere){
 			*this = boundingSphere;
 		}
 
@@ -56,7 +56,7 @@ namespace hpmcpp {
 		 * Get center position.
 		 * @return world position.
 		 */
-		inline const HCVector3& getCenter(void) const {
+		inline const Vector3& getCenter(void) const {
 			return this->center;
 		}
 
@@ -64,7 +64,7 @@ namespace hpmcpp {
 		 * Set center position.
 		 * @param center in world position.
 		 */
-		inline void setCenter(const HCVector3& center) {
+		inline void setCenter(const Vector3& center) {
 			this->center = center;
 		}
 
@@ -73,7 +73,7 @@ namespace hpmcpp {
 		 * @param sphere
 		 * @return true if object intersects, false otherwise.
 		 */
-		bool HCAPIENTRY intersect(const HCBoundingSphere &sphere) const{
+		bool HCAPIENTRY intersect(const BoundingSphere &sphere) const{
 			return false;
 		}
 
@@ -82,12 +82,12 @@ namespace hpmcpp {
 		 * @param sphere sphere inside this sphere.
 		 * @return true if object contains, false otherwise.
 		 */
-		bool HCAPIENTRY contains(const HCBoundingSphere &sphere) const{
+		bool HCAPIENTRY contains(const BoundingSphere &sphere) const{
 			return false;	
 		}
 
-		bool intersect(const HCRay& ray) const {
-			HCVector3 tmp = ray.getOrigin() - getCenter();
+		bool intersect(const Ray& ray) const {
+			Vector3 tmp = ray.getOrigin() - getCenter();
 			double t;
 			double a = dot(ray.getDirection(), ray.getDirection());
 			double b = 2.0f * dot(ray.getDirection(), tmp);
@@ -103,7 +103,7 @@ namespace hpmcpp {
 			return false;
 		}
 
-		HCBoundingSphere& operator=(const HCBoundingSphere& bounds){
+		BoundingSphere& operator=(const BoundingSphere& bounds){
 			this->setRadius(bounds.getRadius());
 			this->setCenter(bounds.getCenter());
 			return *this;
@@ -112,7 +112,7 @@ namespace hpmcpp {
 	private:	/*	Private member attributes.	*/
 
 		float radius;			/*	Radius size.	*/
-		HCVector3 center;		/*	Center position in world space.*/
+		Vector3 center;		/*	Center position in world space.*/
 
 	};
 }

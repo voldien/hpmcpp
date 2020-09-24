@@ -26,12 +26,12 @@ namespace hpmcpp{
 	 * Axis aligned bounding
 	 * box.
 	 */
-	class HCDECLSPEC HCAABB {
+	class HCDECLSPEC AABB {
 	public:
 
-		HCAABB(void) {}
-		HCAABB(const HCVector3& size, const HCVector3& center);
-		HCAABB(const HCAABB& bounds) {
+		AABB(void) {}
+		AABB(const Vector3& size, const Vector3& center);
+		AABB(const AABB& bounds) {
 			*this = bounds;
 		}
 
@@ -40,16 +40,16 @@ namespace hpmcpp{
 		 * @param i
 		 * @return
 		 */
-		inline HCVector3 operator[](int i) const {
-			return ((HCVector3*) this)[i];
+		inline Vector3 operator[](int i) const {
+			return ((Vector3*) this)[i];
 		}
 
 		/**
 		 *
 		 * @return
 		 */
-		inline HCVector3& operator[](int i) {
-			return ((HCVector3*) this)[i];
+		inline Vector3& operator[](int i) {
+			return ((Vector3*) this)[i];
 		}
 
 		/**
@@ -87,7 +87,7 @@ namespace hpmcpp{
 		 * Compute minimum position.
 		 * @return vector position.
 		 */
-		inline HCVector3 min(void) const {
+		inline Vector3 min(void) const {
 			return this->getCenter() - this->getSize();
 		}
 
@@ -95,7 +95,7 @@ namespace hpmcpp{
 		 * Compute max position.
 		 * @return vector position.
 		 */
-		inline HCVector3 max(void) const {
+		inline Vector3 max(void) const {
 			return this->getCenter() + this->getSize();
 		}
 
@@ -103,14 +103,14 @@ namespace hpmcpp{
 		 * Get half size.
 		 * @return half size vector.
 		 */
-		inline const HCVector3& getSize(void) const {
+		inline const Vector3& getSize(void) const {
 			return this->mhalfsize;
 		}
 
 		/**
 		 * Set half size.
 		 */
-		inline void setSize(const HCVector3& size) {
+		inline void setSize(const Vector3& size) {
 			this->mhalfsize = size;
 		}
 
@@ -118,14 +118,14 @@ namespace hpmcpp{
 		 * Get center position.
 		 * @return
 		 */
-		inline const HCVector3& getCenter(void) const {
+		inline const Vector3& getCenter(void) const {
 			return this->mcenter;
 		}
 
 		/**
 		 * Set center position.
 		 */
-		inline void setCenter(const HCVector3& center) {
+		inline void setCenter(const Vector3& center) {
 			this->mcenter = center;
 		}
 
@@ -134,7 +134,7 @@ namespace hpmcpp{
 		 * @param bounds intersect this bound.
 		 * @return true if object intersects.
 		 */
-		bool intersect(const HCAABB& bounds);
+		bool intersect(const AABB& bounds);
 
 		/**
 		 *
@@ -142,8 +142,8 @@ namespace hpmcpp{
 		 * @param worldPosition
 		 * @return  true if object contains.
 		 */
-		bool HCAPIENTRY contains(const HCVector3& point, const HCVector3 worldPosition =
-				HCVector3());
+		bool HCAPIENTRY contains(const Vector3& point, const Vector3 worldPosition =
+				Vector3());
 
 		/**
 		 * Check if object contains bound
@@ -151,46 +151,46 @@ namespace hpmcpp{
 		 * @param bounds
 		 * @return true if completly contains, false otherwise.
 		 */
-		bool HCAPIENTRY contains(const HCAABB& bounds);
+		bool HCAPIENTRY contains(const AABB& bounds);
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		HCVector3 HCAPIENTRY getVertexN(HCVector3& normal) const;
+		Vector3 HCAPIENTRY getVertexN(Vector3& normal) const;
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
+		Vector3 HCAPIENTRY getVertexP(Vector3& normal) const;
 
 		/**
 		 * Create input stream for creating AABB
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, HCVector3& t);
+		friend std::istream &operator>>(std::istream &is, Vector3& t);
 
 		/**
 		 * Create output stream of AABB values.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector3& t);
 
 		/**
 		 * Assign bound object.
 		 * @return reference of object.
 		 */
-		HCAABB& operator=(const HCAABB& bound);
+		AABB& operator=(const AABB& bound);
 
 		/**
 		 *
 		 * @return reference of object.
 		 */
-		friend HCAABB operator*(const HCAABB& bound, float scalar);
+		friend AABB operator*(const AABB& bound, float scalar);
 
 		/**
 		 * Divide the size by scalar.
@@ -198,40 +198,40 @@ namespace hpmcpp{
 		 * @param divisor
 		 * @return reference of object.
 		 */
-		friend HCAABB operator/(const HCAABB& bound, float divisor);
+		friend AABB operator/(const AABB& bound, float divisor);
 
 		/**
 		 * Factor the bound size of the bound.
 		 * @param scalar real number.
 		 * @return reference of object.
 		 */
-		HCAABB& operator*=(float scalar);
+		AABB& operator*=(float scalar);
 
 		/**
 		 * Divide the size by scalar.
 		 * @param divisor non-zero.
 		 * @return reference of object.
 		 */
-		HCAABB& operator/=(float divisor);
+		AABB& operator/=(float divisor);
 
 		/**
 		 * Compare if objects are equal.
 		 * @param bound
 		 * @return true if object are equal, false otherwise.
 		 */
-		bool operator==(const HCAABB& bound);
+		bool operator==(const AABB& bound);
 
 		/**
 		 * Compare if object are not equal.
 		 * @param bound
 		 * @return false if object are equal, true otherwise.
 		 */
-		bool operator!=(const HCAABB& bound);
+		bool operator!=(const AABB& bound);
 
 	private:	/*	Attributes.	*/
 
-		HCVector3 mhalfsize;    /*	half size of the box.	*/
-		HCVector3 mcenter;      /*	center of the box.	*/
+		Vector3 mhalfsize;    /*	half size of the box.	*/
+		Vector3 mcenter;      /*	center of the box.	*/
 	};
 }
 
