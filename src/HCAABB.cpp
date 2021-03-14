@@ -1,6 +1,6 @@
 #include"HCAABB.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 AABB::AABB(const Vector3& size, const Vector3& center) {
 	setCenter(center);

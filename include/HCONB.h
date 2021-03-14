@@ -20,8 +20,8 @@
 #define _HPMCPP_ONB_H_ 1
 #include"HCVector3.h"
 
-namespace hpmcpp {
-	#define ONB_EPSILON 0.01f
+namespace LIBHPM {
+	#define HPMCPP_ONB_EPSILON 0.01f
 
 	/**
 	 *	ORTHONORMAL BASED AND FRAMES

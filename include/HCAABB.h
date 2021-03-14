@@ -21,7 +21,7 @@
 #include"HCRay.h"
 #include"HCVector3.h"
 
-namespace hpmcpp{
+namespace LIBHPM{
 	/**
 	 * Axis aligned bounding
 	 * box.

@@ -21,7 +21,7 @@
 #include"HCVector3.h"
 #include<iostream>
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 *
 	 */

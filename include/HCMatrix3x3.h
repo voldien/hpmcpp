@@ -20,7 +20,7 @@
 #define _HPMCPP_MATRIX3X3_H_ 1
 #include "HCTypes.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 *	Right handed Matrix3x3.
 	*/

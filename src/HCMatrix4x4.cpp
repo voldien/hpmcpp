@@ -4,7 +4,7 @@
 #include "HCVector3.h"
 #include "HCVector4.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 
 Matrix4x4::Matrix4x4(const Matrix4x4& other) {
@@ -174,7 +174,7 @@ Matrix4x4 Matrix4x4::orth(float left, float right, float bottom, float top,
 int Matrix4x4::unProject(float winx,
                             float winy, float winz, const Matrix4x4 *projection,
                             const Matrix4x4 *modelview, const int *HPM_RESTRICT viewport,
-                            HCVector3 *HPM_RESTRICT pos) {
+                            Vector3 *HPM_RESTRICT pos) {
 	return hpm_mat4x4_unprojf(winx, winy, winz, projection->e, modelview->e, viewport, &pos->e);
 }
 

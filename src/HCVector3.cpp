@@ -1,6 +1,6 @@
 #include "HCVector3.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 Vector3::Vector3(float val) {
 	hpm_vec4_setf(&this->e, val, val, val, val);
@@ -80,7 +80,7 @@ float Vector3::minAbsComponent(void) const {
 	return fabs(hpm_vec4_min_compfv(&this->e));
 }
 
-namespace hpmcpp{
+namespace LIBHPM{
 
 	bool operator==(const Vector3& v1, const Vector3& v2) {
 		if (v1.e[0] != v2.e[0])
@@ -216,7 +216,7 @@ Vector3 &Vector3::operator/=(float scalar) {
 	return *this;
 }
 
-namespace hpmcpp {
+namespace LIBHPM {
 	float tripleProduct(const Vector3& v1, const Vector3& v2, const Vector3& v3) {
 		return hpm_vec3_tripleProductfv(&v1.e, &v2.e, &v3.e);
 	}
@@ -230,7 +230,7 @@ Vector3 Vector3::slerp(const Vector3& vec1, const Vector3& vec2, float t) {
 	return Vector3();
 }
 
-namespace hpmcpp {
+namespace LIBHPM {
 
 	std::istream & operator>>(std::istream &is, Vector3 &t) {
 		float temp;

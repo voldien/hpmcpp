@@ -21,7 +21,7 @@
 #include"HCONB.h"
 #include"HCVector3.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 *	Oriented bounding box.
 	*/

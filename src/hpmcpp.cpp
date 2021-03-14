@@ -1,7 +1,7 @@
 #include"HpmCpp.h"
 #include<hpm.h>
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 int Hpm::init(HPMSIMD hpmSIMD){
 	return hpm_init((unsigned int)hpmSIMD);

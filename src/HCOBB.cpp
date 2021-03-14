@@ -1,6 +1,6 @@
 #include"HCOBB.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 OBB::OBB(const OBB& obb) {
 	*this = obb;

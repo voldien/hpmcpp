@@ -20,7 +20,7 @@
 #define _HPMCPP_QUATERNION_H_ 1
 #include "HCTypes.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 
 	/**
 	 * Quaternion class. Contains
@@ -239,7 +239,7 @@ namespace hpmcpp {
 		 */
 		Vector3 HCAPIENTRY getEular(void) const;
 
-	private:	/*	Attributes.	*/
+	protected:	/*	Attributes.	*/
 
 		hpmquatf e;
 

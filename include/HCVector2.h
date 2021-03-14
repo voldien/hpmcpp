@@ -20,7 +20,7 @@
 #define _HC_VECTOR2_H_ 1
 #include "HCTypes.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 * Vector2.
 	 */

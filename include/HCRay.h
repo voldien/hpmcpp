@@ -20,7 +20,7 @@
 #define _HPMCPP_RAY_H_ 1
 #include"HCVector3.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 * Ray data type. Contains
 	 * a position and a direction.

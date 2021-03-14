@@ -1,6 +1,6 @@
 #include <HCVector4.h>
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 Vector4::Vector4(void){}
 Vector4::Vector4(float val){
@@ -85,7 +85,7 @@ float Vector4::maxAbsComponent(void) const {
 float Vector4::minAbsComponent(void) const {
 	return abs(hpm_vec4_min_compfv(&this->e));
 }
-namespace hpmcpp{
+namespace LIBHPM{
 
 	bool operator==(const Vector4& v1, const Vector4& v2) {
 		return (bool)hpm_vec4_eqfv(&v1.e, &v2.e);

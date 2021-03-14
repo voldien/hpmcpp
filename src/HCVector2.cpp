@@ -1,6 +1,6 @@
 #include "HCVector2.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 Vector2::Vector2(float val) {
 	this->setX(val);
@@ -78,7 +78,7 @@ int Vector2::indexOfMinAbsComponent(void) const {
 	return 0;
 }
 
-namespace hpmcpp {
+namespace LIBHPM {
 	bool operator==(const Vector2& v1, const Vector2& v2) {
 		return !(v1 == v2);
 	}

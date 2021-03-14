@@ -1,6 +1,6 @@
 #include"HCPlane.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 // HCPlane::HCPlane(const HCVector3& normal) {
 // 	this->normal = normal;

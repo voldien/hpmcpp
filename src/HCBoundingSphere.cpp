@@ -1,6 +1,6 @@
 #include"HCBoundingSphere.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 /*
 bool BoundingSphere::intersect(const Ray& ray) const {

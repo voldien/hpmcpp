@@ -31,7 +31,7 @@
 #include"HCONB.h"
 #include"HCBoundingSphere.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 
 	/**
 	 * hpmcpp initialization class.

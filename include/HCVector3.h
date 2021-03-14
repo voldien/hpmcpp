@@ -20,7 +20,7 @@
 #define _HPMCPP_VECTOR_3D_H_ 1
 #include "HCTypes.h"
 
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 * Vector3 class. Contains
 	 * x, y, z component. Where the

@@ -19,12 +19,13 @@
 #ifndef _HPMCPP_MATRIX4X4_H_
 #define _HPMCPP_MATRIX4X4_H_ 1
 #include "HCTypes.h"
-namespace hpmcpp {
+
+namespace LIBHPM {
 	/**
 	 * Right handed 4x4 Matrix
 	 * with single precision.
 	 */
-	class HCDECLSPEC Matrix4x4{
+	class HCDECLSPEC Matrix4x4 {
 	public:
 		Matrix4x4(void) = default;
 		Matrix4x4(const Matrix4x4& other);
@@ -236,7 +237,7 @@ namespace hpmcpp {
 		 */
 		static int HCAPIENTRY unProject(float winx, float winy, float winz, const Matrix4x4 *projection,
 										const Matrix4x4 *modelview, const int *HPM_RESTRICT viewport,
-										HCVector3 *HPM_RESTRICT pos);
+										Vector3 *HPM_RESTRICT pos);
 
 		/**
 		 * Create bias matrix.

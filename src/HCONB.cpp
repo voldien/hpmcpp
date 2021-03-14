@@ -1,7 +1,7 @@
 #include"HCONB.h"
 #include"HCVector3.h"
 
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 ONB::ONB(const ONB &other) {
     *this = other;
@@ -42,7 +42,7 @@ void ONB::initFromU(const Vector3 &u) {
 
     this->setU(u.normalize());
     this->setV(cross(this->u(), n));
-    if (this->v().length() < ONB_EPSILON) {
+    if (this->v().length() < HPMCPP_ONB_EPSILON) {
         this->setV(cross(this->u(), m));
     }
     this->setW(cross(this->u(), this->v()));
@@ -54,7 +54,7 @@ void ONB::initFromV(const Vector3 &v) {
 
     this->setV(v.normalize());
     this->setU(cross(this->v(), n));
-    if (this->u().length() < ONB_EPSILON) {
+    if (this->u().length() < HPMCPP_ONB_EPSILON) {
         this->setU(cross(this->v(), m));
     }
     this->setW(cross(this->u(), this->v()));
@@ -66,7 +66,7 @@ void ONB::initFromW(const Vector3 &w) {
 
     this->setW(w.normalize());
     this->setU(cross(this->w(), n));
-    if (this->u().length() < ONB_EPSILON) {
+    if (this->u().length() < HPMCPP_ONB_EPSILON) {
         this->setU(cross(this->w(), m));
     }
     this->setW(cross(this->w(), this->v()));
@@ -97,14 +97,13 @@ void ONB::initFromWV(const Vector3 &w, const Vector3 &v) {
 
 }
 
-namespace hpmcpp {
-    std::istream &operator>>(std::istream &is, ONB &t) {
-        is >> t.m[0];
-        is >> t.m[1];
-        is >> t.m[2];
-        return is;
-    }
-}
+// std::istream &operator>>(std::istream &is, ONB &t) {
+//     is >> t.m[0];
+//     is >> t.m[1];
+//     is >> t.m[2];
+//     return is;
+// }
+
 
 std::ostream &operator<<(std::ostream &os, const ONB &t) {
     os << t.u() << t.v() << t.w();

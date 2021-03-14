@@ -164,7 +164,7 @@
 
 #endif
 
-namespace hpmcpp{
+namespace LIBHPM{
 	/**
 	 *	Class forwarding.
 	*/

@@ -1,7 +1,7 @@
 #include"HCQuaternion.h"
 #include"HCVector3.h"
 #include"HCVector4.h"
-using namespace hpmcpp;
+using namespace LIBHPM;
 
 Quaternion::Quaternion(const Quaternion& quaternion) {
 	*this = quaternion;
@@ -148,9 +148,7 @@ std::ostream &operator<<(std::ostream &os, const Quaternion& t){
 	return os;
 }
 
-
-namespace hpmcpp{
-
+namespace LIBHPM{ 
 	Quaternion operator*(const Quaternion& lh, const Quaternion& rh) {
 		Quaternion quat = lh;
 		hpm_quat_multi_quatfv(&lh.e, &rh.e, &quat.e);
@@ -186,7 +184,7 @@ namespace hpmcpp{
 		return (bool)hpm_vec4_neqfv(&v1.e, &v2.e);
 	}
 	float dot(const Quaternion& lh, const Quaternion& rh) {
-	return hpm_quat_dotfv(&lh.e, &rh.e);
+		return hpm_quat_dotfv(&lh.e, &rh.e);
 	}
 }
 

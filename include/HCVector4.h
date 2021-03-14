@@ -19,7 +19,7 @@
 #ifndef _HPMCPP_VECTOR4_H_
 #define _HPMCPP_VECTOR4_H_ 1
 #include "HCTypes.h"
-namespace hpmcpp {
+namespace LIBHPM {
 	/**
 	 * Vector4 class. Contains
 	 * x, y, z, w component. Where the
