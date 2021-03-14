@@ -20,105 +20,107 @@
 #define _HPMCPP_ONB_H_ 1
 #include"HCVector3.h"
 
-#define ONB_EPSILON 0.01f
-
-/**
- *	ORTHONORMAL BASED AND FRAMES
- */
-class HCDECLSPEC HCONB {
-public:
-	HCONB(void);
-	HCONB(const HCONB& other);
-	HCONB(const HCVector3& a, const HCVector3& b, const HCVector3& c);
+namespace LIBHPM {
+	#define HPMCPP_ONB_EPSILON 0.01f
 
 	/**
-	 *
-	 */
-	void initFromU(const HCVector3& u);
-	void initFromV(const HCVector3& v);
-	void initFromW(const HCVector3& w);
+	 *	ORTHONORMAL BASED AND FRAMES
+	*/
+	class HCDECLSPEC ONB {
+	public:
+		ONB(void) = default;
+		ONB(const ONB& other);
+		ONB(const Vector3& a, const Vector3& b, const Vector3& c);
 
-	/**
-	 *
-	 */
-	void set(const HCVector3& a, const HCVector3& b, const HCVector3& c);
-	void setU(const HCVector3& u);
-	void setV(const HCVector3& v);
-	void setW(const HCVector3& w);
+		/**
+		 *
+		 */
+		void initFromU(const Vector3& u);
+		void initFromV(const Vector3& v);
+		void initFromW(const Vector3& w);
 
-	/**
-	 *
-	 */
-	void initFromUV(const HCVector3& u, const HCVector3& v);
-	void initFromVU(const HCVector3& v, const HCVector3& u);
+		/**
+		 *
+		 */
+		void set(const Vector3& a, const Vector3& b, const Vector3& c);
+		void setU(const Vector3& u);
+		void setV(const Vector3& v);
+		void setW(const Vector3& w);
 
-	/**
-	 *
-	 */
-	void initFromUW(const HCVector3& u, const HCVector3& w);
-	void initFromWU(const HCVector3& w, const HCVector3& u);
+		/**
+		 *
+		 */
+		void initFromUV(const Vector3& u, const Vector3& v);
+		void initFromVU(const Vector3& v, const Vector3& u);
 
-	/**
-	 *
-	 */
-	void initFromVW(const HCVector3& v, const HCVector3& w);
-	void initFromWV(const HCVector3& w, const HCVector3& v);
+		/**
+		 *
+		 */
+		void initFromUW(const Vector3& u, const Vector3& w);
+		void initFromWU(const Vector3& w, const Vector3& u);
 
-	/**
-	 *
-	 * @param is
-	 * @param t
-	 * @return stream reference.
-	 */
-	friend std::istream &operator>>(std::istream& is, HCONB& t);
+		/**
+		 *
+		 */
+		void initFromVW(const Vector3& v, const Vector3& w);
+		void initFromWV(const Vector3& w, const Vector3& v);
 
-	/**
-	 *
-	 * @param os
-	 * @param t
-	 * @return
-	 */
-	friend std::ostream &operator<<(std::ostream& os, const HCONB& t);
+		/**
+		 *
+		 * @param is
+		 * @param t
+		 * @return stream reference.
+		 */
+		friend std::istream &operator>>(std::istream& is, ONB& t);
 
-	/**
-	 *	Compare 
-	 * @return true if equal.
-	 */
-	friend bool operator==(const HCONB& o1, const HCONB& o2);
+		/**
+		 *
+		 * @param os
+		 * @param t
+		 * @return
+		 */
+		friend std::ostream &operator<<(std::ostream& os, const ONB& t);
 
-	/**
-	 *	Compare 
-	 * @return true if equal.
-	 */
-	friend bool operator!=(const HCONB& o1, const HCONB& o2);
+		/**
+		 *	Compare 
+		* @return true if equal.
+		*/
+		friend bool operator==(const ONB& o1, const ONB& o2);
 
-	HCONB& operator=(const HCONB& onb);
+		/**
+		 *	Compare 
+		* @return true if equal.
+		*/
+		friend bool operator!=(const ONB& o1, const ONB& o2);
 
-	/**
-	 * @return
-	 */
-	inline const HCVector3& u(void) const {
-		return this->m[0];
-	}
+		ONB& operator=(const ONB& onb);
 
-	/**
-	 * @return
-	 */
-	inline const HCVector3& v(void) const {
-		return this->m[1];
-	}
+		/**
+		 * @return
+		 */
+		inline const Vector3& u(void) const {
+			return this->m[0];
+		}
 
-	/**
-	 * @return
-	 */
-	inline const HCVector3& w(void) const {
-		return this->m[2];
-	}
+		/**
+		 * @return
+		 */
+		inline const Vector3& v(void) const {
+			return this->m[1];
+		}
 
-private:	/*	Attributes.	*/
+		/**
+		 * @return
+		 */
+		inline const Vector3& w(void) const {
+			return this->m[2];
+		}
 
-	HCVector3 m[3];		/*	*/
+	private:	/*	Attributes.	*/
 
-};
+		Vector3 m[3];		/*	*/
+
+	};
+}
 
 #endif

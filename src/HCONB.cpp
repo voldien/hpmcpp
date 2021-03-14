@@ -1,119 +1,120 @@
 #include"HCONB.h"
 #include"HCVector3.h"
 
-HCONB::HCONB(void) {
-}
+using namespace LIBHPM;
 
-HCONB::HCONB(const HCONB &other) {
+ONB::ONB(const ONB &other) {
     *this = other;
 }
 
-HCONB::HCONB(const HCVector3 &a, const HCVector3 &b, const HCVector3 &c) {
+ONB::ONB(const Vector3 &a, const Vector3 &b, const Vector3 &c) {
     this->set(a, b, c);
 }
 
-void HCONB::set(const HCVector3 &a, const HCVector3 &b, const HCVector3 &c) {
+void ONB::set(const Vector3 &a, const Vector3 &b, const Vector3 &c) {
     this->m[0] = a;
     this->m[1] = b;
     this->m[2] = c;
 }
 
-void HCONB::setU(const HCVector3 &u) {
+void ONB::setU(const Vector3 &u) {
     this->m[0] = u;
 }
 
-void HCONB::setV(const HCVector3 &v) {
+void ONB::setV(const Vector3 &v) {
     this->m[1] = v;
 }
 
-void HCONB::setW(const HCVector3 &w) {
+void ONB::setW(const Vector3 &w) {
     this->m[2] = w;
 }
 
-HCONB &HCONB::operator=(const HCONB &onb) {
+ONB &ONB::operator=(const ONB &onb) {
     setU(onb.u());
     setV(onb.v());
     setW(onb.w());
     return *this;
 }
 
-void HCONB::initFromU(const HCVector3 &u) {
-    HCVector3 n(1.0f, 0.0f, 0.0f);
-    HCVector3 m(0.0f, 1.0f, 0.0f);
+void ONB::initFromU(const Vector3 &u) {
+    Vector3 n(1.0f, 0.0f, 0.0f);
+    Vector3 m(0.0f, 1.0f, 0.0f);
 
     this->setU(u.normalize());
     this->setV(cross(this->u(), n));
-    if (this->v().length() < ONB_EPSILON) {
+    if (this->v().length() < HPMCPP_ONB_EPSILON) {
         this->setV(cross(this->u(), m));
     }
     this->setW(cross(this->u(), this->v()));
 }
 
-void HCONB::initFromV(const HCVector3 &v) {
-    HCVector3 n(1.0f, 0.0f, 0.0f);
-    HCVector3 m(0.0f, 1.0f, 0.0f);
+void ONB::initFromV(const Vector3 &v) {
+    Vector3 n(1.0f, 0.0f, 0.0f);
+    Vector3 m(0.0f, 1.0f, 0.0f);
 
     this->setV(v.normalize());
     this->setU(cross(this->v(), n));
-    if (this->u().length() < ONB_EPSILON) {
+    if (this->u().length() < HPMCPP_ONB_EPSILON) {
         this->setU(cross(this->v(), m));
     }
     this->setW(cross(this->u(), this->v()));
 }
 
-void HCONB::initFromW(const HCVector3 &w) {
-    HCVector3 n(1.0f, 0.0f, 0.0f);
-    HCVector3 m(0.0f, 1.0f, 0.0f);
+void ONB::initFromW(const Vector3 &w) {
+    Vector3 n(1.0f, 0.0f, 0.0f);
+    Vector3 m(0.0f, 1.0f, 0.0f);
 
     this->setW(w.normalize());
     this->setU(cross(this->w(), n));
-    if (this->u().length() < ONB_EPSILON) {
+    if (this->u().length() < HPMCPP_ONB_EPSILON) {
         this->setU(cross(this->w(), m));
     }
     this->setW(cross(this->w(), this->v()));
 }
 
 
-void HCONB::initFromUV(const HCVector3 &u, const HCVector3 &v) {
+void ONB::initFromUV(const Vector3 &u, const Vector3 &v) {
 
 }
 
-void HCONB::initFromVU(const HCVector3 &v, const HCVector3 &u) {
+void ONB::initFromVU(const Vector3 &v, const Vector3 &u) {
 
 }
 
-void HCONB::initFromUW(const HCVector3 &u, const HCVector3 &w) {
+void ONB::initFromUW(const Vector3 &u, const Vector3 &w) {
 
 }
 
-void HCONB::initFromWU(const HCVector3 &w, const HCVector3 &u) {
+void ONB::initFromWU(const Vector3 &w, const Vector3 &u) {
 
 }
 
-void HCONB::initFromVW(const HCVector3 &v, const HCVector3 &w) {
+void ONB::initFromVW(const Vector3 &v, const Vector3 &w) {
 
 }
 
-void HCONB::initFromWV(const HCVector3 &w, const HCVector3 &v) {
+void ONB::initFromWV(const Vector3 &w, const Vector3 &v) {
 
 }
 
-std::istream &operator>>(std::istream &is, HCONB &t) {
-    is >> t.m[0];
-    is >> t.m[1];
-    is >> t.m[2];
-    return is;
-}
+// std::istream &operator>>(std::istream &is, ONB &t) {
+//     is >> t.m[0];
+//     is >> t.m[1];
+//     is >> t.m[2];
+//     return is;
+// }
 
-std::ostream &operator<<(std::ostream &os, const HCONB &t) {
+
+std::ostream &operator<<(std::ostream &os, const ONB &t) {
     os << t.u() << t.v() << t.w();
     return os;
 }
 
-bool operator==(const HCONB &o1, const HCONB &o2) {
+
+bool operator==(const ONB &o1, const ONB &o2) {
     return (o1.u() == o2.u()) && (o1.v() == o2.v()) && (o1.w() == o2.w());
 }
 
-bool operator!=(const HCONB &o1, const HCONB &o2) {
+bool operator!=(const ONB &o1, const ONB &o2) {
     return (o1.u() != o2.u()) && (o1.v() != o2.v()) && (o1.w() != o2.w());
 }

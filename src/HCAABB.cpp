@@ -1,16 +1,18 @@
 #include"HCAABB.h"
 
-HCAABB::HCAABB(const HCVector3& size, const HCVector3& center) {
+using namespace LIBHPM;
+
+AABB::AABB(const Vector3& size, const Vector3& center) {
 	setCenter(center);
 	setSize(size);
 }
 
-bool HCAABB::intersect(const HCAABB& bounds) {
+bool AABB::intersect(const AABB& bounds) {
 
 	return false;
 }
 
-bool HCAABB::contains(const HCVector3& point, const HCVector3 worldPosition) {
+bool AABB::contains(const Vector3& point, const Vector3 worldPosition) {
 	return (point.x() > minX() + worldPosition.x()
 			&& point.x() < maxX() + worldPosition.x()
 			&& point.y() > minY() + worldPosition.y()
@@ -19,37 +21,37 @@ bool HCAABB::contains(const HCVector3& point, const HCVector3 worldPosition) {
 			&& point.z() < maxZ() + worldPosition.z());
 }
 
-bool HCAABB::contains(const HCAABB& bounds) {
+bool AABB::contains(const AABB& bounds) {
 	return false;
 }
 
-HCAABB& HCAABB::operator=(const HCAABB& bound) {
+AABB& AABB::operator=(const AABB& bound) {
 	this->mhalfsize = bound.mhalfsize;
 	this->mcenter = bound.mcenter;
 	return *this;
 }
 
-HCAABB operator*(const HCAABB& bound, float scalar){
-	return HCAABB(bound.getCenter(), bound.getSize() / scalar);
+AABB operator*(const AABB& bound, float scalar){
+	return AABB(bound.getCenter(), bound.getSize() / scalar);
 }
 
-HCAABB operator/(const HCAABB& bound, float divisor){
-	return HCAABB(bound.getCenter(), bound.getSize() / divisor);
+AABB operator/(const AABB& bound, float divisor){
+	return AABB(bound.getCenter(), bound.getSize() / divisor);
 }
 
-HCAABB& HCAABB::operator*=(float scalar){
+AABB& AABB::operator*=(float scalar){
 	this->mhalfsize *= scalar;
 	return *this;
 }
 
-HCAABB& HCAABB::operator/=(float divisor){
+AABB& AABB::operator/=(float divisor){
 	const float scalar = 1.0f / divisor;
 	this->mhalfsize *= scalar;
 	return *this;
 }
 
-HCVector3 HCAABB::getVertexP(HCVector3 &normal) const {
-	HCVector3 res = this->mhalfsize;
+Vector3 AABB::getVertexP(Vector3 &normal) const {
+	Vector3 res = this->mhalfsize;
 	if (normal.x() >= 0.0f)
 		res[0] += this->mcenter.x();
 	if (normal.y() >= 0.0f)
@@ -58,8 +60,8 @@ HCVector3 HCAABB::getVertexP(HCVector3 &normal) const {
 		res[2] += this->mcenter.z();
 	return res;
 }
-HCVector3 HCAABB::getVertexN(HCVector3 &normal) const {
-	HCVector3 res = this->mhalfsize;
+Vector3 AABB::getVertexN(Vector3 &normal) const {
+	Vector3 res = this->mhalfsize;
 	if (normal.x() < 0.0f)
 		res[0] += this->mcenter.x();
 	if (normal.y() < 0.0f)
@@ -69,11 +71,11 @@ HCVector3 HCAABB::getVertexN(HCVector3 &normal) const {
 	return res;
 }
 
-bool HCAABB::operator==(const HCAABB& bound){
+bool AABB::operator==(const AABB& bound){
 	return (this->getCenter() == bound.getCenter()) && (this->getSize() == bound.getSize());
 }
 
-bool HCAABB::operator!=(const HCAABB& bound){
+bool AABB::operator!=(const AABB& bound){
 	return (this->getCenter() != bound.getCenter()) || (this->getSize() != bound.getSize());
 }
 

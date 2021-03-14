@@ -21,216 +21,218 @@
 #include"HCRay.h"
 #include"HCVector3.h"
 
-/**
- * Axis aligned bounding
- * box.
- */
-class HCDECLSPEC HCAABB {
-public:
-
-	HCAABB(void) {}
-	HCAABB(const HCVector3& size, const HCVector3& center);
-	HCAABB(const HCAABB& bounds) {
-		*this = bounds;
-	}
-
+namespace LIBHPM{
 	/**
-	 *
-	 * @param i
-	 * @return
+	 * Axis aligned bounding
+	 * box.
 	 */
-	inline HCVector3 operator[](int i) const {
-		return ((HCVector3*) this)[i];
-	}
+	class HCDECLSPEC AABB {
+	public:
 
-	/**
-	 *
-	 * @return
-	 */
-	inline HCVector3& operator[](int i) {
-		return ((HCVector3*) this)[i];
-	}
+		AABB(void) {}
+		AABB(const Vector3& size, const Vector3& center);
+		AABB(const AABB& bounds) {
+			*this = bounds;
+		}
 
-	/**
-	 * Check if object is valid.
-	 * @return true if valid, false otherwise.
-	 */
-	inline bool isValid(void) const {
-		return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f
-				|| this->mhalfsize.z() != 0.0f);
-	}
+		/**
+		 *
+		 * @param i
+		 * @return
+		 */
+		inline Vector3 operator[](int i) const {
+			return ((Vector3*) this)[i];
+		}
 
-	/**
-	 *
-	 */
-	inline float maxX(void) const {
-		return (this->mcenter.x() + this->mhalfsize.x());
-	}
-	inline float minX(void) const {
-		return (this->mcenter.x() - this->mhalfsize.x());
-	}
-	inline float maxY(void) const {
-		return (this->mcenter.y() + this->mhalfsize.y());
-	}
-	inline float minY(void) const {
-		return (this->mcenter.y() - this->mhalfsize.y());
-	}
-	inline float maxZ(void) const {
-		return (this->mcenter.z() + this->mhalfsize.z());
-	}
-	inline float minZ(void) const {
-		return (this->mcenter.z() - this->mhalfsize.z());
-	}
+		/**
+		 *
+		 * @return
+		 */
+		inline Vector3& operator[](int i) {
+			return ((Vector3*) this)[i];
+		}
 
-	/**
-	 * Compute minimum position.
-	 * @return vector position.
-	 */
-	inline HCVector3 min(void) const {
-		return this->getCenter() - this->getSize();
-	}
+		/**
+		 * Check if object is valid.
+		 * @return true if valid, false otherwise.
+		 */
+		inline bool isValid(void) const {
+			return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f
+					|| this->mhalfsize.z() != 0.0f);
+		}
 
-	/**
-	 * Compute max position.
-	 * @return vector position.
-	 */
-	inline HCVector3 max(void) const {
-		return this->getCenter() + this->getSize();
-	}
+		/**
+		 *
+		 */
+		inline float maxX(void) const {
+			return (this->mcenter.x() + this->mhalfsize.x());
+		}
+		inline float minX(void) const {
+			return (this->mcenter.x() - this->mhalfsize.x());
+		}
+		inline float maxY(void) const {
+			return (this->mcenter.y() + this->mhalfsize.y());
+		}
+		inline float minY(void) const {
+			return (this->mcenter.y() - this->mhalfsize.y());
+		}
+		inline float maxZ(void) const {
+			return (this->mcenter.z() + this->mhalfsize.z());
+		}
+		inline float minZ(void) const {
+			return (this->mcenter.z() - this->mhalfsize.z());
+		}
 
-	/**
-	 * Get half size.
-	 * @return half size vector.
-	 */
-	inline const HCVector3& getSize(void) const {
-		return this->mhalfsize;
-	}
+		/**
+		 * Compute minimum position.
+		 * @return vector position.
+		 */
+		inline Vector3 min(void) const {
+			return this->getCenter() - this->getSize();
+		}
 
-	/**
-	 * Set half size.
-	 */
-	inline void setSize(const HCVector3& size) {
-		this->mhalfsize = size;
-	}
+		/**
+		 * Compute max position.
+		 * @return vector position.
+		 */
+		inline Vector3 max(void) const {
+			return this->getCenter() + this->getSize();
+		}
 
-	/**
-	 * Get center position.
-	 * @return
-	 */
-	inline const HCVector3& getCenter(void) const {
-		return this->mcenter;
-	}
+		/**
+		 * Get half size.
+		 * @return half size vector.
+		 */
+		inline const Vector3& getSize(void) const {
+			return this->mhalfsize;
+		}
 
-	/**
-	 * Set center position.
-	 */
-	inline void setCenter(const HCVector3& center) {
-		this->mcenter = center;
-	}
+		/**
+		 * Set half size.
+		 */
+		inline void setSize(const Vector3& size) {
+			this->mhalfsize = size;
+		}
 
-	/**
-	 * Check if object intersect.
-	 * @param bounds intersect this bound.
-	 * @return true if object intersects.
-	 */
-	bool intersect(const HCAABB& bounds);
+		/**
+		 * Get center position.
+		 * @return
+		 */
+		inline const Vector3& getCenter(void) const {
+			return this->mcenter;
+		}
 
-	/**
-	 *
-	 * @param point
-	 * @param worldPosition
-	 * @return  true if object contains.
-	 */
-	bool HCAPIENTRY contains(const HCVector3& point, const HCVector3 worldPosition =
-			HCVector3());
+		/**
+		 * Set center position.
+		 */
+		inline void setCenter(const Vector3& center) {
+			this->mcenter = center;
+		}
 
-	/**
-	 * Check if object contains bound
-	 * object.
-	 * @param bounds
-	 * @return true if completly contains, false otherwise.
-	 */
-	bool HCAPIENTRY contains(const HCAABB& bounds);
+		/**
+		 * Check if object intersect.
+		 * @param bounds intersect this bound.
+		 * @return true if object intersects.
+		 */
+		bool intersect(const AABB& bounds);
 
-	/**
-	 *
-	 * @param normal
-	 * @return
-	 */
-	HCVector3 HCAPIENTRY getVertexN(HCVector3& normal) const;
+		/**
+		 *
+		 * @param point
+		 * @param worldPosition
+		 * @return  true if object contains.
+		 */
+		bool HCAPIENTRY contains(const Vector3& point, const Vector3 worldPosition =
+				Vector3());
 
-	/**
-	 *
-	 * @param normal
-	 * @return
-	 */
-	HCVector3 HCAPIENTRY getVertexP(HCVector3& normal) const;
+		/**
+		 * Check if object contains bound
+		 * object.
+		 * @param bounds
+		 * @return true if completly contains, false otherwise.
+		 */
+		bool HCAPIENTRY contains(const AABB& bounds);
 
-	/**
-	 * Create input stream for creating AABB
-	 * from input stream.
-	 * @return stream reference.
-	 */
-	friend std::istream &operator>>(std::istream &is, HCVector3& t);
+		/**
+		 *
+		 * @param normal
+		 * @return
+		 */
+		Vector3 HCAPIENTRY getVertexN(Vector3& normal) const;
 
-	/**
-	 * Create output stream of AABB values.
-	 * @return stream reference.
-	 */
-	friend std::ostream &operator<<(std::ostream &os, const HCVector3& t);
+		/**
+		 *
+		 * @param normal
+		 * @return
+		 */
+		Vector3 HCAPIENTRY getVertexP(Vector3& normal) const;
 
-	/**
-	 * Assign bound object.
-	 * @return reference of object.
-	 */
-	HCAABB& operator=(const HCAABB& bound);
+		/**
+		 * Create input stream for creating AABB
+		 * from input stream.
+		 * @return stream reference.
+		 */
+		friend std::istream &operator>>(std::istream &is, Vector3& t);
 
-	/**
-	 *
-	 * @return reference of object.
-	 */
-	friend HCAABB operator*(const HCAABB& bound, float scalar);
+		/**
+		 * Create output stream of AABB values.
+		 * @return stream reference.
+		 */
+		friend std::ostream &operator<<(std::ostream &os, const Vector3& t);
 
-	/**
-	 * Divide the size by scalar.
-	 * @param bound
-	 * @param divisor
-	 * @return reference of object.
-	 */
-	friend HCAABB operator/(const HCAABB& bound, float divisor);
+		/**
+		 * Assign bound object.
+		 * @return reference of object.
+		 */
+		AABB& operator=(const AABB& bound);
 
-	/**
-	 * Factor the bound size of the bound.
-	 * @param scalar real number.
-	 * @return reference of object.
-	 */
-	HCAABB& operator*=(float scalar);
+		/**
+		 *
+		 * @return reference of object.
+		 */
+		friend AABB operator*(const AABB& bound, float scalar);
 
-	/**
-	 * Divide the size by scalar.
-	 * @param divisor non-zero.
-	 * @return reference of object.
-	 */
-	HCAABB& operator/=(float divisor);
+		/**
+		 * Divide the size by scalar.
+		 * @param bound
+		 * @param divisor
+		 * @return reference of object.
+		 */
+		friend AABB operator/(const AABB& bound, float divisor);
 
-	/**
-	 * Compare if objects are equal.
-	 * @param bound
-	 * @return true if object are equal, false otherwise.
-	 */
-	bool operator==(const HCAABB& bound);
+		/**
+		 * Factor the bound size of the bound.
+		 * @param scalar real number.
+		 * @return reference of object.
+		 */
+		AABB& operator*=(float scalar);
 
-	/**
-	 * Compare if object are not equal.
-	 * @param bound
-	 * @return false if object are equal, true otherwise.
-	 */
-	bool operator!=(const HCAABB& bound);
+		/**
+		 * Divide the size by scalar.
+		 * @param divisor non-zero.
+		 * @return reference of object.
+		 */
+		AABB& operator/=(float divisor);
 
-private:	/*	Attributes.	*/
+		/**
+		 * Compare if objects are equal.
+		 * @param bound
+		 * @return true if object are equal, false otherwise.
+		 */
+		bool operator==(const AABB& bound);
 
-	HCVector3 mhalfsize;    /*	half size of the box.	*/
-	HCVector3 mcenter;      /*	center of the box.	*/
-};
+		/**
+		 * Compare if object are not equal.
+		 * @param bound
+		 * @return false if object are equal, true otherwise.
+		 */
+		bool operator!=(const AABB& bound);
+
+	private:	/*	Attributes.	*/
+
+		Vector3 mhalfsize;    /*	half size of the box.	*/
+		Vector3 mcenter;      /*	center of the box.	*/
+	};
+}
 
 #endif

@@ -20,186 +20,184 @@
 #define _HC_VECTOR2_H_ 1
 #include "HCTypes.h"
 
-/**
- * Vector2.
- */
-class HCDECLSPEC HCVector2 {
-public:
-	HCVector2(void);
-	HCVector2(float val);
-	HCVector2(float m0, float m1);
-	HCVector2(const HCVector2& v);
-
+namespace LIBHPM {
 	/**
-	 * Negate vector.
-	 * @return
+	 * Vector2.
 	 */
-	HCVector2& operator-(void) const;
+	class HCDECLSPEC Vector2 {
+	public:
+		Vector2(void) = default;
+		Vector2(float val);
+		Vector2(float m0, float m1);
+		Vector2(const Vector2& v);
 
-	/**
-	 * Get vector component by index.
-	 * @return component value.
-	 */
-	inline float operator[](int i) const {
-		return this->m[i];
-	}
-	/**
-	 * Get vector component reference
-	 * by index.
-	 * @return reference to component.
-	 */
-	inline float& operator[](int i) {
-		return this->m[i];
-	}
+		/**
+		 * Negate vector.
+		 * @return
+		 */
+		Vector2& operator-(void) const;
 
-	/**
-	 * Compute length.
-	 * @return length in decimal.
-	 */
-	float length(void) const;
+		/**
+		 * Get vector component by index.
+		 * @return component value.
+		 */
+		inline float operator[](int i) const;
+		/**
+		 * Get vector component reference
+		 * by index.
+		 * @return reference to component.
+		 */
+		inline float& operator[](int i);
 
-	/**
-	 * Compute square length.
-	 * @return length in decimal.
-	 */
-	float squaredLength(void) const;
+		/**
+		 * Compute length.
+		 * @return length in decimal.
+		 */
+		float length(void) const;
 
-	/**
-	 * Make vector to unit length.
-	 */
-	void makeUnitVector(void);
+		/**
+		 * Compute square length.
+		 * @return length in decimal.
+		 */
+		float squaredLength(void) const;
 
-	/**
-	 * Set vector X component value.
-	 */
-	void HCAPIFASTENTRY setX(float x);
+		/**
+		 * Make vector to unit length.
+		 */
+		void makeUnitVector(void);
 
-	/**
-	 * Set vector Y component value.
-	 */
-	void HCAPIFASTENTRY setY(float y);
+		/**
+		 * Set vector X component value.
+		 */
+		void HCAPIFASTENTRY setX(float x);
 
-	/**
-	 * Get vector X component value.
-	 * @return value of component.
-	 */
-	float HCAPIFASTENTRY x(void) const;
+		/**
+		 * Set vector Y component value.
+		 */
+		void HCAPIFASTENTRY setY(float y);
 
-	/**
-	 * Get vector Y component value.
-	 * @return value of component.
-	 */
-	float HCAPIFASTENTRY y(void) const;
+		/**
+		 * Get vector X component value.
+		 * @return value of component.
+		 */
+		float HCAPIFASTENTRY x(void) const;
 
-	/**
-	 * @return
-	 */
-	float minComponent(void) const;
-	float maxComponent(void) const;
-	float maxAbsComponent(void) const;
-	float minAbsComponent(void) const;
-	int indexOfMinComponent(void) const;
-	int indexOfMaxComponent(void) const;
-	int indexOfMinAbsComponent(void) const;
-	int indexOfMaxAbsComponent(void) const;
+		/**
+		 * Get vector Y component value.
+		 * @return value of component.
+		 */
+		float HCAPIFASTENTRY y(void) const;
 
-	/**
-	 * Create normalize copy
-	 * @return
-	 */
-	HCVector2 normalize(void) const;
+		/**
+		 * @return
+		 */
+		float minComponent(void) const;
+		float maxComponent(void) const;
+		float maxAbsComponent(void) const;
+		float minAbsComponent(void) const;
+		int indexOfMinComponent(void) const;
+		int indexOfMaxComponent(void) const;
+		int indexOfMinAbsComponent(void) const;
+		int indexOfMaxAbsComponent(void) const;
 
-	/**
-	 * Compare vector equalities.
-	 * @return true if vector equal for each component.
-	 */
-	friend bool operator==(const HCVector2& v1, const HCVector2& v2);
-	/**
-	 * Compare vector inequality.
-	 * @return true if at least single component is not equal.
-	 */
-	friend bool operator!=(const HCVector2& v1, const HCVector2& v2);
+		/**
+		 * Create normalize copy
+		 * @return
+		 */
+		Vector2 normalize(void) const;
 
-	/**
-	 * Create input stream for creating vector
-	 * from input stream.
-	 * @return stream reference.
-	 */
-	friend std::istream& operator>>(std::istream &is, HCVector2& t);
+		/**
+		 * Compare vector equalities.
+		 * @return true if vector equal for each component.
+		 */
+		friend bool operator==(const Vector2& v1, const Vector2& v2);
+		/**
+		 * Compare vector inequality.
+		 * @return true if at least single component is not equal.
+		 */
+		friend bool operator!=(const Vector2& v1, const Vector2& v2);
 
-	/**
-	 * Create output stream of vector value.
-	 * @return stream reference.
-	 */
-	friend std::ostream& operator<<(std::ostream &os, const HCVector2& t);
+		/**
+		 * Create input stream for creating vector
+		 * from input stream.
+		 * @return stream reference.
+		 */
+		friend std::istream& operator>>(std::istream &is, Vector2& t);
 
-	friend HCVector2 operator+(const HCVector2& v1, const HCVector2& v2);
-	friend HCVector2 operator-(const HCVector2& v1, const HCVector2& v2);
-	friend HCVector2 operator/(const HCVector2& vec, float scalar);
-	friend HCVector2 operator*(const HCVector2& vec, float scalar);
-	friend HCVector2 operator*(float scalar, const HCVector2& vec);
-	friend HCVector2 operator*(const HCVector2& vec1, const HCVector2& vec2);
+		/**
+		 * Create output stream of vector value.
+		 * @return stream reference.
+		 */
+		friend std::ostream& operator<<(std::ostream &os, const Vector2& t);
 
-	HCVector2& operator=(const HCVector2& v2);
-	HCVector2& operator+=(const HCVector2& v2);
-	HCVector2& operator-=(const HCVector2& v2);
-	HCVector2& operator/=(float scalar);
-	HCVector2& operator*=(float scalar);
-	HCVector2& operator*=(const HCVector2& vec2);
+		friend Vector2 operator+(const Vector2& v1, const Vector2& v2);
+		friend Vector2 operator-(const Vector2& v1, const Vector2& v2);
+		friend Vector2 operator/(const Vector2& vec, float scalar);
+		friend Vector2 operator*(const Vector2& vec, float scalar);
+		friend Vector2 operator*(float scalar, const Vector2& vec);
+		friend Vector2 operator*(const Vector2& vec1, const Vector2& vec2);
 
-	/**
-	 *
-	 * @param v
-	 * @return
-	 */
-	friend HCVector2 unitVector3(const HCVector2& v);
+		Vector2& operator=(const Vector2& v2);
+		Vector2& operator+=(const Vector2& v2);
+		Vector2& operator-=(const Vector2& v2);
+		Vector2& operator/=(float scalar);
+		Vector2& operator*=(float scalar);
+		Vector2& operator*=(const Vector2& vec2);
 
-	/**
-	 *
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend HCVector2 minVec(const HCVector2& v1, const HCVector2& v2);
+		/**
+		 *
+		 * @param v
+		 * @return
+		 */
+		friend Vector2 unitVector3(const Vector2& v);
 
-	/**
-	 *
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend HCVector2 maxVec(const HCVector2& v1, const HCVector2& v2);
+		/**
+		 *
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend Vector2 minVec(const Vector2& v1, const Vector2& v2);
 
-	/**
-	 *
-	 * @param vector
-	 * @param normal
-	 * @return
-	 */
-	friend HCVector2 reflection(const HCVector2& vector,
-	        const HCVector2& normal);
+		/**
+		 *
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend Vector2 maxVec(const Vector2& v1, const Vector2& v2);
 
-	/**
-	 * Compute dot product.
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	friend float dot(const HCVector2& v1, const HCVector2& v2);
+		/**
+		 *
+		 * @param vector
+		 * @param normal
+		 * @return
+		 */
+		friend Vector2 reflection(const Vector2& vector,
+				const Vector2& normal);
 
-private:	/*	Attributes.	*/
+		/**
+		 * Compute dot product.
+		 * @param v1
+		 * @param v2
+		 * @return
+		 */
+		friend float dot(const Vector2& v1, const Vector2& v2);
 
-	hpmvec2f m;
+	private:	/*	Attributes.	*/
 
-public:	/*	Static methods.	*/
+		hpmvec2f m;
 
-	/**
-	 * Create zero vector.
-	 * @return HCVector2 object.
-	 */
-	static HCVector2 zero(void) {
-		return HCVector2(0.0f);
-	}
-};
+	public:	/*	Static methods.	*/
+
+		/**
+		 * Create zero vector.
+		 * @return HCVector2 object.
+		 */
+		static Vector2 zero(void) {
+			return Vector2(0.0f);
+		}
+	};
+}
 
 #endif

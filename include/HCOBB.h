@@ -1,132 +1,132 @@
 /**
-    C++ Wrapper for the hpm library.
-    Copyright (C) 2017  Valdemar Lindberg
+	C++ Wrapper for the hpm library.
+	Copyright (C) 2017  Valdemar Lindberg
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 #ifndef _HPMCPP_OBB_H_
 #define _HPMCPP_OBB_H_ 1
-
 #include"HCONB.h"
 #include"HCVector3.h"
 
-/**
- *	Oriented bounding box.
- */
-class HCDECLSPEC HCOBB {
-public:
+namespace LIBHPM {
+	/**
+	 *	Oriented bounding box.
+	*/
+	class HCDECLSPEC OBB {
+	public:
 
-    HCOBB(void);
+		OBB(void);
 
-    HCOBB(const HCOBB &obb);
+		OBB(const OBB &obb);
 
-    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w);
 
-    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &size);
 
-    HCOBB(const HCVector3 &u, const HCVector3 &v, const HCVector3 &w, const HCVector3 &center, const HCVector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &center, const Vector3 &size);
 
-    /**
-     * Get U axis.
-     * @return normalized axis.
-     */
-    const HCVector3 &HCAPIENTRY getU(void) const;
+		/**
+		 * Get U axis.
+		 * @return normalized axis.
+		 */
+		const Vector3 &HCAPIENTRY getU(void) const;
 
-    /**
-     *	Get V axis.
-     * @return normalized axis.
-     */
+		/**
+		 *	Get V axis.
+		* @return normalized axis.
+		*/
 
-    /**
-     *
-     * @return
-     */
-    const HCVector3 &HCAPIENTRY getV(void) const;
+		/**
+		 *
+		 * @return
+		 */
+		const Vector3 &HCAPIENTRY getV(void) const;
 
-    /**
-     * Get W axis.
-     * @return normalized axis.
-     */
-    const HCVector3 &HCAPIENTRY getW(void) const;
+		/**
+		 * Get W axis.
+		 * @return normalized axis.
+		 */
+		const Vector3 &HCAPIENTRY getW(void) const;
 
-    /**
-     * Set size of box.
-     * @param size
-     */
-    void setSize(const HCVector3 &size) {
-        this->size = size;
-    }
+		/**
+		 * Set size of box.
+		 * @param size
+		 */
+		void setSize(const Vector3 &size) {
+			this->size = size;
+		}
 
-    /**
-     * Get half size.
-     * @return non-negative vector of the size.
-     */
-    inline HCVector3 getSize(void) {
-        return size;
-    }
+		/**
+		 * Get half size.
+		 * @return non-negative vector of the size.
+		 */
+		inline Vector3 getSize(void) {
+			return size;
+		}
 
-    /**
-     *
-     * @return
-     */
-    inline const HCVector3 &getSize(void) const {
-        return this->size;
-    }
+		/**
+		 *
+		 * @return
+		 */
+		inline const Vector3 &getSize(void) const {
+			return this->size;
+		}
 
-    /**
-     *
-     * @param size
-     */
-    inline void setCenter(const HCVector3 &size) {
+		/**
+		 *
+		 * @param size
+		 */
+		inline void setCenter(const Vector3 &size) {
 
-    }
+		}
 
-    /**
-     *
-     * @return
-     */
-    inline HCVector3 getCenter(void) const {
-        return HCVector3(this->halfu, this->halfv, this->halfw);
-    }
+		/**
+		 *
+		 * @return
+		 */
+		inline Vector3 getCenter(void) const {
+			return Vector3(this->halfu, this->halfv, this->halfw);
+		}
 
-    HCOBB &operator=(const HCOBB &obb);
+		OBB &operator=(const OBB &obb);
 
-    /**
-     *
-     * @param is
-     * @param t
-     * @return stream reference.
-     */
-    friend std::istream &operator>>(std::istream &is, HCOBB &t);
+		/**
+		 *
+		 * @param is
+		 * @param t
+		 * @return stream reference.
+		 */
+		friend std::istream &operator>>(std::istream &is, OBB &t);
 
-    /**
-     *
-     * @param is
-     * @param t
-     * @return stream reference.
-     */
-    friend std::ostream &operator<<(std::ostream &os, const HCOBB &t);
+		/**
+		 *
+		 * @param is
+		 * @param t
+		 * @return stream reference.
+		 */
+		friend std::ostream &operator<<(std::ostream &os, const OBB &t);
 
-private:    /*	Attributes.	*/
+	private:    /*	Attributes.	*/
 
-    HCONB onb;          /*	*/
-    HCVector3 size;     /*	*/
-    float halfu;        /*	*/
-    float halfv;        /*	*/
-    float halfw;        /*	*/
-};
-
+		ONB onb;          /*	*/
+		Vector3 size;     /*	*/
+		float halfu;        /*	*/
+		float halfv;        /*	*/
+		float halfw;        /*	*/
+	};
+}
 
 #endif
