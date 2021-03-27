@@ -24,13 +24,12 @@ namespace LIBHPM {
 	/**
 	 * Vector2.
 	 */
-	class HCDECLSPEC Vector2 {
+	struct HCDECLSPEC alignas(alignof(hpmvec2f)) Vector2 {
 	  public:
 		Vector2(void) = default;
 		Vector2(float val);
 		Vector2(float m0, float m1);
 		Vector2(const Vector2 &v);
-		Vector2(Vector2 &&other);
 
 		/**
 		 * Negate vector.

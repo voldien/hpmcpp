@@ -26,38 +26,37 @@ namespace LIBHPM {
 	 * x, y, z component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC Vector3 {
-		friend class Matrix4x4;
-		friend class Quaternion;
+	struct HCDECLSPEC alignas(alignof(hpmvec3f)) Vector3 {
+		friend struct Matrix4x4;
+		friend struct Quaternion;
 
 	  public:
 		Vector3(void) = default;
-		Vector3(float val);
-		Vector3(float e0, float e1, float e2);
-		Vector3(const Vector3 &v);
-		Vector3(Vector3 &&other);
+		Vector3(float val) noexcept;
+		Vector3(float e0, float e1, float e2) noexcept;
+		Vector3(const Vector3 &v) noexcept;
 
 		/**
 		 * Get individual component of vector.
 		 * @return
 		 */
-		float HCAPIFASTENTRY x(void) const;
-		float HCAPIFASTENTRY y(void) const;
-		float HCAPIFASTENTRY z(void) const;
+		float HCAPIFASTENTRY x(void) const noexcept;
+		float HCAPIFASTENTRY y(void) const noexcept;
+		float HCAPIFASTENTRY z(void) const noexcept;
 
 		/**
 		 * Set individual
 		 */
-		void HCAPIFASTENTRY setX(float _x);
-		void HCAPIFASTENTRY setY(float _y);
-		void HCAPIFASTENTRY setZ(float _z);
+		void HCAPIFASTENTRY setX(float _x) noexcept;
+		void HCAPIFASTENTRY setY(float _y) noexcept;
+		void HCAPIFASTENTRY setZ(float _z) noexcept;
 
 		/**
 		 *
 		 * @return
 		 */
-		const Vector3 &operator+(void) const;
-		Vector3 operator-(void) const;
+		const Vector3 &operator+(void) const noexcept;
+		Vector3 operator-(void) const noexcept;
 
 		/**
 		 *
@@ -72,42 +71,42 @@ namespace LIBHPM {
 		 * Compute length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY length(void) const;
+		float HCAPIENTRY length(void) const noexcept;
 
 		/**
 		 * Compute square length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY squaredLength(void) const;
+		float HCAPIENTRY squaredLength(void) const noexcept;
 
 		/**
 		 * Make vector to a unite vector.
 		 */
-		void HCAPIENTRY makeUnitVector(void);
+		void HCAPIENTRY makeUnitVector(void) ;
 
 		/**
 		 * Get minimum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY minComponent(void) const;
+		float HCAPIFASTENTRY minComponent(void) const noexcept;
 
 		/**
 		 * Get maximum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY maxComponent(void) const;
+		float HCAPIFASTENTRY maxComponent(void) const noexcept;
 
 		/**
 		 * Get absolute maximum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY maxAbsComponent(void) const;
+		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept;
 
 		/**
 		 * Get absolute minimum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY minAbsComponent(void) const;
+		float HCAPIFASTENTRY minAbsComponent(void) const noexcept;
 
 		/**
 		 * Normalize vector.
@@ -167,7 +166,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY minVec(const Vector3 &v1, const Vector3 &v2);
+		friend Vector3 HCAPIENTRY minVec(const Vector3 &v1, const Vector3 &v2) noexcept;
 
 		/**
 		 *
@@ -175,7 +174,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY maxVec(const Vector3 &v1, const Vector3 &v2);
+		friend Vector3 HCAPIENTRY maxVec(const Vector3 &v1, const Vector3 &v2) noexcept;
 
 		/**
 		 *
@@ -183,7 +182,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY cross(const Vector3 &v1, const Vector3 &v2);
+		friend Vector3 HCAPIENTRY cross(const Vector3 &v1, const Vector3 &v2) noexcept;
 
 		/**
 		 *
@@ -191,7 +190,7 @@ namespace LIBHPM {
 		 * @param normal
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY reflection(const Vector3 &vector, const Vector3 &normal);
+		friend Vector3 HCAPIENTRY reflection(const Vector3 &vector, const Vector3 &normal) noexcept;
 
 		/**
 		 *
@@ -200,7 +199,7 @@ namespace LIBHPM {
 		 * @param refraction
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY refraction(const Vector3 &v1, const Vector3 &normal, float refraction);
+		friend Vector3 HCAPIENTRY refraction(const Vector3 &v1, const Vector3 &normal, float refraction) noexcept;
 
 		/**
 		 *
@@ -208,7 +207,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend float HCAPIENTRY dot(const Vector3 &v1, const Vector3 &v2);
+		friend float HCAPIENTRY dot(const Vector3 &v1, const Vector3 &v2) noexcept;
 
 		/**
 		 *
@@ -217,22 +216,14 @@ namespace LIBHPM {
 		 * @param v3
 		 * @return
 		 */
-		friend float HCAPIENTRY tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3);
+		friend float HCAPIENTRY tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) noexcept;
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY tangent(const Vector3 &normal);
-
-		/**
-		 *
-		 * @param normal
-		 * @param tangent
-		 * @return
-		 */
-		friend Vector3 HCAPIENTRY biTangent(const Vector3 &normal, const Vector3 &tangent);
+		friend Vector3 HCAPIENTRY tangent(const Vector3 &normal) noexcept;
 
 		/**
 		 *
@@ -240,7 +231,15 @@ namespace LIBHPM {
 		 * @param tangent
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY biNormal(const Vector3 &normal, const Vector3 &tangent);
+		friend Vector3 HCAPIENTRY biTangent(const Vector3 &normal, const Vector3 &tangent) noexcept;
+
+		/**
+		 *
+		 * @param normal
+		 * @param tangent
+		 * @return
+		 */
+		friend Vector3 HCAPIENTRY biNormal(const Vector3 &normal, const Vector3 &tangent) noexcept;
 
 	  private: /*	Private method.	*/
 		hpmvec3f e;
@@ -249,13 +248,13 @@ namespace LIBHPM {
 		/**
 		 * Create predefined vector3.
 		 */
-		inline static Vector3 forward(void) { return Vector3(0.0f, 0.0f, 1.0f); }
-		inline static Vector3 back(void) { return Vector3(0.0f, 0.0f, -1.0f); }
-		inline static Vector3 right(void) { return Vector3(1.0f, 0.0f, 0.0f); }
-		inline static Vector3 left(void) { return Vector3(-1.0f, 0.0f, 0.0f); }
-		inline static Vector3 up(void) { return Vector3(0.0f, 1.0f, 0.0f); }
-		inline static Vector3 down(void) { return Vector3(0.0f, -1.0f, 0.0f); }
-		inline static Vector3 zero(void) { return Vector3(0.0f, 0.0, 0.0f); }
+		inline static Vector3 forward(void) noexcept { return Vector3(0.0f, 0.0f, 1.0f); }
+		inline static Vector3 back(void) noexcept { return Vector3(0.0f, 0.0f, -1.0f); }
+		inline static Vector3 right(void) noexcept { return Vector3(1.0f, 0.0f, 0.0f); }
+		inline static Vector3 left(void) noexcept { return Vector3(-1.0f, 0.0f, 0.0f); }
+		inline static Vector3 up(void) noexcept { return Vector3(0.0f, 1.0f, 0.0f); }
+		inline static Vector3 down(void) noexcept { return Vector3(0.0f, -1.0f, 0.0f); }
+		inline static Vector3 zero(void) noexcept { return Vector3(0.0f, 0.0, 0.0f); }
 
 		/**
 		 * Linear interpolation between v1 and v2 based on t.
@@ -264,7 +263,7 @@ namespace LIBHPM {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static Vector3 HCAPIENTRY lerp(const Vector3 &vec1, const Vector3 &vec2, float t);
+		static Vector3 HCAPIENTRY lerp(const Vector3 &vec1, const Vector3 &vec2, float t) noexcept;
 
 		/**
 		 * Spherical interpolation.
@@ -273,7 +272,7 @@ namespace LIBHPM {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static Vector3 HCAPIENTRY slerp(const Vector3 &vec1, const Vector3 &vec2, float t);
+		static Vector3 HCAPIENTRY slerp(const Vector3 &vec1, const Vector3 &vec2, float t) noexcept;
 	};
 } // namespace LIBHPM
 

@@ -25,11 +25,12 @@ namespace LIBHPM {
 	 * Right handed 4x4 Matrix
 	 * with single precision.
 	 */
-	class HCDECLSPEC Matrix4x4 {
+	struct HCDECLSPEC alignas(alignof(hpmvec4x4f_t)) Matrix4x4 {
 	  public:
 		Matrix4x4(void) = default;
 		Matrix4x4(const Matrix4x4 &other);
-		Matrix4x4(Matrix4x4 &&other);
+		explicit Matrix4x4(const float *matrix);
+		explicit Matrix4x4(float identity);
 		~Matrix4x4(void) = default;
 
 	  private: /*	Attributes.	*/

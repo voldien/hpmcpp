@@ -27,13 +27,12 @@ namespace LIBHPM {
 	 * w, x, y, z component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC Quaternion {
-		friend class Matrix4x4;
+	struct HCDECLSPEC alignas(alignof(hpmquatf)) Quaternion {
+		friend struct Matrix4x4;
 
 	  public:
 		Quaternion(void) = default;
 		Quaternion(const Quaternion &quaternion);
-		Quaternion(Quaternion &&other);
 		Quaternion(float w, float x, float y, float z);
 		Quaternion(float pitch, float yaw, float roll);
 

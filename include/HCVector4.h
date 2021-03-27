@@ -25,29 +25,28 @@ namespace LIBHPM {
 	 * x, y, z, w component. Where the
 	 * size of the object is 128 bit.
 	 */
-	class HCDECLSPEC Vector4 {
+	struct HCDECLSPEC alignas(alignof(hpmvec4f)) Vector4 {
 	  public:
 		Vector4(void);
 		Vector4(float val);
 		Vector4(float m0, float m1, float m2, float m3);
 		Vector4(const Vector4 &v);
-		Vector4(Vector4 &&other);
 
 		/**
 		 * Get component wise.
 		 */
-		float HCAPIFASTENTRY x(void) const;
-		float HCAPIFASTENTRY y(void) const;
-		float HCAPIFASTENTRY z(void) const;
-		float HCAPIFASTENTRY w(void) const;
+		float HCAPIFASTENTRY x(void) const noexcept;
+		float HCAPIFASTENTRY y(void) const noexcept;
+		float HCAPIFASTENTRY z(void) const noexcept;
+		float HCAPIFASTENTRY w(void) const noexcept;
 
 		/**
 		 * Set component wise.
 		 */
-		void HCAPIFASTENTRY setX(float x);
-		void HCAPIFASTENTRY setY(float y);
-		void HCAPIFASTENTRY setZ(float z);
-		void HCAPIFASTENTRY setW(float w);
+		void HCAPIFASTENTRY setX(float x) noexcept;
+		void HCAPIFASTENTRY setY(float y) noexcept;
+		void HCAPIFASTENTRY setZ(float z) noexcept;
+		void HCAPIFASTENTRY setW(float w) noexcept;
 
 		/**
 		 * Get component by index.
@@ -59,7 +58,7 @@ namespace LIBHPM {
 		 * Negate vector.
 		 * @return negated vector.
 		 */
-		Vector4 operator-(void) const;
+		Vector4 operator-(void) const noexcept;
 
 		/**
 		 * Compute length of vector.
@@ -138,7 +137,6 @@ namespace LIBHPM {
 		friend Vector4 operator*(float scalar, const Vector4 &vec);
 
 		Vector4 &operator=(const Vector4 &v2);
-		Vector4 &operator=(Vector4 &&other);
 		Vector4 &operator+=(const Vector4 &v2);
 		Vector4 &operator-=(const Vector4 &v2);
 		Vector4 &operator/=(float scalar);
