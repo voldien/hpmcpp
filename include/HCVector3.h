@@ -63,8 +63,8 @@ namespace LIBHPM {
 		 * @param i
 		 * @return
 		 */
-		float operator[](int i) const;
-		float &operator[](int i);
+		float operator[](int i) const noexcept(noexcept(i >= 2));
+		float &operator[](int i) noexcept(noexcept(i >= 2));
 		inline operator float *(void) { return (float *)this; }
 
 		/**
@@ -118,8 +118,8 @@ namespace LIBHPM {
 		 * Check equality.
 		 * @return
 		 */
-		friend bool operator==(const Vector3 &v1, const Vector3 &v2);
-		friend bool operator!=(const Vector3 &v1, const Vector3 &v2);
+		friend bool operator==(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend bool operator!=(const Vector3 &v1, const Vector3 &v2) noexcept;
 
 		/**
 		 * Create input stream for creating vector
@@ -137,21 +137,21 @@ namespace LIBHPM {
 		/**
 		 * @return
 		 */
-		friend Vector3 operator+(const Vector3 &v1, const Vector3 &v2);
-		friend Vector3 operator-(const Vector3 &v1, const Vector3 &v2);
-		friend Vector3 operator/(const Vector3 &vec, float scalar);
-		friend Vector3 operator*(const Vector3 &vec, float scalar);
-		friend Vector3 operator*(float scalar, const Vector3 &vec);
-		friend Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2);
+		friend Vector3 operator+(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend Vector3 operator-(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend Vector3 operator/(const Vector3 &vec, float scalar) noexcept;
+		friend Vector3 operator*(const Vector3 &vec, float scalar) noexcept;
+		friend Vector3 operator*(float scalar, const Vector3 &vec) noexcept;
+		friend Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2) noexcept;
 
 		/**
 		 *
 		 */
-		Vector3 &operator=(const Vector3 &v2);
-		Vector3 &operator+=(const Vector3 &v2);
-		Vector3 &operator-=(const Vector3 &v2);
-		Vector3 &operator/=(float scalar);
-		Vector3 &operator*=(float scalar);
+		Vector3 &operator=(const Vector3 &v2) noexcept;
+		Vector3 &operator+=(const Vector3 &v2) noexcept;
+		Vector3 &operator-=(const Vector3 &v2) noexcept;
+		Vector3 &operator/=(float scalar) noexcept;
+		Vector3 &operator*=(float scalar) noexcept;
 
 		/**
 		 *

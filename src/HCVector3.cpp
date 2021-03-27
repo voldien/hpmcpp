@@ -22,8 +22,8 @@ Vector3 Vector3::operator-(void) const noexcept {
 	return copy;
 }
 
-float Vector3::operator[](int i) const { return this->e[i]; }
-float &Vector3::operator[](int i) {
+float Vector3::operator[](int i) const noexcept { return this->e[i]; }
+float &Vector3::operator[](int i) noexcept {
 	// return this->e[i];
 }
 
@@ -45,7 +45,7 @@ float Vector3::minAbsComponent(void) const noexcept { return fabs(hpm_vec4_min_c
 
 namespace LIBHPM {
 
-	bool operator==(const Vector3 &v1, const Vector3 &v2) {
+	bool operator==(const Vector3 &v1, const Vector3 &v2) noexcept {
 		if (v1.e[0] != v2.e[0])
 			return false;
 		if (v1.e[1] != v2.e[1])
@@ -55,22 +55,22 @@ namespace LIBHPM {
 		return true;
 	}
 
-	bool operator!=(const Vector3 &v1, const Vector3 &v2) { return !(v1 == v2); }
+	bool operator!=(const Vector3 &v1, const Vector3 &v2) noexcept { return !(v1 == v2); }
 
-	Vector3 operator*(float scalar, const Vector3 &vec) {
+	Vector3 operator*(float scalar, const Vector3 &vec) noexcept {
 		return Vector3(vec.e[0] * scalar, vec.e[1] * scalar, vec.e[2] * scalar);
 	}
 
-	Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2) {
+	Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2) noexcept {
 		return Vector3(vec1.e[0] * vec2.e[0], vec1.e[1] * vec2.e[1], vec1.e[2] * vec2.e[2]);
 	}
 
-	Vector3 operator+(const Vector3 &v1, const Vector3 &v2) {
+	Vector3 operator+(const Vector3 &v1, const Vector3 &v2) noexcept {
 		return Vector3(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z());
 	}
 
-	Vector3 operator-(float v1, const Vector3 &v2) { return Vector3(v1 - v2.x(), v1 - v2.y(), v1 - v2.z()); }
-	Vector3 operator-(const Vector3 &v1, const Vector3 &v2) {
+	Vector3 operator-(float v1, const Vector3 &v2) noexcept { return Vector3(v1 - v2.x(), v1 - v2.y(), v1 - v2.z()); }
+	Vector3 operator-(const Vector3 &v1, const Vector3 &v2) noexcept {
 		return Vector3(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z());
 	}
 
@@ -131,36 +131,36 @@ namespace LIBHPM {
 
 	Vector3 biNormal(const Vector3 &normal, const Vector3 &tangent) noexcept { return cross(tangent, normal); }
 
-	Vector3 operator*(const Vector3 &vec, float scalar) {
+	Vector3 operator*(const Vector3 &vec, float scalar) noexcept {
 		return Vector3(vec.x() * scalar, vec.y() * scalar, vec.z() * scalar);
 	}
 
-	Vector3 operator/(const Vector3 &vec, float scalar) {
+	Vector3 operator/(const Vector3 &vec, float scalar) noexcept {
 		return Vector3(vec.x() / scalar, vec.y() / scalar, vec.z() / scalar);
 	}
 } // namespace LIBHPM
 
-Vector3 &Vector3::operator=(const Vector3 &v2) {
+Vector3 &Vector3::operator=(const Vector3 &v2) noexcept {
 	hpm_vec4_copyfv(&this->e, &v2.e);
 	return *this;
 }
 
-Vector3 &Vector3::operator+=(const Vector3 &vec2) {
+Vector3 &Vector3::operator+=(const Vector3 &vec2) noexcept {
 	*this = *this + vec2;
 	return *this;
 }
 
-Vector3 &Vector3::operator-=(const Vector3 &vec2) {
+Vector3 &Vector3::operator-=(const Vector3 &vec2) noexcept {
 	*this = *this - vec2;
 	return *this;
 }
 
-Vector3 &Vector3::operator*=(float scalar) {
+Vector3 &Vector3::operator*=(float scalar) noexcept {
 	*this = *this * scalar;
 	return *this;
 }
 
-Vector3 &Vector3::operator/=(float scalar) {
+Vector3 &Vector3::operator/=(float scalar) noexcept {
 	*this = *this / scalar;
 	return *this;
 }

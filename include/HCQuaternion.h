@@ -32,9 +32,9 @@ namespace LIBHPM {
 
 	  public:
 		Quaternion(void) = default;
-		Quaternion(const Quaternion &quaternion);
-		Quaternion(float w, float x, float y, float z);
-		Quaternion(float pitch, float yaw, float roll);
+		Quaternion(const Quaternion &quaternion) noexcept;
+		Quaternion(float w, float x, float y, float z) noexcept;
+		Quaternion(float pitch, float yaw, float roll) noexcept;
 
 		/**
 		 * Get individual component.
@@ -47,15 +47,15 @@ namespace LIBHPM {
 		/**
 		 * Set individual component.
 		 */
-		void HCAPIFASTENTRY setW(float w);
-		void HCAPIFASTENTRY setX(float x);
-		void HCAPIFASTENTRY setY(float y);
-		void HCAPIFASTENTRY setZ(float z);
+		void HCAPIFASTENTRY setW(float w) noexcept;
+		void HCAPIFASTENTRY setX(float x) noexcept;
+		void HCAPIFASTENTRY setY(float y) noexcept;
+		void HCAPIFASTENTRY setZ(float z) noexcept;
 
 		/**
 		 * Set all quaternion components.
 		 */
-		void HCAPIENTRY set(float w, float x, float y, float z);
+		void HCAPIENTRY set(float w, float x, float y, float z) noexcept;
 
 		/**
 		 * Get up and forward vector
@@ -63,40 +63,40 @@ namespace LIBHPM {
 		 *
 		 * @return normalized direction vector.
 		 */
-		Vector3 HCAPIENTRY up(void) const;
-		Vector3 HCAPIENTRY forward(void) const;
+		Vector3 HCAPIENTRY up(void) const noexcept;
+		Vector3 HCAPIENTRY forward(void) const noexcept;
 
 		/**
 		 * Get
 		 * @return
 		 */
-		Vector3 HCAPIENTRY getVector(void) const;
+		Vector3 HCAPIENTRY getVector(void) const noexcept;
 
 		/**
 		 * Get direction vector from direction
 		 * vector.
 		 * @return normalized direction vector.
 		 */
-		Vector3 HCAPIENTRY getVector(const Vector3 &direction) const;
+		Vector3 HCAPIENTRY getVector(const Vector3 &direction) const noexcept;
 
 		/**
 		 * Compute the magnitude.
 		 *
 		 * @return non-negativ number.
 		 */
-		float HCAPIENTRY magnitude(void) const;
+		float HCAPIENTRY magnitude(void) const noexcept;
 
 		/**
 		 * @return non-negativ number.
 		 */
-		float HCAPIENTRY magnitudeSquared(void);
+		float HCAPIENTRY magnitudeSquared(void) const noexcept;
 
 		/**
 		 * Compute dot product from two quaternion.
 		 *
 		 * @return
 		 */
-		friend float HCAPIFASTENTRY dot(const Quaternion &lh, const Quaternion &rh);
+		friend float HCAPIFASTENTRY dot(const Quaternion &lh, const Quaternion &rh) noexcept;
 
 		/**
 		 * Normalize quaternion.
@@ -116,20 +116,20 @@ namespace LIBHPM {
 		 *
 		 * @return conjugated quaternion.
 		 */
-		Quaternion HCAPIENTRY conjugate(void) const;
+		Quaternion HCAPIENTRY conjugate(void) const noexcept;
 
 		/**
 		 * Compute quaternion inverse.
 		 * @return
 		 */
-		Quaternion HCAPIENTRY inverse(void) const;
+		Quaternion HCAPIENTRY inverse(void) const noexcept;
 
 		/**
 		 *
 		 * @param exponent
 		 * @return
 		 */
-		Quaternion HCAPIENTRY exponent(float exponent) const;
+		Quaternion HCAPIENTRY exponent(float exponent) const noexcept;
 
 		/**
 		 * Get element by index.
@@ -157,7 +157,7 @@ namespace LIBHPM {
 		 * @param rh
 		 * @return
 		 */
-		friend Quaternion operator+(const Quaternion &lh, const Quaternion &rh);
+		friend Quaternion operator+(const Quaternion &lh, const Quaternion &rh) noexcept;
 
 		/**
 		 *
@@ -165,62 +165,62 @@ namespace LIBHPM {
 		 * @param rh
 		 * @return
 		 */
-		friend Quaternion operator-(const Quaternion &lh, const Quaternion &rh);
+		friend Quaternion operator-(const Quaternion &lh, const Quaternion &rh) noexcept;
 
 		/**
 		 *
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion &lh, const Quaternion &rh);
+		friend Quaternion operator*(const Quaternion &lh, const Quaternion &rh) noexcept;
 
 		/**
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion &lh, const Vector3 &rh);
+		friend Quaternion operator*(const Quaternion &lh, const Vector3 &rh) noexcept;
 
 		/**
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion &lh, float rh);
+		friend Quaternion operator*(const Quaternion &lh, float rh) noexcept;
 
 		/**
 		 * @return
 		 */
-		Quaternion &operator*=(const Quaternion &rh);
-		Quaternion &operator*=(const Vector3 &rh);
-		Quaternion &operator*=(float rh);
+		Quaternion &operator*=(const Quaternion &rh) noexcept;
+		Quaternion &operator*=(const Vector3 &rh) noexcept;
+		Quaternion &operator*=(float rh) noexcept;
 
 		/**
 		 * @return
 		 */
-		Quaternion &operator=(const Quaternion &rh);
+		Quaternion &operator=(const Quaternion &rh) noexcept;
 
 		/**
 		 * Compare quaternion equality by
 		 * checking component wise.
 		 * @return true if equal, false otherwise.
 		 */
-		friend bool operator==(const Quaternion &v1, const Quaternion &v2);
-		friend bool operator!=(const Quaternion &v1, const Quaternion &v2);
+		friend bool operator==(const Quaternion &v1, const Quaternion &v2) noexcept;
+		friend bool operator!=(const Quaternion &v1, const Quaternion &v2) noexcept;
 
 		/**
 		 * Get rotation of each axis in
 		 * radius.
 		 * @return
 		 */
-		float HCAPIFASTENTRY getPitch(void) const;
+		float HCAPIFASTENTRY getPitch(void) const noexcept;
 
 		/**
 		 *
 		 * @return
 		 */
-		float HCAPIFASTENTRY getYaw(void) const;
+		float HCAPIFASTENTRY getYaw(void) const noexcept;
 
 		/**
 		 *
 		 * @return
 		 */
-		float HCAPIFASTENTRY getRoll(void) const;
+		float HCAPIFASTENTRY getRoll(void) const noexcept;
 
 		/**
 		 *
@@ -228,13 +228,13 @@ namespace LIBHPM {
 		 * @param yaw
 		 * @param roll
 		 */
-		void HCAPIFASTENTRY getEular(float *pitch, float *yaw, float *roll) const;
+		void HCAPIFASTENTRY getEular(float *pitch, float *yaw, float *roll) const noexcept;
 
 		/**
 		 *
 		 * @return
 		 */
-		Vector3 HCAPIENTRY getEular(void) const;
+		Vector3 HCAPIENTRY getEular(void) const noexcept;
 
 	  protected: /*	Attributes.	*/
 		hpmquatf e;
@@ -245,54 +245,55 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		static Quaternion HCAPIENTRY lookRotation(const Vector3 &target, const Vector3 &pos, const Vector3 &up);
+		static Quaternion HCAPIENTRY lookRotation(const Vector3 &target, const Vector3 &pos,
+												  const Vector3 &up) noexcept;
 
 		/**
 		 * Create quaternion from eular rotation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfAxis(float pitch, float yaw, float roll);
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(float pitch, float yaw, float roll) noexcept;
 
 		/**
 		 * Create quaternion from eular rotation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfAxis(const Vector3 &axis);
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(const Vector3 &axis) noexcept;
 
 		/**
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createFromAxisAngle(const Vector3 &axis, float angle);
+		static Quaternion HCAPIENTRY createFromAxisAngle(const Vector3 &axis, float angle) noexcept;
 
 		/**
 		 * Convert direction to quaternion.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfDirection(Vector3 &direction);
+		static Quaternion HCAPIENTRY createQuaternionOfDirection(Vector3 &direction) noexcept;
 
 		/**
 		 * Linear interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY lerp(const Quaternion &from, const Quaternion &to, float speed);
+		static Quaternion HCAPIENTRY lerp(const Quaternion &from, const Quaternion &to, float speed) noexcept;
 
 		/**
 		 * Spherical interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY slerp(const Quaternion &from, const Quaternion &to, float speed);
+		static Quaternion HCAPIENTRY slerp(const Quaternion &from, const Quaternion &to, float speed) noexcept;
 
 		/**
 		 * Create quaternion identity.
 		 * @return identitiy.
 		 */
-		static Quaternion HCAPIENTRY identity(void);
+		static Quaternion HCAPIENTRY identity(void) noexcept;
 	};
 } // namespace LIBHPM
 

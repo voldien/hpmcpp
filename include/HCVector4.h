@@ -51,8 +51,8 @@ namespace LIBHPM {
 		/**
 		 * Get component by index.
 		 */
-		float operator[](unsigned int i) const noexcept(noexcept(i > 3));
-		float &operator[](unsigned int i) noexcept(noexcept(i > 3));
+		float operator[](unsigned int i) const noexcept(noexcept(i >= 3));
+		float &operator[](unsigned int i) noexcept(noexcept(i >= 3));
 
 		/**
 		 * Negate vector.
@@ -113,15 +113,15 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend bool operator==(const Vector4 &v1, const Vector4 &v2);
-		friend bool operator!=(const Vector4 &v1, const Vector4 &v2);
+		friend bool operator==(const Vector4 &v1, const Vector4 &v2) noexcept;
+		friend bool operator!=(const Vector4 &v1, const Vector4 &v2) noexcept;
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector4 &t);
+		friend std::istream &operator>>(std::istream &is, Vector4 &t) ;
 
 		/**
 		 * Create output stream of vector value.
@@ -129,12 +129,12 @@ namespace LIBHPM {
 		 */
 		friend std::ostream &operator<<(std::ostream &os, const Vector4 &t);
 
-		friend Vector4 operator+(const Vector4 &v1, const Vector4 &v2);
-		friend Vector4 operator-(const Vector4 &v1, const Vector4 &v2);
-		friend Vector4 operator/(const Vector4 &vec, float scalar);
-		friend Vector4 operator/(const Vector4 &v1, const Vector4 &v2);
-		friend Vector4 operator*(const Vector4 &vec, float scalar);
-		friend Vector4 operator*(float scalar, const Vector4 &vec);
+		friend Vector4 operator+(const Vector4 &v1, const Vector4 &v2) noexcept;
+		friend Vector4 operator-(const Vector4 &v1, const Vector4 &v2) noexcept;
+		friend Vector4 operator/(const Vector4 &vec, float scalar) noexcept;
+		friend Vector4 operator/(const Vector4 &v1, const Vector4 &v2) noexcept;
+		friend Vector4 operator*(const Vector4 &vec, float scalar) noexcept;
+		friend Vector4 operator*(float scalar, const Vector4 &vec) noexcept;
 
 		Vector4 &operator=(const Vector4 &v2) noexcept;
 		Vector4 &operator+=(const Vector4 &v2) noexcept;

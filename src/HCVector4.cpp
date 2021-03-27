@@ -56,45 +56,45 @@ float Vector4::maxAbsComponent(void) const noexcept { return abs(hpm_vec4_max_co
 float Vector4::minAbsComponent(void) const noexcept { return abs(hpm_vec4_min_compfv(&this->e)); }
 namespace LIBHPM {
 
-	bool operator==(const Vector4 &v1, const Vector4 &v2) { return (bool)hpm_vec4_eqfv(&v1.e, &v2.e); }
+	bool operator==(const Vector4 &v1, const Vector4 &v2) noexcept { return (bool)hpm_vec4_eqfv(&v1.e, &v2.e); }
 
-	bool operator!=(const Vector4 &v1, const Vector4 &v2) { return (bool)hpm_vec4_neqfv(&v1.e, &v2.e); }
+	bool operator!=(const Vector4 &v1, const Vector4 &v2) noexcept { return (bool)hpm_vec4_neqfv(&v1.e, &v2.e); }
 
-	Vector4 operator*(float scaler, const Vector4 &vec) {
+	Vector4 operator*(float scaler, const Vector4 &vec) noexcept {
 		Vector4 copy = vec;
 		hpm_vec4_multi_scalef(&copy.e, scaler);
 		return copy;
 	}
-	Vector4 operator*(const Vector4 &vec, float scalar) {
+	Vector4 operator*(const Vector4 &vec, float scalar) noexcept {
 		Vector4 copy = vec;
 		hpm_vec4_multi_scalef(&copy.e, scalar);
 		return copy;
 	}
-	Vector4 operator/(const Vector4 &vec, float scalar) {
+	Vector4 operator/(const Vector4 &vec, float scalar) noexcept {
 		Vector4 copy = vec;
 		hpm_vec4_multi_scalef(&copy.e, 1.0f / scalar);
 		return copy;
 	}
 
-	Vector4 operator/(const Vector4 &v1, const Vector4 &v2) {
+	Vector4 operator/(const Vector4 &v1, const Vector4 &v2) noexcept {
 		Vector4 copy = v1;
 		Vector4 c3 = 1.0f / v2;
 		hpm_vec4_multifv(&copy.e, &c3.e);
 		return copy;
 	}
 
-	Vector4 operator+(const Vector4 &v1, const Vector4 &v2) {
+	Vector4 operator+(const Vector4 &v1, const Vector4 &v2) noexcept {
 		Vector4 copy = v1;
 		hpm_vec4_addition_scalefv(&copy.e, &v2.e);
 		return copy;
 	}
 
-	Vector4 operator-(float v1, const Vector4 &v2) {
+	Vector4 operator-(float v1, const Vector4 &v2) noexcept {
 		Vector4 copy = Vector4(v1);
 		hpm_vec4_subtractionfv((hpmvec4f *)&copy, (const hpmvec4f *)&v2);
 		return copy;
 	}
-	Vector4 operator-(const Vector4 &v1, const Vector4 &v2) {
+	Vector4 operator-(const Vector4 &v1, const Vector4 &v2) noexcept {
 		Vector4 copy = v1;
 		hpm_vec4_subtractionfv(&copy.e, &v2.e);
 		return copy;

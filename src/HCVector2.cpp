@@ -16,8 +16,8 @@ Vector2::Vector2(const Vector2 &v) { *this = v; }
 
 Vector2 &Vector2::operator-(void) const noexcept { return -*this; }
 
-float Vector2::operator[](int i) const { return this->m[i]; }
-float &Vector2::operator[](int i) {
+float Vector2::operator[](int i) const noexcept { return this->m[i]; }
+float &Vector2::operator[](int i) noexcept {
 	// return this->m[i];
 }
 

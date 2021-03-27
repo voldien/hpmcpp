@@ -41,14 +41,14 @@ namespace LIBHPM {
 		 * Get vector component by index.
 		 * @return component value.
 		 */
-		inline float operator[](int i) const;
+		inline float operator[](int i) const noexcept(noexcept(i >= 2));
 
 		/**
 		 * Get vector component reference
 		 * by index.
 		 * @return reference to component.
 		 */
-		inline float &operator[](int i);
+		inline float &operator[](int i) noexcept(noexcept(i >= 2));
 
 		/**
 		 * Compute length.
