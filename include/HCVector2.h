@@ -1,19 +1,19 @@
 /**
-    C++ Wrapper for the hpm library.
-    Copyright (C) 2017  Valdemar Lindberg
+	C++ Wrapper for the hpm library.
+	Copyright (C) 2017  Valdemar Lindberg
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 #ifndef _HC_VECTOR2_H_
@@ -25,31 +25,31 @@ namespace LIBHPM {
 	 * Vector2.
 	 */
 	class HCDECLSPEC Vector2 {
-	public:
+	  public:
 		Vector2(void) = default;
 		Vector2(float val);
 		Vector2(float m0, float m1);
-		Vector2(const Vector2& v);
+		Vector2(const Vector2 &v);
 		Vector2(Vector2 &&other);
 
 		/**
 		 * Negate vector.
 		 * @return
 		 */
-		Vector2& operator-(void) const noexcept;
+		Vector2 &operator-(void) const noexcept;
 
 		/**
 		 * Get vector component by index.
 		 * @return component value.
 		 */
 		inline float operator[](int i) const;
-		
+
 		/**
 		 * Get vector component reference
 		 * by index.
 		 * @return reference to component.
 		 */
-		inline float& operator[](int i);
+		inline float &operator[](int i);
 
 		/**
 		 * Compute length.
@@ -112,46 +112,46 @@ namespace LIBHPM {
 		 * Compare vector equalities.
 		 * @return true if vector equal for each component.
 		 */
-		friend bool operator==(const Vector2& v1, const Vector2& v2);
+		friend bool operator==(const Vector2 &v1, const Vector2 &v2);
 		/**
 		 * Compare vector inequality.
 		 * @return true if at least single component is not equal.
 		 */
-		friend bool operator!=(const Vector2& v1, const Vector2& v2);
+		friend bool operator!=(const Vector2 &v1, const Vector2 &v2);
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream& operator>>(std::istream &is, Vector2& t);
+		friend std::istream &operator>>(std::istream &is, Vector2 &t);
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream& operator<<(std::ostream &os, const Vector2& t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector2 &t);
 
-		friend Vector2 operator+(const Vector2& v1, const Vector2& v2);
-		friend Vector2 operator-(const Vector2& v1, const Vector2& v2);
-		friend Vector2 operator/(const Vector2& vec, float scalar);
-		friend Vector2 operator*(const Vector2& vec, float scalar);
-		friend Vector2 operator*(float scalar, const Vector2& vec);
-		friend Vector2 operator*(const Vector2& vec1, const Vector2& vec2);
+		friend Vector2 operator+(const Vector2 &v1, const Vector2 &v2);
+		friend Vector2 operator-(const Vector2 &v1, const Vector2 &v2);
+		friend Vector2 operator/(const Vector2 &vec, float scalar);
+		friend Vector2 operator*(const Vector2 &vec, float scalar);
+		friend Vector2 operator*(float scalar, const Vector2 &vec);
+		friend Vector2 operator*(const Vector2 &vec1, const Vector2 &vec2);
 
-		Vector2& operator=(const Vector2& v2);
-		Vector2& operator+=(const Vector2& v2);
-		Vector2& operator-=(const Vector2& v2);
-		Vector2& operator/=(float scalar);
-		Vector2& operator*=(float scalar);
-		Vector2& operator*=(const Vector2& vec2);
+		Vector2 &operator=(const Vector2 &v2);
+		Vector2 &operator+=(const Vector2 &v2);
+		Vector2 &operator-=(const Vector2 &v2);
+		Vector2 &operator/=(float scalar);
+		Vector2 &operator*=(float scalar);
+		Vector2 &operator*=(const Vector2 &vec2);
 
 		/**
 		 *
 		 * @param v
 		 * @return
 		 */
-		friend Vector2 unitVector3(const Vector2& v) noexcept;
+		friend Vector2 unitVector3(const Vector2 &v) noexcept;
 
 		/**
 		 *
@@ -186,17 +186,15 @@ namespace LIBHPM {
 		friend float dot(const Vector2 &v1, const Vector2 &v2) noexcept;
 
 	  private: /*	Attributes.	*/
-
 		hpmvec2f m;
 
-	public:	/*	Static methods.	*/
-
-		/**
-		 * Create zero vector.
-		 * @return HCVector2 object.
-		 */
-	  static Vector2 zero(void) noexcept { return Vector2(0.0f); }
+	  public: /*	Static methods.	*/
+			  /**
+			   * Create zero vector.
+			   * @return HCVector2 object.
+			   */
+		static Vector2 zero(void) noexcept { return Vector2(0.0f); }
 	};
-}
+} // namespace LIBHPM
 
 #endif

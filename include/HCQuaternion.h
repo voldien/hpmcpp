@@ -1,19 +1,19 @@
 /**
-    C++ Wrapper for the hpm library.
-    Copyright (C) 2017  Valdemar Lindberg
+	C++ Wrapper for the hpm library.
+	Copyright (C) 2017  Valdemar Lindberg
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 #ifndef _HPMCPP_QUATERNION_H_
@@ -29,11 +29,11 @@ namespace LIBHPM {
 	 */
 	class HCDECLSPEC Quaternion {
 		friend class Matrix4x4;
-	public:
 
+	  public:
 		Quaternion(void) = default;
-		Quaternion(const Quaternion& quaternion);
-		Quaternion(Quaternion && other);
+		Quaternion(const Quaternion &quaternion);
+		Quaternion(Quaternion &&other);
 		Quaternion(float w, float x, float y, float z);
 		Quaternion(float pitch, float yaw, float roll);
 
@@ -78,7 +78,7 @@ namespace LIBHPM {
 		 * vector.
 		 * @return normalized direction vector.
 		 */
-		Vector3 HCAPIENTRY getVector(const Vector3& direction) const;
+		Vector3 HCAPIENTRY getVector(const Vector3 &direction) const;
 
 		/**
 		 * Compute the magnitude.
@@ -97,7 +97,7 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		friend float HCAPIFASTENTRY dot(const Quaternion& lh, const Quaternion& rh);
+		friend float HCAPIFASTENTRY dot(const Quaternion &lh, const Quaternion &rh);
 
 		/**
 		 * Normalize quaternion.
@@ -137,20 +137,20 @@ namespace LIBHPM {
 		 * @return
 		 */
 		float operator[](int i) const;
-		float& operator[](int i);
+		float &operator[](int i);
 
 		/**
 		 * Create input stream for creating quaternion
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Quaternion& t);
+		friend std::istream &operator>>(std::istream &is, Quaternion &t);
 
 		/**
 		 * Create output stream of quaternion value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Quaternion& t);
+		friend std::ostream &operator<<(std::ostream &os, const Quaternion &t);
 
 		/**
 		 *
@@ -158,8 +158,7 @@ namespace LIBHPM {
 		 * @param rh
 		 * @return
 		 */
-		friend Quaternion operator+(const Quaternion& lh,
-				const Quaternion& rh);
+		friend Quaternion operator+(const Quaternion &lh, const Quaternion &rh);
 
 		/**
 		 *
@@ -167,45 +166,43 @@ namespace LIBHPM {
 		 * @param rh
 		 * @return
 		 */
-		friend Quaternion operator-(const Quaternion& lh,
-				const Quaternion& rh);
+		friend Quaternion operator-(const Quaternion &lh, const Quaternion &rh);
 
 		/**
 		 *
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion& lh,
-				const Quaternion& rh);
+		friend Quaternion operator*(const Quaternion &lh, const Quaternion &rh);
 
 		/**
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion& lh, const Vector3& rh);
+		friend Quaternion operator*(const Quaternion &lh, const Vector3 &rh);
 
 		/**
 		 * @return
 		 */
-		friend Quaternion operator*(const Quaternion& lh, float rh);
+		friend Quaternion operator*(const Quaternion &lh, float rh);
 
 		/**
 		 * @return
 		 */
-		Quaternion& operator*=(const Quaternion& rh);
-		Quaternion& operator*=(const Vector3& rh);
-		Quaternion& operator*=(float rh);
+		Quaternion &operator*=(const Quaternion &rh);
+		Quaternion &operator*=(const Vector3 &rh);
+		Quaternion &operator*=(float rh);
 
 		/**
 		 * @return
 		 */
-		Quaternion& operator=(const Quaternion& rh);
+		Quaternion &operator=(const Quaternion &rh);
 
 		/**
 		 * Compare quaternion equality by
 		 * checking component wise.
 		 * @return true if equal, false otherwise.
 		 */
-		friend bool operator==(const Quaternion& v1, const Quaternion& v2);
-		friend bool operator!=(const Quaternion& v1, const Quaternion& v2);
+		friend bool operator==(const Quaternion &v1, const Quaternion &v2);
+		friend bool operator!=(const Quaternion &v1, const Quaternion &v2);
 
 		/**
 		 * Get rotation of each axis in
@@ -240,74 +237,64 @@ namespace LIBHPM {
 		 */
 		Vector3 HCAPIENTRY getEular(void) const;
 
-	protected:	/*	Attributes.	*/
-
+	  protected: /*	Attributes.	*/
 		hpmquatf e;
 
-	public:	/*	Static utility methods.	*/
-
+	  public: /*	Static utility methods.	*/
 		/**
 		 * Create look rotation quaternion.
 		 *
 		 * @return
 		 */
-		static Quaternion HCAPIENTRY lookRotation(const Vector3& target,
-				const Vector3& pos, const Vector3& up);
+		static Quaternion HCAPIENTRY lookRotation(const Vector3 &target, const Vector3 &pos, const Vector3 &up);
 
 		/**
 		 * Create quaternion from eular rotation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfAxis(float pitch,
-				float yaw, float roll);
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(float pitch, float yaw, float roll);
 
 		/**
 		 * Create quaternion from eular rotation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfAxis(
-				const Vector3& axis);
+		static Quaternion HCAPIENTRY createQuaternionOfAxis(const Vector3 &axis);
 
 		/**
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createFromAxisAngle(const Vector3& axis,
-				float angle);
+		static Quaternion HCAPIENTRY createFromAxisAngle(const Vector3 &axis, float angle);
 
 		/**
 		 * Convert direction to quaternion.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfDirection(
-				Vector3& direction);
+		static Quaternion HCAPIENTRY createQuaternionOfDirection(Vector3 &direction);
 
 		/**
 		 * Linear interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY lerp(const Quaternion& from,
-				const Quaternion& to, float speed);
+		static Quaternion HCAPIENTRY lerp(const Quaternion &from, const Quaternion &to, float speed);
 
 		/**
 		 * Spherical interpolation.
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY slerp(const Quaternion& from,
-				const Quaternion& to, float speed);
+		static Quaternion HCAPIENTRY slerp(const Quaternion &from, const Quaternion &to, float speed);
 
 		/**
 		 * Create quaternion identity.
 		 * @return identitiy.
 		 */
 		static Quaternion HCAPIENTRY identity(void);
-
 	};
-}
+} // namespace LIBHPM
 
 #endif

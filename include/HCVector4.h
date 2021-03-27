@@ -1,19 +1,19 @@
 /**
-    C++ Wrapper for the hpm library.
-    Copyright (C) 2017  Valdemar Lindberg
+	C++ Wrapper for the hpm library.
+	Copyright (C) 2017  Valdemar Lindberg
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 #ifndef _HPMCPP_VECTOR4_H_
@@ -26,13 +26,12 @@ namespace LIBHPM {
 	 * size of the object is 128 bit.
 	 */
 	class HCDECLSPEC Vector4 {
-	public:
-
+	  public:
 		Vector4(void);
 		Vector4(float val);
 		Vector4(float m0, float m1, float m2, float m3);
-		Vector4(const Vector4& v);
-		Vector4(Vector4&& other);
+		Vector4(const Vector4 &v);
+		Vector4(Vector4 &&other);
 
 		/**
 		 * Get component wise.
@@ -54,7 +53,7 @@ namespace LIBHPM {
 		 * Get component by index.
 		 */
 		float operator[](int i) const;
-		float& operator[](int i);
+		float &operator[](int i);
 
 		/**
 		 * Negate vector.
@@ -115,42 +114,42 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend bool operator==(const Vector4& v1, const Vector4& v2);
-		friend bool operator!=(const Vector4& v1, const Vector4& v2);
+		friend bool operator==(const Vector4 &v1, const Vector4 &v2);
+		friend bool operator!=(const Vector4 &v1, const Vector4 &v2);
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector4& t);
+		friend std::istream &operator>>(std::istream &is, Vector4 &t);
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Vector4& t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector4 &t);
 
-		friend Vector4 operator+(const Vector4& v1, const Vector4& v2);
-		friend Vector4 operator-(const Vector4& v1, const Vector4& v2);
-		friend Vector4 operator/(const Vector4& vec, float scalar);
-		friend Vector4 operator/(const Vector4& v1, const Vector4& v2);
-		friend Vector4 operator*(const Vector4& vec, float scalar);
-		friend Vector4 operator*(float scalar, const Vector4& vec);
+		friend Vector4 operator+(const Vector4 &v1, const Vector4 &v2);
+		friend Vector4 operator-(const Vector4 &v1, const Vector4 &v2);
+		friend Vector4 operator/(const Vector4 &vec, float scalar);
+		friend Vector4 operator/(const Vector4 &v1, const Vector4 &v2);
+		friend Vector4 operator*(const Vector4 &vec, float scalar);
+		friend Vector4 operator*(float scalar, const Vector4 &vec);
 
-		Vector4& operator=(const Vector4& v2);
-		Vector4& operator=(Vector4&& other);
-		Vector4& operator+=(const Vector4& v2);
-		Vector4& operator-=(const Vector4& v2);
-		Vector4& operator/=(float scalar);
-		Vector4& operator*=(float scalar);
+		Vector4 &operator=(const Vector4 &v2);
+		Vector4 &operator=(Vector4 &&other);
+		Vector4 &operator+=(const Vector4 &v2);
+		Vector4 &operator-=(const Vector4 &v2);
+		Vector4 &operator/=(float scalar);
+		Vector4 &operator*=(float scalar);
 
 		/**
 		 * Compute unit vector.
 		 * @param v vector.
 		 * @return unite vector.
 		 */
-		friend Vector4 HCAPIENTRY unitVector4(const Vector4& v);
+		friend Vector4 HCAPIENTRY unitVector4(const Vector4 &v);
 
 		/**
 		 * Compute min vector component.
@@ -158,7 +157,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector4 HCAPIENTRY minVec(const Vector4& v1, const Vector4& v2);
+		friend Vector4 HCAPIENTRY minVec(const Vector4 &v1, const Vector4 &v2);
 
 		/**
 		 * Compute max vector component.
@@ -166,7 +165,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector4 HCAPIENTRY maxVec(const Vector4& v1, const Vector4& v2);
+		friend Vector4 HCAPIENTRY maxVec(const Vector4 &v1, const Vector4 &v2);
 
 		/**
 		 * Computer inner dot product.
@@ -174,14 +173,12 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return inner product.
 		 */
-		friend float HCAPIENTRY dot(const Vector4& v1, const Vector4& v2);
+		friend float HCAPIENTRY dot(const Vector4 &v1, const Vector4 &v2);
 
-	protected:	/*	Attributes.	*/
+	  protected: /*	Attributes.	*/
+		hpmvec4f e;
 
-			hpmvec4f e;
-
-	public:	/*	Static methods.	*/
-
+	  public: /*	Static methods.	*/
 		/**
 		 * Linear interpolation.
 		 * @param vec1 start position.
@@ -189,7 +186,7 @@ namespace LIBHPM {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static Vector4 HCAPIENTRY lerp(const Vector4& vec1, const Vector4& vec2, float speed);
+		static Vector4 HCAPIENTRY lerp(const Vector4 &vec1, const Vector4 &vec2, float speed);
 
 		/**
 		 * Spherical interpolation.
@@ -198,8 +195,8 @@ namespace LIBHPM {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static Vector4 HCAPIENTRY slerp(const Vector4& vec1, const Vector4& vec2, float speed);
+		static Vector4 HCAPIENTRY slerp(const Vector4 &vec1, const Vector4 &vec2, float speed);
 	};
-}
+} // namespace LIBHPM
 
 #endif

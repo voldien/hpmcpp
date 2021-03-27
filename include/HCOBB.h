@@ -18,16 +18,15 @@
 */
 #ifndef _HPMCPP_OBB_H_
 #define _HPMCPP_OBB_H_ 1
-#include"HCONB.h"
-#include"HCVector3.h"
+#include "HCONB.h"
+#include "HCVector3.h"
 
 namespace LIBHPM {
 	/**
 	 *	Oriented bounding box.
-	*/
+	 */
 	class HCDECLSPEC OBB {
-	public:
-
+	  public:
 		OBB(void);
 
 		OBB(const OBB &obb);
@@ -46,8 +45,8 @@ namespace LIBHPM {
 
 		/**
 		 *	Get V axis.
-		* @return normalized axis.
-		*/
+		 * @return normalized axis.
+		 */
 
 		/**
 		 *
@@ -65,41 +64,31 @@ namespace LIBHPM {
 		 * Set size of box.
 		 * @param size
 		 */
-		void setSize(const Vector3 &size) {
-			this->size = size;
-		}
+		void setSize(const Vector3 &size) { this->size = size; }
 
 		/**
 		 * Get half size.
 		 * @return non-negative vector of the size.
 		 */
-		inline Vector3 getSize(void) {
-			return size;
-		}
+		inline Vector3 getSize(void) { return size; }
 
 		/**
 		 *
 		 * @return
 		 */
-		inline const Vector3 &getSize(void) const {
-			return this->size;
-		}
+		inline const Vector3 &getSize(void) const { return this->size; }
 
 		/**
 		 *
 		 * @param size
 		 */
-		inline void setCenter(const Vector3 &size) {
-
-		}
+		inline void setCenter(const Vector3 &size) {}
 
 		/**
 		 *
 		 * @return
 		 */
-		inline Vector3 getCenter(void) const {
-			return Vector3(this->halfu, this->halfv, this->halfw);
-		}
+		inline Vector3 getCenter(void) const { return Vector3(this->halfu, this->halfv, this->halfw); }
 
 		OBB &operator=(const OBB &obb);
 
@@ -119,14 +108,13 @@ namespace LIBHPM {
 		 */
 		friend std::ostream &operator<<(std::ostream &os, const OBB &t);
 
-	private:    /*	Attributes.	*/
-
-		ONB onb;          /*	*/
-		Vector3 size;     /*	*/
-		float halfu;        /*	*/
-		float halfv;        /*	*/
-		float halfw;        /*	*/
+	  private:		  /*	Attributes.	*/
+		ONB onb;	  /*	*/
+		Vector3 size; /*	*/
+		float halfu;  /*	*/
+		float halfv;  /*	*/
+		float halfw;  /*	*/
 	};
-}
+} // namespace LIBHPM
 
 #endif

@@ -18,75 +18,61 @@
 */
 #ifndef _HPMCPP_BOUNDING_SPHERE_H_
 #define _HPMCPP_BOUNDING_SPHERE_H_ 1
-#include"HCRay.h"
-#include"HCVector3.h"
+#include "HCRay.h"
+#include "HCVector3.h"
 
 namespace LIBHPM {
 	/**
 	 *
 	 */
 	class HCDECLSPEC BoundingSphere {
-	public:
+	  public:
 		BoundingSphere(void) = default;
-		BoundingSphere(const Vector3& center, float radius){
+		BoundingSphere(const Vector3 &center, float radius) {
 			this->setCenter(center);
 			this->setRadius(radius);
 		}
-		BoundingSphere(const BoundingSphere& boundingSphere){
-			*this = boundingSphere;
-		}
+		BoundingSphere(const BoundingSphere &boundingSphere) { *this = boundingSphere; }
 
 		/**
 		 * Get radius size.
 		 * @return non-negative size.
 		 */
-		inline float getRadius(void)const{
-			return this->radius;
-		}
+		inline float getRadius(void) const { return this->radius; }
 
 		/**
 		 * set radius size of the sphere.
 		 * @param radius non-negative radius size.
 		 */
-		inline void setRadius(float radius) {
-			this->radius = radius;
-		}
+		inline void setRadius(float radius) { this->radius = radius; }
 
 		/**
 		 * Get center position.
 		 * @return world position.
 		 */
-		inline const Vector3& getCenter(void) const {
-			return this->center;
-		}
+		inline const Vector3 &getCenter(void) const { return this->center; }
 
 		/**
 		 * Set center position.
 		 * @param center in world position.
 		 */
-		inline void setCenter(const Vector3& center) {
-			this->center = center;
-		}
+		inline void setCenter(const Vector3 &center) { this->center = center; }
 
 		/**
 		 * Check if object intersects with another sphere.
 		 * @param sphere
 		 * @return true if object intersects, false otherwise.
 		 */
-		bool HCAPIENTRY intersect(const BoundingSphere &sphere) const{
-			return false;
-		}
+		bool HCAPIENTRY intersect(const BoundingSphere &sphere) const { return false; }
 
 		/**
 		 * Check if sphere contains a sphere.
 		 * @param sphere sphere inside this sphere.
 		 * @return true if object contains, false otherwise.
 		 */
-		bool HCAPIENTRY contains(const BoundingSphere &sphere) const{
-			return false;	
-		}
+		bool HCAPIENTRY contains(const BoundingSphere &sphere) const { return false; }
 
-		bool intersect(const Ray& ray) const {
+		bool intersect(const Ray &ray) const {
 			Vector3 tmp = ray.getOrigin() - getCenter();
 			double t;
 			double a = dot(ray.getDirection(), ray.getDirection());
@@ -95,7 +81,7 @@ namespace LIBHPM {
 			double discriminant = b * b - (4.0 * d * a);
 			if (discriminant >= 0) {
 				discriminant = sqrt(discriminant);
-				//hit.t = (-b - discriminant) / (2.0 * a);
+				// hit.t = (-b - discriminant) / (2.0 * a);
 				if (t < 0)
 					t = (-b + discriminant) / (2.0 * a);
 				return true;
@@ -103,18 +89,16 @@ namespace LIBHPM {
 			return false;
 		}
 
-		BoundingSphere& operator=(const BoundingSphere& bounds){
+		BoundingSphere &operator=(const BoundingSphere &bounds) {
 			this->setRadius(bounds.getRadius());
 			this->setCenter(bounds.getCenter());
 			return *this;
 		}
 
-	private:	/*	Private member attributes.	*/
-
-		float radius;			/*	Radius size.	*/
-		Vector3 center;		/*	Center position in world space.*/
-
+	  private:			/*	Private member attributes.	*/
+		float radius;	/*	Radius size.	*/
+		Vector3 center; /*	Center position in world space.*/
 	};
-}
+} // namespace LIBHPM
 
 #endif
