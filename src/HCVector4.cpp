@@ -35,9 +35,9 @@ Vector4 Vector4::operator-(void) const noexcept {
 	return copy;
 }
 
-float Vector4::length(void) const { return hpm_vec4_lengthfv(&this->e); }
+float Vector4::length(void) const noexcept { return hpm_vec4_lengthfv(&this->e); }
 
-float Vector4::squaredLength(void) const { return hpm_vec4_lengthsqurefv(&this->e); }
+float Vector4::squaredLength(void) const noexcept { return hpm_vec4_lengthsqurefv(&this->e); }
 
 void Vector4::makeUnitVector(void) { hpm_vec4_normalizefv(&this->e); }
 
@@ -47,13 +47,13 @@ Vector4 Vector4::normalize(void) const {
 	return vec;
 }
 
-float Vector4::minComponent(void) const { return hpm_vec4_min_compfv(&this->e); }
+float Vector4::minComponent(void) const noexcept { return hpm_vec4_min_compfv(&this->e); }
 
-float Vector4::maxComponent(void) const { return hpm_vec4_max_compfv(&this->e); }
+float Vector4::maxComponent(void) const noexcept { return hpm_vec4_max_compfv(&this->e); }
 
-float Vector4::maxAbsComponent(void) const { return abs(hpm_vec4_max_compfv(&this->e)); }
+float Vector4::maxAbsComponent(void) const noexcept { return abs(hpm_vec4_max_compfv(&this->e)); }
 
-float Vector4::minAbsComponent(void) const { return abs(hpm_vec4_min_compfv(&this->e)); }
+float Vector4::minAbsComponent(void) const noexcept { return abs(hpm_vec4_min_compfv(&this->e)); }
 namespace LIBHPM {
 
 	bool operator==(const Vector4 &v1, const Vector4 &v2) { return (bool)hpm_vec4_eqfv(&v1.e, &v2.e); }
@@ -100,7 +100,7 @@ namespace LIBHPM {
 		return copy;
 	}
 
-	float dot(const Vector4 &v1, const Vector4 &v2) { return hpm_vec4_dotfv(&v1.e, &v2.e); }
+	float dot(const Vector4 &v1, const Vector4 &v2) noexcept { return hpm_vec4_dotfv(&v1.e, &v2.e); }
 
 	Vector4 unitVector(const Vector4 &v) {
 		Vector4 vec = v;
@@ -108,19 +108,19 @@ namespace LIBHPM {
 		return vec;
 	}
 
-	Vector4 minVec(const Vector4 &v1, const Vector4 &v2) {
+	Vector4 minVec(const Vector4 &v1, const Vector4 &v2) noexcept {
 		Vector4 vec;
 		hpm_vec4_minfv(&v1.e, &v2.e, &vec.e);
 		return vec;
 	}
 
-	Vector4 maxVec(const Vector4 &v1, const Vector4 &v2) {
+	Vector4 maxVec(const Vector4 &v1, const Vector4 &v2) noexcept {
 		Vector4 vec;
 		hpm_vec4_maxfv(&v1.e, &v2.e, &vec.e);
 		return vec;
 	}
 
-	Vector4 &Vector4::operator=(const Vector4 &v2) {
+	Vector4 &Vector4::operator=(const Vector4 &v2) noexcept {
 		hpm_vec4_copyfv(&this->e, &v2.e);
 		return *this;
 	}
@@ -144,33 +144,33 @@ namespace LIBHPM {
 	}
 } // namespace LIBHPM
 
-Vector4 Vector4::lerp(const Vector4 &vec1, const Vector4 &vec2, float speed) {
+Vector4 Vector4::lerp(const Vector4 &vec1, const Vector4 &vec2, float speed) noexcept {
 	Vector4 vec;
 	hpm_vec4_lerpfv(&vec1.e, &vec2.e, speed, &vec.e);
 	return vec;
 }
-Vector4 Vector4::slerp(const Vector4 &vec1, const Vector4 &vec2, float speed) {
+Vector4 Vector4::slerp(const Vector4 &vec1, const Vector4 &vec2, float speed) noexcept {
 	Vector4 vec;
 	hpm_vec4_slerpfv(&vec1.e, &vec2.e, speed, &vec.e);
 	return vec;
 }
 
-Vector4 &Vector4::operator+=(const Vector4 &v2) {
+Vector4 &Vector4::operator+=(const Vector4 &v2) noexcept {
 	*this = *this + v2;
 	return *this;
 }
 
-Vector4 &Vector4::operator-=(const Vector4 &v2) {
+Vector4 &Vector4::operator-=(const Vector4 &v2) noexcept {
 	*this = *this - v2;
 	return *this;
 }
 
-Vector4 &Vector4::operator/=(float scalar) {
+Vector4 &Vector4::operator/=(float scalar) noexcept {
 	*this = *this / scalar;
 	return *this;
 }
 
-Vector4 &Vector4::operator*=(float scalar) {
+Vector4 &Vector4::operator*=(float scalar) noexcept {
 	*this = *this * scalar;
 	return *this;
 }

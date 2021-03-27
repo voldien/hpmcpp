@@ -64,13 +64,13 @@ namespace LIBHPM {
 		 * Compute length of vector.
 		 * @return non-negativ number.
 		 */
-		float HCAPIFASTENTRY length(void) const;
+		float HCAPIFASTENTRY length(void) const noexcept;
 
 		/**
 		 * Compute length of vector.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY squaredLength(void) const;
+		float HCAPIFASTENTRY squaredLength(void) const noexcept;
 
 		/**
 		 * Normalize current vector.
@@ -81,25 +81,25 @@ namespace LIBHPM {
 		 * Get minimum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY minComponent(void) const;
+		float HCAPIFASTENTRY minComponent(void) const noexcept;
 
 		/**
 		 * Get maximum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY maxComponent(void) const;
+		float HCAPIFASTENTRY maxComponent(void) const noexcept;
 
 		/**
 		 * Get absolute maximum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY maxAbsComponent(void) const;
+		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept;
 
 		/**
 		 * Get absolute minimum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY minAbsComponent(void) const;
+		float HCAPIFASTENTRY minAbsComponent(void) const noexcept;
 
 		/**
 		 * Create normalized copy.
@@ -136,11 +136,11 @@ namespace LIBHPM {
 		friend Vector4 operator*(const Vector4 &vec, float scalar);
 		friend Vector4 operator*(float scalar, const Vector4 &vec);
 
-		Vector4 &operator=(const Vector4 &v2);
-		Vector4 &operator+=(const Vector4 &v2);
-		Vector4 &operator-=(const Vector4 &v2);
-		Vector4 &operator/=(float scalar);
-		Vector4 &operator*=(float scalar);
+		Vector4 &operator=(const Vector4 &v2) noexcept;
+		Vector4 &operator+=(const Vector4 &v2) noexcept;
+		Vector4 &operator-=(const Vector4 &v2) noexcept;
+		Vector4 &operator/=(float scalar) noexcept;
+		Vector4 &operator*=(float scalar) noexcept;
 
 		/**
 		 * Compute unit vector.
@@ -155,7 +155,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector4 HCAPIENTRY minVec(const Vector4 &v1, const Vector4 &v2);
+		friend Vector4 HCAPIENTRY minVec(const Vector4 &v1, const Vector4 &v2) noexcept;
 
 		/**
 		 * Compute max vector component.
@@ -163,7 +163,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector4 HCAPIENTRY maxVec(const Vector4 &v1, const Vector4 &v2);
+		friend Vector4 HCAPIENTRY maxVec(const Vector4 &v1, const Vector4 &v2) noexcept;
 
 		/**
 		 * Computer inner dot product.
@@ -171,7 +171,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return inner product.
 		 */
-		friend float HCAPIENTRY dot(const Vector4 &v1, const Vector4 &v2);
+		friend float HCAPIENTRY dot(const Vector4 &v1, const Vector4 &v2) noexcept;
 
 	  protected: /*	Attributes.	*/
 		hpmvec4f e;
@@ -184,7 +184,7 @@ namespace LIBHPM {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static Vector4 HCAPIENTRY lerp(const Vector4 &vec1, const Vector4 &vec2, float speed);
+		static Vector4 HCAPIENTRY lerp(const Vector4 &vec1, const Vector4 &vec2, float speed) noexcept;
 
 		/**
 		 * Spherical interpolation.
@@ -193,7 +193,7 @@ namespace LIBHPM {
 		 * @param speed [0, 1]
 		 * @return interpolated position.
 		 */
-		static Vector4 HCAPIENTRY slerp(const Vector4 &vec1, const Vector4 &vec2, float speed);
+		static Vector4 HCAPIENTRY slerp(const Vector4 &vec1, const Vector4 &vec2, float speed) noexcept;
 	};
 } // namespace LIBHPM
 
