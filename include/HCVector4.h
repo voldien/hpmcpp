@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4f)) Vector4 {
 	  public:
-		Vector4(void) noexcept ;
+		Vector4(void) noexcept;
 		Vector4(float val) noexcept;
 		Vector4(float m0, float m1, float m2, float m3) noexcept;
 		Vector4(const Vector4 &v) noexcept;
@@ -121,7 +121,7 @@ namespace LIBHPM {
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector4 &t) ;
+		friend std::istream &operator>>(std::istream &is, Vector4 &t);
 
 		/**
 		 * Create output stream of vector value.

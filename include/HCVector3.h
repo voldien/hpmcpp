@@ -82,7 +82,7 @@ namespace LIBHPM {
 		/**
 		 * Make vector to a unite vector.
 		 */
-		void HCAPIENTRY makeUnitVector(void) ;
+		void HCAPIENTRY makeUnitVector(void);
 
 		/**
 		 * Get minimum component.
