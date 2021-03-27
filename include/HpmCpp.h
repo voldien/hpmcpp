@@ -44,7 +44,7 @@ namespace LIBHPM {
 		/**
 		 * HPM SIMD(Single Instruction Multiple Data) enumerator.
 		 */
-		enum HPMSIMD{
+		enum HPMSIMD {
 			eHPM_NONE       =   (0 << 0),   /*	No HPM SIMD exention flag.	*/
 			eHPM_NOSIMD     =   (1 << 0),   /*	No SIMD hardware feature, using the FPU and ALU.	*/
 			eHPM_MMX        =   (1 << 1),   /*	MMX. (Yet not supported)	*/
@@ -69,7 +69,7 @@ namespace LIBHPM {
 		 * called before using the library.
 		 * @return 1 if successfully initialized. 0 if there was a failure.
 		 */
-		static int HCAPIENTRY init(HPMSIMD hpmSIMD);
+		static int HCAPIENTRY init(HPMSIMD hpmSIMD) noexcept(false);
 
 		static bool HCAPIENTRY isSupported(HPMSIMD SIMD);
 	};

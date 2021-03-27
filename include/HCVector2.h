@@ -30,18 +30,20 @@ namespace LIBHPM {
 		Vector2(float val);
 		Vector2(float m0, float m1);
 		Vector2(const Vector2& v);
+		Vector2(Vector2 &&other);
 
 		/**
 		 * Negate vector.
 		 * @return
 		 */
-		Vector2& operator-(void) const;
+		Vector2& operator-(void) const noexcept;
 
 		/**
 		 * Get vector component by index.
 		 * @return component value.
 		 */
 		inline float operator[](int i) const;
+		
 		/**
 		 * Get vector component reference
 		 * by index.
@@ -53,13 +55,13 @@ namespace LIBHPM {
 		 * Compute length.
 		 * @return length in decimal.
 		 */
-		float length(void) const;
+		float length(void) const noexcept;
 
 		/**
 		 * Compute square length.
 		 * @return length in decimal.
 		 */
-		float squaredLength(void) const;
+		float squaredLength(void) const noexcept;
 
 		/**
 		 * Make vector to unit length.
@@ -69,36 +71,36 @@ namespace LIBHPM {
 		/**
 		 * Set vector X component value.
 		 */
-		void HCAPIFASTENTRY setX(float x);
+		void HCAPIFASTENTRY setX(float x) noexcept;
 
 		/**
 		 * Set vector Y component value.
 		 */
-		void HCAPIFASTENTRY setY(float y);
+		void HCAPIFASTENTRY setY(float y) noexcept;
 
 		/**
 		 * Get vector X component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY x(void) const;
+		float HCAPIFASTENTRY x(void) const noexcept;
 
 		/**
 		 * Get vector Y component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY y(void) const;
+		float HCAPIFASTENTRY y(void) const noexcept;
 
 		/**
 		 * @return
 		 */
-		float minComponent(void) const;
-		float maxComponent(void) const;
-		float maxAbsComponent(void) const;
-		float minAbsComponent(void) const;
-		int indexOfMinComponent(void) const;
-		int indexOfMaxComponent(void) const;
-		int indexOfMinAbsComponent(void) const;
-		int indexOfMaxAbsComponent(void) const;
+		float minComponent(void) const noexcept;
+		float maxComponent(void) const noexcept;
+		float maxAbsComponent(void) const noexcept;
+		float minAbsComponent(void) const noexcept;
+		int indexOfMinComponent(void) const noexcept;
+		int indexOfMaxComponent(void) const noexcept;
+		int indexOfMinAbsComponent(void) const noexcept;
+		int indexOfMaxAbsComponent(void) const noexcept;
 
 		/**
 		 * Create normalize copy
@@ -149,7 +151,7 @@ namespace LIBHPM {
 		 * @param v
 		 * @return
 		 */
-		friend Vector2 unitVector3(const Vector2& v);
+		friend Vector2 unitVector3(const Vector2& v) noexcept;
 
 		/**
 		 *
@@ -157,7 +159,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector2 minVec(const Vector2& v1, const Vector2& v2);
+		friend Vector2 minVec(const Vector2 &v1, const Vector2 &v2) noexcept;
 
 		/**
 		 *
@@ -165,7 +167,7 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector2 maxVec(const Vector2& v1, const Vector2& v2);
+		friend Vector2 maxVec(const Vector2 &v1, const Vector2 &v2) noexcept;
 
 		/**
 		 *
@@ -173,8 +175,7 @@ namespace LIBHPM {
 		 * @param normal
 		 * @return
 		 */
-		friend Vector2 reflection(const Vector2& vector,
-				const Vector2& normal);
+		friend Vector2 reflection(const Vector2 &vector, const Vector2 &normal) noexcept;
 
 		/**
 		 * Compute dot product.
@@ -182,9 +183,9 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend float dot(const Vector2& v1, const Vector2& v2);
+		friend float dot(const Vector2 &v1, const Vector2 &v2) noexcept;
 
-	private:	/*	Attributes.	*/
+	  private: /*	Attributes.	*/
 
 		hpmvec2f m;
 
@@ -194,9 +195,7 @@ namespace LIBHPM {
 		 * Create zero vector.
 		 * @return HCVector2 object.
 		 */
-		static Vector2 zero(void) {
-			return Vector2(0.0f);
-		}
+	  static Vector2 zero(void) noexcept { return Vector2(0.0f); }
 	};
 }
 

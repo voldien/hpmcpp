@@ -19,18 +19,10 @@ void Quaternion::set(float w, float x, float y, float z) {
 	hpm_quat_setf(&this->e, w, x, y, z);
 }
 
-float Quaternion::x(void) const {
-	return hpm_quat_getxf(this->e);
-}
-float Quaternion::y(void) const {
-	return hpm_quat_getyf(this->e);
-}
-float Quaternion::z(void) const {
-	return hpm_quat_getzf(this->e);
-}
-float Quaternion::w(void) const {
-	return hpm_quat_getwf(this->e);
-}
+float Quaternion::x(void) const noexcept { return hpm_quat_getxf(this->e); }
+float Quaternion::y(void) const noexcept { return hpm_quat_getyf(this->e); }
+float Quaternion::z(void) const noexcept { return hpm_quat_getzf(this->e); }
+float Quaternion::w(void) const noexcept { return hpm_quat_getwf(this->e); }
 
 void Quaternion::setW(float w) {
 	hpm_quat_setwf(this->e, w);

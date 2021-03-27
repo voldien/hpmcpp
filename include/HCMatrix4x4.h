@@ -29,6 +29,7 @@ namespace LIBHPM {
 	public:
 		Matrix4x4(void) = default;
 		Matrix4x4(const Matrix4x4& other);
+		Matrix4x4(Matrix4x4 &&other);
 		~Matrix4x4(void) = default;
 
 	private:	/*	Attributes.	*/
@@ -105,6 +106,7 @@ namespace LIBHPM {
 		 * @return
 		 */
 		Matrix4x4& operator=(const Matrix4x4& rh);
+		Matrix4x4 &operator=(Matrix4x4&& other);
 
 		/**
 		 * @return
@@ -140,7 +142,6 @@ namespace LIBHPM {
 		 * @return stream reference.
 		 */
 		friend std::ostream &operator<<(std::ostream &os, const Matrix4x4& t);
-
 
 	public:	/*	Static methods.	*/
 

@@ -34,7 +34,8 @@ namespace LIBHPM {
 		Vector3(float val);
 		Vector3(float e0, float e1, float e2);
 		Vector3(const Vector3& v);
-
+		Vector3(Vector3 &&other);
+		
 		/**
 		 * Get individual component of vector.
 		 * @return

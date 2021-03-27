@@ -76,6 +76,8 @@ Matrix4x4& Matrix4x4::operator=(const Matrix4x4& rh) {
 	return *this;
 }
 
+Matrix4x4 &Matrix4x4::operator = (Matrix4x4 && other) {}
+
 Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& rh) {
 	*this = *this + rh;
 	return *this;

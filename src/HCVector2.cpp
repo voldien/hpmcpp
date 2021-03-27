@@ -16,10 +16,7 @@ Vector2::Vector2(const Vector2& v) {
 	*this = v;
 }
 
-Vector2& Vector2::operator-(void) const {
-	return -*this;
-}
-
+Vector2 &Vector2::operator-(void) const noexcept { return -*this; }
 
 float Vector2::operator[](int i) const {
 	return this->m[i];
@@ -28,29 +25,17 @@ float& Vector2::operator[](int i) {
 	//return this->m[i];
 }
 
-float Vector2::length(void) const {
-	return sqrtf(x() * x() + y() * y());
-}
-float Vector2::squaredLength(void) const {
-	return (x() * x() + y() * y());
-}
+float Vector2::length(void) const noexcept { return sqrtf(x() * x() + y() * y()); }
+float Vector2::squaredLength(void) const noexcept { return (x() * x() + y() * y()); }
 void Vector2::makeUnitVector(void) {
 	*this /= this->length();
 }
 
-void Vector2::setX(float _x) {
-	this->m[0] = _x;
-}
-void Vector2::setY(float _y) {
-	this->m[1] = _y;
-}
+void Vector2::setX(float _x) noexcept { this->m[0] = _x; }
+void Vector2::setY(float _y) noexcept { this->m[1] = _y; }
 
-float Vector2::x(void) const {
-	return this->m[0];
-}
-float Vector2::y(void) const{
-	return this->m[1];
-}
+float Vector2::x(void) const noexcept { return this->m[0]; }
+float Vector2::y(void) const noexcept { return this->m[1]; }
 
 Vector2 Vector2::normalize(void) const {
 	Vector2 copy = *this;
@@ -58,25 +43,15 @@ Vector2 Vector2::normalize(void) const {
 	return copy;
 }
 
-float Vector2::maxComponent(void) const {
-	return 0;
-}
+float Vector2::maxComponent(void) const noexcept { return 0; }
 
-float Vector2::maxAbsComponent(void) const {
-	return 0;
-}
+float Vector2::maxAbsComponent(void) const noexcept { return 0; }
 
-float Vector2::minAbsComponent(void) const {
-	return 0;
-}
+float Vector2::minAbsComponent(void) const noexcept { return 0; }
 
-int Vector2::indexOfMinComponent(void) const {
-	return 0;
-}
+int Vector2::indexOfMinComponent(void) const noexcept { return 0; }
 
-int Vector2::indexOfMinAbsComponent(void) const {
-	return 0;
-}
+int Vector2::indexOfMinAbsComponent(void) const noexcept { return 0; }
 
 namespace LIBHPM {
 	bool operator==(const Vector2& v1, const Vector2& v2) {

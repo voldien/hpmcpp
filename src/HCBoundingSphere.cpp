@@ -1,4 +1,4 @@
-#include"HCBoundingSphere.h"
+#include "HCBoundingSphere.h"
 
 using namespace LIBHPM;
 
@@ -21,4 +21,3 @@ bool BoundingSphere::intersect(const Ray& ray) const {
 	return false;
 }
 */
-

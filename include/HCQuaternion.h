@@ -33,16 +33,17 @@ namespace LIBHPM {
 
 		Quaternion(void) = default;
 		Quaternion(const Quaternion& quaternion);
+		Quaternion(Quaternion && other);
 		Quaternion(float w, float x, float y, float z);
 		Quaternion(float pitch, float yaw, float roll);
 
 		/**
 		 * Get individual component.
 		 */
-		float HCAPIFASTENTRY x(void) const;
-		float HCAPIFASTENTRY y(void) const;
-		float HCAPIFASTENTRY z(void) const;
-		float HCAPIFASTENTRY w(void) const;
+		float HCAPIFASTENTRY x(void) const noexcept;
+		float HCAPIFASTENTRY y(void) const noexcept;
+		float HCAPIFASTENTRY z(void) const noexcept;
+		float HCAPIFASTENTRY w(void) const noexcept;
 
 		/**
 		 * Set individual component.

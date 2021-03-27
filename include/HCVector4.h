@@ -32,6 +32,7 @@ namespace LIBHPM {
 		Vector4(float val);
 		Vector4(float m0, float m1, float m2, float m3);
 		Vector4(const Vector4& v);
+		Vector4(Vector4&& other);
 
 		/**
 		 * Get component wise.
@@ -138,6 +139,7 @@ namespace LIBHPM {
 		friend Vector4 operator*(float scalar, const Vector4& vec);
 
 		Vector4& operator=(const Vector4& v2);
+		Vector4& operator=(Vector4&& other);
 		Vector4& operator+=(const Vector4& v2);
 		Vector4& operator-=(const Vector4& v2);
 		Vector4& operator/=(float scalar);
