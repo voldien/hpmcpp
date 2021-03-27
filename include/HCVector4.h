@@ -27,10 +27,10 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4f)) Vector4 {
 	  public:
-		Vector4(void);
-		Vector4(float val);
-		Vector4(float m0, float m1, float m2, float m3);
-		Vector4(const Vector4 &v);
+		Vector4(void) noexcept ;
+		Vector4(float val) noexcept;
+		Vector4(float m0, float m1, float m2, float m3) noexcept;
+		Vector4(const Vector4 &v) noexcept;
 
 		/**
 		 * Get component wise.
@@ -51,8 +51,8 @@ namespace LIBHPM {
 		/**
 		 * Get component by index.
 		 */
-		float operator[](int i) const;
-		float &operator[](int i);
+		float operator[](unsigned int i) const noexcept(noexcept(i > 3));
+		float &operator[](unsigned int i) noexcept(noexcept(i > 3));
 
 		/**
 		 * Negate vector.

@@ -3,11 +3,10 @@
 
 using namespace LIBHPM;
 
-Vector4::Vector4(void) {}
-Vector4::Vector4(float val) { hpm_vec4_setsf(&this->e, val); }
-Vector4::Vector4(float x, float y, float z, float w) { hpm_vec4_setf(&this->e, x, y, x, w); }
-Vector4::Vector4(const Vector4 &v) { *this = v; }
-
+Vector4::Vector4(void) noexcept {}
+Vector4::Vector4(float val) noexcept { hpm_vec4_setsf(&this->e, val); }
+Vector4::Vector4(float x, float y, float z, float w) noexcept { hpm_vec4_setf(&this->e, x, y, x, w); }
+Vector4::Vector4(const Vector4 &v) noexcept { *this = v; }
 
 float Vector4::x(void) const noexcept { return hpm_vec4_getxf(this->e); }
 float Vector4::y(void) const noexcept { return hpm_vec4_getyf(this->e); }
@@ -19,9 +18,15 @@ void Vector4::setY(float y) noexcept { hpm_vec4_setyf(this->e, y); }
 void Vector4::setZ(float z) noexcept { hpm_vec4_setzf(this->e, z); }
 void Vector4::setW(float w) noexcept { hpm_vec4_setwf(this->e, w); }
 
-float Vector4::operator[](int i) const { return this->e[i]; }
-float &Vector4::operator[](int i) {
-	// return this->e[i];
+float Vector4::operator[](unsigned int i) const noexcept {
+	if(i > 3)
+		throw std::invalid_argument("Index");
+	return this->e[i];
+}
+float &Vector4::operator[](unsigned int i) noexcept {
+	if (i > 3)
+		throw std::invalid_argument("Index");
+	return this->e[i];
 }
 
 Vector4 Vector4::operator-(void) const noexcept {
