@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_PLANE_H_
 #define _HPMCPP_PLANE_H_ 1
-#include "HCVector3.h"
+#include "HCVector3.hpp"
 #include <iostream>
 
 namespace LIBHPM {

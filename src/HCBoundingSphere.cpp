@@ -1,4 +1,4 @@
-#include "Ext/HCBoundingSphere.h"
+#include "Ext/HCBoundingSphere.hpp"
 
 using namespace LIBHPM;
 

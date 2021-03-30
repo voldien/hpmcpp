@@ -1,7 +1,7 @@
-#include "HCMatrix4x4.h"
-#include "HCQuaternion.h"
-#include "HCVector3.h"
-#include "HCVector4.h"
+#include "HCMatrix4x4.hpp"
+#include "HCQuaternion.hpp"
+#include "HCVector3.hpp"
+#include "HCVector4.hpp"
 #include <iostream>
 
 using namespace LIBHPM;

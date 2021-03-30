@@ -17,7 +17,7 @@
 
 */
 #pragma once
-#include "HCTypes.h"
+#include "HCTypes.hpp"
 #include <float.h>
 
 namespace LIBHPM {

@@ -1,4 +1,4 @@
-#include "HCVector2.h"
+#include "HCVector2.hpp"
 
 using namespace LIBHPM;
 

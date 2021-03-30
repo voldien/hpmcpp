@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_BOUNDING_SPHERE_H_
 #define _HPMCPP_BOUNDING_SPHERE_H_ 1
-#include "HCRay.h"
-#include "../HCVector3.h"
+#include "HCRay.hpp"
+#include "../HCVector3.hpp"
 
 namespace LIBHPM {
 	/**

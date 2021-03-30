@@ -18,7 +18,7 @@
 */
 #ifndef _HC_VECTOR2_H_
 #define _HC_VECTOR2_H_ 1
-#include "HCTypes.h"
+#include "HCTypes.hpp"
 
 namespace LIBHPM {
 	/**

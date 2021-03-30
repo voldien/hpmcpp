@@ -1,10 +1,10 @@
-#include "HpmCpp.h"
-#include"Ext/HCAABB.h"
-#include"Ext/HCBoundingSphere.h"
-#include"Ext/HCONB.h"
-#include"Ext/HCOBB.h"
-#include"Ext/HCPlane.h"
-#include"Ext/HCRay.h"
+#include "HpmCpp.hpp"
+#include"Ext/HCAABB.hpp"
+#include"Ext/HCBoundingSphere.hpp"
+#include"Ext/HCONB.hpp"
+#include"Ext/HCOBB.hpp"
+#include"Ext/HCPlane.hpp"
+#include"Ext/HCRay.hpp"
 #include <hpm.h>
 
 using namespace LIBHPM;

@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_VECTOR_3D_H_
 #define _HPMCPP_VECTOR_3D_H_ 1
-#include "HCTypes.h"
-#include"HCMath.h"
+#include "HCTypes.hpp"
+#include"HCMath.hpp"
 
 namespace LIBHPM {
 	/**

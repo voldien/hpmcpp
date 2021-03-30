@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_QUATERNION_H_
 #define _HPMCPP_QUATERNION_H_ 1
-#include "HCTypes.h"
-#include"HCVector3.h"
+#include "HCTypes.hpp"
+#include"HCVector3.hpp"
 
 namespace LIBHPM {
 

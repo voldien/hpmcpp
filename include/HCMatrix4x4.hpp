@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_MATRIX4X4_H_
 #define _HPMCPP_MATRIX4X4_H_ 1
-#include "HCTypes.h"
+#include "HCTypes.hpp"
 
 namespace LIBHPM {
 	/**

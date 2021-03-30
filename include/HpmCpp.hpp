@@ -18,13 +18,13 @@
 */
 #ifndef _HPMCPP_H_
 #define _HPMCPP_H_ 1
-#include "HCMatrix3x3.h"
-#include "HCMatrix4x4.h"
-#include "HCQuaternion.h"
-#include "HCTypes.h"
-#include "HCVector2.h"
-#include "HCVector3.h"
-#include "HCVector4.h"
+#include "HCMatrix3x3.hpp"
+#include "HCMatrix4x4.hpp"
+#include "HCQuaternion.hpp"
+#include "HCTypes.hpp"
+#include "HCVector2.hpp"
+#include "HCVector3.hpp"
+#include "HCVector4.hpp"
 
 namespace LIBHPM {
 

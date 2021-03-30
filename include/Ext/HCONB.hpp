@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_ONB_H_
 #define _HPMCPP_ONB_H_ 1
-#include "../HCVector3.h"
-#include"../HCMath.h"
+#include "../HCVector3.hpp"
+#include"../HCMath.hpp"
 
 namespace LIBHPM {
 	/**

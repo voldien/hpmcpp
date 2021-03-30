@@ -113,20 +113,20 @@ FILE(GLOB core ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 SET(HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 SET(SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src)
 SET(HPM_PUBLIC_HEADERS
-		${HEADER_PATH}/Ext/HCAABB.h
-		${HEADER_PATH}/Ext/HCBoundingSphere.h
-		${HEADER_PATH}/HCMatrix4x4.h
-		${HEADER_PATH}/HCMatrix3x3.h
-		${HEADER_PATH}/Ext/HCOBB.h
-		${HEADER_PATH}/Ext/HCONB.h
-		${HEADER_PATH}/Ext/HCPlane.h
-		${HEADER_PATH}/HCQuaternion.h
-		${HEADER_PATH}/Ext/HCRay.h
-		${HEADER_PATH}/HCTypes.h
-		${HEADER_PATH}/HCVector2.h
-		${HEADER_PATH}/HCVector3.h
-		${HEADER_PATH}/HCVector4.h
-		${HEADER_PATH}/HpmCpp.h
+		${HEADER_PATH}/Ext/HCAABB.hpp
+		${HEADER_PATH}/Ext/HCBoundingSphere.hpp
+		${HEADER_PATH}/HCMatrix4x4.hpp
+		${HEADER_PATH}/HCMatrix3x3.hpp
+		${HEADER_PATH}/Ext/HCOBB.hpp
+		${HEADER_PATH}/Ext/HCONB.hpp
+		${HEADER_PATH}/Ext/HCPlane.hpp
+		${HEADER_PATH}/HCQuaternion.hpp
+		${HEADER_PATH}/Ext/HCRay.hpp
+		${HEADER_PATH}/HCTypes.hpp
+		${HEADER_PATH}/HCVector2.hpp
+		${HEADER_PATH}/HCVector3.hpp
+		${HEADER_PATH}/HCVector4.hpp
+		${HEADER_PATH}/HpmCpp.hpp
 		)
 
 SET(hpmcpp_core_src

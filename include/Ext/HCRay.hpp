@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_RAY_H_
 #define _HPMCPP_RAY_H_ 1
-#include "../HCVector3.h"
+#include "../HCVector3.hpp"
 
 namespace LIBHPM {
 	/**

@@ -1,6 +1,6 @@
-// #include "HCQuaternion.h"
-// #include "HCVector3.h"
-// #include "HCVector4.h"
+// #include "HCQuaternion.hpp"
+// #include "HCVector3.hpp"
+// #include "HCVector4.hpp"
 // using namespace LIBHPM;
 
 // Quaternion::Quaternion(const Quaternion &quaternion) noexcept { *this = quaternion; }

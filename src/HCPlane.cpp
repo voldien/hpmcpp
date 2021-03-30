@@ -1,4 +1,4 @@
-#include "Ext/HCPlane.h"
+#include "Ext/HCPlane.hpp"
 
 using namespace LIBHPM;
 

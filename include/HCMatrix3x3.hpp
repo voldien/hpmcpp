@@ -18,7 +18,7 @@
 */
 #ifndef _HPMCPP_MATRIX3X3_H_
 #define _HPMCPP_MATRIX3X3_H_ 1
-#include "HCTypes.h"
+#include "HCTypes.hpp"
 
 namespace LIBHPM {
 	/**
