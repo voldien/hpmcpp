@@ -126,22 +126,11 @@ SET(HPM_PUBLIC_HEADERS
 		${HEADER_PATH}/HCVector2.hpp
 		${HEADER_PATH}/HCVector3.hpp
 		${HEADER_PATH}/HCVector4.hpp
-		${HEADER_PATH}/HpmCpp.hpp
+		${HEADER_PATH}/Hpm.hpp
 		)
 
 SET(hpmcpp_core_src
-		${SRC_PATH}/hpmcpp.cpp
-		${SRC_PATH}/HCAABB.cpp
-		${SRC_PATH}/HCBoundingSphere.cpp
-		${SRC_PATH}/HCMatrix4x4.cpp
-		${SRC_PATH}/HCOBB.cpp
-		${SRC_PATH}/HCONB.cpp
-		${SRC_PATH}/HCPlane.cpp
-		${SRC_PATH}/HCQuaternion.cpp
-		${SRC_PATH}/HCVector2.cpp
-		${SRC_PATH}/HCVector3.cpp
-		${SRC_PATH}/HCVector4.cpp
-		)
+		${SRC_PATH}/hpmcpp.cpp )
 SOURCE_GROUP(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Source Files" FILES ${hpmcpp_core_src})
 
 SET(hpmcpp_src
