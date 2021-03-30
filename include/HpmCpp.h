@@ -18,13 +18,8 @@
 */
 #ifndef _HPMCPP_H_
 #define _HPMCPP_H_ 1
-#include "HCAABB.h"
-#include "HCBoundingSphere.h"
 #include "HCMatrix3x3.h"
 #include "HCMatrix4x4.h"
-#include "HCOBB.h"
-#include "HCONB.h"
-#include "HCPlane.h"
 #include "HCQuaternion.h"
 #include "HCTypes.h"
 #include "HCVector2.h"
