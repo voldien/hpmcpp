@@ -28,6 +28,8 @@
 
 namespace LIBHPM {
 
+	//typedef Vector3<float> Vector3f;
+
 	/**
 	 * hpmcpp initialization class.
 	 * See more description of the SIMD enumerator.
@@ -63,9 +65,16 @@ namespace LIBHPM {
 		 * called before using the library.
 		 * @return 1 if successfully initialized. 0 if there was a failure.
 		 */
-		static int HCAPIENTRY init(HPMSIMD hpmSIMD) noexcept(false);
+		static int HCAPIENTRY init(HPMSIMD hpmSIMD) noexcept(true) {
+			if (!isSupported(hpmSIMD))
+				throw std::runtime_error("");
+			return hpm_init((unsigned int)hpmSIMD);
+		}
 
-		static bool HCAPIENTRY isSupported(HPMSIMD SIMD);
+		static bool HCAPIENTRY isSupported(HPMSIMD SIMD) { return hpm_support_cpu_feat(SIMD); }
+
+	  public:
+		static constexpr bool isValidFlag(HPMSIMD flag) noexcept(true) { return false; }
 	};
 
 } // namespace LIBHPM

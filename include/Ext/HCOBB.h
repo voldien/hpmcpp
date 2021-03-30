@@ -19,29 +19,34 @@
 #ifndef _HPMCPP_OBB_H_
 #define _HPMCPP_OBB_H_ 1
 #include "HCONB.h"
-#include "HCVector3.h"
+#include "../HCVector3.h"
 
 namespace LIBHPM {
 	/**
 	 *	Oriented bounding box.
 	 */
-	class HCDECLSPEC OBB {
+	struct HCDECLSPEC OBB {
 	  public:
-		OBB(void);
+		OBB(void) = default;
 
-		OBB(const OBB &obb);
+		OBB(const OBB &obb) { *this = obb; }
 
-		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w) { this->onb.set(u, v, w); }
 
-		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &size) {
+			this->onb.set(u, v, w);
+			this->setSize(size);
+		}
 
-		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &center, const Vector3 &size);
+		OBB(const Vector3 &u, const Vector3 &v, const Vector3 &w, const Vector3 &center, const Vector3 &size){
+
+		}
 
 		/**
 		 * Get U axis.
 		 * @return normalized axis.
 		 */
-		const Vector3 &HCAPIENTRY getU(void) const;
+		const Vector3 &HCAPIENTRY getU(void) const { return onb.u(); }
 
 		/**
 		 *	Get V axis.
@@ -52,13 +57,13 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		const Vector3 &HCAPIENTRY getV(void) const;
+		const Vector3 &HCAPIENTRY getV(void) const { return onb.v(); }
 
 		/**
 		 * Get W axis.
 		 * @return normalized axis.
 		 */
-		const Vector3 &HCAPIENTRY getW(void) const;
+		const Vector3 &HCAPIENTRY getW(void) const { return onb.w(); }
 
 		/**
 		 * Set size of box.
@@ -90,7 +95,11 @@ namespace LIBHPM {
 		 */
 		inline Vector3 getCenter(void) const { return Vector3(this->halfu, this->halfv, this->halfw); }
 
-		OBB &operator=(const OBB &obb);
+		OBB &operator=(const OBB &obb) {
+			this->onb = obb.onb;
+			this->setSize(obb.getSize());
+			return *this;
+		}
 
 		/**
 		 *
@@ -98,7 +107,7 @@ namespace LIBHPM {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, OBB &t);
+		friend std::istream &operator>>(std::istream &is, OBB &t) { return is; }
 
 		/**
 		 *
@@ -106,7 +115,7 @@ namespace LIBHPM {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const OBB &t);
+		friend std::ostream &operator<<(std::ostream &os, const OBB &t) { return os; }
 
 	  private:		  /*	Attributes.	*/
 		ONB onb;	  /*	*/

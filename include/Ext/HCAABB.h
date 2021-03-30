@@ -22,14 +22,18 @@
 #include "HCVector3.h"
 
 namespace LIBHPM {
+
 	/**
-	 * Axis aligned bounding
+	 * @brief Axis aligned bounding
 	 * box.
 	 */
-	class HCDECLSPEC AABB {
+	struct HCDECLSPEC AABB {
 	  public:
-		AABB(void) {}
-		AABB(const Vector3 &size, const Vector3 &center);
+		AABB(void) = default;
+		AABB(const Vector3 &size, const Vector3 &center) {
+			setCenter(center);
+			setSize(size);
+		}
 		AABB(const AABB &bounds) { *this = bounds; }
 
 		/**
@@ -49,31 +53,31 @@ namespace LIBHPM {
 		 * Check if object is valid.
 		 * @return true if valid, false otherwise.
 		 */
-		inline bool isValid(void) const {
+		constexpr bool isValid(void) const noexcept {
 			return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f || this->mhalfsize.z() != 0.0f);
 		}
 
 		/**
 		 *
 		 */
-		inline float maxX(void) const { return (this->mcenter.x() + this->mhalfsize.x()); }
-		inline float minX(void) const { return (this->mcenter.x() - this->mhalfsize.x()); }
-		inline float maxY(void) const { return (this->mcenter.y() + this->mhalfsize.y()); }
-		inline float minY(void) const { return (this->mcenter.y() - this->mhalfsize.y()); }
-		inline float maxZ(void) const { return (this->mcenter.z() + this->mhalfsize.z()); }
-		inline float minZ(void) const { return (this->mcenter.z() - this->mhalfsize.z()); }
+		inline constexpr float maxX(void) const noexcept { return (this->mcenter.x() + this->mhalfsize.x()); }
+		inline constexpr float minX(void) const noexcept { return (this->mcenter.x() - this->mhalfsize.x()); }
+		inline constexpr float maxY(void) const noexcept { return (this->mcenter.y() + this->mhalfsize.y()); }
+		inline constexpr float minY(void) const noexcept { return (this->mcenter.y() - this->mhalfsize.y()); }
+		inline constexpr float maxZ(void) const noexcept { return (this->mcenter.z() + this->mhalfsize.z()); }
+		inline constexpr float minZ(void) const noexcept { return (this->mcenter.z() - this->mhalfsize.z()); }
 
 		/**
 		 * Compute minimum position.
 		 * @return vector position.
 		 */
-		inline Vector3 min(void) const { return this->getCenter() - this->getSize(); }
+		Vector3 min(void) const noexcept { return this->getCenter() - this->getSize(); }
 
 		/**
 		 * Compute max position.
 		 * @return vector position.
 		 */
-		inline Vector3 max(void) const { return this->getCenter() + this->getSize(); }
+		Vector3 max(void) const { return this->getCenter() + this->getSize(); }
 
 		/**
 		 * Get half size.
@@ -84,25 +88,25 @@ namespace LIBHPM {
 		/**
 		 * Set half size.
 		 */
-		inline void setSize(const Vector3 &size) { this->mhalfsize = size; }
+		inline void setSize(const Vector3 &size) noexcept { this->mhalfsize = size; }
 
 		/**
 		 * Get center position.
 		 * @return
 		 */
-		inline const Vector3 &getCenter(void) const { return this->mcenter; }
+		inline const Vector3 &getCenter(void) const noexcept { return this->mcenter; }
 
 		/**
 		 * Set center position.
 		 */
-		inline void setCenter(const Vector3 &center) { this->mcenter = center; }
+		inline void setCenter(const Vector3 &center) noexcept { this->mcenter = center; }
 
 		/**
 		 * Check if object intersect.
 		 * @param bounds intersect this bound.
 		 * @return true if object intersects.
 		 */
-		bool intersect(const AABB &bounds);
+		constexpr bool intersect(const AABB &bounds) noexcept { return false; }
 
 		/**
 		 *
@@ -110,7 +114,11 @@ namespace LIBHPM {
 		 * @param worldPosition
 		 * @return  true if object contains.
 		 */
-		bool HCAPIENTRY contains(const Vector3 &point, const Vector3 worldPosition = Vector3());
+		constexpr bool HCAPIENTRY contains(const Vector3 &point, const Vector3 worldPosition = Vector3()) {
+			return (point.x() > minX() + worldPosition.x() && point.x() < maxX() + worldPosition.x() &&
+					point.y() > minY() + worldPosition.y() && point.y() < maxY() + worldPosition.y() &&
+					point.z() > minZ() + worldPosition.z() && point.z() < maxZ() + worldPosition.z());
+		}
 
 		/**
 		 * Check if object contains bound
@@ -118,46 +126,70 @@ namespace LIBHPM {
 		 * @param bounds
 		 * @return true if completly contains, false otherwise.
 		 */
-		bool HCAPIENTRY contains(const AABB &bounds);
+		constexpr bool HCAPIENTRY contains(const AABB &bounds) { return false; }
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		Vector3 HCAPIENTRY getVertexN(Vector3 &normal) const;
+		Vector3 HCAPIENTRY getVertexN(const Vector3 &normal) const noexcept {
+			Vector3 res = this->mhalfsize;
+			if (normal.x() < 0.0f)
+				res[0] += this->mcenter.x();
+			if (normal.y() < 0.0f)
+				res[1] += this->mcenter.y();
+			if (normal.z() < 0.0f)
+				res[2] += this->mcenter.z();
+			return res;
+		}
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		Vector3 HCAPIENTRY getVertexP(Vector3 &normal) const;
+		Vector3 HCAPIENTRY getVertexP(const Vector3 &normal) const noexcept {
+			Vector3 res = this->mhalfsize;
+			if (normal.x() >= 0.0f)
+				res[0] += this->mcenter.x();
+			if (normal.y() >= 0.0f)
+				res[1] += this->mcenter.y();
+			if (normal.z() >= 0.0f)
+				res[2] += this->mcenter.z();
+			return res;
+		}
 
 		/**
 		 * Create input stream for creating AABB
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector3 &t);
+		// friend std::istream &operator>>(std::istream &is, AABB &t) {}
 
 		/**
 		 * Create output stream of AABB values.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Vector3 &t);
+		// friend std::ostream &operator<<(std::ostream &os, const AABB &t) {}
 
 		/**
 		 * Assign bound object.
 		 * @return reference of object.
 		 */
-		AABB &operator=(const AABB &bound);
+		AABB &operator=(const AABB &bound) {
+			this->mhalfsize = bound.mhalfsize;
+			this->mcenter = bound.mcenter;
+			return *this;
+		}
 
 		/**
 		 *
 		 * @return reference of object.
 		 */
-		friend AABB operator*(const AABB &bound, float scalar);
+		friend AABB operator*(const AABB &bound, float scalar) noexcept {
+			return AABB(bound.getCenter(), bound.getSize() * scalar);
+		}
 
 		/**
 		 * Divide the size by scalar.
@@ -165,35 +197,41 @@ namespace LIBHPM {
 		 * @param divisor
 		 * @return reference of object.
 		 */
-		friend AABB operator/(const AABB &bound, float divisor);
+		friend AABB operator/(const AABB &bound, float divisor) noexcept(noexcept(divisor == 0)) {
+			return AABB(bound.getCenter(), bound.getSize() / divisor);
+		}
 
 		/**
 		 * Factor the bound size of the bound.
 		 * @param scalar real number.
 		 * @return reference of object.
 		 */
-		AABB &operator*=(float scalar);
+		AABB &operator*=(float scalar) noexcept { return *this; }
 
 		/**
 		 * Divide the size by scalar.
 		 * @param divisor non-zero.
 		 * @return reference of object.
 		 */
-		AABB &operator/=(float divisor);
+		AABB &operator/=(float divisor) noexcept { return *this; }
 
 		/**
 		 * Compare if objects are equal.
 		 * @param bound
 		 * @return true if object are equal, false otherwise.
 		 */
-		bool operator==(const AABB &bound);
+		bool operator==(const AABB &bound) noexcept {
+			return (this->getCenter() == bound.getCenter()) && (this->getSize() == bound.getSize());
+		}
 
 		/**
 		 * Compare if object are not equal.
 		 * @param bound
 		 * @return false if object are equal, true otherwise.
 		 */
-		bool operator!=(const AABB &bound);
+		bool operator!=(const AABB &bound) noexcept {
+			return (this->getCenter() != bound.getCenter()) || (this->getSize() != bound.getSize());
+		}
 
 	  private:			   /*	Attributes.	*/
 		Vector3 mhalfsize; /*	half size of the box.	*/

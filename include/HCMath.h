@@ -16,8 +16,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-#ifndef _HPMCPP_MATH_H_
-#define _HPMCPP_Math_H_ 1
+#pragma once
 #include "HCTypes.h"
 #include <float.h>
 
@@ -94,4 +93,4 @@ namespace LIBHPM {
 	};
 } // namespace LIBHPM
 
-#endif
+//#endif

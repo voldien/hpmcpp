@@ -24,10 +24,10 @@ using namespace LIBHPM;
 // 	return tmp;
 // }
 
-std::istream &operator>>(std::istream &is, Plane &t) { return is; }
+// std::istream &operator>>(std::istream &is, Plane &t) { return is; }
 
-std::ostream &operator<<(std::ostream &os, const Plane &t) { return os; }
+// std::ostream &operator<<(std::ostream &os, const Plane &t) { return os; }
 
-bool operator==(const Plane &o1, const Plane &o2) { return false; }
+// bool operator==(const Plane &o1, const Plane &o2) { return false; }
 
-bool operator!=(const Plane &o1, const Plane &o2) { return false; }
+// bool operator!=(const Plane &o1, const Plane &o2) { return false; }

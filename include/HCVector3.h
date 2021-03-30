@@ -19,6 +19,7 @@
 #ifndef _HPMCPP_VECTOR_3D_H_
 #define _HPMCPP_VECTOR_3D_H_ 1
 #include "HCTypes.h"
+#include"HCMath.h"
 
 namespace LIBHPM {
 	/**
@@ -32,133 +33,198 @@ namespace LIBHPM {
 
 	  public:
 		Vector3(void) = default;
-		Vector3(float val) noexcept;
-		Vector3(float e0, float e1, float e2) noexcept;
-		Vector3(const Vector3 &v) noexcept;
+		Vector3(float val) noexcept { hpm_vec4_setf(&this->e, val, val, val, val); }
+		Vector3(float e0, float e1, float e2) noexcept { hpm_vec4_setf(&this->e, e0, e1, e2, 0); }
+		Vector3(const Vector3 &v) noexcept { *this = v; }
 
 		/**
 		 * Get individual component of vector.
 		 * @return
 		 */
-		float HCAPIFASTENTRY x(void) const noexcept;
-		float HCAPIFASTENTRY y(void) const noexcept;
-		float HCAPIFASTENTRY z(void) const noexcept;
+		constexpr float HCAPIFASTENTRY x(void) const noexcept { return hpm_vec4_getxf(this->e); }
+		constexpr float HCAPIFASTENTRY y(void) const noexcept { return hpm_vec4_getyf(this->e); }
+		constexpr float HCAPIFASTENTRY z(void) const noexcept { return hpm_vec4_getzf(this->e); }
 
 		/**
 		 * Set individual
 		 */
-		void HCAPIFASTENTRY setX(float _x) noexcept;
-		void HCAPIFASTENTRY setY(float _y) noexcept;
-		void HCAPIFASTENTRY setZ(float _z) noexcept;
+		void HCAPIFASTENTRY setX(float _x) noexcept { hpm_vec4_setxf(this->e, _x); }
+		void HCAPIFASTENTRY setY(float _y) noexcept { hpm_vec4_setyf(this->e, _y); }
+		void HCAPIFASTENTRY setZ(float _z) noexcept { hpm_vec4_setzf(this->e, _z); }
 
 		/**
 		 *
 		 * @return
 		 */
-		const Vector3 &operator+(void) const noexcept;
-		Vector3 operator-(void) const noexcept;
+		const Vector3 &operator+(void) const noexcept { return *this; }
+		Vector3 operator-(void) const noexcept {
+			Vector3 copy = *this;
+			hpm_vec4_negatefv(&copy.e);
+			return copy;
+		}
 
 		/**
 		 *
 		 * @param i
 		 * @return
 		 */
-		float operator[](int i) const noexcept(noexcept(i >= 2));
-		float &operator[](int i) noexcept(noexcept(i >= 2));
+		float operator[](int i) const noexcept(noexcept(i >= 2)) { return this->e[i]; }
+		float &operator[](int i) noexcept(noexcept(i >= 2)) { return this->e[i]; }
 		inline operator float *(void) { return (float *)this; }
 
 		/**
 		 * Compute length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY length(void) const noexcept;
+		float HCAPIENTRY length(void) const noexcept { return hpm_vec3_lengthfv(&this->e); }
 
 		/**
 		 * Compute square length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY squaredLength(void) const noexcept;
+		float HCAPIENTRY squaredLength(void) const noexcept { return hpm_vec3_lengthsquarefv(&this->e); }
 
 		/**
 		 * Make vector to a unite vector.
 		 */
-		void HCAPIENTRY makeUnitVector(void);
+		void HCAPIENTRY makeUnitVector(void) { *this = *this / (*this).length(); }
 
 		/**
 		 * Get minimum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY minComponent(void) const noexcept;
+		float HCAPIFASTENTRY minComponent(void) const noexcept { return hpm_vec4_min_compfv(&this->e); }
 
 		/**
 		 * Get maximum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY maxComponent(void) const noexcept;
+		float HCAPIFASTENTRY maxComponent(void) const noexcept { return hpm_vec4_max_compfv(&this->e); }
 
 		/**
 		 * Get absolute maximum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept;
+		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept { return fabs(hpm_vec4_max_compfv(&this->e)); }
 
 		/**
 		 * Get absolute minimum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY minAbsComponent(void) const noexcept;
+		float HCAPIFASTENTRY minAbsComponent(void) const noexcept { return fabs(hpm_vec4_min_compfv(&this->e)); }
 
 		/**
 		 * Normalize vector.
 		 * @return normalized vector.
 		 */
-		Vector3 HCAPIENTRY normalize(void) const;
+		Vector3 HCAPIENTRY normalize(void) const {
+			float l = 1.0f / this->length();
+			return (*this * l);
+		}
 
 		/**
 		 * Check equality.
 		 * @return
 		 */
-		friend bool operator==(const Vector3 &v1, const Vector3 &v2) noexcept;
-		friend bool operator!=(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend bool operator==(const Vector3 &v1, const Vector3 &v2) noexcept {
+			if (&v1 == &v2) {
+				return true;
+			} else {
+				if (v1.e[0] != v2.e[0])
+					return false;
+				if (v1.e[1] != v2.e[1])
+					return false;
+				if (v1.e[2] != v2.e[2])
+					return false;
+				return true;
+			}
+		}
+
+		friend bool operator!=(const Vector3 &v1, const Vector3 &v2) noexcept { return !(v1 == v2); }
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector3 &t);
+		friend std::istream &operator>>(std::istream &is, Vector3 &t) {
+			float temp;
+			is >> temp;
+			t.setX(temp);
+			is >> temp;
+			t.setY(temp);
+			is >> temp;
+			t.setZ(temp);
+			return is;
+		}
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Vector3 &t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector3 &t) {
+			os << '(' << t.x() << " " << t.y() << " " << t.z() << ')';
+			return os;
+		}
 
 		/**
 		 * @return
 		 */
-		friend Vector3 operator+(const Vector3 &v1, const Vector3 &v2) noexcept;
-		friend Vector3 operator-(const Vector3 &v1, const Vector3 &v2) noexcept;
-		friend Vector3 operator/(const Vector3 &vec, float scalar) noexcept;
-		friend Vector3 operator*(const Vector3 &vec, float scalar) noexcept;
-		friend Vector3 operator*(float scalar, const Vector3 &vec) noexcept;
-		friend Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2) noexcept;
+		friend Vector3 operator+(const Vector3 &v1, const Vector3 &v2) noexcept {
+			return Vector3(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z());
+		}
+		friend Vector3 operator-(const Vector3 &v1, const Vector3 &v2) noexcept {
+			return Vector3(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z());
+		}
+
+		friend Vector3 operator/(const Vector3 &vec, float scalar) noexcept(noexcept(scalar == 0.0)) {
+			return Vector3(vec.x() / scalar, vec.y() / scalar, vec.z() / scalar);
+		}
+		friend Vector3 operator*(const Vector3 &vec, float scalar) noexcept {
+			return Vector3(vec.x() * scalar, vec.y() * scalar, vec.z() * scalar);
+		}
+		friend Vector3 operator*(float scalar, const Vector3 &vec) noexcept {
+			return Vector3(vec.e[0] * scalar, vec.e[1] * scalar, vec.e[2] * scalar);
+		}
+		friend Vector3 operator*(const Vector3 &vec1, const Vector3 &vec2) noexcept {
+			return Vector3(vec1.e[0] * vec2.e[0], vec1.e[1] * vec2.e[1], vec1.e[2] * vec2.e[2]);
+		}
 
 		/**
 		 *
 		 */
-		Vector3 &operator=(const Vector3 &v2) noexcept;
-		Vector3 &operator+=(const Vector3 &v2) noexcept;
-		Vector3 &operator-=(const Vector3 &v2) noexcept;
-		Vector3 &operator/=(float scalar) noexcept;
-		Vector3 &operator*=(float scalar) noexcept;
+		Vector3 &operator=(const Vector3 &v2) noexcept {
+			hpm_vec4_copyfv(&this->e, &v2.e);
+			return *this;
+		}
+		Vector3 &operator+=(const Vector3 &v2) noexcept {
+			*this = *this + v2;
+			return *this;
+		}
+		Vector3 &operator-=(const Vector3 &v2) noexcept {
+			*this = *this - v2;
+			return *this;
+		}
+		Vector3 &operator/=(float scalar) noexcept {
+			*this = *this * scalar;
+			return *this;
+		}
+		Vector3 &operator*=(float scalar) noexcept {
+			*this = *this / scalar;
+			return *this;
+		}
 
 		/**
 		 *
 		 * @param v
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY unitVector3(const Vector3 &v);
+		friend Vector3 HCAPIENTRY unitVector3(const Vector3 &v) {
+			Vector3 unit = v;
+			hpm_vec4_setwf(unit.e, 0.0f);
+			hpm_vec4_normalizefv(&unit.e);
+			return unit;
+		}
 
 		/**
 		 *
@@ -166,7 +232,16 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY minVec(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend Vector3 HCAPIENTRY minVec(const Vector3 &v1, const Vector3 &v2) noexcept {
+			Vector3 vec(v1);
+			if (v2.x() < v1.x())
+				vec.setX(v2.x());
+			if (v2.y() < v1.y())
+				vec.setY(v2.y());
+			if (v2.z() < v1.z())
+				vec.setZ(v2.z());
+			return vec;
+		}
 
 		/**
 		 *
@@ -174,7 +249,16 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY maxVec(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend Vector3 HCAPIENTRY maxVec(const Vector3 &v1, const Vector3 &v2) noexcept {
+			Vector3 vec(v1);
+			if (v2.x() > v1.x())
+				vec.setX(v2.x());
+			if (v2.y() > v1.y())
+				vec.setY(v2.y());
+			if (v2.z() > v1.z())
+				vec.setZ(v2.z());
+			return vec;
+		}
 
 		/**
 		 *
@@ -182,7 +266,11 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY cross(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend Vector3 HCAPIENTRY cross(const Vector3 &v1, const Vector3 &v2) noexcept {
+			Vector3 cr;
+			hpm_vec3_crossproductfv(&v1.e, &v2.e, &cr.e);
+			return cr;
+		}
 
 		/**
 		 *
@@ -190,7 +278,11 @@ namespace LIBHPM {
 		 * @param normal
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY reflection(const Vector3 &vector, const Vector3 &normal) noexcept;
+		friend Vector3 HCAPIENTRY reflection(const Vector3 &vector, const Vector3 &normal) noexcept {
+			Vector3 vec;
+			hpm_vec3_reflectfv(&vector.e, &normal.e, &vec.e);
+			return vec;
+		}
 
 		/**
 		 *
@@ -199,7 +291,9 @@ namespace LIBHPM {
 		 * @param refraction
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY refraction(const Vector3 &v1, const Vector3 &normal, float refraction) noexcept;
+		friend Vector3 HCAPIENTRY refraction(const Vector3 &v1, const Vector3 &normal, float refraction) noexcept {
+			return Vector3();
+		}
 
 		/**
 		 *
@@ -207,7 +301,9 @@ namespace LIBHPM {
 		 * @param v2
 		 * @return
 		 */
-		friend float HCAPIENTRY dot(const Vector3 &v1, const Vector3 &v2) noexcept;
+		friend float HCAPIENTRY dot(const Vector3 &v1, const Vector3 &v2) noexcept {
+			return hpm_vec3_dotfv(&v1.e, &v2.e);
+		}
 
 		/**
 		 *
@@ -216,14 +312,23 @@ namespace LIBHPM {
 		 * @param v3
 		 * @return
 		 */
-		friend float HCAPIENTRY tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) noexcept;
+		friend float HCAPIENTRY tripleProduct(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) noexcept {
+			return hpm_vec3_tripleProductfv(&v1.e, &v2.e, &v3.e);
+		}
 
 		/**
 		 *
 		 * @param normal
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY tangent(const Vector3 &normal) noexcept;
+		friend Vector3 HCAPIENTRY tangent(const Vector3 &normal) noexcept {
+			Vector3 tangent = cross(normal, Vector3::forward());
+
+			if (tangent.length() <= Math::Epsilon) { // if magnitude == is equal to 0
+				tangent = cross(normal, Vector3::up());
+			}
+			return tangent;
+		}
 
 		/**
 		 *
@@ -231,7 +336,9 @@ namespace LIBHPM {
 		 * @param tangent
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY biTangent(const Vector3 &normal, const Vector3 &tangent) noexcept;
+		friend Vector3 HCAPIENTRY biTangent(const Vector3 &normal, const Vector3 &tangent) noexcept {
+			return cross(normal, tangent);
+		}
 
 		/**
 		 *
@@ -239,7 +346,9 @@ namespace LIBHPM {
 		 * @param tangent
 		 * @return
 		 */
-		friend Vector3 HCAPIENTRY biNormal(const Vector3 &normal, const Vector3 &tangent) noexcept;
+		friend Vector3 HCAPIENTRY biNormal(const Vector3 &normal, const Vector3 &tangent) noexcept {
+			return cross(tangent, normal);
+		}
 
 	  private: /*	Private method.	*/
 		hpmvec3f e;
@@ -263,7 +372,10 @@ namespace LIBHPM {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static Vector3 HCAPIENTRY lerp(const Vector3 &vec1, const Vector3 &vec2, float t) noexcept;
+		template <typename T = float>
+		static Vector3 HCAPIENTRY lerp(const Vector3 &vec1, const Vector3 &vec2, T t) noexcept {
+			return (vec1 + (vec2 - vec1) * t);
+		}
 
 		/**
 		 * Spherical interpolation.
@@ -272,7 +384,10 @@ namespace LIBHPM {
 		 * @param t [0,1]
 		 * @return interpolated position.
 		 */
-		static Vector3 HCAPIENTRY slerp(const Vector3 &vec1, const Vector3 &vec2, float t) noexcept;
+		template <typename T = float>
+		static Vector3 HCAPIENTRY slerp(const Vector3 &vec1, const Vector3 &vec2, T t) noexcept {
+			return Vector3();
+		}
 	};
 } // namespace LIBHPM
 

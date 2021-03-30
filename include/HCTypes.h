@@ -173,6 +173,7 @@ namespace LIBHPM {
 	class Vector4;
 	class Vector3;
 	class Vector2;
+	/*	*/
 	class Ray;
 	class ONB;
 	class OBB;

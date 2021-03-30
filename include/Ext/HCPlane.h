@@ -25,58 +25,58 @@ namespace LIBHPM {
 	/**
 	 *
 	 */
-	class HCDECLSPEC Plane {
+	struct HCDECLSPEC Plane {
 	  public:
-		Plane(void);
-		Plane(const Vector3 &normal) {
+		Plane(void) = default;
+		Plane(const Vector3 &normal) noexcept {
 			this->normal = normal;
 			this->d = 0;
 		}
-		Plane(const Vector3 &point, const Vector3 &normal) { this->setNormalAndPoint(normal, point); }
-		Plane(const Plane &plane) { *this = plane; }
+		Plane(const Vector3 &point, const Vector3 &normal) noexcept { this->setNormalAndPoint(normal, point); }
+		Plane(const Plane &plane) noexcept { *this = plane; }
 
 		/**
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline Vector3 getNormal(void) { return this->normal; }
+		inline Vector3 getNormal(void) noexcept { return this->normal; }
 
 		/**
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline const Vector3 &getNormal(void) const { return this->normal; }
+		inline const Vector3 &getNormal(void) const noexcept { return this->normal; }
 
 		/**
 		 * Set plane normal.
 		 * @param normal
 		 */
-		inline void setNormal(const Vector3 &normal) { this->normal = normal; }
+		inline void setNormal(const Vector3 &normal) noexcept { this->normal = normal; }
 
 		/**
 		 * Compute distance.
 		 * @param point
 		 * @return
 		 */
-		inline float distance(const Vector3 &point) const { return dot(normal, point) + d; }
+		inline float distance(const Vector3 &point) const noexcept { return dot(normal, point) + d; }
 
 		/**
 		 * Get distance.
 		 * @return
 		 */
-		inline float distance(void) const { return this->d; }
+		inline float distance(void) const noexcept { return this->d; }
 
 		/**
 		 * Get point.
 		 * @return
 		 */
-		inline Vector3 getPoint(void) const { return d * this->getNormal(); }
+		inline Vector3 getPoint(void) const noexcept { return d * this->getNormal(); }
 
 		/**
 		 * Set normal and point and
 		 * compute internal values.
 		 */
-		void setNormalAndPoint(const Vector3 &normal, const Vector3 &point) {
+		void setNormalAndPoint(const Vector3 &normal, const Vector3 &point) noexcept {
 			this->normal = normal.normalize();
 			this->d = -dot(this->normal, point);
 		}
@@ -84,7 +84,7 @@ namespace LIBHPM {
 		/**
 		 * Construct plane.
 		 */
-		void set3DPoints(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) {
+		void set3DPoints(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) noexcept {
 			this->normal = cross((v1 - v2), (v1 - v3)).normalize();
 			this->d = -dot(this->normal, v2);
 		}
@@ -92,24 +92,24 @@ namespace LIBHPM {
 		/**
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Plane &t);
+		friend std::istream &operator>>(std::istream &is, Plane &t) { return is; }
 
 		/**
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &is, const Plane &t);
+		friend std::ostream &operator<<(std::ostream &os, const Plane &t) { return os; }
 
 		/**
 		 * Compare if plane equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator==(const Plane &o1, const Plane &o2);
+		friend bool operator==(const Plane &o1, const Plane &o2) noexcept { return false; }
 
 		/**
 		 * Compare if plane not equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator!=(const Plane &o1, const Plane &o2);
+		friend bool operator!=(const Plane &o1, const Plane &o2) noexcept { return false; }
 
 	  protected:		/*	Attributes.	*/
 		Vector3 normal; /*	*/
@@ -123,7 +123,7 @@ namespace LIBHPM {
 		 * @param v3
 		 * @return
 		 */
-		static Plane HCAPIENTRY fromPoints(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) {
+		static Plane HCAPIENTRY fromPoints(const Vector3 &v1, const Vector3 &v2, const Vector3 &v3) noexcept {
 			Plane tmp;
 			Vector3 e1 = v2 - v1;
 			Vector3 e2 = v3 - v1;

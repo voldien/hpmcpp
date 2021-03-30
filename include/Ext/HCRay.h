@@ -18,14 +18,14 @@
 */
 #ifndef _HPMCPP_RAY_H_
 #define _HPMCPP_RAY_H_ 1
-#include "HCVector3.h"
+#include "../HCVector3.h"
 
 namespace LIBHPM {
 	/**
 	 * Ray data type. Contains
 	 * a position and a direction.
 	 */
-	class HCDECLSPEC Ray {
+	struct HCDECLSPEC Ray {
 	  public:
 		Ray(void) = default;
 		Ray(const Vector3 &origin, const Vector3 &direction) {
@@ -40,31 +40,31 @@ namespace LIBHPM {
 		/**
 		 * @return get origin position.
 		 */
-		inline const Vector3 &getOrigin(void) const { return this->m[0]; }
+		inline const Vector3 &getOrigin(void) const noexcept { return this->m[0]; }
 
 		/**
 		 * Set origin position.
 		 */
-		inline void setOrigin(const Vector3 &origin) { this->m[0] = origin; }
+		inline void setOrigin(const Vector3 &origin) noexcept { this->m[0] = origin; }
 
 		/**
 		 * Get direction.
 		 * @return normalized direction.
 		 */
-		inline const Vector3 &getDirection(void) const { return this->m[1]; }
+		inline const Vector3 &getDirection(void) const noexcept { return this->m[1]; }
 
 		/**
 		 * Set direction vector.
 		 * @param direction has to be a normalized vector.
 		 */
-		inline void setDirection(const Vector3 &direction) { this->m[1] = direction; }
+		inline void setDirection(const Vector3 &direction) noexcept { this->m[1] = direction; }
 
 		/**
 		 * Get position from distance from point
 		 * in respect to direction.
 		 * @return point on the ray.
 		 */
-		inline Vector3 pointAtParameter(float t) const { return this->getOrigin() + t * this->getDirection(); }
+		inline Vector3 pointAtParameter(float t) const noexcept { return this->getOrigin() + t * this->getDirection(); }
 
 	  private: /*	Attributes.	*/
 		/**
