@@ -18,6 +18,7 @@
 */
 #pragma once
 #include "HCTypes.hpp"
+#include <cmath>
 #include <float.h>
 
 namespace LIBHPM {
@@ -26,7 +27,7 @@ namespace LIBHPM {
 	 */
 	class HCDECLSPEC Math {
 	  public:
-		template <class T> inline constexpr static T clamp(T a, T min, T max) {
+		template <typename T> inline constexpr static T clamp(T a, T min, T max) {
 			return Math::max<T>(min, Math::min<T>(max, a));
 		}
 		inline constexpr static int clamp(int a, int min, int max) { return Math::clamp<int>(a, min, max); }
@@ -40,27 +41,27 @@ namespace LIBHPM {
 		 */
 		template <typename T> inline constexpr static T max(T a, T b) { return ((a) < (b)) ? (b) : (a); }
 		inline constexpr static float maxf(float a, float b) { return ((a) < (b)) ? (b) : (a); }
-		inline constexpr static float maxd(float a, float b) { return ((a) < (b)) ? (b) : (a); }
-		inline constexpr static float maxi(float a, float b) { return ((a) < (b)) ? (b) : (a); }
+		inline constexpr static float maxd(double a, double b) { return ((a) < (b)) ? (b) : (a); }
+		inline constexpr static float maxi(int a, int b) { return ((a) < (b)) ? (b) : (a); }
 
 		/**
 		 *	Get min value of a and b.
 		 */
 		template <typename T> inline constexpr static T min(T a, T b) noexcept { return ((a) > (b)) ? (b) : (a); }
-		inline constexpr static float minf(float a, float b) noexcept { return ((a) > (b)) ? (b) : (a); }
-		inline constexpr static float mind(float a, float b) noexcept { return ((a) > (b)) ? (b) : (a); }
-		inline constexpr static float mini(float a, float b) noexcept { return ((a) > (b)) ? (b) : (a); }
+		inline constexpr static float minf(float a, float b) noexcept { return min<float>(a, b); }
+		inline constexpr static float mind(double a, double b) noexcept { return min<double>(a, b); }
+		inline constexpr static float mini(int a, int b) noexcept { return min<int>(a, b); }
 
 		/**
 		 *	Get float modular.
 		 */
 		inline static float modf(float a) {
 			double part;
-			return ::modf(a, &part);
+			return std::modf(a, &part);
 		}
 		inline static float modd(double a) {
 			double part;
-			return ::modf(a, &part);
+			return std::modf(a, &part);
 		}
 
 		/**

@@ -26,12 +26,13 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4x4f_t)) Matrix3x3 {
 	  public:
-		Matrix3x3(void);
+		Matrix3x3(void) = default;
 		Matrix3x3(const Matrix3x3 &other);
 		explicit Matrix3x3(const Matrix4x4 &Identity);
 		explicit Matrix3x3(const float *matrix);
 		explicit Matrix3x3(const double *matrix);
 		explicit Matrix3x3(float identity);
+		~Matrix3x3(void) = default;
 
 	  private: /*	Attributes.	*/
 		hpmvec4x4f_t e;

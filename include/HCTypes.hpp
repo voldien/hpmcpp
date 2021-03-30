@@ -20,7 +20,6 @@
 #define _HPMCPP_TYPES_H_ 1
 #include <hpm.h>
 #include <iostream>
-#include <math.h>
 #include <string.h>
 
 /**

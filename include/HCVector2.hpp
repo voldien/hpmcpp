@@ -27,123 +27,181 @@ namespace LIBHPM {
 	struct HCDECLSPEC alignas(alignof(hpmvec2f)) Vector2 {
 	  public:
 		Vector2(void) = default;
-		Vector2(float val);
-		Vector2(float m0, float m1);
-		Vector2(const Vector2 &v);
+		Vector2(float val) {
+			this->setX(val);
+			this->setY(val);
+		}
+		Vector2(float m0, float m1) {
+			this->setX(m0);
+			this->setY(m1);
+		}
+		Vector2(const Vector2 &v) { *this = v; }
 
 		/**
 		 * Negate vector.
 		 * @return
 		 */
-		Vector2 &operator-(void) const noexcept;
+		Vector2 &operator-(void) const noexcept { return -*this; }
 
 		/**
 		 * Get vector component by index.
 		 * @return component value.
 		 */
-		inline float operator[](int i) const noexcept(noexcept(i >= 2));
+		inline float operator[](int i) const noexcept(noexcept(i >= 2)) { return this->m[i]; }
 
 		/**
 		 * Get vector component reference
 		 * by index.
 		 * @return reference to component.
 		 */
-		inline float &operator[](int i) noexcept(noexcept(i >= 2));
+		inline float &operator[](int i) noexcept(noexcept(i >= 2)) {
+			// return this->m[i];
+		}
 
 		/**
 		 * Compute length.
 		 * @return length in decimal.
 		 */
-		float length(void) const noexcept;
+		float length(void) const noexcept { return sqrtf(x() * x() + y() * y()); }
 
 		/**
 		 * Compute square length.
 		 * @return length in decimal.
 		 */
-		float squaredLength(void) const noexcept;
+		float squaredLength(void) const noexcept { return (x() * x() + y() * y()); }
 
 		/**
 		 * Make vector to unit length.
 		 */
-		void makeUnitVector(void);
+		void makeUnitVector(void) { *this /= this->length(); }
 
 		/**
 		 * Set vector X component value.
 		 */
-		void HCAPIFASTENTRY setX(float x) noexcept;
+		void HCAPIFASTENTRY setX(float _x) noexcept { this->m[0] = _x; }
 
 		/**
 		 * Set vector Y component value.
 		 */
-		void HCAPIFASTENTRY setY(float y) noexcept;
+		void HCAPIFASTENTRY setY(float _y) noexcept { this->m[1] = _y; }
 
 		/**
 		 * Get vector X component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY x(void) const noexcept;
+		float HCAPIFASTENTRY x(void) const noexcept { return this->m[0]; }
 
 		/**
 		 * Get vector Y component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY y(void) const noexcept;
+		float HCAPIFASTENTRY y(void) const noexcept { return this->m[1]; }
 
 		/**
 		 * @return
 		 */
-		float minComponent(void) const noexcept;
-		float maxComponent(void) const noexcept;
-		float maxAbsComponent(void) const noexcept;
-		float minAbsComponent(void) const noexcept;
-		int indexOfMinComponent(void) const noexcept;
-		int indexOfMaxComponent(void) const noexcept;
-		int indexOfMinAbsComponent(void) const noexcept;
-		int indexOfMaxAbsComponent(void) const noexcept;
+		float minComponent(void) const noexcept { return 0; }
+		float maxComponent(void) const noexcept { return 0; }
+		float maxAbsComponent(void) const noexcept { return 0; }
+		float minAbsComponent(void) const noexcept { return 0; }
+		int indexOfMinComponent(void) const noexcept { return 0; }
+		int indexOfMaxComponent(void) const noexcept { return 0; }
+		int indexOfMinAbsComponent(void) const noexcept { return 0; }
+		int indexOfMaxAbsComponent(void) const noexcept { return 0; }
 
 		/**
 		 * Create normalize copy
 		 * @return
 		 */
-		Vector2 normalize(void) const;
+		Vector2 normalize(void) const {
+			Vector2 copy = *this;
+			copy.makeUnitVector();
+			return copy;
+		}
 
 		/**
 		 * Compare vector equalities.
 		 * @return true if vector equal for each component.
 		 */
-		friend bool operator==(const Vector2 &v1, const Vector2 &v2);
+		friend bool operator==(const Vector2 &v1, const Vector2 &v2) { return !(v1 == v2); }
 		/**
 		 * Compare vector inequality.
 		 * @return true if at least single component is not equal.
 		 */
-		friend bool operator!=(const Vector2 &v1, const Vector2 &v2);
+		friend bool operator!=(const Vector2 &v1, const Vector2 &v2) { return !(v1 == v2); }
 
 		/**
 		 * Create input stream for creating vector
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Vector2 &t);
+		friend std::istream &operator>>(std::istream &is, Vector2 &t) {
+
+			float tmp;
+
+			is >> tmp;
+			t.setX(tmp);
+			is >> tmp;
+			t.setY(tmp);
+
+			return is;
+		}
 
 		/**
 		 * Create output stream of vector value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Vector2 &t);
+		friend std::ostream &operator<<(std::ostream &os, const Vector2 &t) {
+			os << '(' << t.x() << " " << t.y() << ')';
+			return os;
+		}
 
-		friend Vector2 operator+(const Vector2 &v1, const Vector2 &v2);
-		friend Vector2 operator-(const Vector2 &v1, const Vector2 &v2);
-		friend Vector2 operator/(const Vector2 &vec, float scalar);
-		friend Vector2 operator*(const Vector2 &vec, float scalar);
-		friend Vector2 operator*(float scalar, const Vector2 &vec);
-		friend Vector2 operator*(const Vector2 &vec1, const Vector2 &vec2);
+		friend Vector2 operator+(const Vector2 &v1, const Vector2 &v2) {
+			return Vector2(v1.x() + v2.x(), v1.y() + v2.y());
+		}
+		friend Vector2 operator-(const Vector2 &v1, const Vector2 &v2) {
+			return Vector2(v1.x() - v2.x(), v1.y() - v2.y());
+		}
 
-		Vector2 &operator=(const Vector2 &v2);
-		Vector2 &operator+=(const Vector2 &v2);
-		Vector2 &operator-=(const Vector2 &v2);
-		Vector2 &operator/=(float scalar);
-		Vector2 &operator*=(float scalar);
-		Vector2 &operator*=(const Vector2 &vec2);
+		friend Vector2 operator/(const Vector2 &vec, float scalar) {
+			return Vector2(vec.x() / scalar, vec.y() / scalar);
+		}
+		friend Vector2 operator*(const Vector2 &vec, float scalar) {
+			return Vector2(vec.x() * scalar, vec.y() * scalar);
+		}
+		friend Vector2 operator*(float scalar, const Vector2 &vec) {
+			return Vector2(vec.x() * scalar, vec.y() * scalar);
+		}
+
+		friend Vector2 operator*(const Vector2 &v1, const Vector2 &v2) {
+			return Vector2(v1.x() * v2.x(), v1.y() * v2.y());
+		}
+
+		Vector2 &operator=(const Vector2 &v2) {
+			this->setX(v2.x());
+			this->setY(v2.y());
+			return *this;
+		}
+		Vector2 &operator+=(const Vector2 &v2) {
+			*this = *this + v2;
+			return *this;
+		}
+		Vector2 &operator-=(const Vector2 &v2) {
+			*this = *this - v2;
+			return *this;
+		}
+		Vector2 &operator/=(float scalar) {
+			*this = *this / scalar;
+			return *this;
+		}
+		Vector2 &operator*=(float scalar) {
+			*this = *this * scalar;
+			return *this;
+		}
+		Vector2 &operator*=(const Vector2 &vec2) {
+			*this = *this * vec2;
+			return *this;
+		}
 
 		/**
 		 *

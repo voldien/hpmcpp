@@ -18,7 +18,10 @@
 */
 #ifndef _HPMCPP_MATRIX4X4_H_
 #define _HPMCPP_MATRIX4X4_H_ 1
+#include "HCQuaternion.hpp"
 #include "HCTypes.hpp"
+#include "HCVector3.hpp"
+#include "HCVector4.hpp"
 
 namespace LIBHPM {
 	/**
@@ -28,9 +31,9 @@ namespace LIBHPM {
 	struct HCDECLSPEC alignas(alignof(hpmvec4x4f_t)) Matrix4x4 {
 	  public:
 		Matrix4x4(void) = default;
-		Matrix4x4(const Matrix4x4 &other);
-		explicit Matrix4x4(const float *matrix);
-		explicit Matrix4x4(float identity);
+		Matrix4x4(const Matrix4x4 &other) { *this = other; }
+		explicit Matrix4x4(const float *matrix) {}
+		explicit Matrix4x4(float identity) {}
 		~Matrix4x4(void) = default;
 
 	  private: /*	Attributes.	*/
@@ -43,14 +46,17 @@ namespace LIBHPM {
 		 *
 		 * @return true if identity.
 		 */
-		bool HCAPIENTRY isIdentity(void);
+		bool HCAPIENTRY isIdentity(void) {
+			static const Matrix4x4 identity = Matrix4x4::identity();
+			return *this == identity;
+		}
 
 		/**
 		 * Compute determinant of the matrix.
 		 *
 		 * @return determine of matrix.
 		 */
-		float HCAPIENTRY determinant(void) const;
+		float HCAPIENTRY determinant(void) const noexcept { return hpm_mat4x4_determinantfv(this->e); }
 
 		/**
 		 * Compute the inverse vector
@@ -58,90 +64,147 @@ namespace LIBHPM {
 		 *
 		 * @return inversed matrix if successful.
 		 */
-		Matrix4x4 HCAPIENTRY inverse(void) const;
+		Matrix4x4 HCAPIENTRY inverse(void) const {
+			Matrix4x4 res;
+			hpm_mat4x4_inversefv(this->e, res.e);
+			return res;
+		}
 
 		/**
 		 * Transpose the matrix.
 		 *
 		 * @return transposed matrix.
 		 */
-		Matrix4x4 HCAPIENTRY transpose(void) const;
+		Matrix4x4 HCAPIENTRY transpose(void) const {
+			Matrix4x4 mat = *this;
+			hpm_mat4x4_transposefv(mat.e);
+			return mat;
+		}
 
 		/**
 		 * Get element by index.
 		 */
-		float *operator[](int index) const;
-		float *operator[](int index);
+		float *operator[](int index) const {
+			// return (float*) &this->e[index][0];
+		}
+		float *operator[](int index) {
+			// return (float*)&this->e[0][0];
+		}
 
 		/**
 		 * Multiply matrix by scale factor.
 		 * @return
 		 */
-		Matrix4x4 operator*(float rh) const;
+		Matrix4x4 operator*(float rh) const {
+			Matrix4x4 mat = *this;
+			hpm_mat4x4_multiply_scalarf(this->e, rh, mat.e);
+			return mat;
+		}
 
 		/**
 		 * Multiply matrix with matrix.
 		 * @return matrix product.
 		 */
-		Matrix4x4 operator*(const Matrix4x4 &rh) const;
+		Matrix4x4 operator*(const Matrix4x4 &rh) const {
+			Matrix4x4 mat;
+			hpm_mat4x4_multiply_mat4x4fv(this->e, rh.e, mat.e);
+			return mat;
+		}
 
 		/**
 		 *
 		 * @return
 		 */
-		Vector4 operator*(const Vector4 &rh) const;
+		Vector4 operator*(const Vector4 &rh) const {
+			Vector4 vm;
+			hpm_mat4x4_multiply_mat1x4fv(this->e, (const hpmvec4f *)&rh, (hpmvec4f *)&vm);
+			return vm;
+		}
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 operator+(const Matrix4x4 &rh) const;
+		Matrix4x4 operator+(const Matrix4x4 &rh) const {
+			Matrix4x4 mat;
+			hpm_mat4x4_additition_mat4x4fv(this->e, rh.e, mat.e);
+			return mat;
+		}
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 operator-(const Matrix4x4 &rh) const;
+		Matrix4x4 operator-(const Matrix4x4 &rh) const {
+			Matrix4x4 mat;
+			hpm_mat4x4_subraction_mat4x4fv(this->e, rh.e, mat.e);
+			return mat;
+		}
 
 		/**
 		 * Assign matrix.
 		 * @return
 		 */
-		Matrix4x4 &operator=(const Matrix4x4 &rh);
-		Matrix4x4 &operator=(Matrix4x4 &&other);
+		Matrix4x4 &operator=(const Matrix4x4 &rh) {
+			hpm_mat4x4_copyfv(this->e, rh.e);
+			return *this;
+		}
+		Matrix4x4 &operator=(Matrix4x4 &&other) {}
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 &operator+=(const Matrix4x4 &rh);
+		Matrix4x4 &operator+=(const Matrix4x4 &rh) {
+			*this = *this + rh;
+			return *this;
+		}
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 &operator-=(const Matrix4x4 &rh);
+		Matrix4x4 &operator-=(const Matrix4x4 &rh) {
+			*this = *this - rh;
+			return *this;
+		}
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 &operator*=(const Matrix4x4 &rh);
+		Matrix4x4 &operator*=(const Matrix4x4 &rh) {
+			*this = *this * rh;
+			return *this;
+		}
 
 		/**
 		 * Equalitiy
 		 * @return
 		 */
-		bool operator==(const Matrix4x4 &rh);
-		bool operator!=(const Matrix4x4 &rh);
+		bool operator==(const Matrix4x4 &rh) { return (bool)hpm_mat4_eqfv(this->e, rh.e); }
+		bool operator!=(const Matrix4x4 &rh) { return (bool)hpm_mat4_neqfv(this->e, rh.e); }
 
 		/**
 		 * Create input stream for creating matrix
 		 * from input stream.
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, Matrix4x4 &t);
+		friend std::istream &operator>>(std::istream &is, Matrix4x4 &t) {
+			// is >> *((Vector4 *)t[0]);
+			// is >> *((Vector4 *)t[1]);
+			// is >> *((Vector4 *)t[2]);
+			// is >> *((Vector4 *)t[3]);
+			return is;
+		}
 
 		/**
 		 * Create output stream of matrix value.
 		 * @return stream reference.
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const Matrix4x4 &t);
+		friend std::ostream &operator<<(std::ostream &os, const Matrix4x4 &t) {
+
+			// os << '|' << *((Vector4 *)t[0]) << "|\n";
+			// os << '|' << *((Vector4 *)t[1]) << "|\n";
+			// os << '|' << *((Vector4 *)t[2]) << "|\n";
+			// os << '|' << *((Vector4 *)t[3]) << "|\n";
+			return os;
+		}
 
 	  public: /*	Static methods.	*/
 		/**
@@ -149,48 +212,76 @@ namespace LIBHPM {
 		 *
 		 * @return translated matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY translate(float x, float y, float z);
+		static Matrix4x4 HCAPIENTRY translate(float x, float y, float z) {
+			Matrix4x4 mat;
+			hpm_mat4x4_translationf(mat.e, x, y, z);
+			return mat;
+		}
 
 		/**
 		 * Create translation matrix.
 		 *
 		 * @return translated matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY translate(const Vector3 &translation);
+		static Matrix4x4 HCAPIENTRY translate(const Vector3 &translation) {
+			Matrix4x4 mat;
+			hpm_mat4x4_translationfv(mat.e, (hpmvec3f *)&translation);
+			return mat;
+		}
 
 		/**
 		 * Create rotation matrix from angle around the axis.
 		 *
 		 * @return rotation matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY rotate(float angle, const Vector3 &axis);
+		static Matrix4x4 HCAPIENTRY rotate(float angle, const Vector3 &axis) {
+			Matrix4x4 mat;
+			hpm_mat4x4_rotationfv(mat.e, angle, (hpmvec3f *)&axis);
+			return mat;
+		}
 
 		/**
 		 * Create rotation matrix from quaternion.
 		 *
 		 * @return rotation matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY rotate(const Quaternion &quat);
+		static Matrix4x4 HCAPIENTRY rotate(const Quaternion &quat) {
+			Matrix4x4 mat;
+			hpm_mat4x4_rotationQfv(mat.e, &quat.e);
+			return mat;
+		}
 
 		/**
 		 * Create scale matrix.
 		 *
 		 * @return scale matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY scale(float x, float y, float z);
+		static Matrix4x4 HCAPIENTRY scale(float x, float y, float z) {
+			Matrix4x4 mat;
+			hpm_mat4x4_scalef(mat.e, x, y, z);
+			return mat;
+		}
 
 		/**
 		 * Create scale matrix.
 		 *
 		 * @return scale matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY scale(const Vector3 &scale);
+		static Matrix4x4 HCAPIENTRY scale(const Vector3 &scale) {
+			Matrix4x4 mat;
+			hpm_mat4x4_scalefv(mat.e, (const hpmvec3f *)&scale);
+			return mat;
+		}
 
 		/**
 		 * Create look at matrix.
 		 * @return model matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY lookAt(const Vector3 &lookPosition, const Vector3 &position, const Vector3 &up);
+		static Matrix4x4 HCAPIENTRY lookAt(const Vector3 &lookPosition, const Vector3 &position, const Vector3 &up) {
+			Matrix4x4 look;
+			hpm_util_lookatfv((hpmvec3f *)&lookPosition, (hpmvec3f *)&position, (hpmvec3f *)&up, look.e);
+			return look;
+		}
 
 		/**
 		 * Create perspectice matrix.
@@ -205,7 +296,11 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		static Matrix4x4 HCAPIENTRY perspective(float fov, float aspect, float near, float far);
+		static Matrix4x4 HCAPIENTRY perspective(float fov, float aspect, float near, float far) {
+			Matrix4x4 mat;
+			hpm_mat4x4_projfv(mat.e, fov, aspect, near, far);
+			return mat;
+		}
 
 		/**
 		 * Create orthographic perspectice.
@@ -218,7 +313,11 @@ namespace LIBHPM {
 		 * @far
 		 * @return
 		 */
-		static Matrix4x4 HCAPIENTRY orth(float left, float right, float bottom, float top, float near, float far);
+		static Matrix4x4 HCAPIENTRY orth(float left, float right, float bottom, float top, float near, float far) {
+			Matrix4x4 mat;
+			hpm_mat4x4_orthfv(mat.e, left, right, bottom, top, near, far);
+			return mat;
+		}
 
 		/**
 		 * Unproject matrix.
@@ -232,21 +331,38 @@ namespace LIBHPM {
 		 * @param pos position inside the projection space.
 		 * @return non-zero if successfully unproject.
 		 */
-		static int HCAPIENTRY unProject(float winx, float winy, float winz, const Matrix4x4 *projection,
-										const Matrix4x4 *modelview, const int *HPM_RESTRICT viewport,
-										Vector3 *HPM_RESTRICT pos);
+		static int HCAPIENTRY unProject(float winx, float winy, float winz, const Matrix4x4 &projection,
+										const Matrix4x4 &modelview, const int *HPM_RESTRICT viewport,
+										Vector3 &HPM_RESTRICT pos) {
+			return hpm_mat4x4_unprojf(winx, winy, winz, projection.e, modelview.e, viewport, &pos.e);
+		}
 
 		/**
 		 * Create bias matrix.
 		 * @return bias matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY biasMatrix(void);
+		static Matrix4x4 HCAPIENTRY biasMatrix(void) {
+			const hpmvec4x4f_t bias = {
+				{0.5f, 0.0f, 0.0f, 0.0f},
+				{0.0f, 0.5f, 0.0f, 0.0f},
+				{0.0f, 0.0f, 0.5f, 0.0f},
+				{0.5f, 0.5f, 0.5f, 1.0f},
+			};
+
+			Matrix4x4 biasMatrix;
+			hpm_mat4x4_copyfv(biasMatrix.e, bias);
+			return biasMatrix;
+		}
 
 		/**
 		 * Create identity matrix.
 		 * @return identity matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY identity(void);
+		static Matrix4x4 HCAPIENTRY identity(void) noexcept {
+			Matrix4x4 mat;
+			hpm_mat4x4_identityfv(mat.e);
+			return mat;
+		}
 	};
 } // namespace LIBHPM
 
