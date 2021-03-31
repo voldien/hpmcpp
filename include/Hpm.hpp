@@ -60,21 +60,20 @@ namespace LIBHPM {
 		};
 
 		/**
-		 * Initialize hpm library.
+		 * @brief Initialize hpm library.
 		 * This function has to be
 		 * called before using the library.
-		 * @return 1 if successfully initialized. 0 if there was a failure.
+		 *
+		 * @param flag valid hpm flag.
+		 * @return int  1 if successfully initialized. 0 if there was a failure.
 		 */
-		static int HCAPIENTRY init(HPMSIMD hpmSIMD) noexcept(true) {
-			if (!isSupported(hpmSIMD))
-				throw std::runtime_error("");
-			return hpm_init((unsigned int)hpmSIMD);
+		static int HCAPIENTRY init(HPMSIMD flag) noexcept(false) {
+			if (!isSupported(flag))
+				throw std::runtime_error("Hpm SIMD extension flag not supported");
+			return hpm_init((unsigned int)flag);
 		}
 
-		static bool HCAPIENTRY isSupported(HPMSIMD SIMD) { return hpm_support_cpu_feat(SIMD); }
-
-	  public:
-		static constexpr bool isValidFlag(HPMSIMD flag) noexcept(true) { return false; }
+		static bool HCAPIENTRY isSupported(HPMSIMD SIMD) noexcept { return hpm_support_cpu_feat(SIMD); }
 	};
 
 } // namespace LIBHPM
