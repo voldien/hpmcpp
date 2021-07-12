@@ -378,7 +378,7 @@ namespace LIBHPM {
 		 *
 		 * @return normalized quaternion.
 		 */
-		static Quaternion HCAPIENTRY createQuaternionOfDirection(Vector3 &direction) noexcept {
+		static Quaternion HCAPIENTRY createQuaternionOfDirection(const Vector3 &direction) noexcept {
 			return createQuaternionOfAxis(0, 0, 0);
 		}
 

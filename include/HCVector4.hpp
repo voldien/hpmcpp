@@ -29,7 +29,7 @@ namespace LIBHPM {
 	  public:
 		Vector4(void) noexcept = default;
 		Vector4(float val) noexcept { hpm_vec4_setsf(&this->e, val); }
-		Vector4(float x, float y, float z, float w) noexcept { hpm_vec4_setf(&this->e, x, y, x, w); }
+		Vector4(float x, float y, float z, float w) noexcept { hpm_vec4_setf(&this->e, x, y, z, w); }
 		Vector4(const Vector4 &v) noexcept { *this = v; }
 
 		/**
@@ -51,12 +51,12 @@ namespace LIBHPM {
 		/**
 		 * Get component by index.
 		 */
-		constexpr float operator[](unsigned int i) const noexcept(noexcept(i >= 3)) {
+		constexpr float operator[](unsigned int i) const  {
 			if (i > 3)
 				throw std::invalid_argument("Index");
 			return this->e[i];
 		}
-		float &operator[](unsigned int i) noexcept(noexcept(i >= 3)) {
+		float &operator[](unsigned int i) {
 			if (i > 3)
 				throw std::invalid_argument("Index");
 			return this->e[i];
@@ -208,7 +208,6 @@ namespace LIBHPM {
 		 * @return unite vector.
 		 */
 		friend Vector4 HCAPIENTRY unitVector4(const Vector4 &v) {
-			Vector4 copy = v;
 			return v.normalize();
 		}
 

@@ -55,7 +55,7 @@ namespace LIBHPM {
 		 * @return reference to component.
 		 */
 		inline float &operator[](int i) noexcept(noexcept(i >= 2)) {
-			// return this->m[i];
+			return this->m[i];
 		}
 
 		/**

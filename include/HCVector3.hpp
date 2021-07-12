@@ -292,7 +292,9 @@ namespace LIBHPM {
 		 * @return
 		 */
 		friend Vector3 HCAPIENTRY refraction(const Vector3 &v1, const Vector3 &normal, float refraction) noexcept {
-			return Vector3();
+			Vector3 vec;
+			hpm_vec3_refractfv(&v1.e, &normal.e, refraction, &vec.e);
+			return vec;
 		}
 
 		/**

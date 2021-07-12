@@ -147,7 +147,7 @@ namespace LIBHPM {
 			hpm_mat4x4_copyfv(this->e, rh.e);
 			return *this;
 		}
-		Matrix4x4 &operator=(Matrix4x4 &&other) {}
+		Matrix4x4 &operator=(Matrix4x4 &&other) = default;
 
 		/**
 		 * @return

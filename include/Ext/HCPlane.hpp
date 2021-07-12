@@ -33,7 +33,7 @@ namespace LIBHPM {
 			this->d = 0;
 		}
 		Plane(const Vector3 &point, const Vector3 &normal) noexcept { this->setNormalAndPoint(normal, point); }
-		Plane(const Plane &plane) noexcept { *this = plane; }
+		Plane(const Plane &plane) noexcept = default;
 
 		/**
 		 * Get normal of plane.
