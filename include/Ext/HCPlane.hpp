@@ -90,16 +90,6 @@ namespace LIBHPM {
 		}
 
 		/**
-		 * @return stream reference.
-		 */
-		friend std::istream &operator>>(std::istream &is, Plane &t) { return is; }
-
-		/**
-		 * @return stream reference.
-		 */
-		friend std::ostream &operator<<(std::ostream &os, const Plane &t) { return os; }
-
-		/**
 		 * Compare if plane equal each other.
 		 * @return true if equal.
 		 */

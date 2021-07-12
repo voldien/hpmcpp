@@ -32,8 +32,6 @@ namespace LIBHPM {
 	  public:
 		Matrix4x4(void) = default;
 		Matrix4x4(const Matrix4x4 &other) { *this = other; }
-		explicit Matrix4x4(const float *matrix) {}
-		explicit Matrix4x4(float identity) {}
 		~Matrix4x4(void) = default;
 
 	  private: /*	Attributes.	*/
