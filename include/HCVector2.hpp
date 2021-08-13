@@ -50,15 +50,6 @@ namespace LIBHPM {
 		inline float operator[](int i) const noexcept(noexcept(i >= 2)) { return this->m[i]; }
 
 		/**
-		 * Get vector component reference
-		 * by index.
-		 * @return reference to component.
-		 */
-		inline float &operator[](int i) noexcept(noexcept(i >= 2)) {
-			return this->m[i];
-		}
-
-		/**
 		 * Compute length.
 		 * @return length in decimal.
 		 */

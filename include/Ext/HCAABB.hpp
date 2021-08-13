@@ -136,11 +136,11 @@ namespace LIBHPM {
 		Vector3 HCAPIENTRY getVertexN(const Vector3 &normal) const noexcept {
 			Vector3 res = this->mhalfsize;
 			if (normal.x() < 0.0f)
-				res[0] += this->mcenter.x();
+				res.setX(res.x() + this->mcenter.x());
 			if (normal.y() < 0.0f)
-				res[1] += this->mcenter.y();
+				res.setY(res.y() + this->mcenter.y());
 			if (normal.z() < 0.0f)
-				res[2] += this->mcenter.z();
+				res.setZ(res.z() + this->mcenter.z());
 			return res;
 		}
 
@@ -152,11 +152,11 @@ namespace LIBHPM {
 		Vector3 HCAPIENTRY getVertexP(const Vector3 &normal) const noexcept {
 			Vector3 res = this->mhalfsize;
 			if (normal.x() >= 0.0f)
-				res[0] += this->mcenter.x();
+				res.setX(res.x() + this->mcenter.x());
 			if (normal.y() >= 0.0f)
-				res[1] += this->mcenter.y();
+				res.setY(res.y() + this->mcenter.y());
 			if (normal.z() >= 0.0f)
-				res[2] += this->mcenter.z();
+				res.setZ(res.z() + this->mcenter.z());
 			return res;
 		}
 

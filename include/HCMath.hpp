@@ -16,7 +16,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-#pragma once
+#ifndef _HPMCPP_MATH_H_
+#define _HPMCPP_MATH_H_ 1
 #include "HCTypes.hpp"
 #include <cmath>
 #include <float.h>
@@ -27,62 +28,63 @@ namespace LIBHPM {
 	 */
 	class HCDECLSPEC Math {
 	  public:
-		template <typename T> inline constexpr static T clamp(T a, T min, T max) {
+		template <class T> inline constexpr static T clamp(T a, T min, T max) {
+			static_assert(std::is_floating_point<T>::value || std::is_integral<T>::value,
+						  "Must be a decimal type(float/double/half) or integer.");
 			return Math::max<T>(min, Math::min<T>(max, a));
-		}
-		inline constexpr static int clamp(int a, int min, int max) { return Math::clamp<int>(a, min, max); }
-		inline constexpr static float clampf(float a, float min, float max) { return Math::clamp<float>(a, min, max); }
-		inline constexpr static double clampd(double a, double min, double max) {
-			return Math::clamp<double>(a, min, max);
 		}
 
 		/**
 		 *	Get max value of a and b.
 		 */
-		template <typename T> inline constexpr static T max(T a, T b) { return ((a) < (b)) ? (b) : (a); }
-		inline constexpr static float maxf(float a, float b) { return ((a) < (b)) ? (b) : (a); }
-		inline constexpr static float maxd(double a, double b) { return ((a) < (b)) ? (b) : (a); }
-		inline constexpr static float maxi(int a, int b) { return ((a) < (b)) ? (b) : (a); }
+		template <typename T> inline constexpr static T max(T a, T b) {
+			static_assert(std::is_floating_point<T>::value || std::is_integral<T>::value,
+						  "Must be a decimal type(float/double/half) or integer.");
+			return (static_cast<T>(a) < static_cast<T>(b)) ? static_cast<T>(b) : static_cast<T>(a);
+		}
 
 		/**
 		 *	Get min value of a and b.
 		 */
-		template <typename T> inline constexpr static T min(T a, T b) noexcept { return ((a) > (b)) ? (b) : (a); }
-		inline constexpr static float minf(float a, float b) noexcept { return min<float>(a, b); }
-		inline constexpr static float mind(double a, double b) noexcept { return min<double>(a, b); }
-		inline constexpr static float mini(int a, int b) noexcept { return min<int>(a, b); }
-
-		/**
-		 *	Get float modular.
-		 */
-		inline static float modf(float a) {
-			double part;
-			return std::modf(a, &part);
+		template <typename T> inline constexpr static T min(T a, T b) noexcept {
+			static_assert(std::is_floating_point<T>::value || std::is_integral<T>::value,
+						  "Must be a decimal type(float/double/half) or integer.");
+			return (static_cast<T>(b) < static_cast<T>(a)) ? static_cast<T>(b) : static_cast<T>(a);
 		}
-		inline static float modd(double a) {
-			double part;
-			return std::modf(a, &part);
+
+		template <typename T> inline constexpr static T frac(T a) noexcept {
+			static_assert(std::is_floating_point<T>::value, "Must be a decimal type(float/double/half).");
+			T part;
+			std::modf(a, &part);
+			return part;
 		}
 
 		/**
 		 *	Convert degree to radian.
 		 */
-		template <class T> inline constexpr static T deg2Rad(T deg) { return (deg * (T)Math::PI) / (T)180.0; }
+		template <typename T> inline constexpr static T deg2Rad(T deg) noexcept {
+			static_assert(std::is_floating_point<T>::value, "Must be a decimal type(float/double/half).");
+			return deg * static_cast<T>(Deg2Rad);
+		}
 
 		/**
 		 *	Convert radian to degree.
 		 */
-		template <class T> inline constexpr static T radToDeg(T deg) { return (deg * (T)180.0) / (T)Math::PI; }
+		template <typename T> inline constexpr static T radToDeg(T deg) noexcept {
+			static_assert(std::is_floating_point<T>::value, "Must be a decimal type(float/double/half).");
+			return deg * static_cast<T>(Rad2Deg);
+		}
 
 		/**
 		 * Linear interpolation.
 		 */
-		template <typename T, typename U> inline constexpr static T lerp(T a, T b, U t) {
-			return a + (b - a) * Math::clamp(t, (U)0.0, (U)1.0);
+		template <typename T> inline constexpr static T lerp(T a, T b, T t) noexcept {
+			static_assert(std::is_floating_point<T>::value, "Must be a decimal type(float/double/half).");
+			return (a + (b - a) * t);
 		}
-
-		template <typename T, typename U> inline constexpr static T lerpUnClamped(T a, T b, U t) {
-			return a + (b - a) * t;
+		template <typename T> inline constexpr static T lerpClamped(T a, T b, T t) noexcept {
+			static_assert(std::is_floating_point<T>::value, "Must be a decimal type(float/double/half).");
+			return (a + (b - a) * Math::clamp<T>(t, static_cast<T>(0.0), static_cast<T>(1.0)));
 		}
 
 		inline static constexpr float Epsilon = FLT_EPSILON;
@@ -94,4 +96,4 @@ namespace LIBHPM {
 	};
 } // namespace LIBHPM
 
-//#endif
+#endif

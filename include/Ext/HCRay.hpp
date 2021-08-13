@@ -37,6 +37,8 @@ namespace LIBHPM {
 			this->setDirection(ray.getDirection());
 		}
 
+		Ray &operator=(const Ray &other) = default;
+
 		/**
 		 * @return get origin position.
 		 */

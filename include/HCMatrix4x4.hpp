@@ -82,11 +82,8 @@ namespace LIBHPM {
 		/**
 		 * Get element by index.
 		 */
-		float *operator[](int index) const {
-			// return (float*) &this->e[index][0];
-		}
-		float *operator[](int index) {
-			// return (float*)&this->e[0][0];
+		float operator[](int index) const {
+			 return  this->e[index / 4][index % 4];
 		}
 
 		/**

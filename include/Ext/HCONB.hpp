@@ -104,9 +104,9 @@ namespace LIBHPM {
 		 * @param t
 		 * @return stream reference.
 		 */
-		friend std::istream &operator>>(std::istream &is, ONB &t){
+		// friend std::istream &operator>>(std::istream &is, ONB &t){
 
-		}
+		// }
 
 		/**
 		 *

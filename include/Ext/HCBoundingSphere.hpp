@@ -73,7 +73,7 @@ namespace LIBHPM {
 		 */
 		constexpr bool HCAPIENTRY contains(const BoundingSphere &sphere) const { return false; }
 
-		constexpr bool intersect(const Ray &ray) const noexcept { return intersect<float>(ray); }
+
 		template <typename T> constexpr bool intersect(const Ray &ray) const noexcept {
 			Vector3 tmp = ray.getOrigin() - getCenter();
 			T t;
@@ -82,7 +82,7 @@ namespace LIBHPM {
 			T d = dot(tmp, tmp) - radius * radius;
 			T discriminant = b * b - ((T)4.0 * d * a);
 			if(discriminant >= 0) {
-				discriminant = sqrt(discriminant);
+				discriminant = static_cast<T>(sqrt(discriminant));
 
 				if (t < (T)0)
 					t = (-b + discriminant) / ((T)2.0 * a);
@@ -90,6 +90,7 @@ namespace LIBHPM {
 			}
 			return false;
 		}
+		constexpr bool intersect(const Ray &ray) const noexcept { return intersect<float>(ray); }
 
 		BoundingSphere &operator=(const BoundingSphere &bounds) {
 			this->setRadius(bounds.getRadius());

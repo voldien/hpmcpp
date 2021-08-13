@@ -168,9 +168,9 @@ namespace LIBHPM {
 		 * @return
 		 */
 		float operator[](int i) const { return this->e[i]; }
-		float &operator[](int i) {
-			// return this->e[i];
-		}
+		// float &operator[](int i) {
+		// 	return this->e[i];
+		// }
 
 		/**
 		 * Create input stream for creating quaternion

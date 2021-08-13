@@ -128,9 +128,9 @@
 #define __stdcall __attribute__((stdcall))
 #define __fastcall __attribute__((fastcall))
 #endif
-#define HCAPIENTRY __cdecl
-#define HCAPISTDENTRY __stdcall
-#define HCAPIFASTENTRY __fastcall
+#define HCAPIENTRY  //__cdecl
+#define HCAPISTDENTRY //__stdcall
+#define HCAPIFASTENTRY //__fastcall
 #endif
 
 /**

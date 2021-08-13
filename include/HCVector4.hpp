@@ -56,11 +56,6 @@ namespace LIBHPM {
 				throw std::invalid_argument("Index");
 			return this->e[i];
 		}
-		float &operator[](unsigned int i) {
-			if (i > 3)
-				throw std::invalid_argument("Index");
-			return this->e[i];
-		}
 
 		/**
 		 * Negate vector.

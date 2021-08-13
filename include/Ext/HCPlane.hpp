@@ -35,6 +35,8 @@ namespace LIBHPM {
 		Plane(const Vector3 &point, const Vector3 &normal) noexcept { this->setNormalAndPoint(normal, point); }
 		Plane(const Plane &plane) noexcept = default;
 
+		Plane &operator=(const Plane &other) = default;
+
 		/**
 		 * Get normal of plane.
 		 * @return normalized normal vector.
