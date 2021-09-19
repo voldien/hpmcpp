@@ -41,9 +41,9 @@ namespace LIBHPM {
 		 * Get individual component of vector.
 		 * @return
 		 */
-		float HCAPIFASTENTRY x(void) const noexcept { return hpm_vec4_getxf(this->e); }
-		float HCAPIFASTENTRY y(void) const noexcept { return hpm_vec4_getyf(this->e); }
-		float HCAPIFASTENTRY z(void) const noexcept { return hpm_vec4_getzf(this->e); }
+		constexpr float HCAPIFASTENTRY x(void) const noexcept { return hpm_vec4_getxf(this->e); }
+		constexpr float HCAPIFASTENTRY y(void) const noexcept { return hpm_vec4_getyf(this->e); }
+		constexpr float HCAPIFASTENTRY z(void) const noexcept { return hpm_vec4_getzf(this->e); }
 
 		/**
 		 * Set individual
@@ -68,7 +68,7 @@ namespace LIBHPM {
 		 * @param i
 		 * @return
 		 */
-		float operator[](int i) const noexcept(noexcept(i >= 2)) { return this->e[i]; }
+		float& operator[](int i) const noexcept(noexcept(i >= 2)) { return this->e[i]; }
 		inline operator float *(void) { return (float *)this; }
 
 		/**
