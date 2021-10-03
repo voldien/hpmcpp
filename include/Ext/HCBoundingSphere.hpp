@@ -18,13 +18,13 @@
 */
 #ifndef _HPMCPP_BOUNDING_SPHERE_H_
 #define _HPMCPP_BOUNDING_SPHERE_H_ 1
-#include "HCRay.hpp"
 #include "../HCVector3.hpp"
+#include "HCRay.hpp"
 
 namespace LIBHPM {
 	/**
-	 * @brief 
-	 * 
+	 * @brief
+	 *
 	 */
 	struct HCDECLSPEC BoundingSphere {
 	  public:
@@ -64,7 +64,15 @@ namespace LIBHPM {
 		 * @param sphere
 		 * @return true if object intersects, false otherwise.
 		 */
-		bool HCAPIENTRY intersect(const BoundingSphere &sphere) const { return false; }
+		bool HCAPIENTRY
+		intersect(const BoundingSphere &sphere) const { // get box closest point to sphere center by clamping
+			// we are using multiplications because it's faster than calling Math.pow
+			float distance = std::sqrt(
+				(this->getCenter().x() - sphere.getCenter().x()) * (this->getCenter().x() - sphere.getCenter().x()) +
+				(this->getCenter().y() - sphere.getCenter().y()) * (this->getCenter().y() - sphere.getCenter().y()) +
+				(this->getCenter().z() - sphere.getCenter().z()) * (this->getCenter().z() - sphere.getCenter().z()));
+			return distance < (this->getRadius() + sphere.getRadius());
+		}
 
 		/**
 		 * Check if sphere contains a sphere.
@@ -73,7 +81,6 @@ namespace LIBHPM {
 		 */
 		constexpr bool HCAPIENTRY contains(const BoundingSphere &sphere) const { return false; }
 
-
 		template <typename T> constexpr bool intersect(const Ray &ray) const noexcept {
 			Vector3 tmp = ray.getOrigin() - getCenter();
 			T t;
@@ -81,7 +88,7 @@ namespace LIBHPM {
 			T b = (T)2.0 * dot(ray.getDirection(), tmp);
 			T d = dot(tmp, tmp) - radius * radius;
 			T discriminant = b * b - ((T)4.0 * d * a);
-			if(discriminant >= 0) {
+			if (discriminant >= 0) {
 				discriminant = static_cast<T>(sqrt(discriminant));
 
 				if (t < (T)0)

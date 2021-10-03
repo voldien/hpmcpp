@@ -83,20 +83,24 @@ namespace LIBHPM {
 		/**
 		 *
 		 */
-		void initFromUV(const Vector3 &u, const Vector3 &v) {}
-		void initFromVU(const Vector3 &v, const Vector3 &u) {}
+		void initFromUV(const Vector3 &u, const Vector3 &v) {
+			this->m[2] = cross(u,v);
+		}
+		void initFromVU(const Vector3 &v, const Vector3 &u) {
+			this->m[2] = cross(v,u);
+		}
 
 		/**
 		 *
 		 */
-		void initFromUW(const Vector3 &u, const Vector3 &w) {}
-		void initFromWU(const Vector3 &w, const Vector3 &u) {}
+		void initFromUW(const Vector3 &u, const Vector3 &w) { this->m[1] = cross(u, w); }
+		void initFromWU(const Vector3 &w, const Vector3 &u) { this->m[1] = cross(w, u); }
 
 		/**
 		 *
 		 */
-		void initFromVW(const Vector3 &v, const Vector3 &w) {}
-		void initFromWV(const Vector3 &w, const Vector3 &v) {}
+		void initFromVW(const Vector3 &v, const Vector3 &w) { this->m[0] = cross(v, w); }
+		void initFromWV(const Vector3 &w, const Vector3 &v) { this->m[0] = cross(w, v); }
 
 		/**
 		 *

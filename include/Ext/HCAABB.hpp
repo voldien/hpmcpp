@@ -106,7 +106,11 @@ namespace LIBHPM {
 		 * @param bounds intersect this bound.
 		 * @return true if object intersects.
 		 */
-		constexpr bool intersect(const AABB &bounds) noexcept { return false; }
+		constexpr bool intersect(const AABB &bounds) noexcept {
+			return (this->minX() <= bounds.maxX() && this->maxX() >= bounds.minX()) &&
+				   (this->minY() <= bounds.maxY() && this->maxY() >= bounds.minY()) &&
+				   (this->minZ() <= bounds.maxZ() && this->maxZ() >= bounds.minZ());
+		}
 
 		/**
 		 *
@@ -206,14 +210,20 @@ namespace LIBHPM {
 		 * @param scalar real number.
 		 * @return reference of object.
 		 */
-		AABB &operator*=(float scalar) noexcept { return *this; }
+		AABB &operator*=(float scalar) noexcept {
+			this->setSize(getSize() * scalar);
+			return *this;
+		}
 
 		/**
 		 * Divide the size by scalar.
 		 * @param divisor non-zero.
 		 * @return reference of object.
 		 */
-		AABB &operator/=(float divisor) noexcept { return *this; }
+		AABB &operator/=(float divisor) noexcept {
+			this->setSize(getSize() / divisor);
+			return *this;
+		}
 
 		/**
 		 * Compare if objects are equal.
