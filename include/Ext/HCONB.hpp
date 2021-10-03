@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_ONB_H_
 #define _HPMCPP_ONB_H_ 1
+#include "../HCMath.hpp"
 #include "../HCVector3.hpp"
-#include"../HCMath.hpp"
 
 namespace LIBHPM {
 	/**
@@ -71,7 +71,7 @@ namespace LIBHPM {
 		/**
 		 *
 		 */
-		void set(const Vector3 &a, const Vector3 &b, const Vector3 &c){
+		void set(const Vector3 &a, const Vector3 &b, const Vector3 &c) {
 			this->m[0] = a;
 			this->m[1] = b;
 			this->m[2] = c;
@@ -83,12 +83,8 @@ namespace LIBHPM {
 		/**
 		 *
 		 */
-		void initFromUV(const Vector3 &u, const Vector3 &v) {
-			this->m[2] = cross(u,v);
-		}
-		void initFromVU(const Vector3 &v, const Vector3 &u) {
-			this->m[2] = cross(v,u);
-		}
+		void initFromUV(const Vector3 &u, const Vector3 &v) { this->m[2] = cross(u, v); }
+		void initFromVU(const Vector3 &v, const Vector3 &u) { this->m[2] = cross(v, u); }
 
 		/**
 		 *
@@ -118,7 +114,7 @@ namespace LIBHPM {
 		 * @param t
 		 * @return
 		 */
-		friend std::ostream &operator<<(std::ostream &os, const ONB &t){
+		friend std::ostream &operator<<(std::ostream &os, const ONB &t) {
 			os << t.u() << t.v() << t.w();
 			return os;
 		}
