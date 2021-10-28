@@ -379,7 +379,13 @@ namespace LIBHPM {
 		 * @return normalized quaternion.
 		 */
 		static Quaternion HCAPIENTRY createQuaternionOfDirection(const Vector3 &direction) noexcept {
-			return createQuaternionOfAxis(0, 0, 0);
+			const float x = direction.x();
+			const float y = direction.y();
+			const float z = direction.z();
+			float r = sqrt(x* x + y* y + z * z);
+			float t = std::atan(y / x);
+			float p = std::acos(z / r);
+			return createQuaternionOfAxis(r, t, p);
 		}
 
 		/**

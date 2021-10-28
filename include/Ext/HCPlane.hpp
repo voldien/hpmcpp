@@ -95,13 +95,20 @@ namespace LIBHPM {
 		 * Compare if plane equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator==(const Plane &o1, const Plane &o2) noexcept { return false; }
+		friend bool operator==(const Plane &o1, const Plane &o2) noexcept {
+			if (&o1 == &o2)
+				return true;
+			if (o1.d == o2.d && o1.normal == o2.normal)
+				return true;
+			return false;
+		}
 
 		/**
 		 * Compare if plane not equal each other.
 		 * @return true if equal.
 		 */
-		friend bool operator!=(const Plane &o1, const Plane &o2) noexcept { return false; }
+		friend bool operator!=(const Plane &o1, const Plane &o2) noexcept { return !(o1 == o2);
+		}
 
 	  protected:		/*	Attributes.	*/
 		Vector3 normal; /*	*/
