@@ -26,13 +26,13 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4x4f_t)) Matrix3x3 {
 	  public:
-		Matrix3x3(void) = default;
+		Matrix3x3() = default;
 		Matrix3x3(const Matrix3x3 &other);
 		explicit Matrix3x3(const Matrix4x4 &Identity);
 		explicit Matrix3x3(const float *matrix);
 		explicit Matrix3x3(const double *matrix);
 		explicit Matrix3x3(float identity);
-		~Matrix3x3(void) = default;
+		~Matrix3x3() = default;
 
 	  private: /*	Attributes.	*/
 		hpmvec4x4f_t e;
@@ -42,28 +42,28 @@ namespace LIBHPM {
 		 * Compute determinant.
 		 * @return
 		 */
-		float HCAPIENTRY determinant(void) const;
+		float HCAPIENTRY determinant() const;
 
 		/**
 		 * @return
 		 */
-		Matrix3x3 HCAPIENTRY inverse(void);
+		Matrix3x3 HCAPIENTRY inverse();
 
 		/**
 		 * @return
 		 */
-		bool HCAPIENTRY isIdentity(void) const;
+		bool HCAPIENTRY isIdentity() const;
 
 		/**
 		 * @return
 		 */
-		Matrix4x4 HCAPIENTRY identity(void);
+		Matrix4x4 HCAPIENTRY identity();
 
 		/**
 		 * Create transpose matrix.
 		 * @return
 		 */
-		Matrix3x3 HCAPIENTRY transpose(void) const;
+		Matrix3x3 HCAPIENTRY transpose() const;
 
 		/**
 		 * @return

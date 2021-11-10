@@ -30,9 +30,9 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4x4f_t)) Matrix4x4 {
 	  public:
-		Matrix4x4(void) = default;
+		Matrix4x4() = default;
 		Matrix4x4(const Matrix4x4 &other) { *this = other; }
-		~Matrix4x4(void) = default;
+		~Matrix4x4() = default;
 
 	  private: /*	Attributes.	*/
 		hpmvec4x4f_t e;
@@ -44,7 +44,7 @@ namespace LIBHPM {
 		 *
 		 * @return true if identity.
 		 */
-		bool HCAPIENTRY isIdentity(void) {
+		bool HCAPIENTRY isIdentity() {
 			static const Matrix4x4 identity = Matrix4x4::identity();
 			return *this == identity;
 		}
@@ -54,7 +54,7 @@ namespace LIBHPM {
 		 *
 		 * @return determine of matrix.
 		 */
-		float HCAPIENTRY determinant(void) const noexcept { return hpm_mat4x4_determinantfv(this->e); }
+		float HCAPIENTRY determinant() const noexcept { return hpm_mat4x4_determinantfv(this->e); }
 
 		/**
 		 * Compute the inverse vector
@@ -62,7 +62,7 @@ namespace LIBHPM {
 		 *
 		 * @return inversed matrix if successful.
 		 */
-		Matrix4x4 HCAPIENTRY inverse(void) const {
+		Matrix4x4 HCAPIENTRY inverse() const {
 			Matrix4x4 res;
 			hpm_mat4x4_inversefv(this->e, res.e);
 			return res;
@@ -73,7 +73,7 @@ namespace LIBHPM {
 		 *
 		 * @return transposed matrix.
 		 */
-		Matrix4x4 HCAPIENTRY transpose(void) const {
+		Matrix4x4 HCAPIENTRY transpose() const {
 			Matrix4x4 mat = *this;
 			hpm_mat4x4_transposefv(mat.e);
 			return mat;
@@ -336,7 +336,7 @@ namespace LIBHPM {
 		 * Create bias matrix.
 		 * @return bias matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY biasMatrix(void) {
+		static Matrix4x4 HCAPIENTRY biasMatrix() {
 			const hpmvec4x4f_t bias = {
 				{0.5f, 0.0f, 0.0f, 0.0f},
 				{0.0f, 0.5f, 0.0f, 0.0f},
@@ -353,7 +353,7 @@ namespace LIBHPM {
 		 * Create identity matrix.
 		 * @return identity matrix.
 		 */
-		static Matrix4x4 HCAPIENTRY identity(void) noexcept {
+		static Matrix4x4 HCAPIENTRY identity() noexcept {
 			Matrix4x4 mat;
 			hpm_mat4x4_identityfv(mat.e);
 			return mat;

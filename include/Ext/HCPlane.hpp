@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC Plane {
 	  public:
-		Plane(void) = default;
+		Plane() = default;
 		Plane(const Vector3 &normal) noexcept {
 			this->normal = normal;
 			this->d = 0;
@@ -41,13 +41,13 @@ namespace LIBHPM {
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline Vector3 getNormal(void) noexcept { return this->normal; }
+		inline Vector3 getNormal() noexcept { return this->normal; }
 
 		/**
 		 * Get normal of plane.
 		 * @return normalized normal vector.
 		 */
-		inline const Vector3 &getNormal(void) const noexcept { return this->normal; }
+		inline const Vector3 &getNormal() const noexcept { return this->normal; }
 
 		/**
 		 * Set plane normal.
@@ -66,13 +66,13 @@ namespace LIBHPM {
 		 * Get distance.
 		 * @return
 		 */
-		inline float distance(void) const noexcept { return this->d; }
+		inline float distance() const noexcept { return this->d; }
 
 		/**
 		 * Get point.
 		 * @return
 		 */
-		inline Vector3 getPoint(void) const noexcept { return d * this->getNormal(); }
+		inline Vector3 getPoint() const noexcept { return d * this->getNormal(); }
 
 		/**
 		 * Set normal and point and

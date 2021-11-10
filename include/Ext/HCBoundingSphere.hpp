@@ -28,7 +28,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC BoundingSphere {
 	  public:
-		BoundingSphere(void) = default;
+		BoundingSphere() = default;
 		BoundingSphere(const Vector3 &center, float radius) noexcept {
 			this->setCenter(center);
 			this->setRadius(radius);
@@ -39,7 +39,7 @@ namespace LIBHPM {
 		 * Get radius size.
 		 * @return non-negative size.
 		 */
-		inline constexpr float getRadius(void) const noexcept { return this->radius; }
+		inline constexpr float getRadius() const noexcept { return this->radius; }
 
 		/**
 		 * set radius size of the sphere.
@@ -51,7 +51,7 @@ namespace LIBHPM {
 		 * Get center position.
 		 * @return world position.
 		 */
-		inline const Vector3 &getCenter(void) const noexcept { return this->center; }
+		inline const Vector3 &getCenter() const noexcept { return this->center; }
 
 		/**
 		 * Set center position.

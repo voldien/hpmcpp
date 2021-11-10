@@ -165,20 +165,20 @@ namespace LIBHPM {
 	/**
 	 *	Class forwarding.
 	 */
-	class HpmCpp;
-	class Quaternion;
-	class Matrix4x4;
-	class Matrix3x3;
-	class Vector4;
-	class Vector3;
-	class Vector2;
+	struct HpmCpp;
+	struct Quaternion;
+	struct Matrix4x4;
+	struct Matrix3x3;
+	struct Vector4;
+	struct Vector3;
+	struct Vector2;
 	/*	*/
-	class Ray;
-	class ONB;
-	class OBB;
-	class AABB;
-	class Plane;
-	class BoundingSphere;
+	struct Ray;
+	struct ONB;
+	struct OBB;
+	struct AABB;
+	struct Plane;
+	struct BoundingSphere;
 } // namespace LIBHPM
 
 #endif

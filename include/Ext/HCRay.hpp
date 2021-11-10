@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC Ray {
 	  public:
-		Ray(void) = default;
+		Ray() = default;
 		Ray(const Vector3 &origin, const Vector3 &direction) {
 			this->setOrigin(origin);
 			this->setDirection(direction);
@@ -42,7 +42,7 @@ namespace LIBHPM {
 		/**
 		 * @return get origin position.
 		 */
-		inline const Vector3 &getOrigin(void) const noexcept { return this->m[0]; }
+		inline const Vector3 &getOrigin() const noexcept { return this->m[0]; }
 
 		/**
 		 * Set origin position.
@@ -53,7 +53,7 @@ namespace LIBHPM {
 		 * Get direction.
 		 * @return normalized direction.
 		 */
-		inline const Vector3 &getDirection(void) const noexcept { return this->m[1]; }
+		inline const Vector3 &getDirection() const noexcept { return this->m[1]; }
 
 		/**
 		 * Set direction vector.

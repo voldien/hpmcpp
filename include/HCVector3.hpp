@@ -18,8 +18,8 @@
 */
 #ifndef _HPMCPP_VECTOR_3D_H_
 #define _HPMCPP_VECTOR_3D_H_ 1
+#include "HCMath.hpp"
 #include "HCTypes.hpp"
-#include"HCMath.hpp"
 
 namespace LIBHPM {
 	/**
@@ -32,7 +32,7 @@ namespace LIBHPM {
 		friend struct Quaternion;
 
 	  public:
-		Vector3(void) = default;
+		Vector3() = default;
 		Vector3(float val) noexcept { hpm_vec4_setf(&this->e, val, val, val, val); }
 		Vector3(float e0, float e1, float e2) noexcept { hpm_vec4_setf(&this->e, e0, e1, e2, 0); }
 		Vector3(const Vector3 &v) noexcept { *this = v; }
@@ -41,9 +41,9 @@ namespace LIBHPM {
 		 * Get individual component of vector.
 		 * @return
 		 */
-		constexpr float HCAPIFASTENTRY x(void) const noexcept { return hpm_vec4_getxf(this->e); }
-		constexpr float HCAPIFASTENTRY y(void) const noexcept { return hpm_vec4_getyf(this->e); }
-		constexpr float HCAPIFASTENTRY z(void) const noexcept { return hpm_vec4_getzf(this->e); }
+		float HCAPIFASTENTRY x() const noexcept { return hpm_vec4_getxf(this->e); }
+		float HCAPIFASTENTRY y() const noexcept { return hpm_vec4_getyf(this->e); }
+		float HCAPIFASTENTRY z() const noexcept { return hpm_vec4_getzf(this->e); }
 
 		/**
 		 * Set individual
@@ -56,8 +56,8 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		const Vector3 &operator+(void) const noexcept { return *this; }
-		Vector3 operator-(void) const noexcept {
+		const Vector3 &operator+() const noexcept { return *this; }
+		Vector3 operator-() const noexcept {
 			Vector3 copy = *this;
 			hpm_vec4_negatefv(&copy.e);
 			return copy;
@@ -68,55 +68,58 @@ namespace LIBHPM {
 		 * @param i
 		 * @return
 		 */
-		float& operator[](int i) const noexcept(noexcept(i >= 2)) { return this->e[i]; }
-		inline operator float *(void) { return (float *)this; }
+		const float &operator[](int i) const noexcept(noexcept(i >= 2)) {
+			const hpmvec4uf *pe = reinterpret_cast<const hpmvec4uf*>(&this->e);
+			return pe->vco[i];
+		}
+		inline operator float *() { return (float *)this; }
 
 		/**
 		 * Compute length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY length(void) const noexcept { return hpm_vec3_lengthfv(&this->e); }
+		float HCAPIENTRY length() const noexcept { return hpm_vec3_lengthfv(&this->e); }
 
 		/**
 		 * Compute square length.
 		 * @return non-negative number.
 		 */
-		float HCAPIENTRY squaredLength(void) const noexcept { return hpm_vec3_lengthsquarefv(&this->e); }
+		float HCAPIENTRY squaredLength() const noexcept { return hpm_vec3_lengthsquarefv(&this->e); }
 
 		/**
 		 * Make vector to a unite vector.
 		 */
-		void HCAPIENTRY makeUnitVector(void) { *this = *this / (*this).length(); }
+		void HCAPIENTRY makeUnitVector() { *this = *this / (*this).length(); }
 
 		/**
 		 * Get minimum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY minComponent(void) const noexcept { return hpm_vec4_min_compfv(&this->e); }
+		float HCAPIFASTENTRY minComponent() const noexcept { return hpm_vec4_min_compfv(&this->e); }
 
 		/**
 		 * Get maximum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY maxComponent(void) const noexcept { return hpm_vec4_max_compfv(&this->e); }
+		float HCAPIFASTENTRY maxComponent() const noexcept { return hpm_vec4_max_compfv(&this->e); }
 
 		/**
 		 * Get absolute maximum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept { return fabs(hpm_vec4_max_compfv(&this->e)); }
+		float HCAPIFASTENTRY maxAbsComponent() const noexcept { return fabs(hpm_vec4_max_compfv(&this->e)); }
 
 		/**
 		 * Get absolute minimum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY minAbsComponent(void) const noexcept { return fabs(hpm_vec4_min_compfv(&this->e)); }
+		float HCAPIFASTENTRY minAbsComponent() const noexcept { return fabs(hpm_vec4_min_compfv(&this->e)); }
 
 		/**
 		 * Normalize vector.
 		 * @return normalized vector.
 		 */
-		Vector3 HCAPIENTRY normalize(void) const {
+		Vector3 HCAPIENTRY normalize() const {
 			float l = 1.0f / this->length();
 			return (*this * l);
 		}
@@ -358,13 +361,13 @@ namespace LIBHPM {
 		/**
 		 * Create predefined vector3.
 		 */
-		inline static Vector3 forward(void) noexcept { return Vector3(0.0f, 0.0f, 1.0f); }
-		inline static Vector3 back(void) noexcept { return Vector3(0.0f, 0.0f, -1.0f); }
-		inline static Vector3 right(void) noexcept { return Vector3(1.0f, 0.0f, 0.0f); }
-		inline static Vector3 left(void) noexcept { return Vector3(-1.0f, 0.0f, 0.0f); }
-		inline static Vector3 up(void) noexcept { return Vector3(0.0f, 1.0f, 0.0f); }
-		inline static Vector3 down(void) noexcept { return Vector3(0.0f, -1.0f, 0.0f); }
-		inline static Vector3 zero(void) noexcept { return Vector3(0.0f, 0.0, 0.0f); }
+		inline static Vector3 forward() noexcept { return Vector3(0.0f, 0.0f, 1.0f); }
+		inline static Vector3 back() noexcept { return Vector3(0.0f, 0.0f, -1.0f); }
+		inline static Vector3 right() noexcept { return Vector3(1.0f, 0.0f, 0.0f); }
+		inline static Vector3 left() noexcept { return Vector3(-1.0f, 0.0f, 0.0f); }
+		inline static Vector3 up() noexcept { return Vector3(0.0f, 1.0f, 0.0f); }
+		inline static Vector3 down() noexcept { return Vector3(0.0f, -1.0f, 0.0f); }
+		inline static Vector3 zero() noexcept { return Vector3(0.0f, 0.0, 0.0f); }
 
 		/**
 		 * Linear interpolation between v1 and v2 based on t.

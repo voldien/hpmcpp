@@ -29,7 +29,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC AABB {
 	  public:
-		AABB(void) = default;
+		AABB() = default;
 		AABB(const Vector3 &size, const Vector3 &center) {
 			setCenter(center);
 			setSize(size);
@@ -53,37 +53,37 @@ namespace LIBHPM {
 		 * Check if object is valid.
 		 * @return true if valid, false otherwise.
 		 */
-		constexpr bool isValid(void) const noexcept {
+		constexpr bool isValid() const noexcept {
 			return !(this->mhalfsize.x() != 0.0f || this->mhalfsize.y() != 0.0f || this->mhalfsize.z() != 0.0f);
 		}
 
 		/**
 		 *
 		 */
-		inline constexpr float maxX(void) const noexcept { return (this->mcenter.x() + this->mhalfsize.x()); }
-		inline constexpr float minX(void) const noexcept { return (this->mcenter.x() - this->mhalfsize.x()); }
-		inline constexpr float maxY(void) const noexcept { return (this->mcenter.y() + this->mhalfsize.y()); }
-		inline constexpr float minY(void) const noexcept { return (this->mcenter.y() - this->mhalfsize.y()); }
-		inline constexpr float maxZ(void) const noexcept { return (this->mcenter.z() + this->mhalfsize.z()); }
-		inline constexpr float minZ(void) const noexcept { return (this->mcenter.z() - this->mhalfsize.z()); }
+		inline constexpr float maxX() const noexcept { return (this->mcenter.x() + this->mhalfsize.x()); }
+		inline constexpr float minX() const noexcept { return (this->mcenter.x() - this->mhalfsize.x()); }
+		inline constexpr float maxY() const noexcept { return (this->mcenter.y() + this->mhalfsize.y()); }
+		inline constexpr float minY() const noexcept { return (this->mcenter.y() - this->mhalfsize.y()); }
+		inline constexpr float maxZ() const noexcept { return (this->mcenter.z() + this->mhalfsize.z()); }
+		inline constexpr float minZ() const noexcept { return (this->mcenter.z() - this->mhalfsize.z()); }
 
 		/**
 		 * Compute minimum position.
 		 * @return vector position.
 		 */
-		Vector3 min(void) const noexcept { return this->getCenter() - this->getSize(); }
+		Vector3 min() const noexcept { return this->getCenter() - this->getSize(); }
 
 		/**
 		 * Compute max position.
 		 * @return vector position.
 		 */
-		Vector3 max(void) const { return this->getCenter() + this->getSize(); }
+		Vector3 max() const { return this->getCenter() + this->getSize(); }
 
 		/**
 		 * Get half size.
 		 * @return half size vector.
 		 */
-		inline const Vector3 &getSize(void) const { return this->mhalfsize; }
+		inline const Vector3 &getSize() const { return this->mhalfsize; }
 
 		/**
 		 * Set half size.
@@ -94,7 +94,7 @@ namespace LIBHPM {
 		 * Get center position.
 		 * @return
 		 */
-		inline const Vector3 &getCenter(void) const noexcept { return this->mcenter; }
+		inline const Vector3 &getCenter() const noexcept { return this->mcenter; }
 
 		/**
 		 * Set center position.

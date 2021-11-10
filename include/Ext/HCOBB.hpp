@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC OBB {
 	  public:
-		OBB(void) = default;
+		OBB() = default;
 
 		OBB(const OBB &obb) { *this = obb; }
 
@@ -46,7 +46,7 @@ namespace LIBHPM {
 		 * Get U axis.
 		 * @return normalized axis.
 		 */
-		const Vector3 &HCAPIENTRY getU(void) const { return onb.u(); }
+		const Vector3 &HCAPIENTRY getU() const { return onb.u(); }
 
 		/**
 		 *	Get V axis.
@@ -57,13 +57,13 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		const Vector3 &HCAPIENTRY getV(void) const { return onb.v(); }
+		const Vector3 &HCAPIENTRY getV() const { return onb.v(); }
 
 		/**
 		 * Get W axis.
 		 * @return normalized axis.
 		 */
-		const Vector3 &HCAPIENTRY getW(void) const { return onb.w(); }
+		const Vector3 &HCAPIENTRY getW() const { return onb.w(); }
 
 		/**
 		 * Set size of box.
@@ -75,13 +75,13 @@ namespace LIBHPM {
 		 * Get half size.
 		 * @return non-negative vector of the size.
 		 */
-		inline Vector3 getSize(void) { return size; }
+		inline Vector3 getSize() { return size; }
 
 		/**
 		 *
 		 * @return
 		 */
-		inline const Vector3 &getSize(void) const { return this->size; }
+		inline const Vector3 &getSize() const { return this->size; }
 
 		/**
 		 *
@@ -93,7 +93,7 @@ namespace LIBHPM {
 		 *
 		 * @return
 		 */
-		inline Vector3 getCenter(void) const { return Vector3(this->halfu, this->halfv, this->halfw); }
+		inline Vector3 getCenter() const { return Vector3(this->halfu, this->halfv, this->halfw); }
 
 		OBB &operator=(const OBB &obb) {
 			this->onb = obb.onb;

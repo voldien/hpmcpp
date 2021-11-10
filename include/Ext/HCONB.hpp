@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC ONB {
 	  public:
-		ONB(void) = default;
+		ONB() = default;
 		ONB(const ONB &other) { *this = other; }
 		ONB(const Vector3 &a, const Vector3 &b, const Vector3 &c) { this->set(a, b, c); }
 
@@ -145,17 +145,17 @@ namespace LIBHPM {
 		/**
 		 * @return
 		 */
-		inline const Vector3 &u(void) const { return this->m[0]; }
+		inline const Vector3 &u() const { return this->m[0]; }
 
 		/**
 		 * @return
 		 */
-		inline const Vector3 &v(void) const { return this->m[1]; }
+		inline const Vector3 &v() const { return this->m[1]; }
 
 		/**
 		 * @return
 		 */
-		inline const Vector3 &w(void) const { return this->m[2]; }
+		inline const Vector3 &w() const { return this->m[2]; }
 
 	  private:		  /*	Attributes.	*/
 		Vector3 m[3]; /*	*/

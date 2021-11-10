@@ -27,7 +27,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec4f)) Vector4 {
 	  public:
-		Vector4(void) noexcept = default;
+		Vector4() noexcept = default;
 		Vector4(float val) noexcept { hpm_vec4_setsf(&this->e, val); }
 		Vector4(float x, float y, float z, float w) noexcept { hpm_vec4_setf(&this->e, x, y, z, w); }
 		Vector4(const Vector4 &v) noexcept { *this = v; }
@@ -35,10 +35,10 @@ namespace LIBHPM {
 		/**
 		 * Get component wise.
 		 */
-		inline float HCAPIFASTENTRY x(void) const noexcept { return hpm_vec4_getxf(this->e); }
-		inline float HCAPIFASTENTRY y(void) const noexcept { return hpm_vec4_getyf(this->e); }
-		inline float HCAPIFASTENTRY z(void) const noexcept { return hpm_vec4_getzf(this->e); }
-		inline float HCAPIFASTENTRY w(void) const noexcept { return hpm_vec4_getwf(this->e); }
+		inline float HCAPIFASTENTRY x() const noexcept { return hpm_vec4_getxf(this->e); }
+		inline float HCAPIFASTENTRY y() const noexcept { return hpm_vec4_getyf(this->e); }
+		inline float HCAPIFASTENTRY z() const noexcept { return hpm_vec4_getzf(this->e); }
+		inline float HCAPIFASTENTRY w() const noexcept { return hpm_vec4_getwf(this->e); }
 
 		/**
 		 * Set component wise.
@@ -61,7 +61,7 @@ namespace LIBHPM {
 		 * Negate vector.
 		 * @return negated vector.
 		 */
-		Vector4 operator-(void) const noexcept {
+		Vector4 operator-() const noexcept {
 			Vector4 copy = *this;
 			hpm_vec4_negatefv(&copy.e);
 			return copy;
@@ -71,48 +71,48 @@ namespace LIBHPM {
 		 * Compute length of vector.
 		 * @return non-negativ number.
 		 */
-		float HCAPIFASTENTRY length(void) const noexcept { return hpm_vec4_lengthfv(&this->e); }
+		float HCAPIFASTENTRY length() const noexcept { return hpm_vec4_lengthfv(&this->e); }
 
 		/**
 		 * Compute length of vector.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY squaredLength(void) const noexcept { return hpm_vec4_lengthsqurefv(&this->e); }
+		float HCAPIFASTENTRY squaredLength() const noexcept { return hpm_vec4_lengthsqurefv(&this->e); }
 
 		/**
 		 * Normalize current vector.
 		 */
-		void HCAPIENTRY makeUnitVector(void) { hpm_vec4_normalizefv(&this->e); }
+		void HCAPIENTRY makeUnitVector() { hpm_vec4_normalizefv(&this->e); }
 
 		/**
 		 * Get minimum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY minComponent(void) const noexcept { return hpm_vec4_min_compfv(&this->e); }
+		float HCAPIFASTENTRY minComponent() const noexcept { return hpm_vec4_min_compfv(&this->e); }
 
 		/**
 		 * Get maximum component.
 		 * @return number.
 		 */
-		float HCAPIFASTENTRY maxComponent(void) const noexcept { return hpm_vec4_max_compfv(&this->e); }
+		float HCAPIFASTENTRY maxComponent() const noexcept { return hpm_vec4_max_compfv(&this->e); }
 
 		/**
 		 * Get absolute maximum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY maxAbsComponent(void) const noexcept { return abs(hpm_vec4_max_compfv(&this->e)); }
+		float HCAPIFASTENTRY maxAbsComponent() const noexcept { return abs(hpm_vec4_max_compfv(&this->e)); }
 
 		/**
 		 * Get absolute minimum component.
 		 * @return non-negative number.
 		 */
-		float HCAPIFASTENTRY minAbsComponent(void) const noexcept { return abs(hpm_vec4_min_compfv(&this->e)); }
+		float HCAPIFASTENTRY minAbsComponent() const noexcept { return abs(hpm_vec4_min_compfv(&this->e)); }
 
 		/**
 		 * Create normalized copy.
 		 * @return normalize vector of current vector.
 		 */
-		Vector4 HCAPIENTRY normalize(void) const {
+		Vector4 HCAPIENTRY normalize() const {
 			Vector4 vec = *this;
 			hpm_vec4_normalizefv(&vec.e);
 			return vec;

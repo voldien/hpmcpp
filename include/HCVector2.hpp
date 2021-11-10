@@ -26,7 +26,7 @@ namespace LIBHPM {
 	 */
 	struct HCDECLSPEC alignas(alignof(hpmvec2f)) Vector2 {
 	  public:
-		Vector2(void) = default;
+		Vector2() = default;
 		Vector2(float val) {
 			this->setX(val);
 			this->setY(val);
@@ -41,7 +41,7 @@ namespace LIBHPM {
 		 * Negate vector.
 		 * @return
 		 */
-		Vector2 &operator-(void) const noexcept { return -*this; }
+		Vector2 &operator-() const noexcept { return -*this; }
 
 		/**
 		 * Get vector component by index.
@@ -53,18 +53,18 @@ namespace LIBHPM {
 		 * Compute length.
 		 * @return length in decimal.
 		 */
-		float length(void) const noexcept { return sqrtf(x() * x() + y() * y()); }
+		float length() const noexcept { return sqrtf(x() * x() + y() * y()); }
 
 		/**
 		 * Compute square length.
 		 * @return length in decimal.
 		 */
-		float squaredLength(void) const noexcept { return (x() * x() + y() * y()); }
+		float squaredLength() const noexcept { return (x() * x() + y() * y()); }
 
 		/**
 		 * Make vector to unit length.
 		 */
-		void makeUnitVector(void) { *this /= this->length(); }
+		void makeUnitVector() { *this /= this->length(); }
 
 		/**
 		 * Set vector X component value.
@@ -80,31 +80,31 @@ namespace LIBHPM {
 		 * Get vector X component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY x(void) const noexcept { return this->m[0]; }
+		float HCAPIFASTENTRY x() const noexcept { return this->m[0]; }
 
 		/**
 		 * Get vector Y component value.
 		 * @return value of component.
 		 */
-		float HCAPIFASTENTRY y(void) const noexcept { return this->m[1]; }
+		float HCAPIFASTENTRY y() const noexcept { return this->m[1]; }
 
 		/**
 		 * @return
 		 */
-		float minComponent(void) const noexcept { return 0; }
-		float maxComponent(void) const noexcept { return 0; }
-		float maxAbsComponent(void) const noexcept { return 0; }
-		float minAbsComponent(void) const noexcept { return 0; }
-		int indexOfMinComponent(void) const noexcept { return 0; }
-		int indexOfMaxComponent(void) const noexcept { return 0; }
-		int indexOfMinAbsComponent(void) const noexcept { return 0; }
-		int indexOfMaxAbsComponent(void) const noexcept { return 0; }
+		float minComponent() const noexcept { return 0; }
+		float maxComponent() const noexcept { return 0; }
+		float maxAbsComponent() const noexcept { return 0; }
+		float minAbsComponent() const noexcept { return 0; }
+		int indexOfMinComponent() const noexcept { return 0; }
+		int indexOfMaxComponent() const noexcept { return 0; }
+		int indexOfMinAbsComponent() const noexcept { return 0; }
+		int indexOfMaxAbsComponent() const noexcept { return 0; }
 
 		/**
 		 * Create normalize copy
 		 * @return
 		 */
-		Vector2 normalize(void) const {
+		Vector2 normalize() const {
 			Vector2 copy = *this;
 			copy.makeUnitVector();
 			return copy;
@@ -114,7 +114,13 @@ namespace LIBHPM {
 		 * Compare vector equalities.
 		 * @return true if vector equal for each component.
 		 */
-		friend bool operator==(const Vector2 &v1, const Vector2 &v2) { return !(v1 == v2); }
+		friend bool operator==(const Vector2 &v1, const Vector2 &v2) {
+			if(&v1 == &v2)
+				return true;
+			else if(v1.x() == v2.x() && v1.y() == v2.y())
+				return true;
+			return false;
+		}
 		/**
 		 * Compare vector inequality.
 		 * @return true if at least single component is not equal.
@@ -241,7 +247,7 @@ namespace LIBHPM {
 			   * Create zero vector.
 			   * @return HCVector2 object.
 			   */
-		static Vector2 zero(void) noexcept { return Vector2(0.0f); }
+		static Vector2 zero() noexcept { return Vector2(0.0f); }
 	};
 } // namespace LIBHPM
 
